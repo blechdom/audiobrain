@@ -10,7 +10,7 @@ type Session = { dispose: () => void };
 
 export function ConnectionsPanel({ runtime, snapshot, project }: ConnectionsPanelProps) {
   const [peerUrl, setPeerUrl] = useState('https://videobrain.org/');
-  const [gatewayUrl, setGatewayUrl] = useState(location.protocol === 'http:' ? 'ws://127.0.0.1:8081' : '');
+  const [gatewayUrl, setGatewayUrl] = useState(location.protocol === 'http:' ? 'ws://127.0.0.1:8787' : '');
   const [error, setError] = useState<string | null>(null);
   const brain = useRef<Session | null>(null);
   const osc = useRef<Session | null>(null);
