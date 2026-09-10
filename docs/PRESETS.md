@@ -1,6 +1,25 @@
+# Playing the presets
+
+Open **Presets** in the project bar. **Load** replaces the current project; **Add** creates a second instrument with fresh stable IDs, internal connections and performance controls. Renaming an object never changes its identity.
+
+| Shapes example | Sound | Readers |
+| --- | --- | --- |
+| Morphazoid Shapes / Shapes Synth | Continuous synth | Four point heads |
+| Shapes Notes | Contour-region note attacks | Two crossing line heads, one reverse |
+| Shapes Triggers | Morphazoid FM percussion, incidence mapping | Three radar heads |
+| Shapes Drums | Morphazoid FM percussion, position mapping | Four point heads, mixed directions |
+
+**Sound mode** is pinned on the performance surface. Notes and drum attacks follow entry into contour regions; **Trigger divisions** changes those regions. **Playheads** chooses each reader, direction, line axis and relative start. Each head can use its own reader type or inherit the main reader. New presets use zero curvature and −6 dB gain, with Notes at −3 dB and Drums at −9 dB. Saved project values remain unchanged.
+
+Drag a head to reposition it. In the default Playheads tool, dragging inside a shape scrubs the shared phase and dragging outside rotates. The Move, Rotate and Curvature tools select explicit graphic gestures. Keyboard sliders and the pinned Rotation control provide alternatives.
+
+Existing saved projects gain compatible reader/gesture defaults, but their authored performance layout is retained. Select Shapes Reader in Graph and pin **Playheads**; pin **Sound mode** from Shapes Mapping. When you change Sound mode in an older Synth patch, AudioBrain adds the optional Notes / triggers cable to its connected voice bank if that input is unused, in the same undo step. Existing input connections are preserved.
+
+The following architecture notes distinguish implemented families from planned source extensions. The [parity ledger](FEATURE_PARITY.md) is the required preservation inventory.
+
 # Three teaching presets
 
-Status: these are **playable production presets in AudioBrain 0.1.0**, validated by the production compiler and tested through real offline audio rendering. They adapt the audited instruments; they are not byte-for-byte exports or claims of full timbral parity. Future variations and richer authoring targets are identified below.
+Status: these are **playable production presets in AudioBrain 0.2.0**, validated by the production compiler and tested through real offline audio rendering. They adapt the audited instruments; they are not byte-for-byte exports or claims of full timbral parity. Future variations and richer authoring targets are identified below.
 
 The expanded graphs in [presets/](../presets/) show the boundaries an author can edit. The current app presents each as a complete expanded instrument graph; nested module wrappers remain planned. A fresh session begins with audio off and built-in sources, without microphone/MIDI permission or network connections. The performer explicitly arms Audio and starts transport. Switching presets retains an already armed/playing session, resets the instrument epoch and releases old notes; it never arms an unarmed host. A persistent host transport and panic control sits outside the arrangeable widget list.
 
@@ -23,11 +42,11 @@ flowchart LR
 
 | Part | Implemented starting point | What the performer learns |
 | --- | --- | --- |
-| Geometry | Five-sided polygon, curvature 0.15 | Form is data shared by the reader and graphic |
+| Geometry | Five-sided polygon, curvature 0 | Form is data shared by the reader and graphic |
 | Reader | Four heads, evenly spaced, 0.12 cycles/s | Head phase is persistent runtime state; drawing does not move sound |
 | Mapping | 110 Hz root, two-octave height range; horizontal pan; directional corner envelope | Converting geometry into sound is an explicit replaceable node |
 | Voice | Continuous voice bank, character 0.35 | Musical targets can drive different engines without replacing geometry |
-| Output | Stereo gain -18 dB, level meter | Output level and metering are shared building blocks |
+| Output | Stereo gain -6 dB, level meter | Output level and metering are shared building blocks |
 | Performance | Large contour graphic; sides, curvature, speed, root, character and level | Pinned controls edit the same literals as node/Inspector controls |
 
 Arrange the shape view in the left two-thirds of a 12-column surface, expressive controls to the right, master/meter below. Dragging the shape graphic issues a curvature command through its explicit `viewBindings` target; keyboard/numeric equivalents remain available. Rotation and editable-vertex shapes need further declared parameters/actions, not capabilities implied by this fixture.
@@ -58,7 +77,7 @@ flowchart LR
 | Geometry | 45° turn, 0.72 length scale | A branched path retains parents, lengths, depth and cumulative turn |
 | Frontier | Final-generation mode; half a normalized path traversal per second | Forks are evaluated together by path distance; visual X is not time |
 | Mapping | 110 Hz root; turn-to-pitch mapping, branch power sharing and horizontal pan | More branches do not simply multiply gain |
-| Voice/output | Polyphonic voice → stereo gain -18 dB → output and meter | Note events can be redirected to another compatible voice bank |
+| Voice/output | Polyphonic voice → stereo gain -6 dB → output and meter | Note events can be redirected to another compatible voice bank |
 | Performance | Canopy graphic; angle, generation count, traversal speed, pitch and level | Structural changes publish complete revisions; other controls remain responsive |
 
 The mapping parameter `semitonesPerTurn` means semitones per full cumulative revolution (2π radians); the adapter must translate the source's turn mapping explicitly. `speed` means traversals of the normalized path extent per second. These parameter units are not an assertion that similarly named legacy sliders use them.
@@ -88,7 +107,7 @@ flowchart LR
 | Traversal | Edge timing scale 0.15; canonical scheduling applies its distance curve | Geometry affects when an arrival sounds; branch/feedback budgets remain bounded |
 | Mapping | 220 Hz root; 12 semitones per full cumulative turn | Route context, not just node number, can determine pitch |
 | Voice | Canonical Graph Synth target mapping with AudioBrain sine/FM voice, decay 0.6 s | Preserve route-derived musical targets while keeping synthesis replaceable |
-| Output | Stereo gain -18 dB with meter | The same output contract works for all three instruments |
+| Output | Stereo gain -6 dB with meter | The same output contract works for all three instruments |
 | Performance | Large graph view with active-route overlay; edge time, pitch mapping, decay, level | The graphic's gesture explicitly targets edge time; node/edge authoring is the next view-action extension |
 
 Remaining Graphs authoring target: add validated model-action bindings so toggling an edge changes future propagation and vertex dragging preserves IDs; seed/reset reproduces event order; a cyclic topology respects traversal limits without allowing illegal instantaneous patch cable cycles. The current preset defines generated topology and parameter gestures, not saved arbitrary vertex edits. Add **Graph Drums** by replacing arrival-to-note/voice nodes with drum mapping/bank. Add **Graph Audio Effect** separately for audio input → actual graph delay/retuning, sharing topology but not pretending that a synth event scheduler is a live audio processor.

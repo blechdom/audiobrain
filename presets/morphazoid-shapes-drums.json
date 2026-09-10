@@ -1,28 +1,26 @@
 {
   "documentType": "audiobrain.project",
   "schemaVersion": 1,
-  "id": "morphazoid-graphs",
-  "title": "Morphazoid Graphs",
-  "description": "Walk a seeded layered topology; translate vertex encounters into decaying notes while its graph remains visible.",
-  "learningGoal": "Distinguish graph-theory topology data from AudioBrain wiring and replace topology, traversal, mapping, and sound independently.",
+  "id": "morphazoid-shapes-drums",
+  "title": "Morphazoid Shapes Drums",
+  "description": "Four point playheads play the Morphazoid drum kit, with position-based drum selection and independently adjustable starts.",
+  "learningGoal": "Change geometry, traversal, musical mapping, and voice character independently while performing the same saved parameters.",
   "capabilityNotes": [
     "Built-in instruments work without microphone, MIDI, or network permission.",
-    "Start Audio explicitly to hear this instrument; audio begins at -6 dB gain.",
+    "Start Audio explicitly to hear this instrument; audio begins at -9 dB gain.",
     "The graphic observes the shared instrument state and does not drive the audio clock."
   ],
   "nodes": [
     {
-      "id": "topology",
-      "kind": "graph.topology",
+      "id": "geometry",
+      "kind": "shapes.geometry",
       "position": {
         "x": 0,
         "y": 0
       },
       "params": {
-        "topology": "layered",
-        "layers": 4,
-        "nodesPerLayer": 3,
-        "seed": 17
+        "sides": 5,
+        "curvature": 0
       }
     },
     {
@@ -37,37 +35,47 @@
       }
     },
     {
-      "id": "walk",
-      "kind": "graph.walk",
+      "id": "reader",
+      "kind": "shapes.reader",
       "position": {
         "x": 280,
         "y": 0
       },
       "params": {
-        "edgeSeconds": 0.15
+        "heads": 4,
+        "rateHz": 0.24,
+        "reader": "points",
+        "motion": "loop",
+        "direction": "forward",
+        "phaseOffset": 0,
+        "head2Direction": "reverse",
+        "head4Direction": "reverse"
       }
     },
     {
       "id": "mapping",
-      "kind": "mapping.graphNotes",
+      "kind": "shapes.mapping",
       "position": {
         "x": 560,
         "y": 0
       },
       "params": {
-        "rootHz": 220,
-        "semitonesPerTurn": 12
+        "rootHz": 110,
+        "rangeOctaves": 2,
+        "playingMode": "triggers",
+        "pitchMapping": "shape",
+        "triggerMapping": "position"
       }
     },
     {
       "id": "voices",
-      "kind": "voice.graph",
+      "kind": "voice.continuous",
       "position": {
         "x": 0,
-        "y": 380
+        "y": 330
       },
       "params": {
-        "decay": 0.6
+        "character": 0.35
       }
     },
     {
@@ -75,10 +83,10 @@
       "kind": "audio.gain",
       "position": {
         "x": 280,
-        "y": 380
+        "y": 330
       },
       "params": {
-        "db": -6
+        "db": -9
       }
     },
     {
@@ -86,24 +94,48 @@
       "kind": "audio.output",
       "position": {
         "x": 560,
-        "y": 380
+        "y": 330
       },
       "params": {}
     },
     {
       "id": "view",
-      "kind": "view.graph",
+      "kind": "view.shapes",
       "position": {
         "x": 280,
         "y": 660
       },
       "params": {},
       "viewBindings": {
-        "edgeTime": {
+        "curvature": {
           "nodePath": [
-            "walk"
+            "geometry"
           ],
-          "paramId": "edgeSeconds"
+          "paramId": "curvature"
+        },
+        "rotation": {
+          "nodePath": [
+            "geometry"
+          ],
+          "paramId": "rotationDeg"
+        },
+        "moveX": {
+          "nodePath": [
+            "geometry"
+          ],
+          "paramId": "positionX"
+        },
+        "moveY": {
+          "nodePath": [
+            "geometry"
+          ],
+          "paramId": "positionY"
+        },
+        "scrub": {
+          "nodePath": [
+            "reader"
+          ],
+          "paramId": "phaseOffset"
         }
       }
     },
@@ -119,31 +151,31 @@
   ],
   "edges": [
     {
-      "id": "topology-graph-to-walk-graph",
+      "id": "geometry-path-to-reader-path",
       "source": {
-        "nodeId": "topology",
-        "portId": "graph"
+        "nodeId": "geometry",
+        "portId": "path"
       },
       "target": {
-        "nodeId": "walk",
-        "portId": "graph"
+        "nodeId": "reader",
+        "portId": "path"
       }
     },
     {
-      "id": "transport-state-to-walk-transport",
+      "id": "transport-state-to-reader-transport",
       "source": {
         "nodeId": "transport",
         "portId": "state"
       },
       "target": {
-        "nodeId": "walk",
+        "nodeId": "reader",
         "portId": "transport"
       }
     },
     {
-      "id": "walk-features-to-mapping-features",
+      "id": "reader-features-to-mapping-features",
       "source": {
-        "nodeId": "walk",
+        "nodeId": "reader",
         "portId": "features"
       },
       "target": {
@@ -152,14 +184,14 @@
       }
     },
     {
-      "id": "mapping-notes-to-voices-notes",
+      "id": "mapping-voices-to-voices-voices",
       "source": {
         "nodeId": "mapping",
-        "portId": "notes"
+        "portId": "voices"
       },
       "target": {
         "nodeId": "voices",
-        "portId": "notes"
+        "portId": "voices"
       }
     },
     {
@@ -185,20 +217,20 @@
       }
     },
     {
-      "id": "topology-graph-to-view-graph",
+      "id": "geometry-path-to-view-path",
       "source": {
-        "nodeId": "topology",
-        "portId": "graph"
+        "nodeId": "geometry",
+        "portId": "path"
       },
       "target": {
         "nodeId": "view",
-        "portId": "graph"
+        "portId": "path"
       }
     },
     {
-      "id": "walk-features-to-view-features",
+      "id": "reader-features-to-view-features",
       "source": {
-        "nodeId": "walk",
+        "nodeId": "reader",
         "portId": "features"
       },
       "target": {
@@ -216,6 +248,17 @@
         "nodeId": "meter",
         "portId": "audio"
       }
+    },
+    {
+      "id": "mapping-notes-to-voices-notes",
+      "source": {
+        "nodeId": "mapping",
+        "portId": "notes"
+      },
+      "target": {
+        "nodeId": "voices",
+        "portId": "notes"
+      }
     }
   ],
   "performance": {
@@ -223,13 +266,13 @@
     "columns": 12,
     "widgets": [
       {
-        "id": "graph",
+        "id": "contour",
         "kind": "view",
         "target": {
           "nodePath": [
             "view"
           ],
-          "viewId": "graph"
+          "viewId": "contour"
         },
         "layout": {
           "x": 0,
@@ -239,13 +282,13 @@
         }
       },
       {
-        "id": "layers",
+        "id": "sides",
         "kind": "param",
         "target": {
           "nodePath": [
-            "topology"
+            "geometry"
           ],
-          "paramId": "layers"
+          "paramId": "sides"
         },
         "layout": {
           "x": 8,
@@ -255,13 +298,13 @@
         }
       },
       {
-        "id": "nodes",
+        "id": "curvature",
         "kind": "param",
         "target": {
           "nodePath": [
-            "topology"
+            "geometry"
           ],
-          "paramId": "nodesPerLayer"
+          "paramId": "curvature"
         },
         "layout": {
           "x": 8,
@@ -271,13 +314,13 @@
         }
       },
       {
-        "id": "seed",
+        "id": "heads",
         "kind": "param",
         "target": {
           "nodePath": [
-            "topology"
+            "reader"
           ],
-          "paramId": "seed"
+          "paramId": "heads"
         },
         "layout": {
           "x": 8,
@@ -287,13 +330,13 @@
         }
       },
       {
-        "id": "edge-time",
+        "id": "rate",
         "kind": "param",
         "target": {
           "nodePath": [
-            "walk"
+            "reader"
           ],
-          "paramId": "edgeSeconds"
+          "paramId": "rateHz"
         },
         "layout": {
           "x": 8,
@@ -319,13 +362,13 @@
         }
       },
       {
-        "id": "pitch",
+        "id": "range",
         "kind": "param",
         "target": {
           "nodePath": [
             "mapping"
           ],
-          "paramId": "semitonesPerTurn"
+          "paramId": "rangeOctaves"
         },
         "layout": {
           "x": 8,
@@ -335,13 +378,13 @@
         }
       },
       {
-        "id": "decay",
+        "id": "character",
         "kind": "param",
         "target": {
           "nodePath": [
             "voices"
           ],
-          "paramId": "decay"
+          "paramId": "character"
         },
         "layout": {
           "x": 0,
@@ -378,6 +421,118 @@
         "layout": {
           "x": 8,
           "y": 6,
+          "w": 4,
+          "h": 1
+        }
+      },
+      {
+        "id": "playheads",
+        "kind": "view",
+        "target": {
+          "nodePath": [
+            "reader"
+          ],
+          "viewId": "playheads"
+        },
+        "layout": {
+          "x": 0,
+          "y": 7,
+          "w": 12,
+          "h": 6
+        }
+      },
+      {
+        "id": "rotation",
+        "kind": "param",
+        "target": {
+          "nodePath": [
+            "geometry"
+          ],
+          "paramId": "rotationDeg"
+        },
+        "layout": {
+          "x": 0,
+          "y": 13,
+          "w": 4,
+          "h": 1
+        }
+      },
+      {
+        "id": "sound-mode",
+        "kind": "param",
+        "target": {
+          "nodePath": [
+            "mapping"
+          ],
+          "paramId": "playingMode"
+        },
+        "layout": {
+          "x": 4,
+          "y": 13,
+          "w": 4,
+          "h": 1
+        }
+      },
+      {
+        "id": "divisions",
+        "kind": "param",
+        "target": {
+          "nodePath": [
+            "reader"
+          ],
+          "paramId": "divisions"
+        },
+        "layout": {
+          "x": 8,
+          "y": 13,
+          "w": 4,
+          "h": 1
+        }
+      },
+      {
+        "id": "drum-mapping",
+        "kind": "param",
+        "target": {
+          "nodePath": [
+            "mapping"
+          ],
+          "paramId": "triggerMapping"
+        },
+        "layout": {
+          "x": 0,
+          "y": 14,
+          "w": 4,
+          "h": 1
+        }
+      },
+      {
+        "id": "drum-character",
+        "kind": "param",
+        "target": {
+          "nodePath": [
+            "mapping"
+          ],
+          "paramId": "triggerCharacter"
+        },
+        "layout": {
+          "x": 4,
+          "y": 14,
+          "w": 4,
+          "h": 1
+        }
+      },
+      {
+        "id": "drum-tuning",
+        "kind": "param",
+        "target": {
+          "nodePath": [
+            "mapping"
+          ],
+          "paramId": "tuningDepth"
+        },
+        "layout": {
+          "x": 8,
+          "y": 14,
           "w": 4,
           "h": 1
         }

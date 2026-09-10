@@ -11,13 +11,13 @@ const parameter = (document: GraphDocument, nodeId: string, paramId: string, val
 describe('Morphazoid instrument evaluation', () => {
   it('evaluates all production preset graphs into matching visuals and routed sound', () => {
     for (const document of PRESETS) {
-      const result = evaluate(document);
+      const result = evaluate(document, .1, 0, 2);
       expect(result.snapshots.view?.geometry?.points.length).toBeGreaterThan(0);
       expect(result.snapshots.view?.geometry?.segments.length).toBeGreaterThan(0);
       expect(result.audio.some(node => node.id === 'out' && node.kind === 'audio.output')).toBe(true);
-      expect(result.audio.some(node => node.id === 'gain' && node.params.db === -18)).toBe(true);
+      expect(result.audio.some(node => node.id === 'gain' && node.params.db === document.nodes.find(node => node.id === 'gain')!.params.db)).toBe(true);
       const voices = result.audio.find(node => node.id === 'voices')!;
-      const targets = voices.voices ?? voices.notes ?? [];
+      const targets = [...(voices.voices ?? []), ...(voices.notes ?? [])];
       expect(targets.length).toBeGreaterThan(0);
       for (const target of targets) {
         expect(Number.isFinite(target.frequency)).toBe(true);
@@ -88,7 +88,7 @@ describe('Morphazoid instrument evaluation', () => {
 
 describe('explicit control boundaries', () => {
   it('resolves connected values with bounds while retaining saved literals for disconnect', () => {
-    const document = preset(0), controller = createNode('control.constant');
+    const document = parameter(preset(0), 'geometry', 'curvature', .15), controller = createNode('control.constant');
     controller.params.value = 2;
     document.nodes.push(controller);
     document.edges.push({ id: 'curvature-control', source: { nodeId: controller.id, portId: 'value' }, target: { nodeId: 'geometry', portId: 'curvature' } });
@@ -106,7 +106,7 @@ describe('explicit control boundaries', () => {
     const live = context(); live.controls.set(input.id, 5.7);
     expect(evaluator.evaluate(live).snapshots.geometry?.params?.sides).toBe(6);
     live.controls.set(input.id, NaN);
-    expect(evaluator.evaluate(live).snapshots.geometry?.params?.sides).toBe(3);
+    expect(evaluator.evaluate(live).snapshots.geometry?.params?.sides).toBe(1);
   });
   it('rejects branch and graph event mappings without their required musical metadata', () => {
     const branches = preset(1);
@@ -130,6 +130,151 @@ describe('explicit control boundaries', () => {
     crossed.edges = crossed.edges.map(edge => edge.source.nodeId === 'geometry' ? { ...edge, source: { nodeId: geometry.id, portId: 'path' } } : edge);
     crossed.edges.push({ id: 'branch-text', source: { nodeId: grammar.id, portId: 'text' }, target: { nodeId: geometry.id, portId: 'text' } });
     expect(() => evaluate(crossed)).toThrow('requires a Shapes contour');
+  });
+});
+
+describe('independent Shapes playheads', () => {
+  it('restores readers to old saved projects through defaults without moving their point heads', () => {
+    const document = preset(0);
+    document.nodes.find(node => node.id === 'reader')!.params = { heads: 4, rateHz: .25 };
+    const result = evaluate(document, .4);
+    expect(result.snapshots.reader!.readers?.map(reader => reader.type)).toEqual(['points', 'points', 'points', 'points']);
+    const phases = result.snapshots.reader!.readers!.map(reader => reader.phase);
+    for (const [index, phase] of phases.entries()) expect(phase).toBeCloseTo(.1 + index / 4);
+    expect(result.snapshots.reader!.readers).toEqual(result.snapshots.view!.readers);
+  });
+
+  it('supports twelve heads, mixed reader modes, independent scan axes and explicit relative positions', () => {
+    const document = preset(0);
+    Object.assign(document.nodes.find(node => node.id === 'reader')!.params, { heads: 12, phaseOffset: .2, head2Phase: .15, head2Direction: 'reverse', head3Reader: 'line', head3Axis: 'horizontal', head4Reader: 'radar' });
+    const result = evaluate(document, 0);
+    const readers = result.snapshots.view!.readers!;
+    expect(readers).toHaveLength(12);
+    expect(readers[0]!.phase).toBeCloseTo(.2);
+    expect(readers[1]!.phase).toBeCloseTo(.2 + 1 / 12 + .15);
+    expect(readers[1]!.direction).toBe(-1);
+    expect(readers[2]!.type).toBe('line'); expect(readers[2]!.axis).toBe('horizontal');
+    expect(readers[3]!.type).toBe('radar');
+    expect(result.snapshots.view!.features!.filter(feature => feature.headIndex === 2)).toHaveLength(2);
+    expect(result.audio.find(node => node.id === 'voices')!.voices).toHaveLength(13);
+  });
+
+  it('reverses each head in place, preserves rate edits and applies authored offsets immediately', () => {
+    const document = parameter(preset(0), 'reader', 'rateHz', .2);
+    let evaluator = new GraphEvaluator(compileGraph(document));
+    const before = evaluator.evaluate(context(1)).snapshots.reader!.readers!;
+    parameter(document, 'reader', 'head2Direction', 'reverse');
+    evaluator = new GraphEvaluator(compileGraph(document), evaluator);
+    const reversed = evaluator.evaluate(context(1)).snapshots.reader!.readers!;
+    expect(reversed.map(reader => reader.phase)).toEqual(before.map(reader => reader.phase));
+    const later = evaluator.evaluate(context(1.5)).snapshots.reader!.readers!;
+    expect(later[0]!.phase).toBeCloseTo(before[0]!.phase + .1);
+    expect(later[1]!.phase).toBeCloseTo(before[1]!.phase - .1);
+    parameter(document, 'reader', 'rateHz', .4);
+    evaluator = new GraphEvaluator(compileGraph(document), evaluator);
+    expect(evaluator.evaluate(context(1.5)).snapshots.reader!.readers!.map(reader => reader.phase)).toEqual(later.map(reader => reader.phase));
+    parameter(document, 'reader', 'direction', 'reverse');
+    evaluator = new GraphEvaluator(compileGraph(document), evaluator);
+    const globalReverse = evaluator.evaluate(context(1.5)).snapshots.reader!.readers!;
+    expect(globalReverse.map(reader => reader.phase)).toEqual(later.map(reader => reader.phase));
+    expect(globalReverse.map(reader => reader.direction)).toEqual([-1, 1, -1, -1]);
+    parameter(document, 'reader', 'head1Phase', .12);
+    evaluator = new GraphEvaluator(compileGraph(document), evaluator);
+    expect(evaluator.evaluate(context(1.5)).snapshots.reader!.readers![0]!.phase).toBeCloseTo(later[0]!.phase + .12);
+    evaluator.reset();
+    expect(evaluator.evaluate(context(0)).snapshots.reader!.readers![0]!.phase).toBeCloseTo(.12);
+  });
+
+  it('keeps two instances of the same reader and voice bank independently addressable', () => {
+    const document = preset(0), second = preset(0);
+    parameter(second, 'reader', 'heads', 2);
+    parameter(second, 'reader', 'rateHz', .4);
+    parameter(second, 'mapping', 'rootHz', 220);
+    document.nodes.push(...second.nodes.map(node => ({ ...node, id: `second-${node.id}`, viewBindings: undefined })));
+    document.edges.push(...second.edges.map(edge => ({ ...edge, id: `second-${edge.id}`, source: { ...edge.source, nodeId: `second-${edge.source.nodeId}` }, target: { ...edge.target, nodeId: `second-${edge.target.nodeId}` } })));
+    let evaluator = new GraphEvaluator(compileGraph(document));
+    const before = evaluator.evaluate(context(.4));
+    expect(before.snapshots.reader!.readers).toHaveLength(4);
+    expect(before.snapshots['second-reader']!.readers).toHaveLength(2);
+    expect(before.audio.find(node => node.id === 'voices')!.voices).toHaveLength(4);
+    expect(before.audio.find(node => node.id === 'second-voices')!.voices).toHaveLength(2);
+    const expected = evaluator.evaluate(context(.8)).snapshots.reader;
+    parameter(document, 'second-reader', 'head1Direction', 'reverse');
+    evaluator = new GraphEvaluator(compileGraph(document), evaluator);
+    expect(evaluator.evaluate(context(.8)).snapshots.reader).toEqual(expected);
+    const later = evaluator.evaluate(context(1));
+    expect(later.snapshots.reader!.readers![0]!.direction).toBe(1);
+    expect(later.snapshots['second-reader']!.readers![0]!.direction).toBe(-1);
+  });
+
+  it('resolves a wired full-period ping-pong phase without overwriting its saved offset', () => {
+    const document = parameter(preset(0), 'reader', 'head1Phase', .2);
+    parameter(document, 'reader', 'motion', 'pingpong');
+    const control = createNode('control.constant'); control.params.value = 1.6;
+    document.nodes.push(control);
+    document.edges.push({ id: 'head-phase-control', source: { nodeId: control.id, portId: 'value' }, target: { nodeId: 'reader', portId: 'head1Phase' } });
+    const wired = evaluate(document, 0);
+    expect(wired.snapshots.reader!.params!.head1Phase).toBe(1.6);
+    expect(wired.snapshots.reader!.readers![0]!.phase).toBeCloseTo(.4);
+    expect(document.nodes.find(node => node.id === 'reader')!.params.head1Phase).toBe(.2);
+    document.edges = document.edges.filter(edge => edge.id !== 'head-phase-control');
+    expect(evaluate(document, 0).snapshots.reader!.readers![0]!.phase).toBeCloseTo(.2);
+  });
+});
+
+describe('Shapes note and drum scheduling contracts', () => {
+  const notePreset = () => cloneGraphDocument(PRESETS.find(document => document.id === 'morphazoid-shapes-notes')!);
+  const notesAt = (evaluator: GraphEvaluator, start: number, end: number) => evaluator.evaluate(context(start, start, end)).audio.find(node => node.id === 'voices')!.notes!;
+
+  it('keeps note identities and attack limits across plan edits and half-open windows', () => {
+    const document = notePreset();
+    parameter(document, 'reader', 'rateHz', 1);
+    const expected = notesAt(new GraphEvaluator(compileGraph(document)), 0, 1);
+    let evaluator = new GraphEvaluator(compileGraph(document));
+    const early = notesAt(evaluator, 0, .513);
+    evaluator.evaluate(context(.513, .513, .513)); // A display observation consumes no event.
+    parameter(document, 'gain', 'db', -24);
+    evaluator = new GraphEvaluator(compileGraph(document), evaluator);
+    const late = notesAt(evaluator, .513, 1);
+    expect([...early, ...late]).toEqual(expected);
+    expect(new Set(expected.map(note => note.id)).size).toBe(expected.length);
+    expect(expected.length).toBeGreaterThan(1);
+    evaluator.reset();
+    expect(notesAt(evaluator, 0, 1)).toEqual(expected);
+  });
+
+  it('keeps canonical global and per-voice ceilings across dense short scheduling windows', () => {
+    for (const mode of ['notes', 'triggers'] as const) {
+      const document = notePreset();
+      parameter(document, 'geometry', 'sides', 32);
+      parameter(document, 'reader', 'heads', 1);
+      parameter(document, 'reader', 'rateHz', 1);
+      parameter(document, 'reader', 'divisions', 16);
+      parameter(document, 'mapping', 'playingMode', mode);
+      const evaluator = new GraphEvaluator(compileGraph(document));
+      const notes = Array.from({ length: 40 }, (_, index) => notesAt(evaluator, index / 40, (index + 1) / 40)).flat();
+      expect(notes.length).toBeGreaterThan(10);
+      const attacks = [...new Set(notes.map(note => note.time))];
+      for (let index = 1; index < attacks.length; index++) expect(attacks[index]! - attacks[index - 1]!).toBeGreaterThanOrEqual(1 / (mode === 'notes' ? 96 : 128) - 1e-9);
+      const lastByVoice = new Map<string, number>();
+      for (const note of notes) {
+        const key = mode === 'notes' ? note.sourceId! : note.drum!.id;
+        const previous = lastByVoice.get(key);
+        if (previous !== undefined) expect(note.time - previous).toBeGreaterThanOrEqual((mode === 'notes' ? .016 : .012) - 1e-9);
+        lastByVoice.set(key, note.time);
+      }
+    }
+  });
+
+  it('makes Note character change the canonical duration while retaining attacks and pitches', () => {
+    const short = parameter(notePreset(), 'mapping', 'noteCharacter', 0);
+    const long = parameter(notePreset(), 'mapping', 'noteCharacter', 1);
+    const before = notesAt(new GraphEvaluator(compileGraph(short)), 0, 2);
+    const after = notesAt(new GraphEvaluator(compileGraph(long)), 0, 2);
+    expect(before.length).toBeGreaterThan(0);
+    expect(after.map(note => ({ id: note.id, time: note.time, frequency: note.frequency }))).toEqual(before.map(note => ({ id: note.id, time: note.time, frequency: note.frequency })));
+    for (const [index, note] of before.entries()) expect(after[index]!.duration).toBeGreaterThan(note.duration);
+    expect(after.every(note => note.attack === .004)).toBe(true);
   });
 });
 

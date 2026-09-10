@@ -1,0 +1,770 @@
+{
+  "documentType": "audiobrain.feature-parity",
+  "schemaVersion": 1,
+  "baseline": "contracts/morphazoid-parity-baseline.json",
+  "claims": {
+    "shapes": "partial",
+    "lsystems": "partial",
+    "graphs": "partial"
+  },
+  "policy": "Preserve every inventoried capability until it is implemented and tested, or the user explicitly approves a specific departure. A framework rewrite or first-slice scope does not erase the remaining source requirements.",
+  "approvedChanges": [
+    {
+      "id": "curvature-zero",
+      "capabilityId": "shapes.curvature-default",
+      "userInstruction": "i want to defaul to 0 curvature",
+      "decision": "New Shapes preset and node defaults use0 curvature. Preserve curvature values authored in existing saved projects. This restores the source default; it does not approve unrelated visual or functional changes."
+    },
+    {
+      "id": "louder-defaults",
+      "capabilityId": "common.audio-transport",
+      "userInstruction": "the audio is very soft",
+      "decision": "Raise preset output gain and measure real output. Notes use−3dB, Drums−9dB and the other presets−6dB; saved user gains remain authored values."
+    },
+    {
+      "id": "visible-sound-modes",
+      "capabilityId": "shapes.playing-modes",
+      "userInstruction": "how do i switch from synth to drums/trigger to notes ? i just don’t see - - - more presets perhaps ? Maybe i don’t see the presets",
+      "decision": "Expose Synth, Notes and Drums/triggers in Perform, with dedicated Shapes mode presets. This does not approve omission of remaining source sound engines."
+    }
+  ],
+  "capabilities": [
+    {
+      "id": "common.audio-transport",
+      "status": "ported",
+      "access": "Global Audio, Play, Panic, output Gain; also available in Perform.",
+      "implementation": [
+        "src/runtime/AudioBrainRuntime.ts",
+        "src/audio/AudioRack.ts"
+      ],
+      "tests": [
+        {
+          "path": "src/runtime/AudioBrainRuntime.test.ts",
+          "testName": "transport runs with no context until Audio is explicitly armed; rearming reuses one context"
+        },
+        {
+          "path": "e2e/audio-offline.spec.ts",
+          "testName": "all Morphazoid flows render finite real samples and honor gain and output wiring"
+        }
+      ],
+      "remaining": "Physical output-device checks and listening remain unperformed."
+    },
+    {
+      "id": "common.navigation",
+      "status": "partial",
+      "access": "Preset selector; Graph/Arrange/Perform.",
+      "implementation": [
+        "src/App.tsx"
+      ],
+      "tests": [
+        {
+          "path": "e2e/studio.spec.ts",
+          "testName": "three instruments render their own geometry and make audio only after arming"
+        }
+      ],
+      "remaining": "New AudioBrain preset selector exists. Original page/query links and saved-state import need explicit adapters; they are not interchangeable with AudioBrain project JSON."
+    },
+    {
+      "id": "common.midi",
+      "status": "partial",
+      "access": "Connections; add MIDI input/output in Graph; choose an output explicitly.",
+      "implementation": [
+        "src/runtime/AudioBrainRuntime.ts",
+        "src/components/DeviceActions.tsx"
+      ],
+      "tests": [
+        {
+          "path": "src/runtime/AudioBrainRuntime.test.ts",
+          "testName": "scopes held MIDI notes to device/channel and requires an explicitly selected output"
+        }
+      ],
+      "remaining": "AudioBrain routes notes/scalars, but does not preserve each source instrument phase/seed/transport mapping, MIDI learn, clock or toolbar preview semantics."
+    },
+    {
+      "id": "common.performance-layout",
+      "status": "partial",
+      "access": "Graph Inspector pins existing controls; Arrange moves/resizes them; Perform keeps the same graph state.",
+      "implementation": [
+        "src/performance/PerformanceSurface.tsx"
+      ],
+      "tests": [
+        {
+          "path": "e2e/studio.spec.ts",
+          "testName": "performance controls, direct gestures, arrangement and export share project state"
+        },
+        {
+          "path": "e2e/studio.spec.ts",
+          "testName": "perform controls remain reachable on phone portrait and landscape"
+        }
+      ],
+      "remaining": "AudioBrain pinning is implemented; it does not restore controls whose underlying source behavior is missing. Original viewport interactions and exact visual/timbral identity need per-flow comparison."
+    },
+    {
+      "id": "shapes.dimension",
+      "status": "partial",
+      "access": "Morphazoid Shapes preset.",
+      "implementation": [
+        "src/instruments/geometry.ts"
+      ],
+      "tests": [
+        {
+          "path": "src/runtime/GraphEvaluator.test.ts",
+          "testName": "evaluates all production preset graphs into matching visuals and routed sound"
+        }
+      ],
+      "remaining": "Only 2D supported. 3D/4D geometry, projections and continuity remain required."
+    },
+    {
+      "id": "shapes.banks",
+      "status": "partial",
+      "access": "Graph node controls and Inspector; pin supported parameters into Perform.",
+      "implementation": [
+        "src/components/GraphEditor.tsx",
+        "src/performance/PerformanceSurface.tsx"
+      ],
+      "tests": [],
+      "remaining": "Controls use Graph/Inspector/Perform instead of the old banks. Every retained control must have a documented location; missing source controls stay required."
+    },
+    {
+      "id": "shapes.playing-modes",
+      "status": "partial",
+      "access": "Sound mode in the default performance controls: Synth, Notes, Drums/triggers. Dedicated Shapes Synth/Notes/Triggers/Drums presets show the routes.",
+      "implementation": [
+        "src/instruments/shapesMusic.ts",
+        "src/runtime/GraphEvaluator.ts",
+        "src/audio/AudioRack.ts"
+      ],
+      "tests": [
+        {
+          "path": "src/instruments/shapes-readers.test.ts",
+          "testName": "retains event identity across adjacent windows and changes density with true-side divisions"
+        },
+        {
+          "path": "e2e/audio-offline.spec.ts",
+          "testName": "Shapes synth, notes and FM drums render distinct real sound and release old modes"
+        }
+      ],
+      "remaining": "Continuous, source region-entry Notes and FM-kit Triggers are implemented, with Reader divisions. Full source engine/bank options, direct MIDI-held note behavior and3D/4D remain required."
+    },
+    {
+      "id": "shapes.phase-speed",
+      "status": "ported",
+      "access": "Playheads Position and Speed; drag a head directly, or scrub the shape/background with the selected interaction.",
+      "implementation": [
+        "src/instruments/geometry.ts",
+        "src/runtime/GraphEvaluator.ts",
+        "src/performance/ShapesPlayheadControls.tsx",
+        "src/performance/shapesGestures.ts"
+      ],
+      "tests": [
+        {
+          "path": "src/runtime/GraphEvaluator.test.ts",
+          "testName": "preserves reader phase when a new plan changes an unrelated parameter"
+        },
+        {
+          "path": "e2e/shapes-playheads.spec.ts",
+          "testName": "mouse gestures move one head, translate and rotate the actual shape, and undo together"
+        }
+      ],
+      "remaining": "Source phase/speed behavior restored for the2D contour. User-authored phase offsets persist."
+    },
+    {
+      "id": "shapes.global-direction-motion",
+      "status": "ported",
+      "access": "Playheads Direction and Motion select Forward/Reverse and Loop/Ping-pong.",
+      "implementation": [
+        "src/instruments/geometry.ts",
+        "src/runtime/GraphEvaluator.ts",
+        "src/performance/ShapesPlayheadControls.tsx"
+      ],
+      "tests": [
+        {
+          "path": "src/runtime/GraphEvaluator.test.ts",
+          "testName": "reverses each head in place, preserves rate edits and applies authored offsets immediately"
+        },
+        {
+          "path": "src/instruments/shapes-readers.test.ts",
+          "testName": "does not invent a second loop entry after a closed ping-pong turnaround"
+        },
+        {
+          "path": "src/instruments/shapes-readers.test.ts",
+          "testName": "emits one-region circle seams once at exact crossing times, including reverse travel"
+        }
+      ],
+      "remaining": "Direction changes retain current head positions; exact one-region seams and ping-pong turns are covered."
+    },
+    {
+      "id": "shapes.readers",
+      "status": "ported",
+      "access": "Reader selector in the pinned Playheads panel; each head can inherit it or select Points, Line or Radar.",
+      "implementation": [
+        "src/instruments/geometry.ts",
+        "src/runtime/GraphEvaluator.ts",
+        "src/performance/ShapesPlayheadControls.tsx",
+        "src/performance/InstrumentView.tsx"
+      ],
+      "tests": [
+        {
+          "path": "src/instruments/shapes-readers.test.ts",
+          "testName": "reads a mixed point, line and radar family into matching independent voices"
+        },
+        {
+          "path": "e2e/shapes-playheads.spec.ts",
+          "testName": "Shapes exposes point, line and radar readers directly in Performance"
+        }
+      ],
+      "remaining": "Distinct canonical contour contacts and matching reader drawings restored. Human visual/gesture acceptance remains separate."
+    },
+    {
+      "id": "shapes.head-count",
+      "status": "ported",
+      "access": "Playheads count in the default Perform surface; Shapes Reader node supports1–12.",
+      "implementation": [
+        "src/instruments/geometry.ts",
+        "src/runtime/GraphEvaluator.ts",
+        "src/performance/ShapesPlayheadControls.tsx"
+      ],
+      "tests": [
+        {
+          "path": "src/runtime/GraphEvaluator.test.ts",
+          "testName": "supports twelve heads, mixed reader modes, independent scan axes and explicit relative positions"
+        },
+        {
+          "path": "e2e/shapes-playheads.spec.ts",
+          "testName": "twelve heads and all their controls remain reachable on phone layouts"
+        }
+      ],
+      "remaining": "Source count restored with independent stable head identities. Physical12-head performance acceptance remains separate."
+    },
+    {
+      "id": "shapes.head-spacing",
+      "status": "ported",
+      "access": "Per-head Position, draggable head controls, Even spacing and Align heads in the pinned Playheads panel.",
+      "implementation": [
+        "src/instruments/geometry.ts",
+        "src/runtime/GraphEvaluator.ts",
+        "src/performance/ShapesPlayheadControls.tsx"
+      ],
+      "tests": [
+        {
+          "path": "src/runtime/GraphEvaluator.test.ts",
+          "testName": "reverses each head in place, preserves rate edits and applies authored offsets immediately"
+        },
+        {
+          "path": "e2e/shapes-playheads.spec.ts",
+          "testName": "relative positions and independent directions persist across reader mode changes"
+        }
+      ],
+      "remaining": "Authored offsets and view changes retain the same graph parameters; mouse/touch feel still requires human acceptance."
+    },
+    {
+      "id": "shapes.head-direction-axis",
+      "status": "ported",
+      "access": "Per-head Direction; Line heads expose Axis. Mixed reader types may coexist.",
+      "implementation": [
+        "src/instruments/geometry.ts",
+        "src/runtime/GraphEvaluator.ts",
+        "src/performance/ShapesPlayheadControls.tsx"
+      ],
+      "tests": [
+        {
+          "path": "src/runtime/GraphEvaluator.test.ts",
+          "testName": "reverses each head in place, preserves rate edits and applies authored offsets immediately"
+        },
+        {
+          "path": "src/runtime/GraphEvaluator.test.ts",
+          "testName": "supports twelve heads, mixed reader modes, independent scan axes and explicit relative positions"
+        }
+      ],
+      "remaining": "Source phase-preserving reversal and per-line axes restored; mixed reader types add a compatible AudioBrain extension."
+    },
+    {
+      "id": "shapes.profiles",
+      "status": "partial",
+      "access": "Sides1 selects Circle;2 selects Open line;3–32 select Polygon.",
+      "implementation": [
+        "src/instruments/geometry.ts"
+      ],
+      "tests": [
+        {
+          "path": "src/instruments/shapes-readers.test.ts",
+          "testName": "preserves circles, open contours, inward curvature and the source side limit"
+        }
+      ],
+      "remaining": "Circle/open-line/fullside range restored. Star profile selector and star-depth deformation remain required."
+    },
+    {
+      "id": "shapes.curvature-default",
+      "status": "ported",
+      "access": "Curvature is pinned in Perform and editable in Shapes Geometry. New presets/node defaults are0.",
+      "implementation": [
+        "src/instruments/geometry.ts",
+        "src/runtime/GraphEvaluator.ts",
+        "src/performance/ShapesPlayheadControls.tsx",
+        "presets/morphazoid-shapes.json"
+      ],
+      "tests": [
+        {
+          "path": "src/instruments/shapes-readers.test.ts",
+          "testName": "preserves circles, open contours, inward curvature and the source side limit"
+        },
+        {
+          "path": "e2e/shapes-playheads.spec.ts",
+          "testName": "Shapes exposes point, line and radar readers directly in Performance"
+        }
+      ],
+      "remaining": "Full−1…1 range restored. Existing saved projects keep their authored curvature."
+    },
+    {
+      "id": "shapes.deformation",
+      "status": "ported",
+      "access": "Shapes Geometry Stretch and Skew; pin either parameter into Perform.",
+      "implementation": [
+        "src/instruments/geometry.ts",
+        "src/components/GraphEditor.tsx"
+      ],
+      "tests": [
+        {
+          "path": "src/instruments/shapes-readers.test.ts",
+          "testName": "rotates and translates the real contour while radar rays retain their shared origin"
+        }
+      ],
+      "remaining": "Source2D stretch/skew math restored; individual controls are available through Graph/Inspector."
+    },
+    {
+      "id": "shapes.solid-form",
+      "status": "missing",
+      "access": "Not available in AudioBrain.",
+      "implementation": [],
+      "tests": [],
+      "remaining": "Source3D representations and transforms are not available."
+    },
+    {
+      "id": "shapes.hyper-form",
+      "status": "missing",
+      "access": "Not available in AudioBrain.",
+      "implementation": [],
+      "tests": [],
+      "remaining": "Source4D representations and transforms are not available."
+    },
+    {
+      "id": "shapes.rotation",
+      "status": "partial",
+      "access": "Rotation, auto-rotation and rotation speed in the Shapes controls; drag the background/Rotate gesture.",
+      "implementation": [
+        "src/instruments/geometry.ts",
+        "src/runtime/GraphEvaluator.ts",
+        "src/performance/ShapesPlayheadControls.tsx",
+        "src/performance/InstrumentView.tsx"
+      ],
+      "tests": [
+        {
+          "path": "src/instruments/shapes-readers.test.ts",
+          "testName": "rotates and translates the real contour while radar rays retain their shared origin"
+        },
+        {
+          "path": "e2e/shapes-playheads.spec.ts",
+          "testName": "mouse gestures move one head, translate and rotate the actual shape, and undo together"
+        }
+      ],
+      "remaining": "2D static/automatic rotation restored. Independent3D reader orientation and4D W-plane rotation remain required."
+    },
+    {
+      "id": "shapes.voice-mapping",
+      "status": "partial",
+      "access": "Shapes Mapping Pitch mapping selects contour-bounds source pitch or legacy centered pitch; root/range are graph parameters.",
+      "implementation": [
+        "src/instruments/geometry.ts",
+        "src/instruments/shapesMusic.ts"
+      ],
+      "tests": [
+        {
+          "path": "src/instruments/shapes-readers.test.ts",
+          "testName": "maps source pitch from the contour bounds and retains explicit legacy centered pitch"
+        },
+        {
+          "path": "src/runtime/GraphEvaluator.test.ts",
+          "testName": "maps the same geometric contacts into a higher continuous root pitch"
+        }
+      ],
+      "remaining": "Canonical bounded-height pitch, pan and directed contour envelope restored for2D. Native synth character and fixed spread do not expose every source voice parameter/range; higher-dimensional mappings remain required."
+    },
+    {
+      "id": "shapes.voice-engines",
+      "status": "partial",
+      "access": "Voice node Character and Brightness.",
+      "implementation": [
+        "src/audio/AudioRack.ts"
+      ],
+      "tests": [
+        {
+          "path": "e2e/audio-offline.spec.ts",
+          "testName": "all Morphazoid flows render finite real samples and honor gain and output wiring"
+        }
+      ],
+      "remaining": "AudioBrain native sine/FM approximation exists. PM/Shepard and source engine identity are missing; no full timbral parity claim."
+    },
+    {
+      "id": "shapes.percussion",
+      "status": "partial",
+      "access": "Select Drums/triggers; Trigger mapping, Tuning depth, Trigger character and Hit cap are Shapes Mapping parameters.",
+      "implementation": [
+        "src/instruments/shapesMusic.ts",
+        "src/audio/AudioRack.ts"
+      ],
+      "tests": [
+        {
+          "path": "src/instruments/shapesMusic.test.ts",
+          "testName": "retains the source sixteen-voice bank and independent feature/position/incidence routes"
+        },
+        {
+          "path": "src/instruments/shapesMusic.test.ts",
+          "testName": "maps geometric height to drum tuning, contact drive to noise and stereo position to tone"
+        },
+        {
+          "path": "e2e/audio-offline.spec.ts",
+          "testName": "Shapes synth, notes and FM drums render distinct real sound and release old modes"
+        }
+      ],
+      "remaining": "Source16-voice FM kit, feature/position/incidence mappings and actual envelopes/noise/filtering restored. Rattlesnake processor and source user-saved FM banks remain missing."
+    },
+    {
+      "id": "shapes.envelope",
+      "status": "partial",
+      "access": "Canonical2D Synth corner envelope follows the graphic; Notes use source4ms attack and contact-group decay.",
+      "implementation": [
+        "src/instruments/geometry.ts",
+        "src/instruments/shapesMusic.ts",
+        "src/audio/AudioRack.ts"
+      ],
+      "tests": [
+        {
+          "path": "src/instruments/shapes-readers.test.ts",
+          "testName": "changes directed corner envelopes when a scan reverses without changing its intersections"
+        },
+        {
+          "path": "src/instruments/shapesMusic.test.ts",
+          "testName": "bounds simultaneous source note peaks without replacing contacts by beats"
+        }
+      ],
+      "remaining": "Canonical integrated Shapes has a fixed directed-corner envelope, now restored. The editable amplitude/ADSR presets belong to the separate legacy Shape page, whose editor remains an additional unported requirement."
+    },
+    {
+      "id": "shapes.canvas-gestures",
+      "status": "partial",
+      "access": "Drag a head to reposition it; source-style inside-shape scrubbing/outside rotation, explicit Translate and Rotate gestures, with keyboard equivalents.",
+      "implementation": [
+        "src/instruments/geometry.ts",
+        "src/runtime/GraphEvaluator.ts",
+        "src/performance/ShapesPlayheadControls.tsx",
+        "src/performance/InstrumentView.tsx",
+        "src/performance/shapesPresentation.ts",
+        "src/performance/shapesGestures.ts"
+      ],
+      "tests": [
+        {
+          "path": "e2e/shapes-playheads.spec.ts",
+          "testName": "mouse gestures move one head, translate and rotate the actual shape, and undo together"
+        }
+      ],
+      "remaining": "Source gold contour, four head colors, contact cores and2D gestures restored.3D/4D gesture vocabulary and human visual/touch acceptance remain required."
+    },
+    {
+      "id": "shapes.resets-persistence",
+      "status": "partial",
+      "access": "Project import/export and undo; preset selector.",
+      "implementation": [
+        "src/store/projectStore.ts"
+      ],
+      "tests": [],
+      "remaining": "AudioBrain autosave/undo/import preserve its own project. Source v3 state import, per-bank reset and dimension/mode state are missing."
+    },
+    {
+      "id": "lsystems.grammar-bank",
+      "status": "partial",
+      "access": "L-System Grammar node; initial tree preset.",
+      "implementation": [
+        "src/instruments/geometry.ts"
+      ],
+      "tests": [
+        {
+          "path": "src/runtime/GraphEvaluator.test.ts",
+          "testName": "rejects malformed or over-budget L-System expansion instead of silently truncating it"
+        }
+      ],
+      "remaining": "Editable axiom/rules support source grammar math. Preset selector for all11 source systems and their specific limits/defaults is missing."
+    },
+    {
+      "id": "lsystems.geometry",
+      "status": "partial",
+      "access": "Grammar/Geometry nodes; Iterations/Angle in Perform.",
+      "implementation": [
+        "src/instruments/geometry.ts"
+      ],
+      "tests": [
+        {
+          "path": "src/runtime/GraphEvaluator.test.ts",
+          "testName": "evaluates all production preset graphs into matching visuals and routed sound"
+        }
+      ],
+      "remaining": "Iterations/angle/lengthScale exist with explicit host limits. Turn asymmetry and all source ranges are missing."
+    },
+    {
+      "id": "lsystems.traversal",
+      "status": "partial",
+      "access": "Frontier node and Speed in Perform.",
+      "implementation": [
+        "src/instruments/geometry.ts"
+      ],
+      "tests": [
+        {
+          "path": "src/runtime/GraphEvaluator.test.ts",
+          "testName": "preserves branch note identity across adjacent scheduling intervals without duplicate attacks"
+        }
+      ],
+      "remaining": "Forward final-generation traversal is implemented. Explicit position/reverse/ping-pong and source motion semantics remain required."
+    },
+    {
+      "id": "lsystems.structure-modes",
+      "status": "partial",
+      "access": "Current preset traverses final iteration.",
+      "implementation": [
+        "src/instruments/geometry.ts"
+      ],
+      "tests": [],
+      "remaining": "Final only; sequence, accumulate, together and canon are missing."
+    },
+    {
+      "id": "lsystems.playing-modes",
+      "status": "partial",
+      "access": "Current preset uses branch notes.",
+      "implementation": [
+        "src/runtime/GraphEvaluator.ts",
+        "src/audio/AudioRack.ts"
+      ],
+      "tests": [
+        {
+          "path": "e2e/audio-offline.spec.ts",
+          "testName": "all Morphazoid flows render finite real samples and honor gain and output wiring"
+        }
+      ],
+      "remaining": "Scheduled branch note path exists. Continuous source branch voices, triggers and branch Mic processing are missing."
+    },
+    {
+      "id": "lsystems.pitch-mapping",
+      "status": "partial",
+      "access": "Branch Notes mapping node; Root pitch.",
+      "implementation": [
+        "src/instruments/geometry.ts"
+      ],
+      "tests": [
+        {
+          "path": "src/runtime/GraphEvaluator.test.ts",
+          "testName": "changes note pitch through musical mapping without changing traversal identity"
+        }
+      ],
+      "remaining": "Cumulative turn mapping and square-root branch power sharing retained. Alternate pitch sources, depth color and source ranges need adapters."
+    },
+    {
+      "id": "lsystems.engines",
+      "status": "partial",
+      "access": "Voice node.",
+      "implementation": [
+        "src/audio/AudioRack.ts"
+      ],
+      "tests": [],
+      "remaining": "Native sine/FM note voices replace source bank. PM/Shepard, adaptive source polyphony and exact timbre missing."
+    },
+    {
+      "id": "lsystems.envelope",
+      "status": "missing",
+      "access": "Not available in AudioBrain.",
+      "implementation": [],
+      "tests": [],
+      "remaining": "Shared source amplitude editor has not been adapted."
+    },
+    {
+      "id": "lsystems.drums",
+      "status": "missing",
+      "access": "Not available in AudioBrain.",
+      "implementation": [],
+      "tests": [],
+      "remaining": "Source trigger/drum mapping and engines missing, including the playable drum map and saved FM bank."
+    },
+    {
+      "id": "lsystems.mic",
+      "status": "missing",
+      "access": "Not available in AudioBrain.",
+      "implementation": [],
+      "tests": [],
+      "remaining": "Generic AudioBrain microphone input is not the source MicBranchEngine. Branch feedback/history and all processor controls remain missing."
+    },
+    {
+      "id": "lsystems.mix",
+      "status": "missing",
+      "access": "Not available in AudioBrain.",
+      "implementation": [],
+      "tests": [],
+      "remaining": "Source mix presets and four mode-level controls are missing; generic output gain is separately implemented."
+    },
+    {
+      "id": "lsystems.gestures-reset",
+      "status": "partial",
+      "access": "L-System graphic; global Reset and preset selector.",
+      "implementation": [
+        "src/performance/InstrumentView.tsx",
+        "src/runtime/AudioBrainRuntime.ts"
+      ],
+      "tests": [
+        {
+          "path": "src/runtime/AudioBrainRuntime.test.ts",
+          "testName": "keeps audio armed across preset changes, bounds resources, and does not depend on animation frames"
+        }
+      ],
+      "remaining": "AudioBrain graph has angle gesture, shared transport reset and preset continuity. Original position gesture and source-specific resets remain missing."
+    },
+    {
+      "id": "graphs.topology",
+      "status": "partial",
+      "access": "Graph Topology node.",
+      "implementation": [
+        "src/instruments/geometry.ts"
+      ],
+      "tests": [
+        {
+          "path": "src/runtime/GraphEvaluator.test.ts",
+          "testName": "evaluates all production preset graphs into matching visuals and routed sound"
+        }
+      ],
+      "remaining": "Seeded layered DAG only; all other topology families and original density controls are missing."
+    },
+    {
+      "id": "graphs.patch-bank",
+      "status": "missing",
+      "access": "Not available in AudioBrain.",
+      "implementation": [],
+      "tests": [],
+      "remaining": "Current Morphazoid Graphs is one new AudioBrain preset; source patch bank/defaults and reset-all behavior have not been ported."
+    },
+    {
+      "id": "graphs.vertex-switch-gestures",
+      "status": "missing",
+      "access": "Not available in AudioBrain.",
+      "implementation": [],
+      "tests": [],
+      "remaining": "Inner instrument topology cannot be authored by dragging/switching. Outer AudioBrain patch-node dragging is a different function."
+    },
+    {
+      "id": "graphs.pulses",
+      "status": "partial",
+      "access": "Graph Walk and global Tempo.",
+      "implementation": [
+        "src/instruments/geometry.ts",
+        "src/runtime/GraphEvaluator.ts"
+      ],
+      "tests": [],
+      "remaining": "Periodic root pulses and global BPM implemented. Manual seed pulse, source scope/divisions and direct source MIDI-seed semantics missing."
+    },
+    {
+      "id": "graphs.edge-propagation",
+      "status": "partial",
+      "access": "Graph Walk edge time; Branch/Graph Notes mapper.",
+      "implementation": [
+        "src/instruments/geometry.ts"
+      ],
+      "tests": [
+        {
+          "path": "src/runtime/GraphEvaluator.test.ts",
+          "testName": "bounds event batches even under dense geometry and long scheduling windows"
+        }
+      ],
+      "remaining": "Canonical bounded DAG route scheduler and cumulative turns retained. Full edge ratio/curve/feedback controls and cyclic source topology remain missing."
+    },
+    {
+      "id": "graphs.attack-lanes",
+      "status": "missing",
+      "access": "Not available in AudioBrain.",
+      "implementation": [],
+      "tests": [],
+      "remaining": "Source attack-lane separation is missing."
+    },
+    {
+      "id": "graphs.motion",
+      "status": "missing",
+      "access": "Not available in AudioBrain.",
+      "implementation": [],
+      "tests": [],
+      "remaining": "Animated node movement and motion-aware retiming are missing."
+    },
+    {
+      "id": "graphs.synth-mapping",
+      "status": "partial",
+      "access": "Graph Notes mapping node.",
+      "implementation": [
+        "src/instruments/geometry.ts"
+      ],
+      "tests": [
+        {
+          "path": "src/runtime/GraphEvaluator.test.ts",
+          "testName": "changes note pitch through musical mapping without changing traversal identity"
+        }
+      ],
+      "remaining": "Canonical continuous cumulative-turn mapper retained. Source mapping selector, MIDI/EDO tuning and full parameter ranges missing."
+    },
+    {
+      "id": "graphs.synth-engines",
+      "status": "partial",
+      "access": "Graph Voice node.",
+      "implementation": [
+        "src/audio/AudioRack.ts"
+      ],
+      "tests": [
+        {
+          "path": "e2e/audio-offline.spec.ts",
+          "testName": "all Morphazoid flows render finite real samples and honor gain and output wiring"
+        }
+      ],
+      "remaining": "Native note/FM adapter produces sound; source GraphSynthAudio engine, articulation and envelope controls/timbre missing."
+    },
+    {
+      "id": "graphs.drums",
+      "status": "missing",
+      "access": "Not available in AudioBrain.",
+      "implementation": [],
+      "tests": [],
+      "remaining": "Graph Drum Machine variant and playable drum cells are missing; synth events are not an equivalent drum engine."
+    },
+    {
+      "id": "graphs.delay-topology",
+      "status": "missing",
+      "access": "Not available in AudioBrain.",
+      "implementation": [],
+      "tests": [],
+      "remaining": "Graph Delay is a distinct live-audio instrument, absent from AudioBrain. The generic Delay node does not provide its topology or presets."
+    },
+    {
+      "id": "graphs.delay-input",
+      "status": "missing",
+      "access": "Not available in AudioBrain.",
+      "implementation": [],
+      "tests": [],
+      "remaining": "Source graph microphone injection and positioning are missing."
+    },
+    {
+      "id": "graphs.delay-processing",
+      "status": "missing",
+      "access": "Not available in AudioBrain.",
+      "implementation": [],
+      "tests": [],
+      "remaining": "The actual audio routing, delay history and pitch processor are not adapted."
+    },
+    {
+      "id": "graphs.delay-motion",
+      "status": "missing",
+      "access": "Not available in AudioBrain.",
+      "implementation": [],
+      "tests": [],
+      "remaining": "Source independent node and microphone motion plus view reset are missing."
+    }
+  ]
+}

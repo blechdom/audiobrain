@@ -11,12 +11,16 @@ interface Voice {
   id: string; owner: Resource; carrier: OscillatorNode; modulator: OscillatorNode; modulation: GainNode;
   envelope: GainNode; pan: StereoPannerNode; stopAt: number; retired: boolean;
   sourceId?: string;
+  kind: 'continuous' | 'note' | 'drum';
+  filter?: BiquadFilterNode; noiseSource?: AudioBufferSourceNode;
+  noiseEnvelope?: GainNode; noiseFilter?: BiquadFilterNode;
 }
 interface Resource {
   kind: string; input?: AudioNode; output?: AudioNode; nodes: AudioNode[];
   voices: Map<string, Voice>; oscillator?: OscillatorNode; analyser?: AnalyserNode;
   gain?: GainNode; filter?: BiquadFilterNode; pan?: StereoPannerNode;
   delay?: DelayNode; feedback?: GainNode; dry?: GainNode; wet?: GainNode;
+  shapeMode?: string;
 }
 export interface AudioPlanNode { id: string; kind: string }
 export interface AudioPlanEdge { source: string; target: string }
@@ -34,6 +38,7 @@ export class AudioRack {
   private serial = 0;
   private allVoices = new Set<Voice>();
   private playing = false;
+  private noiseBuffer: AudioBuffer | null = null;
   droppedVoices = 0;
 
   constructor(context: BaseAudioContext) {
@@ -114,6 +119,10 @@ export class AudioRack {
 
   update(id: string, params: Record<string, unknown>, time: number): void {
     const r = this.resources.get(id); if (!r) return;
+    if (r.kind === 'voice.continuous' && typeof params.shapeMode === 'string' && params.shapeMode !== r.shapeMode) {
+      if (r.shapeMode !== undefined) for (const voice of r.voices.values()) this.releaseVoice(voice, time);
+      r.shapeMode = params.shapeMode;
+    }
     if (r.gain) smooth(r.gain.gain, 10 ** (finite(Number(params.db), -18) / 20), time);
     if (r.filter) {
       r.filter.type = ['lowpass', 'highpass', 'bandpass'].includes(String(params.type)) ? params.type as BiquadFilterType : 'lowpass';
@@ -133,7 +142,7 @@ export class AudioRack {
     }
   }
 
-  private newVoice(resource: Resource, target: VoiceTarget, at: number, character: number): Voice | null {
+  private newVoice(resource: Resource, target: VoiceTarget, at: number, character: number, kind: Voice['kind'] = 'continuous'): Voice | null {
     this.prune();
     if ([...this.allVoices].filter((voice) => voice.owner === resource).length >= MAX_BANK_VOICES || this.voiceCount >= MAX_VOICES || !resource.output) { this.droppedVoices++; return null; }
     const c = this.context;
@@ -146,7 +155,7 @@ export class AudioRack {
     pan.pan.value = target.pan;
     modulator.connect(modulation); modulation.connect(carrier.frequency); carrier.connect(envelope); envelope.connect(pan); pan.connect(resource.output);
     carrier.start(at); modulator.start(at);
-    const voice: Voice = { id: target.id, owner: resource, carrier, modulator, modulation, envelope, pan, stopAt: Infinity, retired: false };
+    const voice: Voice = { id: target.id, owner: resource, carrier, modulator, modulation, envelope, pan, stopAt: Infinity, retired: false, kind };
     resource.voices.set(target.id, voice); this.allVoices.add(voice);
     carrier.onended = () => { this.disconnectVoice(voice); if (resource.voices.get(target.id) === voice) resource.voices.delete(target.id); };
     return voice;
@@ -155,7 +164,7 @@ export class AudioRack {
   continuous(id: string, targets: VoiceTarget[], at: number, character: number): void {
     const resource = this.resources.get(id); if (!resource || !this.playing) return;
     const live = new Set(targets.map((target) => target.id));
-    for (const [voiceId, voice] of resource.voices) if (!live.has(voiceId)) this.releaseVoice(voice, at);
+    for (const [voiceId, voice] of resource.voices) if (voice.kind === 'continuous' && !live.has(voiceId)) this.releaseVoice(voice, at);
     for (const target of targets.slice(0, MAX_BANK_VOICES)) {
       let voice = resource.voices.get(target.id);
       if (!voice || voice.retired) voice = this.newVoice(resource, target, at, character) ?? undefined;
@@ -172,12 +181,18 @@ export class AudioRack {
     const resource = this.resources.get(id); if (!resource || !this.playing) return;
     if (note.action === 'off') { for (const voice of resource.voices.values()) if (voice.id.startsWith(`${note.id}:`)) this.releaseVoice(voice, at); return; }
     if (!Number.isFinite(note.frequency) || note.frequency < 20 || note.frequency > this.context.sampleRate * 0.45) return;
-    const character = note.articulation === 'graph' ? 0.65 + note.brightness : 0.1 + note.brightness * 0.35;
-    const voice = this.newVoice(resource, { ...note, id: `${note.id}:${++this.serial}` }, at, character);
+    if (note.articulation === 'drum' && note.drum) { this.drum(resource, note, at); return; }
+    if (note.articulation === 'shapes' && note.sourceId) {
+      // Source Shapes crossfades a contact's previous strike, preserving the
+      // other heads rather than silencing the complete instrument each tick.
+      for (const previous of resource.voices.values()) if (previous.kind === 'note' && previous.sourceId === note.sourceId) this.releaseVoice(previous, at);
+    }
+    const character = note.articulation === 'shapes' ? 0 : note.articulation === 'graph' ? 0.65 + note.brightness : 0.1 + note.brightness * 0.35;
+    const voice = this.newVoice(resource, { ...note, id: `${note.id}:${++this.serial}` }, at, character, 'note');
     if (!voice) return;
     voice.sourceId = note.sourceId;
     const length = note.articulation === 'graph' ? Math.min(4, Math.max(0.02, decay)) : Math.min(2, Math.max(0.035, note.duration));
-    const attack = note.articulation === 'graph' ? 0.004 : 0.012;
+    const attack = note.articulation === 'shapes' ? 0.004 : note.articulation === 'graph' ? 0.004 : 0.012;
     voice.envelope.gain.setValueAtTime(0, at);
     voice.envelope.gain.linearRampToValueAtTime(note.amplitude, at + attack);
     if (note.held) return;
@@ -188,18 +203,73 @@ export class AudioRack {
     voice.carrier.stop(voice.stopAt); voice.modulator.stop(voice.stopAt);
   }
 
+  /** Canonical Morphazoid FM-kit synthesis, adapted to the shared host bus.
+   * Families keep their carrier/modulator shapes, swept pitch, tone filter,
+   * noise layer and clap impulses; these are not pitched synth-note aliases.
+   */
+  private drum(resource: Resource, note: NoteTarget, at: number): void {
+    const drum = note.drum; if (!drum) return;
+    const voice = this.newVoice(resource, { ...note, id: `${note.id}:${++this.serial}` }, at, 0, 'drum');
+    if (!voice) return;
+    voice.sourceId = note.sourceId;
+    const c = this.context, base = drum.frequency;
+    const filter = c.createBiquadFilter(); voice.filter = filter;
+    voice.envelope.disconnect(); voice.envelope.connect(filter); filter.connect(voice.pan);
+    filter.type = drum.family === 'hat' ? 'highpass' : drum.family === 'rattle' ? 'bandpass' : 'lowpass';
+    filter.frequency.value = Math.min(c.sampleRate * 0.45, drum.family === 'hat' ? 2200 + drum.tone * 5000 : drum.family === 'rattle' ? Math.min(12000, Math.max(480, base * 5)) : 550 + drum.tone * 11500);
+    filter.Q.value = drum.family === 'rattle' ? 4.2 : drum.family === 'metal' ? 2.6 : 0.75;
+    voice.carrier.type = ['hat', 'metal', 'rattle'].includes(drum.family) ? 'square' : 'sine';
+    voice.modulator.type = drum.family === 'bell' ? 'sine' : 'triangle';
+    voice.carrier.frequency.setValueAtTime(Math.min(16000, Math.max(20, base * Math.max(0.15, 1 + drum.pitchBend))), at);
+    voice.carrier.frequency.exponentialRampToValueAtTime(base, at + Math.max(0.018, drum.decay * 0.42));
+    voice.modulator.frequency.value = Math.min(18000, Math.max(20, base * drum.modRatio));
+    voice.modulation.gain.setValueAtTime(base * drum.modIndex, at);
+    voice.modulation.gain.exponentialRampToValueAtTime(0.001, at + Math.max(0.025, drum.decay));
+    voice.envelope.gain.setValueAtTime(0.0001, at);
+    voice.envelope.gain.exponentialRampToValueAtTime(Math.max(0.001, note.amplitude), at + drum.attack);
+    voice.envelope.gain.exponentialRampToValueAtTime(0.0001, at + drum.attack + drum.decay);
+    voice.stopAt = at + Math.max(0.12, drum.attack + drum.decay * 1.35);
+    voice.carrier.stop(voice.stopAt); voice.modulator.stop(voice.stopAt);
+    if (drum.noise > 0.005) {
+      if (!this.noiseBuffer) {
+        this.noiseBuffer = c.createBuffer(1, Math.ceil(c.sampleRate * 2.5), c.sampleRate);
+        const samples = this.noiseBuffer.getChannelData(0);
+        // Deterministic white noise makes offline comparisons reproducible.
+        let seed = 0x41db7319;
+        for (let index = 0; index < samples.length; index++) { seed ^= seed << 13; seed ^= seed >>> 17; seed ^= seed << 5; samples[index] = (seed >>> 0) / 0x80000000 - 1; }
+      }
+      const noise = c.createBufferSource(), noiseEnvelope = c.createGain(), noiseFilter = c.createBiquadFilter();
+      voice.noiseSource = noise; voice.noiseEnvelope = noiseEnvelope; voice.noiseFilter = noiseFilter;
+      noise.buffer = this.noiseBuffer;
+      noiseFilter.type = ['kick', 'rattle'].includes(drum.family) ? 'bandpass' : 'highpass';
+      noiseFilter.frequency.value = Math.min(c.sampleRate * 0.45, drum.family === 'kick' ? 900 : drum.family === 'rattle' ? Math.min(13000, Math.max(520, base * 6)) : 900 + drum.tone * 7200);
+      noiseFilter.Q.value = drum.family === 'rattle' ? 5.2 : drum.family === 'snare' ? 0.7 : 1.8;
+      noiseEnvelope.gain.setValueAtTime(0.0001, at);
+      noiseEnvelope.gain.linearRampToValueAtTime(drum.noise * note.amplitude, at + drum.attack);
+      if (drum.id === 'wide-clap') {
+        noiseEnvelope.gain.setValueAtTime(drum.noise * note.amplitude, at + 0.022);
+        noiseEnvelope.gain.setValueAtTime(0.04, at + 0.032);
+        noiseEnvelope.gain.setValueAtTime(drum.noise * note.amplitude * 0.72, at + 0.047);
+      }
+      noiseEnvelope.gain.exponentialRampToValueAtTime(0.0001, at + drum.attack + drum.decay);
+      noise.connect(noiseFilter); noiseFilter.connect(noiseEnvelope); noiseEnvelope.connect(filter);
+      noise.start(at); noise.stop(voice.stopAt);
+    }
+  }
+
   private releaseVoice(voice: Voice, at: number): void {
     if (voice.retired) return;
     voice.retired = true;
     voice.envelope.gain.cancelScheduledValues(at);
     smooth(voice.envelope.gain, 0, at, 0.012);
+    if (voice.noiseEnvelope) { voice.noiseEnvelope.gain.cancelScheduledValues(at); smooth(voice.noiseEnvelope.gain, 0, at, 0.012); }
     voice.stopAt = at + 0.03;
-    try { voice.carrier.stop(voice.stopAt); voice.modulator.stop(voice.stopAt); } catch { /* ended */ }
+    try { voice.carrier.stop(voice.stopAt); voice.modulator.stop(voice.stopAt); voice.noiseSource?.stop(voice.stopAt); } catch { /* ended */ }
   }
 
   private disconnectVoice(voice: Voice): void {
     voice.carrier.onended = null; this.allVoices.delete(voice);
-    for (const node of [voice.carrier, voice.modulator, voice.modulation, voice.envelope, voice.pan]) node.disconnect();
+    for (const node of [voice.carrier, voice.modulator, voice.modulation, voice.envelope, voice.pan, voice.filter, voice.noiseSource, voice.noiseEnvelope, voice.noiseFilter]) node?.disconnect();
   }
 
   private prune(): void {
@@ -226,7 +296,7 @@ export class AudioRack {
     for (const voice of this.allVoices) if (voice.sourceId?.startsWith(prefix)) this.releaseVoice(voice, this.context.currentTime);
   }
   private destroy(resource: Resource): void {
-    for (const voice of [...this.allVoices].filter((item) => item.owner === resource)) { try { voice.carrier.stop(); voice.modulator.stop(); } catch { /* ended */ } this.disconnectVoice(voice); }
+    for (const voice of [...this.allVoices].filter((item) => item.owner === resource)) { try { voice.carrier.stop(); voice.modulator.stop(); voice.noiseSource?.stop(); } catch { /* ended */ } this.disconnectVoice(voice); }
     resource.voices.clear();
     if (resource.oscillator) try { resource.oscillator.stop(); } catch { /* ended */ }
     for (const node of resource.nodes) node.disconnect();

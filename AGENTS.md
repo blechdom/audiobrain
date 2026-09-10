@@ -20,6 +20,19 @@ Microphone, MIDI, audio activation and network connections require their explici
 
 Record copied or adapted code in `docs/PROVENANCE.md`, retain required licenses and source hashes, and use fixed source links. Keep actual implementation limits and roadmap status accurate. Production code must not depend on sibling checkouts.
 
+## Preserve imported instrument functionality
+
+The user's explicit requirement is to preserve existing Morphazoid functionality. Read `docs/FEATURE_PARITY.md` before changing an imported instrument. `contracts/morphazoid-parity-baseline.json` freezes the source audit; `contracts/feature-parity.json` records each capability's implementation, discoverability, evidence and remaining work.
+
+- Preserve sound engines and mappings, readers/modes, control choices/ranges/defaults, gestures, visible contact identity, state continuity, presets, saved states and routes. Sharing infrastructure or changing the shell does not authorize silent omission, approximation or substitution. Identify differences explicitly.
+- Missing or partial capabilities remain tracked requirements until implemented and verified, or a specific departure is explicitly authorized by the user. Keep the original requirement even when recording an approved departure and quote the actual user instruction. Do not interpret a first-slice release, preset rename or design-system change as approval to lose unrelated behavior.
+- Preserve stable capability IDs. Do not regenerate the source inventory from AudioBrain's currently available controls. Advancing the frozen source inventory requires a documented source re-audit that retains prior requirements and adds newly discovered ones. Promote verified capabilities into the preservation floor; do not downgrade a restored capability to make verification pass. A specific user-approved departure must retain the original requirement and record the explicit baseline change.
+- For each control distinguish unavailable behavior from an implemented control that is merely unpinned. Document its Graph/Inspector and Perform location; expose essential instrument controls in the default performance layout. Both views edit the same state.
+- A ported status needs implementation and named behavioral test evidence, including relevant defaults, phase/direction continuity, geometry/contact identity, actual audio changes, release and saved-state round trips. Presence of metadata, an operator name, or a green structural ledger does not prove behavioral or timbral equivalence. Record listening, touch and physical-device acceptance separately.
+- Run `npm run check:parity` for changes to instrument behavior, presets, controls or the ledger. Before claiming any source instrument is fully imported, run `node scripts/check-feature-parity.mjs --require-complete shapes` (or `lsystems`, `graphs`, `all`) and the referenced behavioral suites. A partial port may ship with an accurate partial scope; it must not be described as full source parity.
+
+New Shapes defaults use zero curvature as explicitly requested. Preserve curvature values in existing saved user projects; do not silently rewrite authored patches to the new default.
+
 Use Node.js 22 or newer. For a release-sized change run:
 
 ```sh

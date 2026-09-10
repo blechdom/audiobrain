@@ -112,6 +112,7 @@ describe('AWS bootstrap and publishing boundaries', () => {
     for (const file of ['index.html', 'iframe.html']) await writeFile(join(artifact, 'storybook', file), '<html></html>');
     const entries = Object.fromEntries([
       'controls-parameter--numeric', 'workspace-performance--shapes',
+      'workspace-performance--shape-lines', 'workspace-performance--shape-mixed-playheads',
       'workspace-performance--l-systems', 'workspace-performance--graphs', 'workspace-graph--shapes',
     ].map(id => [id, { id }]));
     await writeFile(join(artifact, 'storybook', 'index.json'), JSON.stringify({ entries }));

@@ -3,11 +3,11 @@
   "schemaVersion": 1,
   "id": "morphazoid-shapes",
   "title": "Morphazoid Shapes",
-  "description": "Read four heads around a curved five-sided contour; map geometry into a continuous musical voice bank.",
+  "description": "Read four point playheads around a straight five-sided contour; position, reverse or change each reader independently.",
   "learningGoal": "Change geometry, traversal, musical mapping, and voice character independently while performing the same saved parameters.",
   "capabilityNotes": [
     "Built-in instruments work without microphone, MIDI, or network permission.",
-    "Start Audio explicitly to hear this instrument; audio begins at -18 dB gain.",
+    "Start Audio explicitly to hear this instrument; audio begins at -6 dB gain.",
     "The graphic observes the shared instrument state and does not drive the audio clock."
   ],
   "nodes": [
@@ -20,7 +20,7 @@
       },
       "params": {
         "sides": 5,
-        "curvature": 0.15
+        "curvature": 0
       }
     },
     {
@@ -43,7 +43,11 @@
       },
       "params": {
         "heads": 4,
-        "rateHz": 0.12
+        "rateHz": 0.12,
+        "reader": "points",
+        "motion": "loop",
+        "direction": "forward",
+        "phaseOffset": 0
       }
     },
     {
@@ -55,7 +59,9 @@
       },
       "params": {
         "rootHz": 110,
-        "rangeOctaves": 2
+        "rangeOctaves": 2,
+        "playingMode": "continuous",
+        "pitchMapping": "shape"
       }
     },
     {
@@ -77,7 +83,7 @@
         "y": 330
       },
       "params": {
-        "db": -18
+        "db": -6
       }
     },
     {
@@ -103,6 +109,30 @@
             "geometry"
           ],
           "paramId": "curvature"
+        },
+        "rotation": {
+          "nodePath": [
+            "geometry"
+          ],
+          "paramId": "rotationDeg"
+        },
+        "moveX": {
+          "nodePath": [
+            "geometry"
+          ],
+          "paramId": "positionX"
+        },
+        "moveY": {
+          "nodePath": [
+            "geometry"
+          ],
+          "paramId": "positionY"
+        },
+        "scrub": {
+          "nodePath": [
+            "reader"
+          ],
+          "paramId": "phaseOffset"
         }
       }
     },
@@ -214,6 +244,17 @@
       "target": {
         "nodeId": "meter",
         "portId": "audio"
+      }
+    },
+    {
+      "id": "mapping-notes-to-voices-notes",
+      "source": {
+        "nodeId": "mapping",
+        "portId": "notes"
+      },
+      "target": {
+        "nodeId": "voices",
+        "portId": "notes"
       }
     }
   ],
@@ -377,6 +418,70 @@
         "layout": {
           "x": 8,
           "y": 6,
+          "w": 4,
+          "h": 1
+        }
+      },
+      {
+        "id": "playheads",
+        "kind": "view",
+        "target": {
+          "nodePath": [
+            "reader"
+          ],
+          "viewId": "playheads"
+        },
+        "layout": {
+          "x": 0,
+          "y": 7,
+          "w": 12,
+          "h": 6
+        }
+      },
+      {
+        "id": "rotation",
+        "kind": "param",
+        "target": {
+          "nodePath": [
+            "geometry"
+          ],
+          "paramId": "rotationDeg"
+        },
+        "layout": {
+          "x": 0,
+          "y": 13,
+          "w": 4,
+          "h": 1
+        }
+      },
+      {
+        "id": "sound-mode",
+        "kind": "param",
+        "target": {
+          "nodePath": [
+            "mapping"
+          ],
+          "paramId": "playingMode"
+        },
+        "layout": {
+          "x": 4,
+          "y": 13,
+          "w": 4,
+          "h": 1
+        }
+      },
+      {
+        "id": "divisions",
+        "kind": "param",
+        "target": {
+          "nodePath": [
+            "reader"
+          ],
+          "paramId": "divisions"
+        },
+        "layout": {
+          "x": 8,
+          "y": 13,
           "w": 4,
           "h": 1
         }

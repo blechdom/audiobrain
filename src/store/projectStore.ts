@@ -21,12 +21,15 @@ export interface ProjectStoreState {
   setParameter: (nodeId: string, paramId: string, value: ParameterValue) => void;
   setTitle: (title: string) => void;
   addNode: (kind: string, position?: GraphPosition) => string | null;
+  duplicateNode: (id: string) => string | null;
+  renameNode: (id: string, label: string) => void;
   removeNode: (id: string) => void;
   connect: (source: GraphEndpoint, target: GraphEndpoint) => boolean;
   disconnect: (edgeId: string) => void;
   moveNode: (id: string, position: GraphPosition) => void;
   selectNode: (id: string | null) => void;
   loadProject: (document: unknown) => boolean;
+  addInstrument: (document: GraphDocument) => boolean;
   undo: () => void;
   redo: () => void;
   beginGesture: (id?: string) => void;
@@ -102,6 +105,17 @@ export function createProjectStore(options: CreateProjectStoreOptions = {}): Pro
           const parameter = getOperatorDefinition(node.kind).params.find(parameter => parameter.id === paramId);
           if (!parameter) throw new Error(`Unknown parameter ${paramId}`);
           node.params[paramId] = normalizeParameterValue(value, parameter);
+          // Choosing an event mode in an older Synth patch also supplies its
+          // missing optional event cable. Existing input ownership is preserved.
+          if (node.kind === 'shapes.mapping' && paramId === 'playingMode' && value !== 'continuous') {
+            for (const edge of [...document.edges]) {
+              if (edge.source.nodeId !== nodeId || edge.source.portId !== 'voices' || edge.target.portId !== 'voices') continue;
+              const bank = document.nodes.find(candidate => candidate.id === edge.target.nodeId && candidate.kind === 'voice.continuous');
+              if (bank && !document.edges.some(candidate => candidate.target.nodeId === bank.id && candidate.target.portId === 'notes')) {
+                document.edges.push({ id: createId('edge'), source: { nodeId, portId: 'notes' }, target: { nodeId: bank.id, portId: 'notes' } });
+              }
+            }
+          }
           commit(document);
         } catch (error) { set({ error: errorMessage(error) }); }
       },
@@ -111,6 +125,27 @@ export function createProjectStore(options: CreateProjectStoreOptions = {}): Pro
           const node = createNode(kind, position ?? { x: 100 + get().document.nodes.length * 24, y: 80 + get().document.nodes.length * 24 });
           return commit({ ...get().document, nodes: [...get().document.nodes, node] }, node.id) ? node.id : null;
         } catch (error) { set({ error: errorMessage(error) }); return null; }
+      },
+      duplicateNode(id) {
+        const document = cloneGraphDocument(get().document);
+        const source = document.nodes.find(node => node.id === id);
+        if (!source) { set({ error: `Missing node ${id}` }); return null; }
+        const copy = structuredClone(source);
+        copy.id = createId('node');
+        const base = source.label ?? getOperatorDefinition(source.kind).title;
+        let suffix = 2;
+        do { copy.label = `${base.slice(0, 85)} ${suffix++}`; } while (document.nodes.some(node => node.label === copy.label));
+        copy.position = { x: source.position.x + 48, y: source.position.y + 48 };
+        for (const binding of Object.values(copy.viewBindings ?? {})) if (binding.nodePath[0] === id) binding.nodePath = [copy.id];
+        document.nodes.push(copy);
+        return commit(document, copy.id) ? copy.id : null;
+      },
+      renameNode(id, label) {
+        const document = cloneGraphDocument(get().document);
+        const node = document.nodes.find(node => node.id === id);
+        if (!node) { set({ error: `Missing node ${id}` }); return; }
+        if (label.trim()) node.label = label.trim(); else delete node.label;
+        commit(document);
       },
       removeNode(id) {
         const document = cloneGraphDocument(get().document);
@@ -140,6 +175,26 @@ export function createProjectStore(options: CreateProjectStoreOptions = {}): Pro
             if (fatal.length) throw new Error(fatal.map(issue => issue.message).join('\n'));
           }
           return commit(document, null);
+        } catch (error) { set({ error: errorMessage(error) }); return false; }
+      },
+      addInstrument(source) {
+        try {
+          const addition = parseGraphDocument(source);
+          const document = cloneGraphDocument(get().document);
+          const ids = new Map(addition.nodes.map(node => [node.id, createId('node')]));
+          const y = document.nodes.reduce((max, node) => Math.max(max, node.position.y + 420), 0);
+          const row = document.performance.widgets.reduce((max, widget) => Math.max(max, widget.layout.y + widget.layout.h), 0);
+          const instance = document.nodes.filter(node => node.kind === addition.nodes[0]?.kind).length + 1;
+          for (const node of addition.nodes) {
+            node.id = ids.get(node.id)!;
+            node.label = `${(node.label ?? getOperatorDefinition(node.kind).title).slice(0, 85)} ${instance}`;
+            node.position.y += y;
+            for (const binding of Object.values(node.viewBindings ?? {})) binding.nodePath = [ids.get(binding.nodePath[0])!];
+          }
+          for (const edge of addition.edges) { edge.id = createId('edge'); edge.source.nodeId = ids.get(edge.source.nodeId)!; edge.target.nodeId = ids.get(edge.target.nodeId)!; }
+          for (const widget of addition.performance.widgets) { widget.id = createId('widget'); widget.target.nodePath = [ids.get(widget.target.nodePath[0])!]; widget.layout.y += row; }
+          document.nodes.push(...addition.nodes); document.edges.push(...addition.edges); document.performance.widgets.push(...addition.performance.widgets);
+          return commit(document, addition.nodes[0]?.id ?? null);
         } catch (error) { set({ error: errorMessage(error) }); return false; }
       },
       beginGesture(id = 'gesture') { if (gesture?.id !== id) gesture = { id, start: cloneGraphDocument(get().document), recorded: false }; },

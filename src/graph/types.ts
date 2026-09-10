@@ -5,6 +5,7 @@ export type GraphEndpoint = { nodeId: string; portId: string };
 export type ParameterTarget = { nodePath: [string]; paramId: string };
 export interface GraphNode {
   id: string;
+  label?: string;
   kind: string;
   position: GraphPosition;
   params: GraphParams;

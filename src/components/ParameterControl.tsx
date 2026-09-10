@@ -3,6 +3,7 @@ import { Pin } from 'lucide-react';
 import type { OperatorDefinition } from '../graph';
 
 type Parameter = OperatorDefinition['params'][number];
+const choiceLabels: Record<string, string> = { continuous: 'Synth', notes: 'Notes', triggers: 'Drums / triggers' };
 
 export interface ParameterControlProps {
   nodeId: string;
@@ -45,7 +46,7 @@ export function ParameterControl({ nodeId, parameter, value, liveValue, wired, o
           onChange={(event) => onChange(Number(event.target.value))} />
       ) : parameter.type === 'enum' ? (
         <select id={inputId} value={String(value)} onChange={(event) => onChange(event.target.value)}>
-          {parameter.choices.map((choice) => <option key={choice} value={choice}>{choice}</option>)}
+          {parameter.choices.map((choice) => <option key={choice} value={choice}>{parameter.id === 'playingMode' ? choiceLabels[choice] ?? choice : choice}</option>)}
         </select>
       ) : (
         <input id={inputId} className="text-parameter" type="text" value={String(value)} maxLength={parameter.maxLength}

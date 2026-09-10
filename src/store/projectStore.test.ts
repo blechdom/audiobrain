@@ -1,5 +1,5 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
-import { cloneGraphDocument, PRESETS } from '../graph';
+import { cloneGraphDocument, parseGraphDocument, serializeGraphDocument, PRESETS } from '../graph';
 import { createProjectStore, PROJECT_STORAGE_KEY, type ProjectStoreApi } from './projectStore';
 const stores: ProjectStoreApi[] = [];
 const fresh = () => { const store = createProjectStore({ storage: null, initialDocument: PRESETS[0]! }); stores.push(store); return store; };
@@ -13,7 +13,7 @@ describe('project commands', () => {
     state.endGesture('curvature');
     expect(store.getState().undoCount).toBe(1);
     expect(store.getState().document.nodes[0]!.params.curvature).toBe(.7);
-    store.getState().undo(); expect(store.getState().document.nodes[0]!.params.curvature).toBe(.15);
+    store.getState().undo(); expect(store.getState().document.nodes[0]!.params.curvature).toBe(0);
     store.getState().redo(); expect(store.getState().document.nodes[0]!.params.curvature).toBe(.7);
   });
   it('rejects invalid commands transactionally and makes the error observable', () => {
@@ -38,7 +38,7 @@ describe('project commands', () => {
     expect(state.selection).toBeNull();
     expect(state.document.edges.every(edge => edge.source.nodeId !== 'geometry' && edge.target.nodeId !== 'geometry')).toBe(true);
     expect(state.document.performance.widgets.every(widget => widget.target.nodePath[0] !== 'geometry')).toBe(true);
-    expect(state.document.nodes.find(node => node.id === 'view')!.viewBindings).toEqual({});
+    expect(Object.values(state.document.nodes.find(node => node.id === 'view')!.viewBindings ?? {}).every(binding => binding.nodePath[0] !== 'geometry')).toBe(true);
   });
   it('pins one control once and removing it preserves the underlying node', () => {
     const store = fresh(); const widgets = store.getState().document.performance.widgets.length;
@@ -83,5 +83,62 @@ describe('local persistence', () => {
     const store = createProjectStore({ storage: { getItem: () => '{', setItem: () => {} } }); stores.push(store);
     expect(store.getState().document.id).toBe(PRESETS[0]!.id);
     expect(store.getState().error).toContain('could not be restored');
+  });
+});
+
+describe('object identity', () => {
+  it('switches a legacy Synth patch to event modes in one undo step without taking over an occupied input', () => {
+    const store = fresh();
+    store.getState().disconnect('mapping-notes-to-voices-notes');
+    const before = store.getState().document;
+    store.getState().setParameter('mapping', 'playingMode', 'notes');
+    expect(store.getState().document.edges.filter(edge => edge.target.nodeId === 'voices' && edge.target.portId === 'notes')).toHaveLength(1);
+    store.getState().undo(); expect(store.getState().document).toEqual(before);
+    store.getState().redo();
+    const route = store.getState().document.edges.find(edge => edge.target.nodeId === 'voices' && edge.target.portId === 'notes')!;
+    store.getState().setParameter('mapping', 'playingMode', 'triggers');
+    expect(store.getState().document.edges.filter(edge => edge.target.nodeId === 'voices' && edge.target.portId === 'notes')).toEqual([route]);
+  });
+  it('duplicates parameters with a fresh persistent identity and independent edits', () => {
+    const store = fresh();
+    store.getState().renameNode('geometry', 'Outer shape');
+    const id = store.getState().duplicateNode('geometry')!;
+    expect(id).not.toBe('geometry');
+    expect(store.getState().selection).toBe(id);
+    expect(store.getState().document.nodes.find(node => node.id === id)?.label).toBe('Outer shape 2');
+    store.getState().setParameter(id, 'curvature', -.4);
+    store.getState().renameNode(id, 'Inner shape');
+    const restored = parseGraphDocument(serializeGraphDocument(store.getState().document));
+    expect(restored.nodes.find(node => node.id === id)).toMatchObject({ id, label: 'Inner shape', params: { curvature: -.4 } });
+    expect(restored.nodes.find(node => node.id === 'geometry')).toMatchObject({ label: 'Outer shape', params: { curvature: 0 } });
+    expect(restored.edges.every(edge => edge.source.nodeId !== id && edge.target.nodeId !== id)).toBe(true);
+    expect(restored.performance.widgets.filter(widget => widget.target.nodePath[0] === 'geometry').length).toBeGreaterThan(0);
+    store.getState().undo(); store.getState().undo(); store.getState().undo();
+    expect(store.getState().document.nodes.some(node => node.id === id)).toBe(false);
+    store.getState().redo();
+    expect(store.getState().document.nodes.some(node => node.id === id)).toBe(true);
+  });
+  it('adds a complete second instrument with its own cables, view bindings and performance controls', () => {
+    const store = fresh(); const original = store.getState().document;
+    expect(store.getState().addInstrument(PRESETS[0]!)).toBe(true);
+    const combined = store.getState().document;
+    expect(combined.nodes).toHaveLength(original.nodes.length * 2);
+    const originals = new Set(original.nodes.map(node => node.id));
+    const additions = new Set(combined.nodes.filter(node => !originals.has(node.id)).map(node => node.id));
+    expect(additions.size).toBe(original.nodes.length);
+    for (const edge of combined.edges.slice(original.edges.length)) { expect(additions.has(edge.source.nodeId)).toBe(true); expect(additions.has(edge.target.nodeId)).toBe(true); }
+    for (const node of combined.nodes.filter(node => additions.has(node.id))) for (const binding of Object.values(node.viewBindings ?? {})) expect(additions.has(binding.nodePath[0])).toBe(true);
+    for (const widget of combined.performance.widgets.slice(original.performance.widgets.length)) expect(additions.has(widget.target.nodePath[0])).toBe(true);
+    expect(parseGraphDocument(serializeGraphDocument(combined))).toEqual(combined);
+    store.getState().undo(); expect(store.getState().document).toEqual(original);
+    store.getState().redo(); expect(store.getState().document).toEqual(combined);
+  });
+  it('preserves old authored curvature and adds only missing gesture bindings from connected nodes', () => {
+    const old = cloneGraphDocument(PRESETS[0]!);
+    old.nodes.find(node => node.id === 'geometry')!.params.curvature = .15;
+    old.nodes.find(node => node.id === 'view')!.viewBindings = { curvature: { nodePath: ['geometry'], paramId: 'curvature' } };
+    const restored = parseGraphDocument(old);
+    expect(restored.nodes.find(node => node.id === 'geometry')!.params.curvature).toBe(.15);
+    expect(restored.nodes.find(node => node.id === 'view')!.viewBindings).toMatchObject({ rotation: { nodePath: ['geometry'], paramId: 'rotationDeg' }, scrub: { nodePath: ['reader'], paramId: 'phaseOffset' } });
   });
 });

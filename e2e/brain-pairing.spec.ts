@@ -14,6 +14,7 @@ test('AudioBrain and VideoBrain exchange real graph controls through the pairing
   if (!companionUrl) return;
   const project = JSON.parse(readFileSync(new URL('../presets/morphazoid-shapes.json', import.meta.url), 'utf8')) as GraphDocument;
   project.id = 'real-brain-pairing';
+  project.nodes.find(node => node.id === 'geometry')!.params.curvature = .15;
   project.nodes.push(
     { id: 'brain-value', kind: 'control.constant', position: { x: 200, y: 900 }, params: { ...getDefaultParams('control.constant'), value: 0.75 } },
     { id: 'brain-output', kind: 'io.brain.out', position: { x: 500, y: 900 }, params: getDefaultParams('io.brain.out') },
@@ -23,7 +24,7 @@ test('AudioBrain and VideoBrain exchange real graph controls through the pairing
     { id: 'brain-value-output', source: { nodeId: 'brain-value', portId: 'value' }, target: { nodeId: 'brain-output', portId: 'value' } },
     { id: 'brain-input-curvature', source: { nodeId: 'brain-input', portId: 'value' }, target: { nodeId: 'geometry', portId: 'curvature' } },
   );
-  project.performance.widgets.push({ id: 'brain-send-value', kind: 'param', target: { nodePath: ['brain-value'], paramId: 'value' }, layout: { x: 0, y: 7, w: 4, h: 1 } });
+  project.performance.widgets.push({ id: 'brain-send-value', kind: 'param', target: { nodePath: ['brain-value'], paramId: 'value' }, layout: { x: 0, y: 16, w: 4, h: 1 } });
   await page.goto('/');
   await page.getByLabel('Import AudioBrain JSON').setInputFiles({ name: 'brain-pairing.json', mimeType: 'application/json', buffer: Buffer.from(JSON.stringify(project)) });
   await page.getByRole('button', { name: 'Connections', exact: true }).click();

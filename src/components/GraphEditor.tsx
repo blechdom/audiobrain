@@ -1,11 +1,12 @@
-import { memo, useMemo, useState } from 'react';
-import { Background, BackgroundVariant, Controls, Handle, MiniMap, Position, ReactFlow, type Node, type NodeProps } from '@xyflow/react';
+import { memo, useEffect, useMemo, useState } from 'react';
+import { Background, BackgroundVariant, Controls, Handle, MiniMap, Position, ReactFlow, useUpdateNodeInternals, type Node, type NodeProps } from '@xyflow/react';
 import { Pin } from 'lucide-react';
 import { getOperatorDefinition, tryCompileGraph, type GraphDocument, type GraphNode } from '../graph';
 import { useProjectStore } from '../store';
 import { ParameterControl } from './ParameterControl';
 import { nodePresentation, signalColor } from './presentation';
 import { DeviceActions } from './DeviceActions';
+import { ShapesPlayheadControls } from '../performance/ShapesPlayheadControls';
 
 type FlowNode = Node<{ node: GraphNode; project: GraphDocument; active: boolean }, 'operator'>;
 
@@ -14,11 +15,17 @@ const OperatorNode = memo(function OperatorNode({ data, selected }: NodeProps<Fl
   const definition = getOperatorDefinition(data.node.kind);
   const meta = nodePresentation(data.node.kind);
   const Icon = meta.icon;
+  const [showModulation, setShowModulation] = useState(false);
+  const updateNodeInternals = useUpdateNodeInternals();
+  const isReader = data.node.kind === 'shapes.reader';
+  const denseControls = data.node.kind.startsWith('shapes.') && definition.params.length > 4;
+  const inputs = definition.inputs.filter(port => !denseControls || showModulation || port.required || data.project.edges.some(edge => edge.target.nodeId === data.node.id && edge.target.portId === port.id));
+  useEffect(() => { updateNodeInternals(data.node.id); }, [data.node.id, inputs.length, updateNodeInternals]);
   return <article className={`operator-node ${selected ? 'selected' : ''} ${data.active ? '' : 'inactive'}`}
     style={{ '--node-accent': meta.color } as React.CSSProperties} aria-label={`${definition.title} node`}>
-    <header className="node-header"><Icon size={17} /><div><strong>{definition.title}</strong><small>{meta.category}</small></div><i className="node-status" title={data.active ? 'Connected to an output' : 'Inactive branch'} /></header>
+    <header className="node-header"><Icon size={17} /><div><strong>{data.node.label ?? definition.title}</strong><small>{data.node.label ? definition.title : meta.category}</small></div><i className="node-status" title={data.active ? 'Connected to an output' : 'Inactive branch'} /></header>
     <div className="node-ports">
-      <div>{definition.inputs.map((port) => <div className="port-row input" key={port.id}>
+      <div>{inputs.map((port) => <div className="port-row input" key={port.id}>
         <Handle type="target" position={Position.Left} id={port.id} style={{ background: signalColor(port.type) }} aria-label={`${port.label} input, ${port.type}`} />
         <span title={port.type}>{port.label}</span>
       </div>)}</div>
@@ -26,15 +33,17 @@ const OperatorNode = memo(function OperatorNode({ data, selected }: NodeProps<Fl
         <span title={port.type}>{port.label}</span><Handle type="source" position={Position.Right} id={port.id} style={{ background: signalColor(port.type) }} aria-label={`${port.label} output, ${port.type}`} />
       </div>)}</div>
     </div>
+    {denseControls && <button className="node-view-button nodrag" onClick={() => setShowModulation(!showModulation)}>{showModulation ? 'Hide unused modulation inputs' : 'Show modulation inputs'}</button>}
     <DeviceActions kind={data.node.kind} />
-    <div className="node-parameters">{definition.params.map((param) => <ParameterControl key={param.id} nodeId={data.node.id} parameter={param}
+    <div className={`node-parameters ${denseControls ? 'dense-node-controls nowheel' : ''}`}>{isReader ? <ShapesPlayheadControls node={data.node} project={data.project} compact onPin={() => store.pinView(data.node.id, 'playheads')} /> : definition.params.map((param) => <ParameterControl key={param.id} nodeId={data.node.id} parameter={param}
       value={data.node.params[param.id] ?? param.default} compact
       wired={data.project.edges.some((edge) => edge.target.nodeId === data.node.id && edge.target.portId === param.id)}
       onChange={(value) => store.setParameter(data.node.id, param.id, value)} onBegin={store.beginGesture} onEnd={store.endGesture}
       onPin={() => store.pinParameter(data.node.id, param.id)} />)}
-      {definition.views.map((view) => <button type="button" key={view.id} className="node-view-button nodrag" onClick={() => store.pinView(data.node.id, view.id)}><Pin size={12} /> {view.label}</button>)}
+      {!isReader && definition.views.map((view) => <button type="button" key={view.id} className="node-view-button nodrag" onClick={() => store.pinView(data.node.id, view.id)}><Pin size={12} /> {view.label}</button>)}
     </div>
-    <footer className="node-footer">{data.node.kind}<span>{data.active ? 'connected' : 'idle'}</span></footer>
+    {denseControls && <button type="button" className="node-inspector-button nodrag" onClick={() => store.selectNode(data.node.id)}>All controls in Inspector ↗</button>}
+    <footer className="node-footer" title={`Stable ID: ${data.node.id}`}>{data.node.id}<span>{data.active ? 'connected' : 'idle'}</span></footer>
   </article>;
 });
 

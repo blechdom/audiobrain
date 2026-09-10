@@ -1,0 +1,3573 @@
+{
+  "documentType": "audiobrain.morphazoid-parity-baseline",
+  "schemaVersion": 1,
+  "auditedAt": "2026-09-10",
+  "sourceRepository": "https://github.com/blechdom/morphazoid",
+  "sourceRevision": "769b348ab0ee3a8a57e1dd703d0c5cda211e5090",
+  "scope": "Authored Shapes, L-Systems, Graph Synth, Graph Drums and Graph Delay controls plus dynamic control/gesture families inspected in their entry modules. This is a bounded source audit, not proof that all latent behavior or external device combinations have been discovered.",
+  "sourceFiles": [
+    {
+      "path": "shapes.html",
+      "sha256": "44fa5943ed5471e17e3b6c98a954d2ddd6fb70263743f92cf56a409664fd3958"
+    },
+    {
+      "path": "combo-app.js",
+      "sha256": "1f428dd9ea9569684e8abcf6e5393d31d5c23c7fa7d17ae2b8b899a5049559aa"
+    },
+    {
+      "path": "src/shapes-state.js",
+      "sha256": "fc7a7455da6b937c2388b207096b1fa7fdbe4b9886bcbf75a142e2ec51151ae4"
+    },
+    {
+      "path": "src/shapes-profile.js",
+      "sha256": "b5d876a065bd44ef20e24ab7944b50779d6102f72ad4fc21d4acb0bbfde04fdf"
+    },
+    {
+      "path": "src/shapes-scene.js",
+      "sha256": "9de5134006a16d25451c0a4fea0cad1056eabab6042f2592e317dbc3260c54df"
+    },
+    {
+      "path": "src/shapes-rhythm.js",
+      "sha256": "2d5040f8413aa0e4869387e3d54b8bf3c3652a0617141dff60fe11e961d34a03"
+    },
+    {
+      "path": "src/playheads.js",
+      "sha256": "c1d0477c07c1cd1c5d9e179769d002049ad77770ce81b293644c8fe4ee8b888c"
+    },
+    {
+      "path": "l-systems.html",
+      "sha256": "3957cb4f0ee1195ab9f8d8b1edb9a584a8af59300494442d55c6717ff40bdf2b"
+    },
+    {
+      "path": "l-systems-app.js",
+      "sha256": "4988a5ad7c8aa1b6958bd8a3e54da880dfc28a54dfe863d2a41f53a40ede2e6d"
+    },
+    {
+      "path": "src/l-system.js",
+      "sha256": "d06fcd72cd0f5039b469808f99d482b00e431f7b11491dc0ca05141f795ba760"
+    },
+    {
+      "path": "src/l-system-drums.js",
+      "sha256": "9d16d5106bb9f1993146a13db1d9f8b3a783ba8432208a44a95ea340ccbcb4d5"
+    },
+    {
+      "path": "graph-synth.html",
+      "sha256": "140252e3b30bded6df31f975ee5d9a8705718392d9e7067fababb97069216503"
+    },
+    {
+      "path": "graph-drums.html",
+      "sha256": "0f0b8339f937537549ddf1fe19338f25fd5d8276fa85f4f41fc3521640a1feb4"
+    },
+    {
+      "path": "src/graph-instrument-app.js",
+      "sha256": "b74c89991fb618d2c376855d4be9c94bfddc048e69aa13f345317549c691cd9f"
+    },
+    {
+      "path": "src/graph-instruments.js",
+      "sha256": "20b0379b3e47c4a13d4c2ee2e5cc264e05f798e6f538d2b6417052d429122088"
+    },
+    {
+      "path": "src/graph-drum-audio.js",
+      "sha256": "583f8a0858ddc3d3e1c5c0b5bf2d4b3ca1edb83dc111587d17856fcba8d5344e"
+    },
+    {
+      "path": "graph-delay.html",
+      "sha256": "89d1b050b9b29504b4bff4fed3427bcfc079abab6989485709c79a9430c78593"
+    },
+    {
+      "path": "graph-delay-app.js",
+      "sha256": "edd81fafc66111795bc0fa844568d5ea42147c419a2b84baf9af0f23a16f8c30"
+    },
+    {
+      "path": "src/graph-delay.js",
+      "sha256": "d92c562a2344d23ddcf421bf28180ba5448690c895e3ea218f9dafa6a35fe1e2"
+    },
+    {
+      "path": "src/amplitude-control.js",
+      "sha256": "9c97df51f7a215ec2cad4f129fcdc7687e83380e05f9886a8f530dcf922e99aa"
+    },
+    {
+      "path": "contracts/audio-transport-v1.md",
+      "sha256": "c60bcf0c4ec05ebf8844ed0072e82aaf22d20a9036239eaba0f4f5da3f92d572"
+    },
+    {
+      "path": "contracts/web-midi-toolbar-v1.md",
+      "sha256": "c6880d2f59dcf4c2be8d7ae41d26ec9d0b23b480a1da88efde39438fd48272e8"
+    },
+    {
+      "path": "src/mic-branch-engine.js",
+      "sha256": "9e7705a75e8ae0360b692f831291b242a1b30c21e6f97e3a0e0f79964d93d5ee"
+    },
+    {
+      "path": "src/mic-branch-dsp.js",
+      "sha256": "4c9325e47158bb9e2ca9ed968dba629921d428fbb457e3f56d92b29b49942111"
+    },
+    {
+      "path": "src/graph-synth-audio.js",
+      "sha256": "14833319e340ec988fea36e436b6cdf7753c22f0dfffd7454685474242edcebb"
+    },
+    {
+      "path": "shape.html",
+      "sha256": "5d6b5313e6f095608baaddfef6517df0bbd8d35d142621db59dce3efeea6e4ae"
+    },
+    {
+      "path": "app.js",
+      "sha256": "28edf49f9ac452947a9f017f6d40b372c4259080a4ef8dde508353b902a23cc1"
+    },
+    {
+      "path": "src/fm-drums.js",
+      "sha256": "2a08b10dcb4179691aef37c21211f0ec9a067fe6258221869dfd596dc15ef62f"
+    },
+    {
+      "path": "src/audio.js",
+      "sha256": "e0a0f7796f8b0d934cbd4940e662f09e975b0d779436b354ee3784a3ac672311"
+    }
+  ],
+  "sourceControls": [
+    {
+      "id": "shapes.html#Instrument",
+      "tag": "select",
+      "attributes": {
+        "aria-label": "Instrument"
+      },
+      "options": [
+        "shapes.html"
+      ]
+    },
+    {
+      "id": "shapes.html#level",
+      "tag": "input",
+      "attributes": {
+        "aria-label": "Master audio level",
+        "type": "range",
+        "min": "0",
+        "max": "1",
+        "step": "0.01",
+        "value": "0.65"
+      }
+    },
+    {
+      "id": "shapes.html#audioButton",
+      "tag": "button",
+      "attributes": {
+        "type": "button"
+      }
+    },
+    {
+      "id": "shapes.html#stage",
+      "tag": "canvas",
+      "attributes": {
+        "aria-label": "Interactive 2D Polygon instrument canvas"
+      }
+    },
+    {
+      "id": "shapes.html#dimensionSelect",
+      "tag": "select",
+      "attributes": {
+        "aria-label": "Shapes dimension"
+      },
+      "options": [
+        "2d",
+        "3d",
+        "4d"
+      ]
+    },
+    {
+      "id": "shapes.html#mainBankTab",
+      "tag": "button",
+      "attributes": {
+        "type": "button",
+        "role": "tab",
+        "aria-label": "Main controls"
+      }
+    },
+    {
+      "id": "shapes.html#formBankTab",
+      "tag": "button",
+      "attributes": {
+        "type": "button",
+        "role": "tab",
+        "aria-label": "Form controls"
+      }
+    },
+    {
+      "id": "shapes.html#rotationBankTab",
+      "tag": "button",
+      "attributes": {
+        "type": "button",
+        "role": "tab",
+        "aria-label": "Rotation controls"
+      }
+    },
+    {
+      "id": "shapes.html#mappingBankTab",
+      "tag": "button",
+      "attributes": {
+        "type": "button",
+        "role": "tab",
+        "aria-label": "Mapping controls"
+      }
+    },
+    {
+      "id": "shapes.html#data-playing-mode=continuous",
+      "tag": "button",
+      "attributes": {
+        "type": "button"
+      }
+    },
+    {
+      "id": "shapes.html#data-playing-mode=notes",
+      "tag": "button",
+      "attributes": {
+        "type": "button"
+      }
+    },
+    {
+      "id": "shapes.html#data-playing-mode=triggers",
+      "tag": "button",
+      "attributes": {
+        "type": "button"
+      }
+    },
+    {
+      "id": "shapes.html#playButton",
+      "tag": "button",
+      "attributes": {
+        "type": "button",
+        "aria-label": "Start playback"
+      }
+    },
+    {
+      "id": "shapes.html#position",
+      "tag": "input",
+      "attributes": {
+        "type": "range",
+        "min": "0",
+        "max": "1",
+        "step": "0.0005",
+        "value": "0.18"
+      }
+    },
+    {
+      "id": "shapes.html#speed",
+      "tag": "input",
+      "attributes": {
+        "type": "range",
+        "min": "0",
+        "max": "4",
+        "step": "0.01",
+        "value": "0.12"
+      }
+    },
+    {
+      "id": "shapes.html#divisions",
+      "tag": "input",
+      "attributes": {
+        "type": "range",
+        "min": "1",
+        "max": "16",
+        "step": "1",
+        "value": "2"
+      }
+    },
+    {
+      "id": "shapes.html#directionButton",
+      "tag": "button",
+      "attributes": {
+        "type": "button",
+        "aria-label": "Reader direction: forward"
+      }
+    },
+    {
+      "id": "shapes.html#Loop motion",
+      "tag": "button",
+      "attributes": {
+        "type": "button",
+        "aria-label": "Loop motion"
+      }
+    },
+    {
+      "id": "shapes.html#Ping-pong motion",
+      "tag": "button",
+      "attributes": {
+        "type": "button",
+        "aria-label": "Ping-pong motion"
+      }
+    },
+    {
+      "id": "shapes.html#rotateButton",
+      "tag": "button",
+      "attributes": {
+        "type": "button",
+        "aria-label": "Start automatic rotation"
+      }
+    },
+    {
+      "id": "shapes.html#voiceEngine",
+      "tag": "select",
+      "attributes": {
+        "aria-label": "Sound engine"
+      },
+      "options": [
+        "sine",
+        "fm",
+        "pm",
+        "shepard"
+      ]
+    },
+    {
+      "id": "shapes.html#triggerSoundBank",
+      "tag": "select",
+      "attributes": {
+        "aria-label": "Percussion sound bank"
+      },
+      "options": [
+        "rattlesnake",
+        "fm-kit"
+      ]
+    },
+    {
+      "id": "shapes.html#readerSelect",
+      "tag": "select",
+      "attributes": {},
+      "options": [
+        "points",
+        "line",
+        "radar"
+      ]
+    },
+    {
+      "id": "shapes.html#removePlayhead",
+      "tag": "button",
+      "attributes": {
+        "type": "button",
+        "aria-label": "Remove one playhead"
+      }
+    },
+    {
+      "id": "shapes.html#addPlayhead",
+      "tag": "button",
+      "attributes": {
+        "type": "button",
+        "aria-label": "Add one playhead"
+      }
+    },
+    {
+      "id": "shapes.html#resetHeadSpacing",
+      "tag": "button",
+      "attributes": {
+        "type": "button",
+        "aria-label": "Reset playhead spacing"
+      }
+    },
+    {
+      "id": "shapes.html#headMarker0",
+      "tag": "button",
+      "attributes": {
+        "type": "button",
+        "role": "slider",
+        "aria-label": "Playhead 1 phase"
+      }
+    },
+    {
+      "id": "shapes.html#mainFormSelect",
+      "tag": "select",
+      "attributes": {},
+      "options": []
+    },
+    {
+      "id": "shapes.html#liveKnobA",
+      "tag": "button",
+      "attributes": {
+        "type": "button",
+        "role": "slider",
+        "aria-label": "Angle"
+      }
+    },
+    {
+      "id": "shapes.html#liveKnobB",
+      "tag": "button",
+      "attributes": {
+        "type": "button",
+        "role": "slider",
+        "aria-label": "Sides"
+      }
+    },
+    {
+      "id": "shapes.html#liveKnobC",
+      "tag": "button",
+      "attributes": {
+        "type": "button",
+        "role": "slider",
+        "aria-label": "Roundness"
+      }
+    },
+    {
+      "id": "shapes.html#resetForm",
+      "tag": "button",
+      "attributes": {
+        "type": "button",
+        "aria-label": "Reset form"
+      }
+    },
+    {
+      "id": "shapes.html#profileKind",
+      "tag": "select",
+      "attributes": {},
+      "options": [
+        "polygon",
+        "star",
+        "circle",
+        "line"
+      ]
+    },
+    {
+      "id": "shapes.html#profileSides",
+      "tag": "input",
+      "attributes": {
+        "type": "range",
+        "min": "1",
+        "max": "32",
+        "step": "1",
+        "value": "4"
+      }
+    },
+    {
+      "id": "shapes.html#starDepth",
+      "tag": "input",
+      "attributes": {
+        "type": "range",
+        "min": "0.05",
+        "max": "0.82",
+        "step": "0.01",
+        "value": "0.48"
+      }
+    },
+    {
+      "id": "shapes.html#curvature",
+      "tag": "input",
+      "attributes": {
+        "type": "range",
+        "min": "-1",
+        "max": "1",
+        "step": "0.01",
+        "value": "0"
+      }
+    },
+    {
+      "id": "shapes.html#aspect",
+      "tag": "input",
+      "attributes": {
+        "type": "range",
+        "min": "-2",
+        "max": "2",
+        "step": "0.01",
+        "value": "0"
+      }
+    },
+    {
+      "id": "shapes.html#skew2d",
+      "tag": "input",
+      "attributes": {
+        "type": "range",
+        "min": "-2",
+        "max": "2",
+        "step": "0.01",
+        "value": "0"
+      }
+    },
+    {
+      "id": "shapes.html#solidRepresentation",
+      "tag": "select",
+      "attributes": {},
+      "options": [
+        "profile",
+        "cube",
+        "pyramid",
+        "octahedron",
+        "prism",
+        "cone",
+        "cylinder",
+        "sphere",
+        "torus"
+      ]
+    },
+    {
+      "id": "shapes.html#scale3x",
+      "tag": "input",
+      "attributes": {
+        "type": "range",
+        "min": "0.5",
+        "max": "1.6",
+        "step": "0.01",
+        "value": "1"
+      }
+    },
+    {
+      "id": "shapes.html#scale3y",
+      "tag": "input",
+      "attributes": {
+        "type": "range",
+        "min": "0.5",
+        "max": "1.6",
+        "step": "0.01",
+        "value": "1"
+      }
+    },
+    {
+      "id": "shapes.html#scale3z",
+      "tag": "input",
+      "attributes": {
+        "type": "range",
+        "min": "0.5",
+        "max": "1.6",
+        "step": "0.01",
+        "value": "1"
+      }
+    },
+    {
+      "id": "shapes.html#skew3x",
+      "tag": "input",
+      "attributes": {
+        "type": "range",
+        "min": "-0.7",
+        "max": "0.7",
+        "step": "0.01",
+        "value": "0"
+      }
+    },
+    {
+      "id": "shapes.html#skew3z",
+      "tag": "input",
+      "attributes": {
+        "type": "range",
+        "min": "-0.7",
+        "max": "0.7",
+        "step": "0.01",
+        "value": "0"
+      }
+    },
+    {
+      "id": "shapes.html#hyperRepresentation",
+      "tag": "select",
+      "attributes": {},
+      "options": [
+        "profile",
+        "tesseract",
+        "hypersphere",
+        "hyperpyramid",
+        "klein"
+      ]
+    },
+    {
+      "id": "shapes.html#scale4x",
+      "tag": "input",
+      "attributes": {
+        "type": "range",
+        "min": "0.5",
+        "max": "1.5",
+        "step": "0.01",
+        "value": "1"
+      }
+    },
+    {
+      "id": "shapes.html#scale4y",
+      "tag": "input",
+      "attributes": {
+        "type": "range",
+        "min": "0.5",
+        "max": "1.5",
+        "step": "0.01",
+        "value": "1"
+      }
+    },
+    {
+      "id": "shapes.html#scale4z",
+      "tag": "input",
+      "attributes": {
+        "type": "range",
+        "min": "0.5",
+        "max": "1.5",
+        "step": "0.01",
+        "value": "1"
+      }
+    },
+    {
+      "id": "shapes.html#scale4w",
+      "tag": "input",
+      "attributes": {
+        "type": "range",
+        "min": "0.5",
+        "max": "1.5",
+        "step": "0.01",
+        "value": "1"
+      }
+    },
+    {
+      "id": "shapes.html#resetRotation",
+      "tag": "button",
+      "attributes": {
+        "type": "button",
+        "aria-label": "Reset rotation"
+      }
+    },
+    {
+      "id": "shapes.html#resetMapping",
+      "tag": "button",
+      "attributes": {
+        "type": "button",
+        "aria-label": "Reset mapping"
+      }
+    },
+    {
+      "id": "shapes.html#baseFrequency",
+      "tag": "input",
+      "attributes": {
+        "type": "range",
+        "min": "20",
+        "max": "440",
+        "step": "1",
+        "value": "110"
+      }
+    },
+    {
+      "id": "shapes.html#pitchRange",
+      "tag": "input",
+      "attributes": {
+        "type": "range",
+        "min": "0",
+        "max": "7",
+        "step": "0.1",
+        "value": "3"
+      }
+    },
+    {
+      "id": "shapes.html#voiceCharacter",
+      "tag": "input",
+      "attributes": {
+        "type": "range",
+        "min": "0",
+        "max": "1",
+        "step": "0.01",
+        "value": "0.35"
+      }
+    },
+    {
+      "id": "shapes.html#stereoSpread",
+      "tag": "input",
+      "attributes": {
+        "type": "range",
+        "min": "0",
+        "max": "1",
+        "step": "0.01",
+        "value": "0.85"
+      }
+    },
+    {
+      "id": "shapes.html#triggerMapping",
+      "tag": "select",
+      "attributes": {},
+      "options": [
+        "feature",
+        "position",
+        "incidence"
+      ]
+    },
+    {
+      "id": "shapes.html#tuningDepth",
+      "tag": "input",
+      "attributes": {
+        "type": "range",
+        "min": "0",
+        "max": "24",
+        "step": "1",
+        "value": "12"
+      }
+    },
+    {
+      "id": "shapes.html#triggerCharacter",
+      "tag": "input",
+      "attributes": {
+        "type": "range",
+        "min": "0",
+        "max": "1",
+        "step": "0.01",
+        "value": "0.7"
+      }
+    },
+    {
+      "id": "shapes.html#hitCap",
+      "tag": "input",
+      "attributes": {
+        "type": "range",
+        "min": "1",
+        "max": "16",
+        "step": "1",
+        "value": "6"
+      }
+    },
+    {
+      "id": "shapes.html#resetAll",
+      "tag": "button",
+      "attributes": {
+        "type": "button",
+        "aria-label": "Reset all Shapes controls"
+      }
+    },
+    {
+      "id": "l-systems.html#Instrument",
+      "tag": "select",
+      "attributes": {
+        "aria-label": "Instrument"
+      },
+      "options": [
+        "l-systems.html"
+      ]
+    },
+    {
+      "id": "l-systems.html#level",
+      "tag": "input",
+      "attributes": {
+        "aria-label": "Master audio level",
+        "type": "range",
+        "min": "0",
+        "max": "1",
+        "step": "0.01",
+        "value": "0.58"
+      }
+    },
+    {
+      "id": "l-systems.html#audioButton",
+      "tag": "button",
+      "attributes": {
+        "type": "button"
+      }
+    },
+    {
+      "id": "l-systems.html#stage",
+      "tag": "canvas",
+      "attributes": {
+        "aria-label": "Animated L-system instrument canvas"
+      }
+    },
+    {
+      "id": "l-systems.html#modeContinuous",
+      "tag": "button",
+      "attributes": {
+        "type": "button",
+        "role": "tab"
+      }
+    },
+    {
+      "id": "l-systems.html#modeNotes",
+      "tag": "button",
+      "attributes": {
+        "type": "button",
+        "role": "tab"
+      }
+    },
+    {
+      "id": "l-systems.html#modeTriggers",
+      "tag": "button",
+      "attributes": {
+        "type": "button",
+        "role": "tab"
+      }
+    },
+    {
+      "id": "l-systems.html#modeMic",
+      "tag": "button",
+      "attributes": {
+        "type": "button",
+        "role": "tab"
+      }
+    },
+    {
+      "id": "l-systems.html#playButton",
+      "tag": "button",
+      "attributes": {
+        "type": "button",
+        "aria-label": "Play traversal"
+      }
+    },
+    {
+      "id": "l-systems.html#traversalDirection",
+      "tag": "button",
+      "attributes": {
+        "type": "button",
+        "aria-label": "Traversal direction: forward"
+      }
+    },
+    {
+      "id": "l-systems.html#loopMotion",
+      "tag": "button",
+      "attributes": {
+        "type": "button",
+        "aria-label": "Loop movement"
+      }
+    },
+    {
+      "id": "l-systems.html#pingPongMotion",
+      "tag": "button",
+      "attributes": {
+        "type": "button",
+        "aria-label": "Ping-pong movement"
+      }
+    },
+    {
+      "id": "l-systems.html#position",
+      "tag": "input",
+      "attributes": {
+        "type": "range",
+        "min": "0",
+        "max": "1",
+        "step": "0.0005",
+        "value": "0"
+      }
+    },
+    {
+      "id": "l-systems.html#speed",
+      "tag": "input",
+      "attributes": {
+        "type": "range",
+        "min": "0",
+        "max": "3",
+        "step": "0.01",
+        "value": "0.3"
+      }
+    },
+    {
+      "id": "l-systems.html#preset",
+      "tag": "select",
+      "attributes": {},
+      "options": []
+    },
+    {
+      "id": "l-systems.html#iterations",
+      "tag": "input",
+      "attributes": {
+        "type": "range",
+        "min": "0",
+        "max": "11",
+        "step": "1",
+        "value": "7"
+      }
+    },
+    {
+      "id": "l-systems.html#angle",
+      "tag": "input",
+      "attributes": {
+        "type": "range",
+        "min": "0",
+        "max": "150",
+        "step": "0.1",
+        "value": "45"
+      }
+    },
+    {
+      "id": "l-systems.html#lengthScale",
+      "tag": "input",
+      "attributes": {
+        "type": "range",
+        "min": "0.2",
+        "max": "1.2",
+        "step": "0.01",
+        "value": "0.72"
+      }
+    },
+    {
+      "id": "l-systems.html#turnAsymmetry",
+      "tag": "input",
+      "attributes": {
+        "type": "range",
+        "min": "-0.8",
+        "max": "0.8",
+        "step": "0.01",
+        "value": "0"
+      }
+    },
+    {
+      "id": "l-systems.html#resetSystem",
+      "tag": "button",
+      "attributes": {
+        "type": "button"
+      }
+    },
+    {
+      "id": "l-systems.html#structureMode",
+      "tag": "select",
+      "attributes": {},
+      "options": [
+        "final",
+        "sequence",
+        "accumulate",
+        "together",
+        "canon"
+      ]
+    },
+    {
+      "id": "l-systems.html#pitchSource",
+      "tag": "select",
+      "attributes": {},
+      "options": [
+        "angle",
+        "height",
+        "depth",
+        "progress"
+      ]
+    },
+    {
+      "id": "l-systems.html#soundMode",
+      "tag": "select",
+      "attributes": {},
+      "options": [
+        "sine",
+        "fm",
+        "pm",
+        "shepard"
+      ]
+    },
+    {
+      "id": "l-systems.html#baseFrequency",
+      "tag": "input",
+      "attributes": {
+        "type": "range",
+        "min": "55",
+        "max": "880",
+        "step": "1",
+        "value": "220"
+      }
+    },
+    {
+      "id": "l-systems.html#pitchRange",
+      "tag": "input",
+      "attributes": {
+        "type": "range",
+        "min": "0",
+        "max": "6",
+        "step": "0.1",
+        "value": "2"
+      }
+    },
+    {
+      "id": "l-systems.html#depthAmount",
+      "tag": "input",
+      "attributes": {
+        "type": "range",
+        "min": "0",
+        "max": "1",
+        "step": "0.01",
+        "value": "0.65"
+      }
+    },
+    {
+      "id": "l-systems.html#modulationIndex",
+      "tag": "input",
+      "attributes": {
+        "type": "range",
+        "min": "0",
+        "max": "12",
+        "step": "0.1",
+        "value": "3"
+      }
+    },
+    {
+      "id": "l-systems.html#stereoSpread",
+      "tag": "input",
+      "attributes": {
+        "type": "range",
+        "min": "0",
+        "max": "1",
+        "step": "0.01",
+        "value": "0.9"
+      }
+    },
+    {
+      "id": "l-systems.html#subdivisions",
+      "tag": "input",
+      "attributes": {
+        "type": "range",
+        "min": "1",
+        "max": "16",
+        "step": "1",
+        "value": "4"
+      }
+    },
+    {
+      "id": "l-systems.html#mappingMode",
+      "tag": "select",
+      "attributes": {},
+      "options": []
+    },
+    {
+      "id": "l-systems.html#percussionStyle",
+      "tag": "select",
+      "attributes": {},
+      "options": []
+    },
+    {
+      "id": "l-systems.html#pitchDepth",
+      "tag": "input",
+      "attributes": {
+        "type": "range",
+        "min": "0",
+        "max": "36",
+        "step": "1",
+        "value": "12"
+      }
+    },
+    {
+      "id": "l-systems.html#anglePitchDepth",
+      "tag": "input",
+      "attributes": {
+        "type": "range",
+        "min": "0",
+        "max": "36",
+        "step": "1",
+        "value": "12"
+      }
+    },
+    {
+      "id": "l-systems.html#angleRange",
+      "tag": "input",
+      "attributes": {
+        "type": "range",
+        "min": "15",
+        "max": "180",
+        "step": "1",
+        "value": "90"
+      }
+    },
+    {
+      "id": "l-systems.html#characterDepth",
+      "tag": "input",
+      "attributes": {
+        "type": "range",
+        "min": "0",
+        "max": "1",
+        "step": "0.01",
+        "value": "0.72"
+      }
+    },
+    {
+      "id": "l-systems.html#inputTrim",
+      "tag": "input",
+      "attributes": {
+        "type": "range",
+        "min": "0",
+        "max": "1.25",
+        "step": "0.01",
+        "value": "1"
+      }
+    },
+    {
+      "id": "l-systems.html#micFeedback",
+      "tag": "input",
+      "attributes": {
+        "type": "range",
+        "min": "0",
+        "max": "0.82",
+        "step": "0.01",
+        "value": "0.38"
+      }
+    },
+    {
+      "id": "l-systems.html#micInterval",
+      "tag": "input",
+      "attributes": {
+        "type": "range",
+        "min": "0.25",
+        "max": "4",
+        "step": "0.01",
+        "value": "1"
+      }
+    },
+    {
+      "id": "l-systems.html#micTimeRatio",
+      "tag": "input",
+      "attributes": {
+        "type": "range",
+        "min": "0.2",
+        "max": "2",
+        "step": "0.01",
+        "value": "1"
+      }
+    },
+    {
+      "id": "l-systems.html#micPitchRange",
+      "tag": "input",
+      "attributes": {
+        "type": "range",
+        "min": "0",
+        "max": "4",
+        "step": "0.1",
+        "value": "1.2"
+      }
+    },
+    {
+      "id": "l-systems.html#micSpread",
+      "tag": "input",
+      "attributes": {
+        "type": "range",
+        "min": "0",
+        "max": "1",
+        "step": "0.01",
+        "value": "0.9"
+      }
+    },
+    {
+      "id": "l-systems.html#micWet",
+      "tag": "input",
+      "attributes": {
+        "type": "range",
+        "min": "0",
+        "max": "1",
+        "step": "0.01",
+        "value": "0.92"
+      }
+    },
+    {
+      "id": "l-systems.html#mixPreset",
+      "tag": "select",
+      "attributes": {},
+      "options": []
+    },
+    {
+      "id": "l-systems.html#continuousLevel",
+      "tag": "input",
+      "attributes": {
+        "type": "range",
+        "min": "0",
+        "max": "1.5",
+        "step": "0.01",
+        "value": "1"
+      }
+    },
+    {
+      "id": "l-systems.html#noteLevel",
+      "tag": "input",
+      "attributes": {
+        "type": "range",
+        "min": "0",
+        "max": "1.5",
+        "step": "0.01",
+        "value": "1"
+      }
+    },
+    {
+      "id": "l-systems.html#triggerLevel",
+      "tag": "input",
+      "attributes": {
+        "type": "range",
+        "min": "0",
+        "max": "1.5",
+        "step": "0.01",
+        "value": "0.95"
+      }
+    },
+    {
+      "id": "l-systems.html#micLevel",
+      "tag": "input",
+      "attributes": {
+        "type": "range",
+        "min": "0",
+        "max": "1.5",
+        "step": "0.01",
+        "value": "1.12"
+      }
+    },
+    {
+      "id": "l-systems.html#resetAll",
+      "tag": "button",
+      "attributes": {
+        "type": "button"
+      }
+    },
+    {
+      "id": "graph-synth.html#Instrument",
+      "tag": "select",
+      "attributes": {
+        "aria-label": "Instrument"
+      },
+      "options": [
+        "shape.html",
+        "lattice.html",
+        "spiral.html",
+        "solid.html",
+        "hyper.html",
+        "l-system.html",
+        "graph-synth.html",
+        "graph-delay.html"
+      ]
+    },
+    {
+      "id": "graph-synth.html#audioButton",
+      "tag": "button",
+      "attributes": {
+        "type": "button"
+      }
+    },
+    {
+      "id": "graph-synth.html#output",
+      "tag": "input",
+      "attributes": {
+        "aria-label": "Graph Synth output level",
+        "type": "range",
+        "min": "0",
+        "max": "0.9",
+        "step": "0.01",
+        "value": "0.64"
+      }
+    },
+    {
+      "id": "graph-synth.html#stage",
+      "tag": "canvas",
+      "attributes": {
+        "role": "application",
+        "aria-label": "A directed graph whose active routes sound inherited synth notes. Audio off."
+      }
+    },
+    {
+      "id": "graph-synth.html#pulseButton",
+      "tag": "button",
+      "attributes": {
+        "type": "button"
+      }
+    },
+    {
+      "id": "graph-synth.html#randomGraphButton",
+      "tag": "button",
+      "attributes": {
+        "type": "button",
+        "aria-label": "Create a random graph with randomized node positions"
+      }
+    },
+    {
+      "id": "graph-synth.html#topology",
+      "tag": "select",
+      "attributes": {},
+      "options": [
+        "chain",
+        "tree",
+        "dag",
+        "bipartite",
+        "ring",
+        "smallworld",
+        "hub",
+        "mesh",
+        "modular",
+        "random"
+      ]
+    },
+    {
+      "id": "graph-synth.html#baseDelay",
+      "tag": "input",
+      "attributes": {
+        "type": "range",
+        "min": "20",
+        "max": "600",
+        "step": "1",
+        "value": "62",
+        "aria-label": "Minimum edge time, slow to fast"
+      }
+    },
+    {
+      "id": "graph-synth.html#distanceRatio",
+      "tag": "input",
+      "attributes": {
+        "type": "range",
+        "min": "1",
+        "max": "12",
+        "step": "0.01",
+        "value": "1.94"
+      }
+    },
+    {
+      "id": "graph-synth.html#randomizeNodePositionsButton",
+      "tag": "button",
+      "attributes": {
+        "type": "button"
+      }
+    },
+    {
+      "id": "graph-synth.html#seedNote",
+      "tag": "input",
+      "attributes": {
+        "type": "range",
+        "min": "0",
+        "max": "127",
+        "step": "1",
+        "value": "57"
+      }
+    },
+    {
+      "id": "graph-synth.html#playButton",
+      "tag": "button",
+      "attributes": {
+        "type": "button",
+        "aria-label": "Play graph note pulses"
+      }
+    },
+    {
+      "id": "graph-synth.html#tempo",
+      "tag": "input",
+      "attributes": {
+        "type": "range",
+        "min": "35",
+        "max": "220",
+        "step": "1",
+        "value": "126"
+      }
+    },
+    {
+      "id": "graph-synth.html#pulseDivision",
+      "tag": "select",
+      "attributes": {},
+      "options": [
+        "0.5",
+        "1",
+        "2",
+        "4"
+      ]
+    },
+    {
+      "id": "graph-synth.html#triggerScope",
+      "tag": "select",
+      "attributes": {},
+      "options": [
+        "all",
+        "leaves"
+      ]
+    },
+    {
+      "id": "graph-synth.html#attackLaneCount",
+      "tag": "select",
+      "attributes": {},
+      "options": [
+        "1",
+        "2",
+        "4"
+      ]
+    },
+    {
+      "id": "graph-synth.html#nodePass",
+      "tag": "input",
+      "attributes": {
+        "type": "range",
+        "min": "0.2",
+        "max": "1",
+        "step": "0.01",
+        "value": "1"
+      }
+    },
+    {
+      "id": "graph-synth.html#timeCurve",
+      "tag": "input",
+      "attributes": {
+        "type": "range",
+        "min": "0.25",
+        "max": "3",
+        "step": "0.05",
+        "value": "0.9"
+      }
+    },
+    {
+      "id": "graph-synth.html#feedback",
+      "tag": "input",
+      "attributes": {
+        "type": "range",
+        "min": "0",
+        "max": "0.92",
+        "step": "0.01",
+        "value": "0.72"
+      }
+    },
+    {
+      "id": "graph-synth.html#feedbackTone",
+      "tag": "input",
+      "attributes": {
+        "type": "range",
+        "min": "0.2",
+        "max": "1",
+        "step": "0.01",
+        "value": "0.78"
+      }
+    },
+    {
+      "id": "graph-synth.html#graphPatch",
+      "tag": "input",
+      "attributes": {
+        "type": "hidden",
+        "value": "layeredGlass"
+      }
+    },
+    {
+      "id": "graph-synth.html#graphPatch-clearSteps",
+      "tag": "button",
+      "attributes": {
+        "type": "button"
+      }
+    },
+    {
+      "id": "graph-synth.html#graphPatch-branchChoir",
+      "tag": "button",
+      "attributes": {
+        "type": "button"
+      }
+    },
+    {
+      "id": "graph-synth.html#graphPatch-layeredGlass",
+      "tag": "button",
+      "attributes": {
+        "type": "button"
+      }
+    },
+    {
+      "id": "graph-synth.html#graphPatch-haloRing",
+      "tag": "button",
+      "attributes": {
+        "type": "button"
+      }
+    },
+    {
+      "id": "graph-synth.html#graphPatch-shortcutChorus",
+      "tag": "button",
+      "attributes": {
+        "type": "button"
+      }
+    },
+    {
+      "id": "graph-synth.html#graphPatch-hubScatter",
+      "tag": "button",
+      "attributes": {
+        "type": "button"
+      }
+    },
+    {
+      "id": "graph-synth.html#graphPatch-softMesh",
+      "tag": "button",
+      "attributes": {
+        "type": "button"
+      }
+    },
+    {
+      "id": "graph-synth.html#graphPatch-islandSignals",
+      "tag": "button",
+      "attributes": {
+        "type": "button"
+      }
+    },
+    {
+      "id": "graph-synth.html#nodeCount",
+      "tag": "input",
+      "attributes": {
+        "type": "range",
+        "min": "3",
+        "max": "32",
+        "step": "1",
+        "value": "10"
+      }
+    },
+    {
+      "id": "graph-synth.html#density",
+      "tag": "input",
+      "attributes": {
+        "type": "range",
+        "min": "0",
+        "max": "1",
+        "step": "0.01",
+        "value": "0.34"
+      }
+    },
+    {
+      "id": "graph-synth.html#seed",
+      "tag": "input",
+      "attributes": {
+        "type": "range",
+        "min": "1",
+        "max": "99",
+        "step": "1",
+        "value": "17"
+      }
+    },
+    {
+      "id": "graph-synth.html#newGraphButton",
+      "tag": "button",
+      "attributes": {
+        "type": "button"
+      }
+    },
+    {
+      "id": "graph-synth.html#arrangeGraphButton",
+      "tag": "button",
+      "attributes": {
+        "type": "button"
+      }
+    },
+    {
+      "id": "graph-synth.html#openAllSwitchesButton",
+      "tag": "button",
+      "attributes": {
+        "type": "button"
+      }
+    },
+    {
+      "id": "graph-synth.html#nodeMotionPlayButton",
+      "tag": "button",
+      "attributes": {
+        "type": "button",
+        "aria-label": "Play node motion"
+      }
+    },
+    {
+      "id": "graph-synth.html#nodeMotionMode",
+      "tag": "select",
+      "attributes": {},
+      "options": [
+        "wiggle",
+        "orbit",
+        "random"
+      ]
+    },
+    {
+      "id": "graph-synth.html#nodeMotionSpeed",
+      "tag": "input",
+      "attributes": {
+        "type": "range",
+        "min": "0.01",
+        "max": "0.5",
+        "step": "0.01",
+        "value": "0.12"
+      }
+    },
+    {
+      "id": "graph-synth.html#nodeMotionAmount",
+      "tag": "input",
+      "attributes": {
+        "type": "range",
+        "min": "0.01",
+        "max": "0.3",
+        "step": "0.01",
+        "value": "0.07"
+      }
+    },
+    {
+      "id": "graph-synth.html#mappingMode",
+      "tag": "select",
+      "attributes": {},
+      "options": [
+        "turn",
+        "height",
+        "degree",
+        "progress"
+      ]
+    },
+    {
+      "id": "graph-synth.html#turnPitchScale",
+      "tag": "input",
+      "attributes": {
+        "type": "range",
+        "min": "0",
+        "max": "4",
+        "step": "0.01",
+        "value": "1.1"
+      }
+    },
+    {
+      "id": "graph-synth.html#pitchRange",
+      "tag": "input",
+      "attributes": {
+        "type": "range",
+        "min": "0",
+        "max": "5",
+        "step": "0.05",
+        "value": "2"
+      }
+    },
+    {
+      "id": "graph-synth.html#tuningMode",
+      "tag": "select",
+      "attributes": {},
+      "options": [
+        "pure",
+        "equal",
+        "just"
+      ]
+    },
+    {
+      "id": "graph-synth.html#edoDivisions",
+      "tag": "input",
+      "attributes": {
+        "type": "range",
+        "min": "1",
+        "max": "360",
+        "step": "1",
+        "value": "19"
+      }
+    },
+    {
+      "id": "graph-synth.html#soundMode",
+      "tag": "select",
+      "attributes": {},
+      "options": [
+        "sine",
+        "triangle",
+        "sawtooth",
+        "square",
+        "fm",
+        "pm",
+        "shepard"
+      ]
+    },
+    {
+      "id": "graph-synth.html#modulationIndex",
+      "tag": "input",
+      "attributes": {
+        "type": "range",
+        "min": "0",
+        "max": "12",
+        "step": "0.05",
+        "value": "2.8"
+      }
+    },
+    {
+      "id": "graph-synth.html#modulationRatio",
+      "tag": "input",
+      "attributes": {
+        "type": "range",
+        "min": "0.25",
+        "max": "8",
+        "step": "0.05",
+        "value": "2"
+      }
+    },
+    {
+      "id": "graph-synth.html#articulation",
+      "tag": "select",
+      "attributes": {},
+      "options": [
+        "trigger",
+        "edge"
+      ]
+    },
+    {
+      "id": "graph-synth.html#noteDuration",
+      "tag": "input",
+      "attributes": {
+        "type": "range",
+        "min": "20",
+        "max": "4000",
+        "step": "10",
+        "value": "210"
+      }
+    },
+    {
+      "id": "graph-synth.html#attack",
+      "tag": "input",
+      "attributes": {
+        "type": "range",
+        "min": "1",
+        "max": "2000",
+        "step": "1",
+        "value": "8"
+      }
+    },
+    {
+      "id": "graph-synth.html#decay",
+      "tag": "input",
+      "attributes": {
+        "type": "range",
+        "min": "5",
+        "max": "2400",
+        "step": "1",
+        "value": "90"
+      }
+    },
+    {
+      "id": "graph-synth.html#sustain",
+      "tag": "input",
+      "attributes": {
+        "type": "range",
+        "min": "0",
+        "max": "1",
+        "step": "0.01",
+        "value": "0.34"
+      }
+    },
+    {
+      "id": "graph-synth.html#release",
+      "tag": "input",
+      "attributes": {
+        "type": "range",
+        "min": "2",
+        "max": "5000",
+        "step": "1",
+        "value": "220"
+      }
+    },
+    {
+      "id": "graph-synth.html#stereoSpread",
+      "tag": "input",
+      "attributes": {
+        "type": "range",
+        "min": "0",
+        "max": "1",
+        "step": "0.01",
+        "value": "0.84"
+      }
+    },
+    {
+      "id": "graph-synth.html#resetAll",
+      "tag": "button",
+      "attributes": {
+        "type": "button"
+      }
+    },
+    {
+      "id": "graph-drums.html#Instrument",
+      "tag": "select",
+      "attributes": {
+        "aria-label": "Instrument"
+      },
+      "options": [
+        "shape-drums.html",
+        "lattice-drums.html",
+        "spiral-drums.html",
+        "solid-drums.html",
+        "hyper-drums.html",
+        "l-system-drums.html",
+        "graph-drums.html",
+        "fm-drums.html"
+      ]
+    },
+    {
+      "id": "graph-drums.html#audioButton",
+      "tag": "button",
+      "attributes": {
+        "type": "button"
+      }
+    },
+    {
+      "id": "graph-drums.html#output",
+      "tag": "input",
+      "attributes": {
+        "aria-label": "Graph Drum Machine output level",
+        "type": "range",
+        "min": "0",
+        "max": "0.9",
+        "step": "0.01",
+        "value": "0.58"
+      }
+    },
+    {
+      "id": "graph-drums.html#stage",
+      "tag": "canvas",
+      "attributes": {
+        "role": "application",
+        "aria-label": "A directed graph whose active routes trigger drums. Audio off."
+      }
+    },
+    {
+      "id": "graph-drums.html#pulseButton",
+      "tag": "button",
+      "attributes": {
+        "type": "button"
+      }
+    },
+    {
+      "id": "graph-drums.html#randomGraphButton",
+      "tag": "button",
+      "attributes": {
+        "type": "button",
+        "aria-label": "Create a random graph with randomized node positions"
+      }
+    },
+    {
+      "id": "graph-drums.html#topology",
+      "tag": "select",
+      "attributes": {},
+      "options": [
+        "chain",
+        "tree",
+        "dag",
+        "bipartite",
+        "ring",
+        "smallworld",
+        "hub",
+        "mesh",
+        "modular",
+        "random"
+      ]
+    },
+    {
+      "id": "graph-drums.html#baseDelay",
+      "tag": "input",
+      "attributes": {
+        "type": "range",
+        "min": "20",
+        "max": "600",
+        "step": "1",
+        "value": "62",
+        "aria-label": "Minimum edge time, slow to fast"
+      }
+    },
+    {
+      "id": "graph-drums.html#distanceRatio",
+      "tag": "input",
+      "attributes": {
+        "type": "range",
+        "min": "1",
+        "max": "12",
+        "step": "0.01",
+        "value": "1.94"
+      }
+    },
+    {
+      "id": "graph-drums.html#randomizeNodePositionsButton",
+      "tag": "button",
+      "attributes": {
+        "type": "button"
+      }
+    },
+    {
+      "id": "graph-drums.html#seedNote",
+      "tag": "input",
+      "attributes": {
+        "type": "range",
+        "min": "0",
+        "max": "127",
+        "step": "1",
+        "value": "60"
+      }
+    },
+    {
+      "id": "graph-drums.html#playButton",
+      "tag": "button",
+      "attributes": {
+        "type": "button",
+        "aria-label": "Play graph drum pulses"
+      }
+    },
+    {
+      "id": "graph-drums.html#tempo",
+      "tag": "input",
+      "attributes": {
+        "type": "range",
+        "min": "35",
+        "max": "220",
+        "step": "1",
+        "value": "126"
+      }
+    },
+    {
+      "id": "graph-drums.html#pulseDivision",
+      "tag": "select",
+      "attributes": {},
+      "options": [
+        "0.5",
+        "1",
+        "2",
+        "4"
+      ]
+    },
+    {
+      "id": "graph-drums.html#percussionStyle",
+      "tag": "select",
+      "attributes": {},
+      "options": [
+        "drum-bank",
+        "circuit",
+        "rattlesnake",
+        "rattlesnake-physical",
+        "resonant-metal",
+        "karplus-strong",
+        "karplus-tines",
+        "karplus-objects"
+      ]
+    },
+    {
+      "id": "graph-drums.html#triggerScope",
+      "tag": "select",
+      "attributes": {},
+      "options": [
+        "all",
+        "leaves"
+      ]
+    },
+    {
+      "id": "graph-drums.html#attackLaneCount",
+      "tag": "select",
+      "attributes": {},
+      "options": [
+        "1",
+        "2",
+        "4"
+      ]
+    },
+    {
+      "id": "graph-drums.html#nodePass",
+      "tag": "input",
+      "attributes": {
+        "type": "range",
+        "min": "0.2",
+        "max": "1",
+        "step": "0.01",
+        "value": "1"
+      }
+    },
+    {
+      "id": "graph-drums.html#timeCurve",
+      "tag": "input",
+      "attributes": {
+        "type": "range",
+        "min": "0.25",
+        "max": "3",
+        "step": "0.05",
+        "value": "0.9"
+      }
+    },
+    {
+      "id": "graph-drums.html#feedback",
+      "tag": "input",
+      "attributes": {
+        "type": "range",
+        "min": "0",
+        "max": "0.92",
+        "step": "0.01",
+        "value": "0.72"
+      }
+    },
+    {
+      "id": "graph-drums.html#feedbackTone",
+      "tag": "input",
+      "attributes": {
+        "type": "range",
+        "min": "0.2",
+        "max": "1",
+        "step": "0.01",
+        "value": "0.78"
+      }
+    },
+    {
+      "id": "graph-drums.html#graphPatch",
+      "tag": "input",
+      "attributes": {
+        "type": "hidden",
+        "value": "layeredGlass"
+      }
+    },
+    {
+      "id": "graph-drums.html#graphPatch-clearSteps",
+      "tag": "button",
+      "attributes": {
+        "type": "button"
+      }
+    },
+    {
+      "id": "graph-drums.html#graphPatch-branchChoir",
+      "tag": "button",
+      "attributes": {
+        "type": "button"
+      }
+    },
+    {
+      "id": "graph-drums.html#graphPatch-layeredGlass",
+      "tag": "button",
+      "attributes": {
+        "type": "button"
+      }
+    },
+    {
+      "id": "graph-drums.html#graphPatch-haloRing",
+      "tag": "button",
+      "attributes": {
+        "type": "button"
+      }
+    },
+    {
+      "id": "graph-drums.html#graphPatch-shortcutChorus",
+      "tag": "button",
+      "attributes": {
+        "type": "button"
+      }
+    },
+    {
+      "id": "graph-drums.html#graphPatch-hubScatter",
+      "tag": "button",
+      "attributes": {
+        "type": "button"
+      }
+    },
+    {
+      "id": "graph-drums.html#graphPatch-softMesh",
+      "tag": "button",
+      "attributes": {
+        "type": "button"
+      }
+    },
+    {
+      "id": "graph-drums.html#graphPatch-islandSignals",
+      "tag": "button",
+      "attributes": {
+        "type": "button"
+      }
+    },
+    {
+      "id": "graph-drums.html#nodeCount",
+      "tag": "input",
+      "attributes": {
+        "type": "range",
+        "min": "3",
+        "max": "32",
+        "step": "1",
+        "value": "10"
+      }
+    },
+    {
+      "id": "graph-drums.html#density",
+      "tag": "input",
+      "attributes": {
+        "type": "range",
+        "min": "0",
+        "max": "1",
+        "step": "0.01",
+        "value": "0.34"
+      }
+    },
+    {
+      "id": "graph-drums.html#seed",
+      "tag": "input",
+      "attributes": {
+        "type": "range",
+        "min": "1",
+        "max": "99",
+        "step": "1",
+        "value": "17"
+      }
+    },
+    {
+      "id": "graph-drums.html#newGraphButton",
+      "tag": "button",
+      "attributes": {
+        "type": "button"
+      }
+    },
+    {
+      "id": "graph-drums.html#arrangeGraphButton",
+      "tag": "button",
+      "attributes": {
+        "type": "button"
+      }
+    },
+    {
+      "id": "graph-drums.html#openAllSwitchesButton",
+      "tag": "button",
+      "attributes": {
+        "type": "button"
+      }
+    },
+    {
+      "id": "graph-drums.html#nodeMotionPlayButton",
+      "tag": "button",
+      "attributes": {
+        "type": "button",
+        "aria-label": "Play node motion"
+      }
+    },
+    {
+      "id": "graph-drums.html#nodeMotionMode",
+      "tag": "select",
+      "attributes": {},
+      "options": [
+        "wiggle",
+        "orbit",
+        "random"
+      ]
+    },
+    {
+      "id": "graph-drums.html#nodeMotionSpeed",
+      "tag": "input",
+      "attributes": {
+        "type": "range",
+        "min": "0.01",
+        "max": "0.5",
+        "step": "0.01",
+        "value": "0.12"
+      }
+    },
+    {
+      "id": "graph-drums.html#nodeMotionAmount",
+      "tag": "input",
+      "attributes": {
+        "type": "range",
+        "min": "0.01",
+        "max": "0.3",
+        "step": "0.01",
+        "value": "0.07"
+      }
+    },
+    {
+      "id": "graph-drums.html#mappingMode",
+      "tag": "select",
+      "attributes": {},
+      "options": [
+        "position-grid",
+        "degree-turn",
+        "path-phase"
+      ]
+    },
+    {
+      "id": "graph-drums.html#pitchDepth",
+      "tag": "input",
+      "attributes": {
+        "type": "range",
+        "min": "0",
+        "max": "24",
+        "step": "1",
+        "value": "12"
+      }
+    },
+    {
+      "id": "graph-drums.html#turnPitchDepth",
+      "tag": "input",
+      "attributes": {
+        "type": "range",
+        "min": "0",
+        "max": "24",
+        "step": "1",
+        "value": "9"
+      }
+    },
+    {
+      "id": "graph-drums.html#characterDepth",
+      "tag": "input",
+      "attributes": {
+        "type": "range",
+        "min": "0",
+        "max": "1",
+        "step": "0.01",
+        "value": "0.72"
+      }
+    },
+    {
+      "id": "graph-drums.html#resetAll",
+      "tag": "button",
+      "attributes": {
+        "type": "button"
+      }
+    },
+    {
+      "id": "graph-delay.html#Instrument",
+      "tag": "select",
+      "attributes": {
+        "aria-label": "Instrument"
+      },
+      "options": [
+        "shape.html",
+        "lattice.html",
+        "spiral.html",
+        "solid.html",
+        "hyper.html",
+        "l-system.html",
+        "recursion.html",
+        "julia.html",
+        "lumber.html",
+        "l-mic.html",
+        "graph-delay.html",
+        "throatazoid.html",
+        "morphazoidical/"
+      ]
+    },
+    {
+      "id": "graph-delay.html#audioButton",
+      "tag": "button",
+      "attributes": {
+        "type": "button"
+      }
+    },
+    {
+      "id": "graph-delay.html#level",
+      "tag": "input",
+      "attributes": {
+        "aria-label": "graph delay output level",
+        "type": "range",
+        "min": "0",
+        "max": "0.9",
+        "step": "0.01",
+        "value": "0.58"
+      }
+    },
+    {
+      "id": "graph-delay.html#stage",
+      "tag": "canvas",
+      "attributes": {
+        "role": "application",
+        "aria-label": "Layered directed acyclic delay graph. Microphone off."
+      }
+    },
+    {
+      "id": "graph-delay.html#seedMicButton",
+      "tag": "button",
+      "attributes": {
+        "type": "button",
+        "aria-label": "Start microphone input"
+      }
+    },
+    {
+      "id": "graph-delay.html#panicButton",
+      "tag": "button",
+      "attributes": {
+        "type": "button"
+      }
+    },
+    {
+      "id": "graph-delay.html#graphPatch",
+      "tag": "input",
+      "attributes": {
+        "type": "hidden",
+        "value": "layeredGlass"
+      }
+    },
+    {
+      "id": "graph-delay.html#graphPatch-clearSteps",
+      "tag": "button",
+      "attributes": {
+        "type": "button"
+      }
+    },
+    {
+      "id": "graph-delay.html#graphPatch-lowLadder",
+      "tag": "button",
+      "attributes": {
+        "type": "button"
+      }
+    },
+    {
+      "id": "graph-delay.html#graphPatch-branchChoir",
+      "tag": "button",
+      "attributes": {
+        "type": "button"
+      }
+    },
+    {
+      "id": "graph-delay.html#graphPatch-glassCanopy",
+      "tag": "button",
+      "attributes": {
+        "type": "button"
+      }
+    },
+    {
+      "id": "graph-delay.html#graphPatch-layeredGlass",
+      "tag": "button",
+      "attributes": {
+        "type": "button"
+      }
+    },
+    {
+      "id": "graph-delay.html#graphPatch-rainLattice",
+      "tag": "button",
+      "attributes": {
+        "type": "button"
+      }
+    },
+    {
+      "id": "graph-delay.html#graphPatch-twinBanks",
+      "tag": "button",
+      "attributes": {
+        "type": "button"
+      }
+    },
+    {
+      "id": "graph-delay.html#graphPatch-haloRing",
+      "tag": "button",
+      "attributes": {
+        "type": "button"
+      }
+    },
+    {
+      "id": "graph-delay.html#graphPatch-slowOrbit",
+      "tag": "button",
+      "attributes": {
+        "type": "button"
+      }
+    },
+    {
+      "id": "graph-delay.html#graphPatch-shortcutChorus",
+      "tag": "button",
+      "attributes": {
+        "type": "button"
+      }
+    },
+    {
+      "id": "graph-delay.html#graphPatch-hubScatter",
+      "tag": "button",
+      "attributes": {
+        "type": "button"
+      }
+    },
+    {
+      "id": "graph-delay.html#graphPatch-softMesh",
+      "tag": "button",
+      "attributes": {
+        "type": "button"
+      }
+    },
+    {
+      "id": "graph-delay.html#graphPatch-islandSignals",
+      "tag": "button",
+      "attributes": {
+        "type": "button"
+      }
+    },
+    {
+      "id": "graph-delay.html#graphPatch-dustPaths",
+      "tag": "button",
+      "attributes": {
+        "type": "button"
+      }
+    },
+    {
+      "id": "graph-delay.html#topology",
+      "tag": "select",
+      "attributes": {},
+      "options": [
+        "chain",
+        "tree",
+        "dag",
+        "bipartite",
+        "ring",
+        "smallworld",
+        "hub",
+        "mesh",
+        "modular",
+        "random"
+      ]
+    },
+    {
+      "id": "graph-delay.html#nodeCount",
+      "tag": "input",
+      "attributes": {
+        "type": "range",
+        "min": "3",
+        "max": "24",
+        "step": "1",
+        "value": "10"
+      }
+    },
+    {
+      "id": "graph-delay.html#density",
+      "tag": "input",
+      "attributes": {
+        "type": "range",
+        "min": "0",
+        "max": "1",
+        "step": "0.01",
+        "value": "0.34"
+      }
+    },
+    {
+      "id": "graph-delay.html#seed",
+      "tag": "input",
+      "attributes": {
+        "type": "range",
+        "min": "1",
+        "max": "99",
+        "step": "1",
+        "value": "17"
+      }
+    },
+    {
+      "id": "graph-delay.html#newGraphButton",
+      "tag": "button",
+      "attributes": {
+        "type": "button"
+      }
+    },
+    {
+      "id": "graph-delay.html#openAllSwitchesButton",
+      "tag": "button",
+      "attributes": {
+        "type": "button"
+      }
+    },
+    {
+      "id": "graph-delay.html#micButton",
+      "tag": "button",
+      "attributes": {
+        "type": "button"
+      }
+    },
+    {
+      "id": "graph-delay.html#stopButton",
+      "tag": "button",
+      "attributes": {
+        "type": "button"
+      }
+    },
+    {
+      "id": "graph-delay.html#inputTrim",
+      "tag": "input",
+      "attributes": {
+        "type": "range",
+        "min": "0",
+        "max": "1.25",
+        "step": "0.01",
+        "value": "0.8"
+      }
+    },
+    {
+      "id": "graph-delay.html#nodePass",
+      "tag": "input",
+      "attributes": {
+        "type": "range",
+        "min": "0",
+        "max": "1",
+        "step": "0.01",
+        "value": "1"
+      }
+    },
+    {
+      "id": "graph-delay.html#baseDelay",
+      "tag": "input",
+      "attributes": {
+        "type": "range",
+        "min": "20",
+        "max": "600",
+        "step": "1",
+        "value": "62"
+      }
+    },
+    {
+      "id": "graph-delay.html#timeScale",
+      "tag": "input",
+      "attributes": {
+        "type": "range",
+        "min": "0",
+        "max": "800",
+        "step": "1",
+        "value": "58"
+      }
+    },
+    {
+      "id": "graph-delay.html#timeCurve",
+      "tag": "input",
+      "attributes": {
+        "type": "range",
+        "min": "0.25",
+        "max": "3",
+        "step": "0.05",
+        "value": "0.9"
+      }
+    },
+    {
+      "id": "graph-delay.html#pitchScale",
+      "tag": "input",
+      "attributes": {
+        "type": "range",
+        "min": "0",
+        "max": "2",
+        "step": "0.01",
+        "value": "0.26"
+      }
+    },
+    {
+      "id": "graph-delay.html#pitchAsymmetry",
+      "tag": "input",
+      "attributes": {
+        "type": "range",
+        "min": "-0.8",
+        "max": "0.8",
+        "step": "0.01",
+        "value": "0"
+      }
+    },
+    {
+      "id": "graph-delay.html#pitchCurve",
+      "tag": "input",
+      "attributes": {
+        "type": "range",
+        "min": "0.5",
+        "max": "2",
+        "step": "0.05",
+        "value": "1.35"
+      }
+    },
+    {
+      "id": "graph-delay.html#pitchSlew",
+      "tag": "input",
+      "attributes": {
+        "type": "range",
+        "min": "10",
+        "max": "500",
+        "step": "5",
+        "value": "165"
+      }
+    },
+    {
+      "id": "graph-delay.html#feedback",
+      "tag": "input",
+      "attributes": {
+        "type": "range",
+        "min": "0",
+        "max": "0.92",
+        "step": "0.01",
+        "value": "0.72"
+      }
+    },
+    {
+      "id": "graph-delay.html#damping",
+      "tag": "input",
+      "attributes": {
+        "type": "range",
+        "min": "500",
+        "max": "12000",
+        "step": "50",
+        "value": "4800"
+      }
+    },
+    {
+      "id": "graph-delay.html#wet",
+      "tag": "input",
+      "attributes": {
+        "type": "range",
+        "min": "0",
+        "max": "1.5",
+        "step": "0.01",
+        "value": "1.16"
+      }
+    },
+    {
+      "id": "graph-delay.html#dry",
+      "tag": "input",
+      "attributes": {
+        "type": "range",
+        "min": "0",
+        "max": "1",
+        "step": "0.01",
+        "value": "0.2"
+      }
+    },
+    {
+      "id": "graph-delay.html#spread",
+      "tag": "input",
+      "attributes": {
+        "type": "range",
+        "min": "0",
+        "max": "1",
+        "step": "0.01",
+        "value": "0.82"
+      }
+    },
+    {
+      "id": "graph-delay.html#nodeMotionPlayButton",
+      "tag": "button",
+      "attributes": {
+        "type": "button",
+        "aria-label": "Play node motion"
+      }
+    },
+    {
+      "id": "graph-delay.html#nodeMotionMode",
+      "tag": "select",
+      "attributes": {},
+      "options": [
+        "wiggle",
+        "orbit",
+        "random"
+      ]
+    },
+    {
+      "id": "graph-delay.html#nodeMotionSpeed",
+      "tag": "input",
+      "attributes": {
+        "type": "range",
+        "min": "0.01",
+        "max": "0.5",
+        "step": "0.01",
+        "value": "0.12"
+      }
+    },
+    {
+      "id": "graph-delay.html#nodeMotionAmount",
+      "tag": "input",
+      "attributes": {
+        "type": "range",
+        "min": "0.01",
+        "max": "0.3",
+        "step": "0.01",
+        "value": "0.07"
+      }
+    },
+    {
+      "id": "graph-delay.html#micMotionPlayButton",
+      "tag": "button",
+      "attributes": {
+        "type": "button",
+        "aria-label": "Play microphone motion"
+      }
+    },
+    {
+      "id": "graph-delay.html#micMotionMode",
+      "tag": "select",
+      "attributes": {},
+      "options": [
+        "circle",
+        "ellipse",
+        "triangle",
+        "square",
+        "figure8",
+        "random"
+      ]
+    },
+    {
+      "id": "graph-delay.html#micMotionSpeed",
+      "tag": "input",
+      "attributes": {
+        "type": "range",
+        "min": "0.01",
+        "max": "0.4",
+        "step": "0.01",
+        "value": "0.08"
+      }
+    },
+    {
+      "id": "graph-delay.html#micMotionSize",
+      "tag": "input",
+      "attributes": {
+        "type": "range",
+        "min": "0.05",
+        "max": "0.46",
+        "step": "0.01",
+        "value": "0.42"
+      }
+    },
+    {
+      "id": "graph-delay.html#resetViewButton",
+      "tag": "button",
+      "attributes": {
+        "type": "button"
+      }
+    },
+    {
+      "id": "graph-delay.html#graphResetButton",
+      "tag": "button",
+      "attributes": {
+        "type": "button"
+      }
+    }
+  ],
+  "requirements": [
+    {
+      "id": "common.audio-transport",
+      "flow": "common",
+      "title": "Explicit Audio arm, independent transport, output gain and cleanup",
+      "source": [
+        "contracts/audio-transport-v1.md",
+        "shapes.html#L29",
+        "l-systems.html#L32",
+        "graph-synth.html#L29",
+        "graph-delay.html#L29"
+      ],
+      "sourceControls": [
+        "shapes.html#level",
+        "shapes.html#audioButton",
+        "shapes.html#playButton",
+        "l-systems.html#level",
+        "l-systems.html#audioButton",
+        "l-systems.html#playButton",
+        "graph-synth.html#audioButton",
+        "graph-synth.html#output",
+        "graph-synth.html#playButton",
+        "graph-drums.html#audioButton",
+        "graph-drums.html#output",
+        "graph-drums.html#playButton",
+        "graph-delay.html#audioButton",
+        "graph-delay.html#level",
+        "graph-delay.html#panicButton",
+        "graph-delay.html#stopButton"
+      ],
+      "acceptance": "Play alone never arms Audio; output gain affects actual samples; stop/panic/dispose release resources. Original reset variants are tracked separately."
+    },
+    {
+      "id": "common.navigation",
+      "flow": "common",
+      "title": "Source routes, dimension/mode URLs and discoverability",
+      "source": [
+        "combo-app.js#L81",
+        "shapes.html",
+        "l-systems.html",
+        "graph-synth.html",
+        "graph-drums.html",
+        "graph-delay.html"
+      ],
+      "sourceControls": [
+        "shapes.html#Instrument",
+        "l-systems.html#Instrument",
+        "graph-synth.html#Instrument",
+        "graph-drums.html#Instrument",
+        "graph-delay.html#Instrument"
+      ],
+      "acceptance": "Preserve the source control ranges, choices, defaults, gestures, state continuity, and audible/visible relationships stated by this capability; demonstrate equivalent behavior, not merely a similarly named control."
+    },
+    {
+      "id": "common.midi",
+      "flow": "common",
+      "title": "Source MIDI mappings, explicit enable, selected output and panic",
+      "source": [
+        "combo-app.js#L1703",
+        "src/graph-instrument-app.js#L2100",
+        "contracts/web-midi-toolbar-v1.md"
+      ],
+      "sourceControls": [],
+      "acceptance": "Preserve the source control ranges, choices, defaults, gestures, state continuity, and audible/visible relationships stated by this capability; demonstrate equivalent behavior, not merely a similarly named control."
+    },
+    {
+      "id": "common.performance-layout",
+      "flow": "common",
+      "title": "All instrument controls reachable with keyboard, touch and a legible viewport",
+      "source": [
+        "shapes.html",
+        "l-systems.html",
+        "graph-synth.html",
+        "graph-drums.html",
+        "graph-delay.html"
+      ],
+      "sourceControls": [],
+      "acceptance": "Preserve the source control ranges, choices, defaults, gestures, state continuity, and audible/visible relationships stated by this capability; demonstrate equivalent behavior, not merely a similarly named control."
+    },
+    {
+      "id": "shapes.dimension",
+      "flow": "shapes",
+      "title": "2D/3D/4D dimensions and persistent per-dimension state",
+      "source": [
+        "src/shapes-state.js#L16",
+        "combo-app.js"
+      ],
+      "sourceControls": [
+        "shapes.html#dimensionSelect"
+      ],
+      "acceptance": "Preserve the source control ranges, choices, defaults, gestures, state continuity, and audible/visible relationships stated by this capability; demonstrate equivalent behavior, not merely a similarly named control."
+    },
+    {
+      "id": "shapes.banks",
+      "flow": "shapes",
+      "title": "Main/Form/Rotation/Mapping banks and all mode controls",
+      "source": [
+        "shapes.html#L69",
+        "combo-app.js"
+      ],
+      "sourceControls": [
+        "shapes.html#mainBankTab",
+        "shapes.html#formBankTab",
+        "shapes.html#rotationBankTab",
+        "shapes.html#mappingBankTab"
+      ],
+      "acceptance": "Preserve the source control ranges, choices, defaults, gestures, state continuity, and audible/visible relationships stated by this capability; demonstrate equivalent behavior, not merely a similarly named control."
+    },
+    {
+      "id": "shapes.playing-modes",
+      "flow": "shapes",
+      "title": "Continuous, Notes and Triggers modes with subdivisions",
+      "source": [
+        "src/shapes-state.js#L22",
+        "src/shapes-rhythm.js",
+        "combo-app.js#L696"
+      ],
+      "sourceControls": [
+        "shapes.html#data-playing-mode=continuous",
+        "shapes.html#data-playing-mode=notes",
+        "shapes.html#data-playing-mode=triggers",
+        "shapes.html#divisions"
+      ],
+      "acceptance": "Preserve the source control ranges, choices, defaults, gestures, state continuity, and audible/visible relationships stated by this capability; demonstrate equivalent behavior, not merely a similarly named control."
+    },
+    {
+      "id": "shapes.phase-speed",
+      "flow": "shapes",
+      "title": "Scrubbable phase and playhead speed, including stopped motion",
+      "source": [
+        "src/shapes-state.js#L54",
+        "combo-app.js"
+      ],
+      "sourceControls": [
+        "shapes.html#position",
+        "shapes.html#speed"
+      ],
+      "acceptance": "Preserve the source control ranges, choices, defaults, gestures, state continuity, and audible/visible relationships stated by this capability; demonstrate equivalent behavior, not merely a similarly named control."
+    },
+    {
+      "id": "shapes.global-direction-motion",
+      "flow": "shapes",
+      "title": "Global forward/reverse and loop/ping-pong",
+      "source": [
+        "src/shapes-state.js#L54",
+        "src/shapes-scene.js",
+        "combo-app.js#L1576"
+      ],
+      "sourceControls": [
+        "shapes.html#directionButton",
+        "shapes.html#Loop motion",
+        "shapes.html#Ping-pong motion"
+      ],
+      "acceptance": "Preserve the source control ranges, choices, defaults, gestures, state continuity, and audible/visible relationships stated by this capability; demonstrate equivalent behavior, not merely a similarly named control."
+    },
+    {
+      "id": "shapes.readers",
+      "flow": "shapes",
+      "title": "Points, Line and Radar are distinct contact readers",
+      "source": [
+        "src/shapes-scene.js#L87",
+        "src/shapes-scene.js#L149",
+        "combo-app.js#L246"
+      ],
+      "sourceControls": [
+        "shapes.html#readerSelect"
+      ],
+      "acceptance": "Preserve the source control ranges, choices, defaults, gestures, state continuity, and audible/visible relationships stated by this capability; demonstrate equivalent behavior, not merely a similarly named control."
+    },
+    {
+      "id": "shapes.head-count",
+      "flow": "shapes",
+      "title": "Add/remove 1–12 playheads with stable identity",
+      "source": [
+        "src/shapes-state.js#L45",
+        "combo-app.js#L1067"
+      ],
+      "sourceControls": [
+        "shapes.html#removePlayhead",
+        "shapes.html#addPlayhead"
+      ],
+      "acceptance": "Preserve the source control ranges, choices, defaults, gestures, state continuity, and audible/visible relationships stated by this capability; demonstrate equivalent behavior, not merely a similarly named control."
+    },
+    {
+      "id": "shapes.head-spacing",
+      "flow": "shapes",
+      "title": "Independent relative phase, drag/keyboard adjustment, equal-spacing reset",
+      "source": [
+        "src/playheads.js",
+        "combo-app.js#L1010",
+        "combo-app.js#L1067"
+      ],
+      "sourceControls": [
+        "shapes.html#resetHeadSpacing",
+        "shapes.html#headMarker0"
+      ],
+      "acceptance": "Preserve the source control ranges, choices, defaults, gestures, state continuity, and audible/visible relationships stated by this capability; demonstrate equivalent behavior, not merely a similarly named control."
+    },
+    {
+      "id": "shapes.head-direction-axis",
+      "flow": "shapes",
+      "title": "Per-head forward/reverse, continuity compensation and per-line vertical/horizontal axes",
+      "source": [
+        "src/shapes-state.js#L47",
+        "src/shapes-state.js",
+        "src/shapes-scene.js",
+        "combo-app.js"
+      ],
+      "sourceControls": [],
+      "acceptance": "Preserve the source control ranges, choices, defaults, gestures, state continuity, and audible/visible relationships stated by this capability; demonstrate equivalent behavior, not merely a similarly named control."
+    },
+    {
+      "id": "shapes.profiles",
+      "flow": "shapes",
+      "title": "Polygon, star, circle and open line; sides1–32 and star depth",
+      "source": [
+        "src/shapes-profile.js",
+        "src/shapes-state.js#L63",
+        "shapes.html#L221"
+      ],
+      "sourceControls": [
+        "shapes.html#mainFormSelect",
+        "shapes.html#liveKnobB",
+        "shapes.html#profileKind",
+        "shapes.html#profileSides",
+        "shapes.html#starDepth"
+      ],
+      "acceptance": "Preserve the source control ranges, choices, defaults, gestures, state continuity, and audible/visible relationships stated by this capability; demonstrate equivalent behavior, not merely a similarly named control."
+    },
+    {
+      "id": "shapes.curvature-default",
+      "flow": "shapes",
+      "title": "Roundness/curvature −1…1 with default0",
+      "source": [
+        "src/shapes-state.js#L90",
+        "shapes.html#L239"
+      ],
+      "sourceControls": [
+        "shapes.html#liveKnobC",
+        "shapes.html#curvature"
+      ],
+      "acceptance": "Preserve the source control ranges, choices, defaults, gestures, state continuity, and audible/visible relationships stated by this capability; demonstrate equivalent behavior, not merely a similarly named control."
+    },
+    {
+      "id": "shapes.deformation",
+      "flow": "shapes",
+      "title": "2D stretch and skew",
+      "source": [
+        "shapes.html#L240",
+        "src/shapes-state.js#L91"
+      ],
+      "sourceControls": [
+        "shapes.html#aspect",
+        "shapes.html#skew2d"
+      ],
+      "acceptance": "Preserve the source control ranges, choices, defaults, gestures, state continuity, and audible/visible relationships stated by this capability; demonstrate equivalent behavior, not merely a similarly named control."
+    },
+    {
+      "id": "shapes.solid-form",
+      "flow": "shapes",
+      "title": "3D shared-profile prism and eight solids; XYZ scale and XZ skew",
+      "source": [
+        "shapes.html#L244",
+        "src/shapes-state.js#L94"
+      ],
+      "sourceControls": [
+        "shapes.html#solidRepresentation",
+        "shapes.html#scale3x",
+        "shapes.html#scale3y",
+        "shapes.html#scale3z",
+        "shapes.html#skew3x",
+        "shapes.html#skew3z"
+      ],
+      "acceptance": "Preserve the source control ranges, choices, defaults, gestures, state continuity, and audible/visible relationships stated by this capability; demonstrate equivalent behavior, not merely a similarly named control."
+    },
+    {
+      "id": "shapes.hyper-form",
+      "flow": "shapes",
+      "title": "4D profile hyperprism, tesseract, hypersphere, hyperpyramid, Klein; XYZW scales",
+      "source": [
+        "shapes.html#L257",
+        "src/shapes-state.js#L111"
+      ],
+      "sourceControls": [
+        "shapes.html#hyperRepresentation",
+        "shapes.html#scale4x",
+        "shapes.html#scale4y",
+        "shapes.html#scale4z",
+        "shapes.html#scale4w"
+      ],
+      "acceptance": "Preserve the source control ranges, choices, defaults, gestures, state continuity, and audible/visible relationships stated by this capability; demonstrate equivalent behavior, not merely a similarly named control."
+    },
+    {
+      "id": "shapes.rotation",
+      "flow": "shapes",
+      "title": "2D angle; independent 2D/3D/4D automatic rotation and reader yaw/pitch",
+      "source": [
+        "combo-app.js#L1124",
+        "combo-app.js#L1155",
+        "combo-app.js#L1221"
+      ],
+      "sourceControls": [
+        "shapes.html#rotateButton",
+        "shapes.html#liveKnobA",
+        "shapes.html#resetRotation"
+      ],
+      "acceptance": "Preserve the source control ranges, choices, defaults, gestures, state continuity, and audible/visible relationships stated by this capability; demonstrate equivalent behavior, not merely a similarly named control."
+    },
+    {
+      "id": "shapes.voice-mapping",
+      "flow": "shapes",
+      "title": "Root Hz, pitch range, character and stereo spread",
+      "source": [
+        "src/shapes-state.js#L64",
+        "combo-app.js#L399"
+      ],
+      "sourceControls": [
+        "shapes.html#baseFrequency",
+        "shapes.html#pitchRange",
+        "shapes.html#voiceCharacter",
+        "shapes.html#stereoSpread"
+      ],
+      "acceptance": "Preserve the source control ranges, choices, defaults, gestures, state continuity, and audible/visible relationships stated by this capability; demonstrate equivalent behavior, not merely a similarly named control."
+    },
+    {
+      "id": "shapes.voice-engines",
+      "flow": "shapes",
+      "title": "Sine, FM, PM and Shepard engines with original timbral identity",
+      "source": [
+        "src/shapes-state.js#L28",
+        "combo-app.js"
+      ],
+      "sourceControls": [
+        "shapes.html#voiceEngine"
+      ],
+      "acceptance": "Preserve the source control ranges, choices, defaults, gestures, state continuity, and audible/visible relationships stated by this capability; demonstrate equivalent behavior, not merely a similarly named control."
+    },
+    {
+      "id": "shapes.percussion",
+      "flow": "shapes",
+      "title": "Rattlesnake/FM kits, feature mapping, tuning/character depths and hit cap",
+      "source": [
+        "src/shapes-state.js#L35",
+        "src/shapes-state.js#L71",
+        "combo-app.js"
+      ],
+      "sourceControls": [
+        "shapes.html#triggerSoundBank",
+        "shapes.html#triggerMapping",
+        "shapes.html#tuningDepth",
+        "shapes.html#triggerCharacter",
+        "shapes.html#hitCap"
+      ],
+      "acceptance": "Preserve the source control ranges, choices, defaults, gestures, state continuity, and audible/visible relationships stated by this capability; demonstrate equivalent behavior, not merely a similarly named control."
+    },
+    {
+      "id": "shapes.envelope",
+      "flow": "shapes",
+      "title": "Canonical corner envelope and legacy Shape editable ADSR",
+      "source": [
+        "combo-app.js#L432",
+        "shape.html#L399",
+        "app.js#L2510"
+      ],
+      "sourceControls": [],
+      "acceptance": "Preserve the integrated Shapes directed corner-decay/circle-sustain envelope. Separately retain the older Shape page amplitude editor as an additional source-family capability, without falsely attributing that editor to combo-app.js."
+    },
+    {
+      "id": "shapes.canvas-gestures",
+      "flow": "shapes",
+      "title": "Visible reader/contact identity, scrubbing/rotation and keyboard gestures",
+      "source": [
+        "combo-app.js#L233",
+        "combo-app.js#L1833"
+      ],
+      "sourceControls": [
+        "shapes.html#stage"
+      ],
+      "acceptance": "Preserve the source control ranges, choices, defaults, gestures, state continuity, and audible/visible relationships stated by this capability; demonstrate equivalent behavior, not merely a similarly named control."
+    },
+    {
+      "id": "shapes.resets-persistence",
+      "flow": "shapes",
+      "title": "Per-bank resets, versioned standalone state, URL dimension/mode and continuity",
+      "source": [
+        "src/shapes-state.js#L44",
+        "combo-app.js#L81",
+        "combo-app.js#L156"
+      ],
+      "sourceControls": [
+        "shapes.html#resetForm",
+        "shapes.html#resetMapping",
+        "shapes.html#resetAll"
+      ],
+      "acceptance": "Preserve the source control ranges, choices, defaults, gestures, state continuity, and audible/visible relationships stated by this capability; demonstrate equivalent behavior, not merely a similarly named control."
+    },
+    {
+      "id": "lsystems.grammar-bank",
+      "flow": "lsystems",
+      "title": "11 source grammar presets and readable axiom/rules",
+      "source": [
+        "src/l-system.js#L4",
+        "l-systems-app.js#L1328"
+      ],
+      "sourceControls": [
+        "l-systems.html#preset"
+      ],
+      "acceptance": "Preserve the source control ranges, choices, defaults, gestures, state continuity, and audible/visible relationships stated by this capability; demonstrate equivalent behavior, not merely a similarly named control."
+    },
+    {
+      "id": "lsystems.geometry",
+      "flow": "lsystems",
+      "title": "Iterations, branch angle, length scale and asymmetric turns",
+      "source": [
+        "l-systems.html#L110",
+        "l-systems-app.js#L1341"
+      ],
+      "sourceControls": [
+        "l-systems.html#iterations",
+        "l-systems.html#angle",
+        "l-systems.html#lengthScale",
+        "l-systems.html#turnAsymmetry"
+      ],
+      "acceptance": "Preserve the source control ranges, choices, defaults, gestures, state continuity, and audible/visible relationships stated by this capability; demonstrate equivalent behavior, not merely a similarly named control."
+    },
+    {
+      "id": "lsystems.traversal",
+      "flow": "lsystems",
+      "title": "Position, speed, forward/reverse, loop/ping-pong and synchronous branch heads",
+      "source": [
+        "l-systems.html#L77",
+        "l-systems-app.js#L1408",
+        "src/l-system.js"
+      ],
+      "sourceControls": [
+        "l-systems.html#traversalDirection",
+        "l-systems.html#loopMotion",
+        "l-systems.html#pingPongMotion",
+        "l-systems.html#position",
+        "l-systems.html#speed"
+      ],
+      "acceptance": "Preserve the source control ranges, choices, defaults, gestures, state continuity, and audible/visible relationships stated by this capability; demonstrate equivalent behavior, not merely a similarly named control."
+    },
+    {
+      "id": "lsystems.structure-modes",
+      "flow": "lsystems",
+      "title": "Final, iteration sequence, accumulate, together and canon",
+      "source": [
+        "l-systems.html#L144",
+        "l-systems-app.js#L144"
+      ],
+      "sourceControls": [
+        "l-systems.html#structureMode"
+      ],
+      "acceptance": "Preserve the source control ranges, choices, defaults, gestures, state continuity, and audible/visible relationships stated by this capability; demonstrate equivalent behavior, not merely a similarly named control."
+    },
+    {
+      "id": "lsystems.playing-modes",
+      "flow": "lsystems",
+      "title": "Continuous, Notes, Triggers and Mic using one shared structure",
+      "source": [
+        "l-systems.html#L61",
+        "l-systems-app.js#L92"
+      ],
+      "sourceControls": [
+        "l-systems.html#modeContinuous",
+        "l-systems.html#modeNotes",
+        "l-systems.html#modeTriggers",
+        "l-systems.html#modeMic"
+      ],
+      "acceptance": "Preserve the source control ranges, choices, defaults, gestures, state continuity, and audible/visible relationships stated by this capability; demonstrate equivalent behavior, not merely a similarly named control."
+    },
+    {
+      "id": "lsystems.pitch-mapping",
+      "flow": "lsystems",
+      "title": "Turn-angle, stage-height, branch-depth or segment-progress pitch; root/range/depth/spread",
+      "source": [
+        "l-systems.html#L162",
+        "l-systems-app.js"
+      ],
+      "sourceControls": [
+        "l-systems.html#pitchSource",
+        "l-systems.html#baseFrequency",
+        "l-systems.html#pitchRange",
+        "l-systems.html#depthAmount",
+        "l-systems.html#stereoSpread"
+      ],
+      "acceptance": "Preserve the source control ranges, choices, defaults, gestures, state continuity, and audible/visible relationships stated by this capability; demonstrate equivalent behavior, not merely a similarly named control."
+    },
+    {
+      "id": "lsystems.engines",
+      "flow": "lsystems",
+      "title": "Sine/FM/PM/Shepard, modulation index and adaptive branch voices",
+      "source": [
+        "l-systems.html#L173",
+        "l-systems-app.js#L160"
+      ],
+      "sourceControls": [
+        "l-systems.html#soundMode",
+        "l-systems.html#modulationIndex"
+      ],
+      "acceptance": "Preserve the source control ranges, choices, defaults, gestures, state continuity, and audible/visible relationships stated by this capability; demonstrate equivalent behavior, not merely a similarly named control."
+    },
+    {
+      "id": "lsystems.envelope",
+      "flow": "lsystems",
+      "title": "Editable branch amplitude envelope and envelope presets",
+      "source": [
+        "l-systems-app.js#L1431",
+        "src/amplitude-control.js"
+      ],
+      "sourceControls": [],
+      "acceptance": "Preserve the source control ranges, choices, defaults, gestures, state continuity, and audible/visible relationships stated by this capability; demonstrate equivalent behavior, not merely a similarly named control."
+    },
+    {
+      "id": "lsystems.drums",
+      "flow": "lsystems",
+      "title": "Subdivisions; depth×turn/stage/generation mappings; four drum styles; tuning/character",
+      "source": [
+        "src/l-system-drums.js#L17",
+        "l-systems.html#L215"
+      ],
+      "sourceControls": [
+        "l-systems.html#subdivisions",
+        "l-systems.html#mappingMode",
+        "l-systems.html#percussionStyle",
+        "l-systems.html#pitchDepth",
+        "l-systems.html#anglePitchDepth",
+        "l-systems.html#angleRange",
+        "l-systems.html#characterDepth"
+      ],
+      "acceptance": "Preserve the source control ranges, choices, defaults, gestures, state continuity, and audible/visible relationships stated by this capability; demonstrate equivalent behavior, not merely a similarly named control."
+    },
+    {
+      "id": "lsystems.mic",
+      "flow": "lsystems",
+      "title": "Actual branch microphone processing: trim, feedback, interval, time/pitch, spread and wet",
+      "source": [
+        "l-systems.html#L258",
+        "l-systems-app.js",
+        "src/mic-branch-engine.js",
+        "src/mic-branch-dsp.js"
+      ],
+      "sourceControls": [
+        "l-systems.html#inputTrim",
+        "l-systems.html#micFeedback",
+        "l-systems.html#micInterval",
+        "l-systems.html#micTimeRatio",
+        "l-systems.html#micPitchRange",
+        "l-systems.html#micSpread",
+        "l-systems.html#micWet"
+      ],
+      "acceptance": "Preserve the source control ranges, choices, defaults, gestures, state continuity, and audible/visible relationships stated by this capability; demonstrate equivalent behavior, not merely a similarly named control."
+    },
+    {
+      "id": "lsystems.mix",
+      "flow": "lsystems",
+      "title": "Balanced/Soft canopy/Percussive grid/Recursive wet presets and per-mode levels",
+      "source": [
+        "l-systems-app.js#L105",
+        "l-systems.html#L295"
+      ],
+      "sourceControls": [
+        "l-systems.html#mixPreset",
+        "l-systems.html#continuousLevel",
+        "l-systems.html#noteLevel",
+        "l-systems.html#triggerLevel",
+        "l-systems.html#micLevel"
+      ],
+      "acceptance": "Preserve the source control ranges, choices, defaults, gestures, state continuity, and audible/visible relationships stated by this capability; demonstrate equivalent behavior, not merely a similarly named control."
+    },
+    {
+      "id": "lsystems.gestures-reset",
+      "flow": "lsystems",
+      "title": "Canvas traversal gestures, system reset, reset-all and mode/preset continuity",
+      "source": [
+        "l-systems-app.js",
+        "l-systems.html#L46"
+      ],
+      "sourceControls": [
+        "l-systems.html#stage",
+        "l-systems.html#resetSystem",
+        "l-systems.html#resetAll"
+      ],
+      "acceptance": "Preserve the source control ranges, choices, defaults, gestures, state continuity, and audible/visible relationships stated by this capability; demonstrate equivalent behavior, not merely a similarly named control."
+    },
+    {
+      "id": "graphs.topology",
+      "flow": "graphs",
+      "title": "Ten directed topology families, node count/density/seed and graph generation",
+      "source": [
+        "src/graph-delay.js#L14",
+        "src/graph-instrument-app.js#L1777"
+      ],
+      "sourceControls": [
+        "graph-synth.html#randomGraphButton",
+        "graph-synth.html#topology",
+        "graph-synth.html#nodeCount",
+        "graph-synth.html#density",
+        "graph-synth.html#seed",
+        "graph-synth.html#newGraphButton",
+        "graph-drums.html#randomGraphButton",
+        "graph-drums.html#topology",
+        "graph-drums.html#nodeCount",
+        "graph-drums.html#density",
+        "graph-drums.html#seed",
+        "graph-drums.html#newGraphButton"
+      ],
+      "acceptance": "Preserve the source control ranges, choices, defaults, gestures, state continuity, and audible/visible relationships stated by this capability; demonstrate equivalent behavior, not merely a similarly named control."
+    },
+    {
+      "id": "graphs.patch-bank",
+      "flow": "graphs",
+      "title": "Eight Graph Synth/Drums patches and their full authored defaults",
+      "source": [
+        "src/graph-instruments.js",
+        "graph-synth.html",
+        "graph-drums.html"
+      ],
+      "sourceControls": [
+        "graph-synth.html#graphPatch",
+        "graph-synth.html#graphPatch-clearSteps",
+        "graph-synth.html#graphPatch-branchChoir",
+        "graph-synth.html#graphPatch-layeredGlass",
+        "graph-synth.html#graphPatch-haloRing",
+        "graph-synth.html#graphPatch-shortcutChorus",
+        "graph-synth.html#graphPatch-hubScatter",
+        "graph-synth.html#graphPatch-softMesh",
+        "graph-synth.html#graphPatch-islandSignals",
+        "graph-synth.html#resetAll",
+        "graph-drums.html#graphPatch",
+        "graph-drums.html#graphPatch-clearSteps",
+        "graph-drums.html#graphPatch-branchChoir",
+        "graph-drums.html#graphPatch-layeredGlass",
+        "graph-drums.html#graphPatch-haloRing",
+        "graph-drums.html#graphPatch-shortcutChorus",
+        "graph-drums.html#graphPatch-hubScatter",
+        "graph-drums.html#graphPatch-softMesh",
+        "graph-drums.html#graphPatch-islandSignals",
+        "graph-drums.html#resetAll"
+      ],
+      "acceptance": "Preserve the source control ranges, choices, defaults, gestures, state continuity, and audible/visible relationships stated by this capability; demonstrate equivalent behavior, not merely a similarly named control."
+    },
+    {
+      "id": "graphs.vertex-switch-gestures",
+      "flow": "graphs",
+      "title": "Drag/keyboard-move vertices, toggle edges, open all switches, rearrange/randomize positions",
+      "source": [
+        "src/graph-instrument-app.js#L1980",
+        "src/graph-instrument-app.js#L2049"
+      ],
+      "sourceControls": [
+        "graph-synth.html#stage",
+        "graph-synth.html#randomizeNodePositionsButton",
+        "graph-synth.html#arrangeGraphButton",
+        "graph-synth.html#openAllSwitchesButton",
+        "graph-drums.html#stage",
+        "graph-drums.html#randomizeNodePositionsButton",
+        "graph-drums.html#arrangeGraphButton",
+        "graph-drums.html#openAllSwitchesButton"
+      ],
+      "acceptance": "Preserve the source control ranges, choices, defaults, gestures, state continuity, and audible/visible relationships stated by this capability; demonstrate equivalent behavior, not merely a similarly named control."
+    },
+    {
+      "id": "graphs.pulses",
+      "flow": "graphs",
+      "title": "Manual pulse, root MIDI note, tempo/division, root/all-node trigger scope",
+      "source": [
+        "src/graph-instrument-app.js",
+        "graph-synth.html"
+      ],
+      "sourceControls": [
+        "graph-synth.html#pulseButton",
+        "graph-synth.html#seedNote",
+        "graph-synth.html#tempo",
+        "graph-synth.html#pulseDivision",
+        "graph-synth.html#triggerScope",
+        "graph-drums.html#pulseButton",
+        "graph-drums.html#seedNote",
+        "graph-drums.html#tempo",
+        "graph-drums.html#pulseDivision",
+        "graph-drums.html#triggerScope"
+      ],
+      "acceptance": "Preserve the source control ranges, choices, defaults, gestures, state continuity, and audible/visible relationships stated by this capability; demonstrate equivalent behavior, not merely a similarly named control."
+    },
+    {
+      "id": "graphs.edge-propagation",
+      "flow": "graphs",
+      "title": "Distance-scaled edge delay/curve, node pass, feedback amount/tone and path identity",
+      "source": [
+        "src/graph-instruments.js",
+        "src/graph-instrument-app.js#L1789"
+      ],
+      "sourceControls": [
+        "graph-synth.html#baseDelay",
+        "graph-synth.html#distanceRatio",
+        "graph-synth.html#nodePass",
+        "graph-synth.html#timeCurve",
+        "graph-synth.html#feedback",
+        "graph-synth.html#feedbackTone",
+        "graph-drums.html#baseDelay",
+        "graph-drums.html#distanceRatio",
+        "graph-drums.html#nodePass",
+        "graph-drums.html#timeCurve",
+        "graph-drums.html#feedback",
+        "graph-drums.html#feedbackTone"
+      ],
+      "acceptance": "Preserve the source control ranges, choices, defaults, gestures, state continuity, and audible/visible relationships stated by this capability; demonstrate equivalent behavior, not merely a similarly named control."
+    },
+    {
+      "id": "graphs.attack-lanes",
+      "flow": "graphs",
+      "title": "One/two/four attack lanes and source stereo/timbre separation",
+      "source": [
+        "src/graph-instrument-app.js#L84"
+      ],
+      "sourceControls": [
+        "graph-synth.html#attackLaneCount",
+        "graph-drums.html#attackLaneCount"
+      ],
+      "acceptance": "Preserve the source control ranges, choices, defaults, gestures, state continuity, and audible/visible relationships stated by this capability; demonstrate equivalent behavior, not merely a similarly named control."
+    },
+    {
+      "id": "graphs.motion",
+      "flow": "graphs",
+      "title": "Independent vertex-motion transport, mode, speed and amount with reduced-motion behavior",
+      "source": [
+        "src/graph-instrument-app.js",
+        "graph-synth.html"
+      ],
+      "sourceControls": [
+        "graph-synth.html#nodeMotionPlayButton",
+        "graph-synth.html#nodeMotionMode",
+        "graph-synth.html#nodeMotionSpeed",
+        "graph-synth.html#nodeMotionAmount",
+        "graph-drums.html#nodeMotionPlayButton",
+        "graph-drums.html#nodeMotionMode",
+        "graph-drums.html#nodeMotionSpeed",
+        "graph-drums.html#nodeMotionAmount"
+      ],
+      "acceptance": "Preserve the source control ranges, choices, defaults, gestures, state continuity, and audible/visible relationships stated by this capability; demonstrate equivalent behavior, not merely a similarly named control."
+    },
+    {
+      "id": "graphs.synth-mapping",
+      "flow": "graphs",
+      "title": "Synth mapping mode, turn pitch scale/range and continuous/MIDI/EDO tuning",
+      "source": [
+        "graph-synth.html",
+        "src/graph-instruments.js"
+      ],
+      "sourceControls": [
+        "graph-synth.html#mappingMode",
+        "graph-synth.html#turnPitchScale",
+        "graph-synth.html#pitchRange",
+        "graph-synth.html#tuningMode",
+        "graph-synth.html#edoDivisions",
+        "graph-drums.html#mappingMode"
+      ],
+      "acceptance": "Preserve the source control ranges, choices, defaults, gestures, state continuity, and audible/visible relationships stated by this capability; demonstrate equivalent behavior, not merely a similarly named control."
+    },
+    {
+      "id": "graphs.synth-engines",
+      "flow": "graphs",
+      "title": "Source sound modes, FM index/ratio, articulation/duration/ADSR and stereo spread",
+      "source": [
+        "graph-synth.html",
+        "src/graph-synth-audio.js"
+      ],
+      "sourceControls": [
+        "graph-synth.html#soundMode",
+        "graph-synth.html#modulationIndex",
+        "graph-synth.html#modulationRatio",
+        "graph-synth.html#articulation",
+        "graph-synth.html#noteDuration",
+        "graph-synth.html#attack",
+        "graph-synth.html#decay",
+        "graph-synth.html#sustain",
+        "graph-synth.html#release",
+        "graph-synth.html#stereoSpread"
+      ],
+      "acceptance": "Preserve the source control ranges, choices, defaults, gestures, state continuity, and audible/visible relationships stated by this capability; demonstrate equivalent behavior, not merely a similarly named control."
+    },
+    {
+      "id": "graphs.drums",
+      "flow": "graphs",
+      "title": "Graph Drums mappings, percussion banks, physical/Karplus styles, pitch/turn/character depths",
+      "source": [
+        "graph-drums.html",
+        "src/graph-drum-audio.js",
+        "src/graph-instrument-app.js"
+      ],
+      "sourceControls": [
+        "graph-drums.html#percussionStyle",
+        "graph-drums.html#pitchDepth",
+        "graph-drums.html#turnPitchDepth",
+        "graph-drums.html#characterDepth"
+      ],
+      "acceptance": "Preserve the source control ranges, choices, defaults, gestures, state continuity, and audible/visible relationships stated by this capability; demonstrate equivalent behavior, not merely a similarly named control."
+    },
+    {
+      "id": "graphs.delay-topology",
+      "flow": "graphs",
+      "title": "Graph Delay topology, fourteen source patches, graph reset and edge switches",
+      "source": [
+        "graph-delay.html",
+        "src/graph-delay.js#L77",
+        "graph-delay-app.js"
+      ],
+      "sourceControls": [
+        "graph-delay.html#graphPatch",
+        "graph-delay.html#graphPatch-clearSteps",
+        "graph-delay.html#graphPatch-lowLadder",
+        "graph-delay.html#graphPatch-branchChoir",
+        "graph-delay.html#graphPatch-glassCanopy",
+        "graph-delay.html#graphPatch-layeredGlass",
+        "graph-delay.html#graphPatch-rainLattice",
+        "graph-delay.html#graphPatch-twinBanks",
+        "graph-delay.html#graphPatch-haloRing",
+        "graph-delay.html#graphPatch-slowOrbit",
+        "graph-delay.html#graphPatch-shortcutChorus",
+        "graph-delay.html#graphPatch-hubScatter",
+        "graph-delay.html#graphPatch-softMesh",
+        "graph-delay.html#graphPatch-islandSignals",
+        "graph-delay.html#graphPatch-dustPaths",
+        "graph-delay.html#topology",
+        "graph-delay.html#nodeCount",
+        "graph-delay.html#density",
+        "graph-delay.html#seed",
+        "graph-delay.html#newGraphButton",
+        "graph-delay.html#openAllSwitchesButton",
+        "graph-delay.html#graphResetButton"
+      ],
+      "acceptance": "Preserve the source control ranges, choices, defaults, gestures, state continuity, and audible/visible relationships stated by this capability; demonstrate equivalent behavior, not merely a similarly named control."
+    },
+    {
+      "id": "graphs.delay-input",
+      "flow": "graphs",
+      "title": "Graph Delay microphone start/stop, draggable seed/microphone position and input trim",
+      "source": [
+        "graph-delay.html",
+        "graph-delay-app.js#L1860"
+      ],
+      "sourceControls": [
+        "graph-delay.html#stage",
+        "graph-delay.html#seedMicButton",
+        "graph-delay.html#micButton",
+        "graph-delay.html#inputTrim"
+      ],
+      "acceptance": "Preserve the source control ranges, choices, defaults, gestures, state continuity, and audible/visible relationships stated by this capability; demonstrate equivalent behavior, not merely a similarly named control."
+    },
+    {
+      "id": "graphs.delay-processing",
+      "flow": "graphs",
+      "title": "Graph Delay node pass, base/time scale/curve, turn pitch/asymmetry/curve/slew, feedback/damping/dry/wet/spread",
+      "source": [
+        "graph-delay.html",
+        "graph-delay-app.js"
+      ],
+      "sourceControls": [
+        "graph-delay.html#nodePass",
+        "graph-delay.html#baseDelay",
+        "graph-delay.html#timeScale",
+        "graph-delay.html#timeCurve",
+        "graph-delay.html#pitchScale",
+        "graph-delay.html#pitchAsymmetry",
+        "graph-delay.html#pitchCurve",
+        "graph-delay.html#pitchSlew",
+        "graph-delay.html#feedback",
+        "graph-delay.html#damping",
+        "graph-delay.html#wet",
+        "graph-delay.html#dry",
+        "graph-delay.html#spread"
+      ],
+      "acceptance": "Preserve the source control ranges, choices, defaults, gestures, state continuity, and audible/visible relationships stated by this capability; demonstrate equivalent behavior, not merely a similarly named control."
+    },
+    {
+      "id": "graphs.delay-motion",
+      "flow": "graphs",
+      "title": "Graph Delay independent node/microphone motion modes, speed/amount/size and reset view",
+      "source": [
+        "graph-delay.html",
+        "graph-delay-app.js"
+      ],
+      "sourceControls": [
+        "graph-delay.html#nodeMotionPlayButton",
+        "graph-delay.html#nodeMotionMode",
+        "graph-delay.html#nodeMotionSpeed",
+        "graph-delay.html#nodeMotionAmount",
+        "graph-delay.html#micMotionPlayButton",
+        "graph-delay.html#micMotionMode",
+        "graph-delay.html#micMotionSpeed",
+        "graph-delay.html#micMotionSize",
+        "graph-delay.html#resetViewButton"
+      ],
+      "acceptance": "Preserve the source control ranges, choices, defaults, gestures, state continuity, and audible/visible relationships stated by this capability; demonstrate equivalent behavior, not merely a similarly named control."
+    }
+  ],
+  "auditCorrections": [
+    {
+      "capabilityId": "shapes.envelope",
+      "reason": "The initial boundary notes conflated the legacy shape.html/app.js amplitude editor with integrated shapes.html/combo-app.js. Direct source re-audit found only the fixed directed corner envelope in combo-app.js. Both requirements are retained and labelled separately; no capability is deleted or declared approved away."
+    }
+  ],
+  "preservationFloor": [
+    "common.audio-transport",
+    "shapes.phase-speed",
+    "shapes.global-direction-motion",
+    "shapes.readers",
+    "shapes.head-count",
+    "shapes.head-spacing",
+    "shapes.head-direction-axis",
+    "shapes.curvature-default",
+    "shapes.deformation"
+  ]
+}

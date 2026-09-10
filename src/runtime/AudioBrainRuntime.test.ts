@@ -99,6 +99,71 @@ describe('audio host lifecycle and actual graph scheduling', () => {
     runtime.dispose();
   });
 
+  it('keeps overlapping local head IDs scoped to separate reader and voice-bank instances', async () => {
+    const { runtime, context, advance } = setup();
+    const patch = createPreset('morphazoid-shapes'), second = createPreset('morphazoid-shapes');
+    second.nodes.find(node => node.id === 'reader')!.params.heads = 2;
+    second.nodes.find(node => node.id === 'mapping')!.params.rootHz = 220;
+    patch.nodes.push(...second.nodes.map(node => ({ ...node, id: `second-${node.id}`, viewBindings: undefined })));
+    patch.edges.push(...second.edges.map(edge => ({ ...edge, id: `second-${edge.id}`, source: { ...edge.source, nodeId: `second-${edge.source.nodeId}` }, target: { ...edge.target, nodeId: `second-${edge.target.nodeId}` } })));
+    runtime.setProject(patch); await runtime.startAudio(); runtime.setPlaying(true); advance(.04);
+    expect(runtime.getSnapshot().voiceCount).toBe(6);
+    const initialOscillators = context.nodes.filter(node => node.kind === 'oscillator');
+    expect(initialOscillators).toHaveLength(12);
+    const firstReaders = runtime.getSnapshot().nodes.reader!.readers!;
+    patch.nodes.find(node => node.id === 'second-reader')!.params.head1Direction = 'reverse';
+    runtime.setProject(patch);
+    expect(runtime.getSnapshot().nodes.reader!.readers).toEqual(firstReaders);
+    advance(.05);
+    expect(context.nodes.filter(node => node.kind === 'oscillator')).toHaveLength(12);
+    expect(initialOscillators.every(node => node.stops.length === 0)).toBe(true);
+    patch.nodes.find(node => node.id === 'second-reader')!.params.heads = 1;
+    runtime.setProject(patch); for (let tick = 0; tick < 8; tick++) advance(.025);
+    expect(runtime.getSnapshot().voiceCount).toBe(5);
+    expect(initialOscillators.filter(node => node.stops.length > 0)).toHaveLength(2);
+    runtime.dispose();
+    expect(context.nodes.every(node => node.connections.length === 0)).toBe(true);
+  });
+
+  it('changes actual point, scan and radar voices while keeping transport and audio armed', async () => {
+    const { runtime, context, advance } = setup();
+    const patch = createPreset('morphazoid-shapes');
+    const reader = patch.nodes.find(node => node.id === 'reader')!;
+    reader.params.heads = 2; reader.params.phaseOffset = .23;
+    runtime.setProject(patch); await runtime.startAudio(); runtime.setPlaying(true); advance(.04);
+    const pointOscillators = context.nodes.filter(node => node.kind === 'oscillator');
+    expect(runtime.getSnapshot().voiceCount).toBe(2);
+    reader.params.reader = 'line';
+    runtime.setProject(patch); for (let tick = 0; tick < 8; tick++) advance(.025);
+    expect(runtime.getSnapshot().voiceCount).toBe(4);
+    expect(pointOscillators.every(node => node.stops.length > 0)).toBe(true);
+    reader.params.reader = 'radar';
+    runtime.setProject(patch); for (let tick = 0; tick < 8; tick++) advance(.025);
+    expect(runtime.getSnapshot().voiceCount).toBe(2);
+    expect(runtime.getSnapshot().nodes.view!.readers!.every(head => head.type === 'radar')).toBe(true);
+    expect(runtime.getSnapshot().playing).toBe(true);
+    expect(runtime.getSnapshot().audioState).toBe('running');
+    runtime.panic();
+    expect(context.nodes.filter(node => node.kind === 'oscillator').every(node => node.stops.length > 0)).toBe(true);
+    runtime.dispose();
+  });
+
+  it('reschedules cancelled lookahead notes on resume without resetting playhead positions', async () => {
+    const { runtime, context, advance } = setup();
+    const patch = createPreset('morphazoid-shapes-notes');
+    Object.assign(patch.nodes.find(node => node.id === 'reader')!.params, { heads: 1, rateHz: 1, divisions: 4 });
+    patch.nodes.find(node => node.id === 'geometry')!.params.sides = 4;
+    runtime.setProject(patch); await runtime.startAudio(); runtime.setPlaying(true); advance(.04);
+    const before = context.nodes.filter(node => node.kind === 'oscillator').length;
+    expect(before).toBeGreaterThan(0);
+    runtime.setPlaying(false);
+    const heldPhase = runtime.getSnapshot().nodes.reader!.readers![0]!.phase;
+    runtime.setPlaying(true);
+    expect(runtime.getSnapshot().nodes.reader!.readers![0]!.phase).toBe(heldPhase);
+    expect(context.nodes.filter(node => node.kind === 'oscillator').length).toBeGreaterThan(before);
+    runtime.dispose();
+  });
+
   it('keeps audio armed across preset changes, bounds resources, and does not depend on animation frames', async () => {
     const raf = vi.fn(); vi.stubGlobal('requestAnimationFrame', raf);
     const { runtime, factory, advance, context } = setup();

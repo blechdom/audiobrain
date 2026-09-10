@@ -18,7 +18,7 @@ export function ViewBindings({ node }: { node: GraphNode }) {
         if (candidate) store.bindView(node.id, intent.id, candidate.node.id, candidate.param.id);
       }}>
       {!target && <option value="">Choose a parameter</option>}
-      {candidates.map(candidate => <option key={JSON.stringify([candidate.node.id, candidate.param.id])} value={JSON.stringify([candidate.node.id, candidate.param.id])}>{getOperatorDefinition(candidate.node.kind).title} · {candidate.param.label} ({candidate.node.id})</option>)}
+      {candidates.map(candidate => <option key={JSON.stringify([candidate.node.id, candidate.param.id])} value={JSON.stringify([candidate.node.id, candidate.param.id])}>{candidate.node.label ?? getOperatorDefinition(candidate.node.kind).title} · {candidate.param.label} ({candidate.node.id})</option>)}
     </select></label>;
   })}</div>;
 }

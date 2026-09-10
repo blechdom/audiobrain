@@ -7,7 +7,7 @@
   "learningGoal": "Keep grammar, turtle geometry, frontier scheduling, note mapping, and synthesis replaceable while one canopy view observes their shared state.",
   "capabilityNotes": [
     "Built-in instruments work without microphone, MIDI, or network permission.",
-    "Start Audio explicitly to hear this instrument; audio begins at -18 dB gain.",
+    "Start Audio explicitly to hear this instrument; audio begins at -6 dB gain.",
     "The graphic observes the shared instrument state and does not drive the audio clock."
   ],
   "nodes": [
@@ -87,7 +87,7 @@
         "y": 330
       },
       "params": {
-        "db": -18
+        "db": -6
       }
     },
     {

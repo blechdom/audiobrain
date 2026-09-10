@@ -1,9 +1,12 @@
 import type { CompiledGraph, CompiledNode, GraphParams } from '../graph';
-import { shapeGeometry, shapeFeatures, shapeVoices, expandGrammar, branchGeometry, branchFeatures, branchEvents, branchNotes, graphGeometry, graphRouteEvents, graphEvents, graphNotes, clamp, type Geometry, type GeometryFeature, type ShapeGeometry, type BranchGeometry, type GraphGeometry } from '../instruments/geometry';
+import { shapeGeometry, readShape, shapeEvents, shapeVoices, expandGrammar, branchGeometry, branchFeatures, branchEvents, branchNotes, graphGeometry, graphRouteEvents, graphEvents, graphNotes, clamp, type Geometry, type GeometryFeature, type ShapeGeometry, type ShapeHead, type BranchGeometry, type GraphGeometry } from '../instruments/geometry';
+import { shapeNoteEvents } from '../instruments/shapesMusic';
 import type { GraphEvent } from '../instruments/morphazoid/graph-instruments.js';
-import type { NodeSnapshot, NoteTarget, VoiceTarget } from './types';
+import type { NodeSnapshot, NoteTarget, ShapeReaderSnapshot, VoiceTarget } from './types';
 
-interface Features { features: GeometryFeature[]; events: GeometryFeature[]; geometry?: Geometry }
+interface Features { features: GeometryFeature[]; events: GeometryFeature[]; geometry?: Geometry; readers?: ShapeReaderSnapshot[] }
+interface PhaseAnchor { rate: number; anchor: number; phase: number }
+interface ShapeAttackClock { mode: 'notes' | 'triggers'; lastEventAt: number; voices: Map<string, number> }
 export interface AudioEvaluation { id: string; kind: string; params: GraphParams; voices?: VoiceTarget[]; notes?: NoteTarget[] }
 export interface Evaluation { snapshots: Record<string, NodeSnapshot>; audio: AudioEvaluation[]; bpm: number; midi: { id: string; notes: NoteTarget[]; channel: number }[] }
 interface EvalContext {
@@ -11,10 +14,12 @@ interface EvalContext {
   controls: ReadonlyMap<string, number>; midiNotes: ReadonlyMap<string, NoteTarget[]>;
 }
 
-/** Pure bounded dataflow apart from memoized geometry and rate/phase anchors. */
+/** Bounded dataflow with cached geometry, phase anchors and owned attack clocks. */
 export class GraphEvaluator {
   private cache = new Map<string, { key: string; value: unknown }>();
-  private phases = new Map<string, { rate: number; anchor: number; phase: number }>();
+  private phases = new Map<string, PhaseAnchor>();
+  private headPhases = new Map<string, Map<number, PhaseAnchor>>();
+  private shapeAttacks = new Map<string, ShapeAttackClock>();
   readonly graph: CompiledGraph;
   constructor(graph: CompiledGraph, previous?: GraphEvaluator) {
     this.graph = graph;
@@ -22,9 +27,12 @@ export class GraphEvaluator {
       const ids = new Set(graph.nodes.map(({ node }) => node.id));
       this.cache = new Map([...previous.cache].filter(([id]) => ids.has(id) || (id.endsWith(':routes') && ids.has(id.slice(0, -7)))));
       this.phases = new Map([...previous.phases].filter(([id]) => ids.has(id)).map(([id, phase]) => [id, { ...phase }]));
+      this.headPhases = new Map([...previous.headPhases].filter(([id]) => ids.has(id)).map(([id, heads]) => [id, new Map([...heads].map(([index, phase]) => [index, { ...phase }]))]));
+      this.shapeAttacks = new Map([...previous.shapeAttacks].filter(([id]) => ids.has(id)).map(([id, clock]) => [id, { ...clock, voices: new Map(clock.voices) }]));
     }
   }
-  reset(): void { this.phases.clear(); }
+  reset(): void { this.phases.clear(); this.headPhases.clear(); this.shapeAttacks.clear(); }
+  clearScheduledAttacks(): void { this.shapeAttacks.clear(); }
   private memo<T>(id: string, key: unknown, factory: () => T): T {
     const signature = JSON.stringify(key);
     const cached = this.cache.get(id);
@@ -37,8 +45,41 @@ export class GraphEvaluator {
     if (rate !== anchor.rate) { anchor.phase += (time - anchor.anchor) * anchor.rate; anchor.anchor = time; anchor.rate = rate; }
     return { value: anchor.phase + (time - anchor.anchor) * rate, offset: anchor.anchor - anchor.phase / rate };
   }
+  private headTravel(id: string, index: number, rate: number, time: number): number {
+    let heads = this.headPhases.get(id);
+    if (!heads) { heads = new Map(); this.headPhases.set(id, heads); }
+    let anchor = heads.get(index);
+    if (!anchor) { anchor = { rate, anchor: 0, phase: 0 }; heads.set(index, anchor); }
+    // Rebase at the edit instant: reversing a head changes its future motion,
+    // not its current location, including while the transport is paused.
+    if (rate !== anchor.rate) { anchor.phase += (time - anchor.anchor) * anchor.rate; anchor.anchor = time; anchor.rate = rate; }
+    return anchor.phase + (time - anchor.anchor) * rate;
+  }
+  private limitShapeAttacks(id: string, mode: 'notes' | 'triggers', notes: NoteTarget[]): NoteTarget[] {
+    if (!notes.length) return notes;
+    let clock = this.shapeAttacks.get(id);
+    if (!clock || clock.mode !== mode) { clock = { mode, lastEventAt: -Infinity, voices: new Map() }; this.shapeAttacks.set(id, clock); }
+    const groups = new Map<number, NoteTarget[]>();
+    for (const note of notes) { const group = groups.get(note.time) ?? []; group.push(note); groups.set(note.time, group); }
+    const accepted: NoteTarget[] = [];
+    const spacing = 1 / (mode === 'notes' ? 96 : 128), retrigger = mode === 'notes' ? .016 : .012;
+    for (const [time, group] of [...groups].sort(([a], [b]) => a - b)) {
+      if (time - clock.lastEventAt < spacing - 1e-9) continue;
+      const admitted: NoteTarget[] = [];
+      for (const note of group) {
+        const key = mode === 'triggers' ? note.drum?.id ?? note.id : note.sourceId ?? note.id;
+        if (time - (clock.voices.get(key) ?? -Infinity) < retrigger - 1e-9) continue;
+        clock.voices.delete(key); clock.voices.set(key, time);
+        if (clock.voices.size > 256) clock.voices.delete(clock.voices.keys().next().value!);
+        admitted.push(note);
+      }
+      if (admitted.length) { accepted.push(...admitted); clock.lastEventAt = time; }
+    }
+    return accepted;
+  }
   evaluate(context: EvalContext): Evaluation {
     const values = new Map<string, unknown>();
+    const shapeModes = new Map<string, 'continuous' | 'notes' | 'triggers'>();
     const snapshots: Record<string, NodeSnapshot> = {};
     const audio: AudioEvaluation[] = [], midi: Evaluation['midi'] = [];
     let bpm = 120;
@@ -70,19 +111,38 @@ export class GraphEvaluator {
           output('value', value); snapshot.value = value; break;
         }
         case 'shapes.geometry': {
-          const geometry = this.memo(node.id, [num('sides'), num('curvature')], () => shapeGeometry(num('sides'), num('curvature')));
+          const geometry = this.memo(node.id, params, () => shapeGeometry(num('sides'), num('curvature'), { rotationDeg: num('rotationDeg') || 0, positionX: num('positionX') || 0, positionY: num('positionY') || 0, aspect: num('aspect') || 0, skew: num('skew') || 0 }));
           output('path', geometry); snapshot.geometry = geometry.snapshot; break;
         }
         case 'shapes.reader': {
           const geometry = input<ShapeGeometry>('path');
           if (!geometry || geometry.family !== 'shape') throw new Error('Shape Reader requires a Shapes contour.');
-          const phase = this.phase(node.id, num('rateHz'), context.time).value;
-          const features = shapeFeatures(geometry, phase, num('heads'));
-          output('features', { features, events: [], geometry } satisfies Features); snapshot.geometry = geometry.snapshot; snapshot.features = features; break;
+          const count = num('heads'), globalDirection = params.direction === 'reverse' ? -1 : 1;
+          const defaultReader = params.reader === 'line' || params.reader === 'radar' ? params.reader : 'points';
+          const motion = params.motion === 'pingpong' ? 'pingpong' : 'loop';
+          const headsAt = (time: number): ShapeHead[] => Array.from({ length: count }, (_, headIndex) => {
+            const prefix = `head${headIndex + 1}`;
+            const direction = (globalDirection * (params[`${prefix}Direction`] === 'reverse' ? -1 : 1)) as 1 | -1;
+            const reader = params[`${prefix}Reader`];
+            return {
+              headIndex, direction,
+              travel: this.headTravel(node.id, headIndex, num('rateHz') * direction, time) + headIndex / count + num('phaseOffset') + num(`${prefix}Phase`),
+              axis: params[`${prefix}Axis`] === 'horizontal' ? 'horizontal' : 'vertical',
+              reader: reader === 'points' || reader === 'line' || reader === 'radar' ? reader : defaultReader,
+            };
+          });
+          const { features, readers } = readShape(geometry, defaultReader, motion, headsAt(context.time), num('divisions'));
+          const events = shapeEvents(time => readShape(geometry, defaultReader, motion, headsAt(time), num('divisions'), true), context.start, context.end);
+          output('features', { features, readers, events, geometry } satisfies Features); snapshot.geometry = geometry.snapshot; snapshot.features = features; snapshot.readers = readers; break;
         }
         case 'shapes.mapping': {
-          const features = input<Features>('features'); const voices = shapeVoices(features?.features ?? [], num('rootHz'), num('rangeOctaves'));
-          output('voices', voices); snapshot.features = features?.features; break;
+          const features = input<Features>('features');
+          const mode = params.playingMode === 'notes' || params.playingMode === 'triggers' ? params.playingMode : 'continuous';
+          shapeModes.set(node.id, mode);
+          const voices = mode === 'continuous' ? shapeVoices(features?.features ?? [], num('rootHz'), num('rangeOctaves'), params.pitchMapping === 'centered' ? 'centered' : 'shape') : [];
+          if (mode === 'continuous') this.shapeAttacks.delete(node.id);
+          const notes = mode === 'continuous' ? [] : this.limitShapeAttacks(node.id, mode, shapeNoteEvents(features?.events ?? [], { mode, rootHz: num('rootHz'), rangeOctaves: num('rangeOctaves'), character: Number(params.noteCharacter ?? .35), triggerMapping: params.triggerMapping === 'position' || params.triggerMapping === 'incidence' ? params.triggerMapping : 'feature', tuningDepth: num('tuningDepth'), triggerCharacter: num('triggerCharacter'), hitCap: num('hitCap') }));
+          output('voices', voices); output('notes', notes); snapshot.features = features?.features; break;
         }
         case 'lsystem.grammar': output('text', this.memo(node.id, params, () => expandGrammar(String(params.axiom), String(params.rules), num('iterations')))); break;
         case 'lsystem.geometry': {
@@ -122,13 +182,13 @@ export class GraphEvaluator {
           if (features?.geometry?.family !== 'graph') throw new Error('Graph to Notes requires directed route and cumulative-turn metadata.');
           output('notes', graphNotes(features.events, num('rootHz'), num('semitonesPerTurn'))); break;
         }
-        case 'voice.continuous': audio.push({ id: node.id, kind: node.kind, params, voices: input<VoiceTarget[]>('voices') ?? [] }); break;
+        case 'voice.continuous': audio.push({ id: node.id, kind: node.kind, params: { ...params, shapeMode: shapeModes.get(compiled.inputs.voices?.sourceNodeId ?? '') ?? 'continuous' }, voices: input<VoiceTarget[]>('voices') ?? [], notes: input<NoteTarget[]>('notes') ?? [] }); break;
         case 'voice.poly': case 'voice.graph': audio.push({ id: node.id, kind: node.kind, params, notes: input<NoteTarget[]>('notes') ?? [] }); break;
         case 'analysis.level': { const level = context.levels[node.id] ?? 0; snapshot.level = snapshot.value = level; output('level', level); break; }
         case 'view.shapes': case 'view.path': case 'view.graph': {
           const geometry = input<Geometry>('path') ?? input<Geometry>('graph');
           const features = input<Features>('features'); snapshot.geometry = geometry?.snapshot;
-          snapshot.features = features?.features ?? []; snapshot.activeIds = features?.features.flatMap((feature) => feature.segmentId ? [feature.segmentId] : []); break;
+          snapshot.features = features?.features ?? []; snapshot.readers = features?.readers; snapshot.activeIds = features?.features.flatMap((feature) => feature.segmentId ? [feature.segmentId] : []); break;
         }
         case 'io.midi.in': { output('notes', context.midiNotes.get(node.id) ?? []); const value = context.controls.get(node.id); output('value', value); snapshot.value = value; break; }
         case 'io.midi.out': midi.push({ id: node.id, notes: input<NoteTarget[]>('notes') ?? [], channel: num('channel') }); break;

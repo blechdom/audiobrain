@@ -34,7 +34,8 @@ export function normalizeParameterValue(value: unknown, parameter: ParameterDefi
 }
 export function normalizeNodeParams(kind: string, value: unknown): GraphParams {
   const definition = getOperatorDefinition(kind);
-  const params = record(value, `${kind}.params`, [], definition.params.map(parameter => parameter.id));
+  const params = { ...record(value, `${kind}.params`, [], definition.params.map(parameter => parameter.id)) };
+  if (kind === 'shapes.mapping' && !Object.hasOwn(params, 'pitchMapping')) params.pitchMapping = 'centered';
   return Object.fromEntries(definition.params.map(parameter => [parameter.id, normalizeParameterValue(Object.hasOwn(params, parameter.id) ? params[parameter.id] : parameter.default, parameter)]));
 }
 export function parseWidgetLayout(value: unknown, columns: number): WidgetLayout {
@@ -55,11 +56,12 @@ export function parseGraphDocument(input: unknown): GraphDocument {
   const d = record(value, 'project', ['documentType', 'schemaVersion', 'id', 'title', 'nodes', 'edges', 'performance'], ['description', 'learningGoal', 'capabilityNotes']);
   check(d.documentType === 'audiobrain.project' && d.schemaVersion === 1, 'Expected an AudioBrain project with schemaVersion 1');
   const nodes: GraphNode[] = array(d.nodes, 'nodes', GRAPH_LIMITS.maxNodes).map((entry, index) => {
-    const n = record(entry, `nodes[${index}]`, ['id', 'kind', 'position', 'params'], ['viewBindings']);
+    const n = record(entry, `nodes[${index}]`, ['id', 'kind', 'position', 'params'], ['viewBindings', 'label']);
     const kind = id(n.kind, 'node.kind');
     const definition = getOperatorDefinition(kind);
     const position = record(n.position, 'node.position', ['x', 'y']);
     const node: GraphNode = { id: id(n.id, 'node.id'), kind, position: { x: finite(position.x, 'node.x', -100000, 100000), y: finite(position.y, 'node.y', -100000, 100000) }, params: normalizeNodeParams(kind, n.params) };
+    if (n.label !== undefined) node.label = text(n.label, 'node.label');
     if (n.viewBindings !== undefined) {
       const bindings = record(n.viewBindings, 'node.viewBindings', [], definition.views.flatMap(view => view.intents.map(intent => intent.id)));
       node.viewBindings = Object.fromEntries(Object.entries(bindings).map(([key, value]) => {
@@ -88,6 +90,17 @@ export function parseGraphDocument(input: unknown): GraphDocument {
     return { id: id(e.id, 'edge.id'), source: endpoint(e.source), target: endpoint(e.target) };
   });
   unique(edges, 'edges');
+  // Upgrade older Shapes views from their explicit graph connections. Authored
+  // bindings always win; IDs and saved parameter values remain untouched.
+  for (const node of nodes.filter(node => node.kind === 'view.shapes')) {
+    const connected = (port: string, kind: string) => nodesById.get(edges.find(edge => edge.target.nodeId === node.id && edge.target.portId === port)?.source.nodeId ?? '')?.kind === kind
+      ? edges.find(edge => edge.target.nodeId === node.id && edge.target.portId === port)?.source.nodeId : undefined;
+    const geometry = connected('path', 'shapes.geometry');
+    const reader = connected('features', 'shapes.reader');
+    for (const [intent, targetId, paramId] of [['rotation', geometry, 'rotationDeg'], ['moveX', geometry, 'positionX'], ['moveY', geometry, 'positionY'], ['scrub', reader, 'phaseOffset']]) {
+      if (intent && targetId && paramId) { node.viewBindings ??= {}; node.viewBindings[intent] ??= { nodePath: [targetId], paramId }; }
+    }
+  }
   const surface = record(d.performance, 'performance', ['version', 'columns', 'widgets']);
   check(surface.version === 1, 'Unsupported performance layout version');
   const columns = finite(surface.columns, 'performance.columns', 1, GRAPH_LIMITS.maxColumns, true);

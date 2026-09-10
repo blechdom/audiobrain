@@ -3,7 +3,7 @@ import type { GraphParams, OperatorDefinition } from './types';
 
 // This JSON is the public catalog and the single definition of each operator.
 export const OPERATOR_DEFINITIONS = catalog.operators as OperatorDefinition[];
-export const OPERATOR_CATALOG_VERSION = 1;
+export const OPERATOR_CATALOG_VERSION = 2;
 export const GRAPH_LIMITS = { ...catalog.limits, maxJsonBytes: 1024 * 1024 };
 export const NODE_KINDS = OPERATOR_DEFINITIONS.map(({ kind }) => kind);
 const operators = new Map(OPERATOR_DEFINITIONS.map((operator) => [operator.kind, operator]));

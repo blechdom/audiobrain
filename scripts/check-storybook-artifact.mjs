@@ -14,6 +14,8 @@ const requiredFiles = ['index.html', 'iframe.html', 'index.json'];
 const requiredStories = [
   'controls-parameter--numeric',
   'workspace-performance--shapes',
+  'workspace-performance--shape-lines',
+  'workspace-performance--shape-mixed-playheads',
   'workspace-performance--l-systems',
   'workspace-performance--graphs',
   'workspace-graph--shapes',

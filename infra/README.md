@@ -4,15 +4,12 @@ The implementation follows VideoBrain's deployment stack: React/Vite assets and
 Storybook on a private, encrypted, versioned S3 origin behind CloudFront, ACM,
 Route 53 and a content-only GitHub OIDC role. Production is intended to be
 `https://audiobrain.org`, with `www` redirecting to the apex and the component
-catalog at `/storybook/`. Infrastructure and publication have not run yet.
+catalog at `/storybook/`. The dedicated `audiobrain-production` stack is configured in AWS account `642815508926`, and the GitHub production environment is restricted to `main`. Publication is verified by the workflow and public acceptance checks.
 
 ## Configure the existing site
 
 Use the same authorized bootstrap identity as VideoBrain; never use its bucket,
-distribution or repository trust as AudioBrain's target. This environment has no
-AWS CLI, AWS credential configuration or GitHub CLI authentication. An authenticated
-inventory must first identify the existing domain, public hosted zone, records,
-CloudFormation stack, distribution and certificate before any cutover.
+distribution or repository trust as AudioBrain's target. AWS CLI authentication uses the `audiobrain` profile. GitHub CLI authentication uses `gh auth login --hostname github.com --git-protocol ssh --web`; older CLI versions do not accept `--skip-ssh-key`. An authenticated inventory must identify the existing domain, public hosted zone, records, stack, distribution and certificate before any cutover.
 
 The template uses `us-east-1` for the stack and CloudFront certificate. The
 account-global GitHub OIDC provider is reused when present. The required
@@ -27,8 +24,7 @@ unexecuted CloudFormation change set:
 AWS_PROFILE=your-existing-profile ./scripts/bootstrap-aws-site.sh --plan
 ```
 
-Review the change set and any replacements. Execute that configuration with
-`./scripts/bootstrap-aws-site.sh --yes` when authorized. The script refuses to
+Review the change set and any replacements. Execute the exact reviewed change set using `aws cloudformation execute-change-set --stack-name audiobrain-production --change-set-name <reviewed-change-set> --region us-east-1 --profile audiobrain`. A direct bootstrap without a preceding plan can use `./scripts/bootstrap-aws-site.sh --yes` when authorized. The script refuses to
 create a stack over existing apex or `www` address records. An existing stack
 must identify this exact domain in its `SiteUrl` output. Updating an existing
 site with different ownership requires an explicit resource import or cutover

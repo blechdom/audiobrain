@@ -1,8 +1,8 @@
 # AudioBrain
 
-AudioBrain 0.1.0 turns Morphazoid instruments into an editable audio graph and a graphical performance surface. It uses VideoBrain's React, TypeScript, Vite, React Flow and Zustand foundation, with an independent audio runtime and project format.
+AudioBrain 0.2.0 turns Morphazoid instruments into an editable audio graph and a graphical performance surface. It uses VideoBrain's React, TypeScript, Vite, React Flow and Zustand foundation, with an independent audio runtime and project format.
 
-The application is implemented locally with **three playable presets and 34 registered operators**. AWS infrastructure and the verification/publishing workflow are included; a public deployment is complete only after that workflow and public acceptance checks succeed. See [AWS setup](infra/README.md).
+The application is implemented locally with **seven playable presets and 34 registered operators**. AWS infrastructure and the verification/publishing workflow are included; a public deployment is complete only after that workflow and public acceptance checks succeed. See [AWS setup](infra/README.md).
 
 ## Play an instrument
 
@@ -17,15 +17,21 @@ Open `http://127.0.0.1:5178`, choose an instrument, enable audio, and press Play
 
 | Preset | Editable flow | Performance gesture |
 | --- | --- | --- |
-| **Morphazoid Shapes** | Polygon → phase heads → musical voice targets → continuous sine/FM voices | Drag curvature; change sides, heads, traversal rate, pitch range and character |
+| **Morphazoid Shapes** | Polygon → phase heads → musical voice targets → continuous sine/FM voices | Point, line and radar playheads; drag heads, scrub, rotate or move the shape; switch Synth / Notes / Drums |
 | **Morphazoid L-Systems** | Grammar → branch geometry → frontier encounters → note mapping → polyphonic voices | Drag branch angle; edit grammar, iterations, length, speed and pitch mapping |
 | **Morphazoid Graphs** | Seeded topology → route traversal → musical mapping → decaying graph voices | Drag edge timing; change layers, nodes per layer, seed, pitch and decay |
 
-All three reuse gain, output, analysis and performance bindings. They adapt actual Morphazoid geometry and musical mapping; the native AudioBrain voice engine does not claim full timbral parity with the original applications. [Preset details](docs/PRESETS.md) and [source provenance](docs/PROVENANCE.md) explain the boundaries.
+All instrument families reuse gain, output, analysis and performance bindings. They adapt actual Morphazoid geometry and musical mapping; the native AudioBrain voice engine does not claim full timbral parity with the original applications. [Preset details](docs/PRESETS.md) and [source provenance](docs/PROVENANCE.md) explain the boundaries.
+
+The **Presets** button opens all examples, including **Morphazoid Shapes Synth**, **Shapes Notes**, **Shapes Triggers**, and **Shapes Drums**. Load replaces the current project; Add inserts an independent instrument with its own graph, identities, cables and performance controls. Both actions can be undone. New presets start at −6 dB output gain (Notes −3 dB; Drums −9 dB); existing saved gain values are retained.
+
+In Shapes, **Sound mode** switches Synth, Notes and Drums / triggers without rewiring. **Playheads** exposes up to twelve readers, independent directions and positions, line axes, mixed reader types, loop and ping-pong motion. The graphic defaults to direct playhead manipulation: drag inside to scrub or outside to rotate. Move, Rotate and Curvature tools make each action explicit. New curvature defaults to zero.
 
 ## Build and perform
 
 Graph mode exposes every instrument's domain nodes. Choose **New instrument** for an empty graph or **Rename instrument** to name the current one; both changes are undoable. Add nodes from the library, connect matching port types, edit inline parameters, and replace a mapping or voice bank. Ordinary cable cycles are rejected; the Delay node contains its own bounded feedback. A connected numeric control overrides the live value while retaining the saved literal, which returns when the cable is removed.
+
+Select a node to name or duplicate it in the Inspector. Its stable ID survives renaming, edits, undo, export and import. A node duplicate has independent parameter values and starts without copied cables; the Presets Add action copies a complete connected instrument.
 
 Pin a parameter or instrument view into Performance. Arrange mode moves and resizes those widgets independently of the graph; Perform locks the layout and can fullscreen the entire control surface. Graphics observe the runtime and send explicit parameter gestures. Hiding or resizing a view does not own the audio clock.
 
@@ -42,7 +48,7 @@ Microphone and MIDI each require explicit session activation; MIDI output additi
 
 ## Current scope
 
-The three instruments are complete editable top-level graphs. Nested reusable modules, arbitrary vertex/edge authoring, Graph Drums, the original L-System microphone processor, audio files/recording, broader analyzers, MIDI learn/clock, discrete surround and cross-app audio streams remain planned. Stereo panning is implemented; it is not a discrete 5.1/7.1 output system. Third-party executable plugin loading is also outside this version.
+The three instrument families are editable top-level graphs; full source feature parity remains incomplete. The [feature parity ledger](docs/FEATURE_PARITY.md) inventories original controls and records implemented, partial and missing capabilities with evidence. `npm run check:parity` prevents silently dropping inventory or claiming full parity; `node scripts/check-feature-parity.mjs --require-complete all` intentionally fails until every required capability is restored. Nested reusable modules, arbitrary vertex/edge authoring, Graph Drums, the original L-System microphone processor, audio files/recording, broader analyzers, MIDI learn/clock, discrete surround and cross-app audio streams remain planned. Stereo panning is implemented; it is not a discrete 5.1/7.1 output system. Third-party executable plugin loading is also outside this version.
 
 The native audio rack admits up to 96 simultaneous voices globally and 32 per voice bank. Shapes has at most eight heads. L-System expansion is limited to 12,000 symbols and 1,024 segments; event batches are limited to 256. A 25 ms host timer schedules a 100 ms lookahead onto Web Audio. Views do not schedule sound, but browser background throttling remains a timer-scheduler limitation. Graph documents are bounded to 128 nodes, 512 cables, 64 performance widgets and a 1 MiB JSON import.
 

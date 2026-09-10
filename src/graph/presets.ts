@@ -1,6 +1,10 @@
 import shapes from '../../presets/morphazoid-shapes.json';
 import lsystems from '../../presets/morphazoid-lsystems.json';
 import graphs from '../../presets/morphazoid-graphs.json';
+import synth from '../../presets/morphazoid-shapes-synth.json';
+import notes from '../../presets/morphazoid-shapes-notes.json';
+import triggers from '../../presets/morphazoid-shapes-triggers.json';
+import drums from '../../presets/morphazoid-shapes-drums.json';
 import { parseGraphDocument } from './model';
-export const PRESETS = [shapes, lsystems, graphs].map(parseGraphDocument);
+export const PRESETS = [shapes, lsystems, graphs, synth, notes, triggers, drums].map(parseGraphDocument);
 export const DEFAULT_GRAPH = PRESETS[0]!;

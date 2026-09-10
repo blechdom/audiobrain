@@ -1,0 +1,277 @@
+{
+  "source": "https://github.com/blechdom/morphazoid/tree/81d3530e80403976880f7161555820496c4e382e",
+  "generator": "Canonical createShapesState + buildShapesScene + directedCornerEnvelopeProfile; relevant source bytes verified unchanged at source revision.",
+  "fixtures": [
+    {
+      "input": {
+        "name": "two offset perimeter points with opposing motion",
+        "sides": 4,
+        "reader": "points",
+        "phase": 0.21,
+        "offsets": [
+          0,
+          0.35
+        ],
+        "directions": [
+          1,
+          -1
+        ]
+      },
+      "readers": [
+        {
+          "headIndex": 0,
+          "phase": 0.20999999999999996,
+          "travel": 0.21
+        },
+        {
+          "headIndex": 1,
+          "phase": 0.1399999999999999,
+          "travel": 0.13999999999999999
+        }
+      ],
+      "contacts": [
+        {
+          "headIndex": 0,
+          "x": 0.840000000000001,
+          "y": 0.15999999999999903,
+          "phase": 0.20999999999999996,
+          "cornerPhase": 0.8400000000000013,
+          "cornerStrength": 0.49999999999999917
+        },
+        {
+          "headIndex": 1,
+          "x": 0.5600000000000003,
+          "y": 0.4399999999999998,
+          "phase": 0.1399999999999999,
+          "cornerPhase": 0.4399999999999994,
+          "cornerStrength": 0.5
+        }
+      ]
+    },
+    {
+      "input": {
+        "name": "radar uses angular intersections, not arc-length points",
+        "sides": 4,
+        "reader": "radar",
+        "phase": 0.1,
+        "offsets": [
+          0,
+          0.22
+        ],
+        "directions": [
+          1,
+          -1
+        ]
+      },
+      "readers": [
+        {
+          "headIndex": 0,
+          "phase": 0.10000000000000009,
+          "travel": 0.1
+        },
+        {
+          "headIndex": 1,
+          "phase": 0.1200000000000001,
+          "travel": 0.12
+        }
+      ],
+      "contacts": [
+        {
+          "headIndex": 0,
+          "x": 0.4208077798377321,
+          "y": 0.5791922201622679,
+          "phase": 0.1052019449594329,
+          "cornerPhase": 0.4208077798377323,
+          "cornerStrength": 0.49999999999999917
+        },
+        {
+          "headIndex": 1,
+          "x": 0.4842868669783248,
+          "y": 0.5157131330216752,
+          "phase": 0.12107171674458106,
+          "cornerPhase": 0.5157131330216749,
+          "cornerStrength": 0.5
+        }
+      ]
+    },
+    {
+      "input": {
+        "name": "two independent scan axes have separate contacts",
+        "sides": 3,
+        "reader": "line",
+        "phase": 0.25,
+        "offsets": [
+          0,
+          0.2
+        ],
+        "axes": [
+          "vertical",
+          "horizontal"
+        ]
+      },
+      "readers": [
+        {
+          "headIndex": 0,
+          "phase": 0.25,
+          "travel": 0.25
+        },
+        {
+          "headIndex": 1,
+          "phase": 0.44999999999999996,
+          "travel": 0.45
+        }
+      ],
+      "contacts": [
+        {
+          "headIndex": 0,
+          "x": -0.4330127018922192,
+          "y": 0.2499999999999999,
+          "phase": 0.8333333333333339,
+          "cornerPhase": 0.500000000000001,
+          "cornerStrength": 0.6666666666666665
+        },
+        {
+          "headIndex": 0,
+          "x": -0.4330127018922192,
+          "y": -0.5000000000000002,
+          "phase": 0.5833333333333339,
+          "cornerPhase": 0.24999999999999972,
+          "cornerStrength": 0.6666666666666665
+        },
+        {
+          "headIndex": 1,
+          "x": -0.38971143170299727,
+          "y": 0.32499999999999984,
+          "phase": 0.8500000000000005,
+          "cornerPhase": 0.4499999999999991,
+          "cornerStrength": 0.6666666666666667
+        },
+        {
+          "headIndex": 1,
+          "x": 0.3897114317029976,
+          "y": 0.32499999999999984,
+          "phase": 0.15000000000000013,
+          "cornerPhase": 0.4500000000000003,
+          "cornerStrength": 0.6666666666666667
+        }
+      ]
+    },
+    {
+      "input": {
+        "name": "shared scan vertex is one contact",
+        "sides": 4,
+        "reader": "line",
+        "phase": 0,
+        "offsets": [
+          0
+        ]
+      },
+      "readers": [
+        {
+          "headIndex": 0,
+          "phase": 0,
+          "travel": 0
+        }
+      ],
+      "contacts": [
+        {
+          "headIndex": 0,
+          "x": -1,
+          "y": -1.214306433183765e-16,
+          "phase": 0.7499999999999983,
+          "cornerPhase": 0,
+          "cornerStrength": 0.5000000000000007
+        }
+      ]
+    },
+    {
+      "input": {
+        "name": "radar corner is one contact",
+        "sides": 4,
+        "reader": "radar",
+        "phase": 0,
+        "offsets": [
+          0
+        ]
+      },
+      "readers": [
+        {
+          "headIndex": 0,
+          "phase": 0,
+          "travel": 0
+        }
+      ],
+      "contacts": [
+        {
+          "headIndex": 0,
+          "x": 6.245004513516506e-17,
+          "y": 1,
+          "phase": 0,
+          "cornerPhase": 0,
+          "cornerStrength": 0.49999999999999917
+        }
+      ]
+    },
+    {
+      "input": {
+        "name": "open line returns under ping-pong transport",
+        "sides": 2,
+        "reader": "points",
+        "phase": 1.2,
+        "motion": "pingpong",
+        "offsets": [
+          0
+        ]
+      },
+      "readers": [
+        {
+          "headIndex": 0,
+          "phase": 0.7999999999999998,
+          "travel": 1.2
+        }
+      ],
+      "contacts": [
+        {
+          "headIndex": 0,
+          "x": 0.5999999999999996,
+          "y": 0,
+          "phase": 0.7999999999999998,
+          "cornerPhase": 0.20000000000000018,
+          "cornerStrength": 1
+        }
+      ]
+    },
+    {
+      "input": {
+        "name": "reverse ping-pong at the endpoint leaves in the correct direction",
+        "sides": 4,
+        "reader": "points",
+        "phase": 1,
+        "motion": "pingpong",
+        "offsets": [
+          0
+        ],
+        "directions": [
+          -1
+        ]
+      },
+      "readers": [
+        {
+          "headIndex": 0,
+          "phase": 1,
+          "travel": -1
+        }
+      ],
+      "contacts": [
+        {
+          "headIndex": 0,
+          "x": 6.123233995736766e-17,
+          "y": 1,
+          "phase": 0,
+          "cornerPhase": 0,
+          "cornerStrength": 0.49999999999999917
+        }
+      ]
+    }
+  ]
+}

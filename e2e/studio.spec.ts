@@ -33,9 +33,10 @@ test('performance controls, direct gestures, arrangement and export share projec
   const sides = surface.getByRole('slider', { name: 'Sides', exact: true });
   await sides.fill('7');
   await expect(page.locator('.operator-node').getByRole('slider', { name: 'Sides', exact: true })).toHaveValue('7');
+  await surface.getByRole('button', { name: 'Curvature', exact: true }).click();
   const shape = surface.getByRole('slider', { name: /Shape contour, drag/ });
   await shape.focus(); await page.keyboard.press('ArrowRight');
-  await expect(surface.getByRole('slider', { name: 'Curvature', exact: true })).toHaveValue('0.16');
+  await expect(surface.getByRole('slider', { name: 'Curvature', exact: true })).toHaveValue('0.01');
   await page.getByRole('button', { name: 'Arrange', exact: true }).click();
   await expect(page.getByText('Drag a handle to move.', { exact: false })).toBeVisible();
   const widget = page.getByTestId('widget-character');
@@ -76,22 +77,22 @@ test('perform controls remain reachable on phone portrait and landscape', async 
 
 test('cables can be selected, deleted, reconnected and undone', async ({ page }) => {
   const cables = page.locator('.react-flow__edge');
-  await expect(cables).toHaveCount(9);
+  await expect(cables).toHaveCount(10);
   const edge = page.locator('.react-flow__edge[data-id="gain-audio-to-out-audio"]');
   await edge.focus();
   await page.keyboard.press('Enter');
   await expect(edge).toHaveClass(/selected/);
   await page.keyboard.press('Delete');
-  await expect(cables).toHaveCount(8);
+  await expect(cables).toHaveCount(9);
   await expect(page.locator('.graph-diagnostic')).toBeVisible();
   await page.locator('.react-flow__node[data-id="gain"] .react-flow__handle.source[data-handleid="audio"]').click();
   await page.locator('.react-flow__node[data-id="out"] .react-flow__handle.target[data-handleid="audio"]').click();
-  await expect(cables).toHaveCount(9);
+  await expect(cables).toHaveCount(10);
   await expect(page.locator('.graph-diagnostic')).toHaveCount(0);
   await page.getByRole('button', { name: 'Undo', exact: true }).click();
-  await expect(cables).toHaveCount(8);
-  await page.getByRole('button', { name: 'Undo', exact: true }).click();
   await expect(cables).toHaveCount(9);
+  await page.getByRole('button', { name: 'Undo', exact: true }).click();
+  await expect(cables).toHaveCount(10);
 });
 
 

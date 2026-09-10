@@ -127,6 +127,41 @@
           "type": "control.f32",
           "schemaVersion": 1,
           "required": false
+        },
+        {
+          "id": "rotationDeg",
+          "label": "Rotation",
+          "type": "control.f32",
+          "schemaVersion": 1,
+          "required": false
+        },
+        {
+          "id": "positionX",
+          "label": "Position X",
+          "type": "control.f32",
+          "schemaVersion": 1,
+          "required": false
+        },
+        {
+          "id": "positionY",
+          "label": "Position Y",
+          "type": "control.f32",
+          "schemaVersion": 1,
+          "required": false
+        },
+        {
+          "id": "aspect",
+          "label": "Aspect",
+          "type": "control.f32",
+          "schemaVersion": 1,
+          "required": false
+        },
+        {
+          "id": "skew",
+          "label": "Skew",
+          "type": "control.f32",
+          "schemaVersion": 1,
+          "required": false
         }
       ],
       "outputs": [
@@ -143,8 +178,8 @@
           "label": "Sides",
           "type": "integer",
           "default": 5,
-          "min": 3,
-          "max": 16,
+          "min": 1,
+          "max": 32,
           "step": 1,
           "unit": ""
         },
@@ -152,9 +187,59 @@
           "id": "curvature",
           "label": "Curvature",
           "type": "number",
-          "default": 0.15,
-          "min": 0,
+          "default": 0,
+          "min": -1,
           "max": 1,
+          "step": 0.01,
+          "unit": ""
+        },
+        {
+          "id": "rotationDeg",
+          "label": "Rotation",
+          "type": "number",
+          "default": 0,
+          "min": -180,
+          "max": 180,
+          "step": 1,
+          "unit": "\u00b0"
+        },
+        {
+          "id": "positionX",
+          "label": "Position X",
+          "type": "number",
+          "default": 0,
+          "min": -1,
+          "max": 1,
+          "step": 0.01,
+          "unit": ""
+        },
+        {
+          "id": "positionY",
+          "label": "Position Y",
+          "type": "number",
+          "default": 0,
+          "min": -1,
+          "max": 1,
+          "step": 0.01,
+          "unit": ""
+        },
+        {
+          "id": "aspect",
+          "label": "Aspect",
+          "type": "number",
+          "default": 0,
+          "min": -2,
+          "max": 2,
+          "step": 0.01,
+          "unit": ""
+        },
+        {
+          "id": "skew",
+          "label": "Skew",
+          "type": "number",
+          "default": 0,
+          "min": -2,
+          "max": 2,
           "step": 0.01,
           "unit": ""
         }
@@ -165,7 +250,7 @@
     {
       "kind": "shapes.reader",
       "title": "Shape Reader",
-      "description": "Read a bounded set of phase heads on the contour using the host transport; report geometry features before musical mapping.",
+      "description": "Read a contour with up to twelve point, line or radar playheads. Each keeps its own phase, direction and line axis; mixed readers can share the same geometry.",
       "runtime": {
         "status": "implemented",
         "domain": "control",
@@ -199,6 +284,104 @@
           "type": "control.f32",
           "schemaVersion": 1,
           "required": false
+        },
+        {
+          "id": "phaseOffset",
+          "label": "Group phase",
+          "type": "control.f32",
+          "schemaVersion": 1,
+          "required": false
+        },
+        {
+          "id": "head1Phase",
+          "label": "Head 1 phase offset",
+          "type": "control.f32",
+          "schemaVersion": 1,
+          "required": false
+        },
+        {
+          "id": "head2Phase",
+          "label": "Head 2 phase offset",
+          "type": "control.f32",
+          "schemaVersion": 1,
+          "required": false
+        },
+        {
+          "id": "head3Phase",
+          "label": "Head 3 phase offset",
+          "type": "control.f32",
+          "schemaVersion": 1,
+          "required": false
+        },
+        {
+          "id": "head4Phase",
+          "label": "Head 4 phase offset",
+          "type": "control.f32",
+          "schemaVersion": 1,
+          "required": false
+        },
+        {
+          "id": "head5Phase",
+          "label": "Head 5 phase offset",
+          "type": "control.f32",
+          "schemaVersion": 1,
+          "required": false
+        },
+        {
+          "id": "head6Phase",
+          "label": "Head 6 phase offset",
+          "type": "control.f32",
+          "schemaVersion": 1,
+          "required": false
+        },
+        {
+          "id": "head7Phase",
+          "label": "Head 7 phase offset",
+          "type": "control.f32",
+          "schemaVersion": 1,
+          "required": false
+        },
+        {
+          "id": "head8Phase",
+          "label": "Head 8 phase offset",
+          "type": "control.f32",
+          "schemaVersion": 1,
+          "required": false
+        },
+        {
+          "id": "head9Phase",
+          "label": "Head 9 phase offset",
+          "type": "control.f32",
+          "schemaVersion": 1,
+          "required": false
+        },
+        {
+          "id": "head10Phase",
+          "label": "Head 10 phase offset",
+          "type": "control.f32",
+          "schemaVersion": 1,
+          "required": false
+        },
+        {
+          "id": "head11Phase",
+          "label": "Head 11 phase offset",
+          "type": "control.f32",
+          "schemaVersion": 1,
+          "required": false
+        },
+        {
+          "id": "head12Phase",
+          "label": "Head 12 phase offset",
+          "type": "control.f32",
+          "schemaVersion": 1,
+          "required": false
+        },
+        {
+          "id": "divisions",
+          "label": "Trigger divisions",
+          "type": "control.f32",
+          "schemaVersion": 1,
+          "required": false
         }
       ],
       "outputs": [
@@ -216,7 +399,7 @@
           "type": "integer",
           "default": 4,
           "min": 1,
-          "max": 8,
+          "max": 12,
           "step": 1,
           "unit": ""
         },
@@ -229,9 +412,569 @@
           "max": 2,
           "step": 0.01,
           "unit": "Hz"
+        },
+        {
+          "id": "reader",
+          "label": "Reader",
+          "type": "enum",
+          "default": "points",
+          "choices": [
+            "points",
+            "line",
+            "radar"
+          ]
+        },
+        {
+          "id": "motion",
+          "label": "Motion",
+          "type": "enum",
+          "default": "loop",
+          "choices": [
+            "loop",
+            "pingpong"
+          ]
+        },
+        {
+          "id": "direction",
+          "label": "Direction",
+          "type": "enum",
+          "default": "forward",
+          "choices": [
+            "forward",
+            "reverse"
+          ]
+        },
+        {
+          "id": "phaseOffset",
+          "label": "Group phase",
+          "type": "number",
+          "default": 0,
+          "min": 0,
+          "max": 2,
+          "step": 0.001,
+          "unit": "cycles"
+        },
+        {
+          "id": "head1Phase",
+          "label": "Head 1 phase offset",
+          "type": "number",
+          "default": 0,
+          "min": 0,
+          "max": 2,
+          "step": 0.001,
+          "unit": "cycles"
+        },
+        {
+          "id": "head1Direction",
+          "label": "Head 1 direction",
+          "type": "enum",
+          "default": "forward",
+          "choices": [
+            "forward",
+            "reverse"
+          ]
+        },
+        {
+          "id": "head1Axis",
+          "label": "Head 1 line axis",
+          "type": "enum",
+          "default": "vertical",
+          "choices": [
+            "vertical",
+            "horizontal"
+          ]
+        },
+        {
+          "id": "head1Reader",
+          "label": "Head 1 reader",
+          "type": "enum",
+          "default": "inherit",
+          "choices": [
+            "inherit",
+            "points",
+            "line",
+            "radar"
+          ]
+        },
+        {
+          "id": "head2Phase",
+          "label": "Head 2 phase offset",
+          "type": "number",
+          "default": 0,
+          "min": 0,
+          "max": 2,
+          "step": 0.001,
+          "unit": "cycles"
+        },
+        {
+          "id": "head2Direction",
+          "label": "Head 2 direction",
+          "type": "enum",
+          "default": "forward",
+          "choices": [
+            "forward",
+            "reverse"
+          ]
+        },
+        {
+          "id": "head2Axis",
+          "label": "Head 2 line axis",
+          "type": "enum",
+          "default": "vertical",
+          "choices": [
+            "vertical",
+            "horizontal"
+          ]
+        },
+        {
+          "id": "head2Reader",
+          "label": "Head 2 reader",
+          "type": "enum",
+          "default": "inherit",
+          "choices": [
+            "inherit",
+            "points",
+            "line",
+            "radar"
+          ]
+        },
+        {
+          "id": "head3Phase",
+          "label": "Head 3 phase offset",
+          "type": "number",
+          "default": 0,
+          "min": 0,
+          "max": 2,
+          "step": 0.001,
+          "unit": "cycles"
+        },
+        {
+          "id": "head3Direction",
+          "label": "Head 3 direction",
+          "type": "enum",
+          "default": "forward",
+          "choices": [
+            "forward",
+            "reverse"
+          ]
+        },
+        {
+          "id": "head3Axis",
+          "label": "Head 3 line axis",
+          "type": "enum",
+          "default": "vertical",
+          "choices": [
+            "vertical",
+            "horizontal"
+          ]
+        },
+        {
+          "id": "head3Reader",
+          "label": "Head 3 reader",
+          "type": "enum",
+          "default": "inherit",
+          "choices": [
+            "inherit",
+            "points",
+            "line",
+            "radar"
+          ]
+        },
+        {
+          "id": "head4Phase",
+          "label": "Head 4 phase offset",
+          "type": "number",
+          "default": 0,
+          "min": 0,
+          "max": 2,
+          "step": 0.001,
+          "unit": "cycles"
+        },
+        {
+          "id": "head4Direction",
+          "label": "Head 4 direction",
+          "type": "enum",
+          "default": "forward",
+          "choices": [
+            "forward",
+            "reverse"
+          ]
+        },
+        {
+          "id": "head4Axis",
+          "label": "Head 4 line axis",
+          "type": "enum",
+          "default": "vertical",
+          "choices": [
+            "vertical",
+            "horizontal"
+          ]
+        },
+        {
+          "id": "head4Reader",
+          "label": "Head 4 reader",
+          "type": "enum",
+          "default": "inherit",
+          "choices": [
+            "inherit",
+            "points",
+            "line",
+            "radar"
+          ]
+        },
+        {
+          "id": "head5Phase",
+          "label": "Head 5 phase offset",
+          "type": "number",
+          "default": 0,
+          "min": 0,
+          "max": 2,
+          "step": 0.001,
+          "unit": "cycles"
+        },
+        {
+          "id": "head5Direction",
+          "label": "Head 5 direction",
+          "type": "enum",
+          "default": "forward",
+          "choices": [
+            "forward",
+            "reverse"
+          ]
+        },
+        {
+          "id": "head5Axis",
+          "label": "Head 5 line axis",
+          "type": "enum",
+          "default": "vertical",
+          "choices": [
+            "vertical",
+            "horizontal"
+          ]
+        },
+        {
+          "id": "head5Reader",
+          "label": "Head 5 reader",
+          "type": "enum",
+          "default": "inherit",
+          "choices": [
+            "inherit",
+            "points",
+            "line",
+            "radar"
+          ]
+        },
+        {
+          "id": "head6Phase",
+          "label": "Head 6 phase offset",
+          "type": "number",
+          "default": 0,
+          "min": 0,
+          "max": 2,
+          "step": 0.001,
+          "unit": "cycles"
+        },
+        {
+          "id": "head6Direction",
+          "label": "Head 6 direction",
+          "type": "enum",
+          "default": "forward",
+          "choices": [
+            "forward",
+            "reverse"
+          ]
+        },
+        {
+          "id": "head6Axis",
+          "label": "Head 6 line axis",
+          "type": "enum",
+          "default": "vertical",
+          "choices": [
+            "vertical",
+            "horizontal"
+          ]
+        },
+        {
+          "id": "head6Reader",
+          "label": "Head 6 reader",
+          "type": "enum",
+          "default": "inherit",
+          "choices": [
+            "inherit",
+            "points",
+            "line",
+            "radar"
+          ]
+        },
+        {
+          "id": "head7Phase",
+          "label": "Head 7 phase offset",
+          "type": "number",
+          "default": 0,
+          "min": 0,
+          "max": 2,
+          "step": 0.001,
+          "unit": "cycles"
+        },
+        {
+          "id": "head7Direction",
+          "label": "Head 7 direction",
+          "type": "enum",
+          "default": "forward",
+          "choices": [
+            "forward",
+            "reverse"
+          ]
+        },
+        {
+          "id": "head7Axis",
+          "label": "Head 7 line axis",
+          "type": "enum",
+          "default": "vertical",
+          "choices": [
+            "vertical",
+            "horizontal"
+          ]
+        },
+        {
+          "id": "head7Reader",
+          "label": "Head 7 reader",
+          "type": "enum",
+          "default": "inherit",
+          "choices": [
+            "inherit",
+            "points",
+            "line",
+            "radar"
+          ]
+        },
+        {
+          "id": "head8Phase",
+          "label": "Head 8 phase offset",
+          "type": "number",
+          "default": 0,
+          "min": 0,
+          "max": 2,
+          "step": 0.001,
+          "unit": "cycles"
+        },
+        {
+          "id": "head8Direction",
+          "label": "Head 8 direction",
+          "type": "enum",
+          "default": "forward",
+          "choices": [
+            "forward",
+            "reverse"
+          ]
+        },
+        {
+          "id": "head8Axis",
+          "label": "Head 8 line axis",
+          "type": "enum",
+          "default": "vertical",
+          "choices": [
+            "vertical",
+            "horizontal"
+          ]
+        },
+        {
+          "id": "head8Reader",
+          "label": "Head 8 reader",
+          "type": "enum",
+          "default": "inherit",
+          "choices": [
+            "inherit",
+            "points",
+            "line",
+            "radar"
+          ]
+        },
+        {
+          "id": "head9Phase",
+          "label": "Head 9 phase offset",
+          "type": "number",
+          "default": 0,
+          "min": 0,
+          "max": 2,
+          "step": 0.001,
+          "unit": "cycles"
+        },
+        {
+          "id": "head9Direction",
+          "label": "Head 9 direction",
+          "type": "enum",
+          "default": "forward",
+          "choices": [
+            "forward",
+            "reverse"
+          ]
+        },
+        {
+          "id": "head9Axis",
+          "label": "Head 9 line axis",
+          "type": "enum",
+          "default": "vertical",
+          "choices": [
+            "vertical",
+            "horizontal"
+          ]
+        },
+        {
+          "id": "head9Reader",
+          "label": "Head 9 reader",
+          "type": "enum",
+          "default": "inherit",
+          "choices": [
+            "inherit",
+            "points",
+            "line",
+            "radar"
+          ]
+        },
+        {
+          "id": "head10Phase",
+          "label": "Head 10 phase offset",
+          "type": "number",
+          "default": 0,
+          "min": 0,
+          "max": 2,
+          "step": 0.001,
+          "unit": "cycles"
+        },
+        {
+          "id": "head10Direction",
+          "label": "Head 10 direction",
+          "type": "enum",
+          "default": "forward",
+          "choices": [
+            "forward",
+            "reverse"
+          ]
+        },
+        {
+          "id": "head10Axis",
+          "label": "Head 10 line axis",
+          "type": "enum",
+          "default": "vertical",
+          "choices": [
+            "vertical",
+            "horizontal"
+          ]
+        },
+        {
+          "id": "head10Reader",
+          "label": "Head 10 reader",
+          "type": "enum",
+          "default": "inherit",
+          "choices": [
+            "inherit",
+            "points",
+            "line",
+            "radar"
+          ]
+        },
+        {
+          "id": "head11Phase",
+          "label": "Head 11 phase offset",
+          "type": "number",
+          "default": 0,
+          "min": 0,
+          "max": 2,
+          "step": 0.001,
+          "unit": "cycles"
+        },
+        {
+          "id": "head11Direction",
+          "label": "Head 11 direction",
+          "type": "enum",
+          "default": "forward",
+          "choices": [
+            "forward",
+            "reverse"
+          ]
+        },
+        {
+          "id": "head11Axis",
+          "label": "Head 11 line axis",
+          "type": "enum",
+          "default": "vertical",
+          "choices": [
+            "vertical",
+            "horizontal"
+          ]
+        },
+        {
+          "id": "head11Reader",
+          "label": "Head 11 reader",
+          "type": "enum",
+          "default": "inherit",
+          "choices": [
+            "inherit",
+            "points",
+            "line",
+            "radar"
+          ]
+        },
+        {
+          "id": "head12Phase",
+          "label": "Head 12 phase offset",
+          "type": "number",
+          "default": 0,
+          "min": 0,
+          "max": 2,
+          "step": 0.001,
+          "unit": "cycles"
+        },
+        {
+          "id": "head12Direction",
+          "label": "Head 12 direction",
+          "type": "enum",
+          "default": "forward",
+          "choices": [
+            "forward",
+            "reverse"
+          ]
+        },
+        {
+          "id": "head12Axis",
+          "label": "Head 12 line axis",
+          "type": "enum",
+          "default": "vertical",
+          "choices": [
+            "vertical",
+            "horizontal"
+          ]
+        },
+        {
+          "id": "head12Reader",
+          "label": "Head 12 reader",
+          "type": "enum",
+          "default": "inherit",
+          "choices": [
+            "inherit",
+            "points",
+            "line",
+            "radar"
+          ]
+        },
+        {
+          "id": "divisions",
+          "label": "Trigger divisions",
+          "type": "integer",
+          "default": 2,
+          "min": 1,
+          "max": 16,
+          "step": 1
         }
       ],
-      "views": [],
+      "views": [
+        {
+          "id": "playheads",
+          "label": "Playheads",
+          "intents": []
+        }
+      ],
       "demandRoot": null
     },
     {
@@ -264,6 +1007,34 @@
           "type": "control.f32",
           "schemaVersion": 1,
           "required": false
+        },
+        {
+          "id": "tuningDepth",
+          "label": "Drum tuning depth",
+          "type": "control.f32",
+          "schemaVersion": 1,
+          "required": false
+        },
+        {
+          "id": "triggerCharacter",
+          "label": "Drum character",
+          "type": "control.f32",
+          "schemaVersion": 1,
+          "required": false
+        },
+        {
+          "id": "hitCap",
+          "label": "Simultaneous hits",
+          "type": "control.f32",
+          "schemaVersion": 1,
+          "required": false
+        },
+        {
+          "id": "noteCharacter",
+          "label": "Note character",
+          "type": "control.f32",
+          "schemaVersion": 1,
+          "required": false
         }
       ],
       "outputs": [
@@ -271,6 +1042,12 @@
           "id": "voices",
           "label": "Voice Controls",
           "type": "music.voices",
+          "schemaVersion": 1
+        },
+        {
+          "id": "notes",
+          "label": "Notes / triggers",
+          "type": "event.note",
           "schemaVersion": 1
         }
       ],
@@ -294,6 +1071,75 @@
           "max": 7,
           "step": 0.1,
           "unit": "octaves"
+        },
+        {
+          "id": "playingMode",
+          "label": "Sound mode",
+          "type": "enum",
+          "default": "continuous",
+          "choices": [
+            "continuous",
+            "notes",
+            "triggers"
+          ]
+        },
+        {
+          "id": "triggerMapping",
+          "label": "Drum mapping",
+          "type": "enum",
+          "default": "feature",
+          "choices": [
+            "feature",
+            "position",
+            "incidence"
+          ]
+        },
+        {
+          "id": "tuningDepth",
+          "label": "Drum tuning depth",
+          "type": "number",
+          "default": 12,
+          "min": 0,
+          "max": 24,
+          "step": 1,
+          "unit": "st"
+        },
+        {
+          "id": "triggerCharacter",
+          "label": "Drum character",
+          "type": "number",
+          "default": 0.7,
+          "min": 0,
+          "max": 1,
+          "step": 0.01
+        },
+        {
+          "id": "hitCap",
+          "label": "Simultaneous hits",
+          "type": "integer",
+          "default": 6,
+          "min": 1,
+          "max": 32,
+          "step": 1
+        },
+        {
+          "id": "pitchMapping",
+          "label": "Pitch mapping",
+          "type": "enum",
+          "default": "shape",
+          "choices": [
+            "shape",
+            "centered"
+          ]
+        },
+        {
+          "id": "noteCharacter",
+          "label": "Note character",
+          "type": "number",
+          "default": 0.35,
+          "min": 0,
+          "max": 1,
+          "step": 0.01
         }
       ],
       "views": [],
@@ -320,6 +1166,13 @@
           "id": "character",
           "label": "Character",
           "type": "control.f32",
+          "schemaVersion": 1,
+          "required": false
+        },
+        {
+          "id": "notes",
+          "label": "Notes / triggers",
+          "type": "event.note",
           "schemaVersion": 1,
           "required": false
         }
@@ -1005,6 +1858,26 @@
             {
               "id": "curvature",
               "label": "Curvature Drag",
+              "paramType": "number"
+            },
+            {
+              "id": "rotation",
+              "label": "Rotation",
+              "paramType": "number"
+            },
+            {
+              "id": "moveX",
+              "label": "Move X",
+              "paramType": "number"
+            },
+            {
+              "id": "moveY",
+              "label": "Move Y",
+              "paramType": "number"
+            },
+            {
+              "id": "scrub",
+              "label": "Playhead phase",
               "paramType": "number"
             }
           ]

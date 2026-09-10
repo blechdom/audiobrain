@@ -158,7 +158,7 @@ export class AudioBrainRuntime {
     this.position = this.time(); this.anchor = this.now();
     this.publish({ playing }); this.cursor = this.position;
     this.rack?.setPlaying(playing && this.snapshot.audioState === 'running' && !this.structuralBlock);
-    if (!playing) { this.panicMidi(); this.queuedMidi.clear(); }
+    if (!playing) { this.panicMidi(); this.queuedMidi.clear(); this.evaluator?.clearScheduledAttacks(); }
     this.tick();
   }
   reset(): void {

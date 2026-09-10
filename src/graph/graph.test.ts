@@ -4,7 +4,7 @@ import { PRESETS, OPERATOR_DEFINITIONS, cloneGraphDocument, compileGraph, create
 const shapes = () => cloneGraphDocument(PRESETS[0]!);
 describe('production catalog and presets', () => {
   it('runs all three Morphazoid examples with complete upstream demand', () => {
-    expect(PRESETS.map(preset => preset.title)).toEqual(['Morphazoid Shapes', 'Morphazoid L-Systems', 'Morphazoid Graphs']);
+    expect(PRESETS.map(preset => preset.title)).toEqual(['Morphazoid Shapes', 'Morphazoid L-Systems', 'Morphazoid Graphs', 'Morphazoid Shapes Synth', 'Morphazoid Shapes Notes', 'Morphazoid Shapes Triggers', 'Morphazoid Shapes Drums']);
     for (const preset of PRESETS) {
       const graph = compileGraph(preset);
       expect(graph.reachableNodeIds.size).toBe(preset.nodes.length);
@@ -64,7 +64,7 @@ describe('compiler', () => {
   });
   it('reports required reachable inputs while the author document remains importable', () => {
     const document = shapes(); document.edges = document.edges.filter(edge => edge.target.nodeId !== 'out');
-    expect(parseGraphDocument(document).edges).toHaveLength(8);
+    expect(parseGraphDocument(document).edges).toHaveLength(shapes().edges.length - 1);
     const result = tryCompileGraph(document);
     expect(result.ok).toBe(false);
     if (!result.ok) expect(result.issues.some(issue => issue.code === 'required-input' && issue.nodeId === 'out')).toBe(true);
@@ -80,6 +80,7 @@ describe('compiler', () => {
   });
   it('keeps saved literals below explicit connected controls', () => {
     const document = shapes(); const source = createNode('control.constant'); document.nodes.push(source);
+    document.nodes.find(node => node.id === 'gain')!.params.db = -18;
     document.edges.push({ id: 'modulation', source: { nodeId: source.id, portId: 'value' }, target: { nodeId: 'gain', portId: 'db' } });
     const gain = compileGraph(document).nodes.find(node => node.node.id === 'gain')!;
     expect(gain.inputs.db!.sourceNodeId).toBe(source.id);

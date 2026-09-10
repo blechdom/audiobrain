@@ -5,6 +5,7 @@ import type { RuntimeSnapshot } from '../runtime/AudioBrainRuntime';
 import { useProjectStore } from '../store';
 import { ParameterControl } from '../components/ParameterControl';
 import { InstrumentView } from './InstrumentView';
+import { ShapesPlayheadControls } from './ShapesPlayheadControls';
 
 interface PerformanceSurfaceProps { snapshot: RuntimeSnapshot; arrange?: boolean; compact?: boolean }
 type Widget = GraphDocument['performance']['widgets'][number];
@@ -41,19 +42,28 @@ export function PerformanceSurface({ snapshot, arrange, compact }: PerformanceSu
         const nodeSnapshot = target ? snapshot.nodes[target.id] : undefined;
         const meterValue = Math.max(0, Math.min(1, nodeSnapshot?.level ?? nodeSnapshot?.value ?? 0));
         const isView = widget.kind === 'view';
-        return <section key={widget.id} className={`surface-widget widget-${widget.kind} ${!target ? 'missing-widget' : ''}`}
-          aria-label={parameter?.label ?? definition?.title ?? 'Missing control'}
+        const isPlayheads = isView && target?.kind === 'shapes.reader' && widget.target.viewId === 'playheads';
+        return <section key={widget.id} className={`surface-widget widget-${widget.kind} ${isPlayheads ? 'widget-playheads' : ''} ${!target ? 'missing-widget' : ''}`}
+          aria-label={parameter?.label ?? target?.label ?? definition?.title ?? 'Missing control'}
+          data-widget-node={target?.id}
           data-testid={`widget-${widget.id}`} style={{ gridColumn: `${widget.layout.x + 1} / span ${widget.layout.w}`, gridRow: `${widget.layout.y + 1} / span ${widget.layout.h}` }}>
           {arrange && <div className="widget-arrange-bar">
             <button type="button" className="widget-drag" aria-label={`Move ${widget.id}`} onPointerDown={(event) => begin(event, widget)} onPointerMove={move} onPointerUp={end} onPointerCancel={end} onLostPointerCapture={end}><Grip size={14} /></button>
-            <span>{parameter?.label ?? definition?.title ?? widget.id}</span>
+            <span>{parameter?.label ?? target?.label ?? definition?.title ?? widget.id}</span>
             <button type="button" aria-label={`Remove ${widget.id} from performance`} onClick={() => store.removeWidget(widget.id)}><X size={12} /></button>
           </div>}
           {!target ? <p>Source removed. Undo to restore this control.</p> : widget.kind === 'param' && parameter ? <ParameterControl nodeId={target.id} parameter={parameter}
             value={target.params[parameter.id] ?? parameter.default} liveValue={nodeSnapshot?.params?.[parameter.id]} onChange={(value) => store.setParameter(target.id, parameter.id, value)}
             onBegin={store.beginGesture} onEnd={store.endGesture}
             wired={project.edges.some((edge) => edge.target.nodeId === target.id && edge.target.portId === parameter.id)} />
-            : isView ? <InstrumentView node={target} project={project} snapshot={nodeSnapshot} compact={compact} />
+            : isPlayheads ? <ShapesPlayheadControls node={target} project={project} snapshot={nodeSnapshot} compact={compact} />
+            : isView ? <InstrumentView node={target} project={project} snapshot={nodeSnapshot} compact={compact} onShowPlayheads={() => {
+              const edge = project.edges.find((candidate) => candidate.target.nodeId === target.id && candidate.target.portId === 'features');
+              const reader = project.nodes.find((candidate) => candidate.id === edge?.source.nodeId && candidate.kind === 'shapes.reader');
+              if (!reader) return;
+              store.pinView(reader.id, 'playheads');
+              requestAnimationFrame(() => grid.current?.querySelector(`[data-widget-node="${CSS.escape(reader.id)}"].widget-playheads`)?.scrollIntoView({ behavior: 'auto', block: 'nearest' }));
+            }} />
             : widget.kind === 'meter' ? <div className="level-widget"><div><span>Output level</span><output>{meterValue > 0.0001 ? `${(20 * Math.log10(meterValue)).toFixed(1)} dBFS` : '−∞ dBFS'}</output></div>
               <meter min={0} max={1} value={meterValue} aria-label="Output level" /><div className="meter-ticks"><span>−60</span><span>−24</span><span>−12</span><span>0</span></div></div>
               : <p>Binding unavailable</p>}
