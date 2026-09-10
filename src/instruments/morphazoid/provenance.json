@@ -1,0 +1,26 @@
+[
+  {
+    "file": "geometry.js",
+    "source": "https://github.com/blechdom/morphazoid/blob/81d3530e80403976880f7161555820496c4e382e/src/geometry.js",
+    "sourceSha256": "1621d672df3414bfb1d6deb11eef13e294f972cb1edf61f8249a810b1eeb8831",
+    "change": "Unchanged"
+  },
+  {
+    "file": "l-system.js",
+    "source": "https://github.com/blechdom/morphazoid/blob/81d3530e80403976880f7161555820496c4e382e/src/l-system.js",
+    "sourceSha256": "d06fcd72cd0f5039b469808f99d482b00e431f7b11491dc0ca05141f795ba760",
+    "change": "Unchanged"
+  },
+  {
+    "file": "graph-delay.js",
+    "source": "https://github.com/blechdom/morphazoid/blob/81d3530e80403976880f7161555820496c4e382e/src/graph-delay.js",
+    "sourceSha256": "d92c562a2344d23ddcf421bf28180ba5448690c895e3ea218f9dafa6a35fe1e2",
+    "change": "Unchanged"
+  },
+  {
+    "file": "graph-instruments.js",
+    "source": "https://github.com/blechdom/morphazoid/blob/81d3530e80403976880f7161555820496c4e382e/src/graph-instruments.js",
+    "sourceSha256": "20b0379b3e47c4a13d4c2ee2e5cc264e05f798e6f538d2b6417052d429122088",
+    "change": "Strip browser cache query from local import"
+  }
+]

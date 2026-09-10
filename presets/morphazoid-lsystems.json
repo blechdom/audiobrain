@@ -1,0 +1,423 @@
+{
+  "documentType": "audiobrain.project",
+  "schemaVersion": 1,
+  "id": "morphazoid-lsystems",
+  "title": "Morphazoid L-Systems",
+  "description": "Expand a branch grammar, traverse its geometric frontier, and translate branch encounters into polyphonic notes.",
+  "learningGoal": "Keep grammar, turtle geometry, frontier scheduling, note mapping, and synthesis replaceable while one canopy view observes their shared state.",
+  "capabilityNotes": [
+    "Built-in instruments work without microphone, MIDI, or network permission.",
+    "Start Audio explicitly to hear this instrument; audio begins at -18 dB gain.",
+    "The graphic observes the shared instrument state and does not drive the audio clock."
+  ],
+  "nodes": [
+    {
+      "id": "grammar",
+      "kind": "lsystem.grammar",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "params": {
+        "axiom": "FX",
+        "rules": "X -> >[-FX]+FX<",
+        "iterations": 5
+      }
+    },
+    {
+      "id": "geometry",
+      "kind": "lsystem.geometry",
+      "position": {
+        "x": 280,
+        "y": 0
+      },
+      "params": {
+        "angleDeg": 45,
+        "lengthScale": 0.72
+      }
+    },
+    {
+      "id": "transport",
+      "kind": "transport",
+      "position": {
+        "x": 0,
+        "y": 660
+      },
+      "params": {
+        "bpm": 120
+      }
+    },
+    {
+      "id": "frontier",
+      "kind": "lsystem.frontier",
+      "position": {
+        "x": 560,
+        "y": 0
+      },
+      "params": {
+        "speed": 0.5
+      }
+    },
+    {
+      "id": "mapping",
+      "kind": "mapping.branchNotes",
+      "position": {
+        "x": 0,
+        "y": 330
+      },
+      "params": {
+        "rootHz": 110,
+        "semitonesPerTurn": 12
+      }
+    },
+    {
+      "id": "voices",
+      "kind": "voice.poly",
+      "position": {
+        "x": 280,
+        "y": 330
+      },
+      "params": {}
+    },
+    {
+      "id": "gain",
+      "kind": "audio.gain",
+      "position": {
+        "x": 560,
+        "y": 330
+      },
+      "params": {
+        "db": -18
+      }
+    },
+    {
+      "id": "out",
+      "kind": "audio.output",
+      "position": {
+        "x": 560,
+        "y": 660
+      },
+      "params": {}
+    },
+    {
+      "id": "view",
+      "kind": "view.path",
+      "position": {
+        "x": 280,
+        "y": 660
+      },
+      "params": {},
+      "viewBindings": {
+        "angle": {
+          "nodePath": [
+            "geometry"
+          ],
+          "paramId": "angleDeg"
+        }
+      }
+    },
+    {
+      "id": "meter",
+      "kind": "analysis.level",
+      "position": {
+        "x": 560,
+        "y": 820
+      },
+      "params": {}
+    }
+  ],
+  "edges": [
+    {
+      "id": "grammar-text-to-geometry-text",
+      "source": {
+        "nodeId": "grammar",
+        "portId": "text"
+      },
+      "target": {
+        "nodeId": "geometry",
+        "portId": "text"
+      }
+    },
+    {
+      "id": "geometry-path-to-frontier-path",
+      "source": {
+        "nodeId": "geometry",
+        "portId": "path"
+      },
+      "target": {
+        "nodeId": "frontier",
+        "portId": "path"
+      }
+    },
+    {
+      "id": "transport-state-to-frontier-transport",
+      "source": {
+        "nodeId": "transport",
+        "portId": "state"
+      },
+      "target": {
+        "nodeId": "frontier",
+        "portId": "transport"
+      }
+    },
+    {
+      "id": "frontier-features-to-mapping-features",
+      "source": {
+        "nodeId": "frontier",
+        "portId": "features"
+      },
+      "target": {
+        "nodeId": "mapping",
+        "portId": "features"
+      }
+    },
+    {
+      "id": "mapping-notes-to-voices-notes",
+      "source": {
+        "nodeId": "mapping",
+        "portId": "notes"
+      },
+      "target": {
+        "nodeId": "voices",
+        "portId": "notes"
+      }
+    },
+    {
+      "id": "voices-audio-to-gain-audio",
+      "source": {
+        "nodeId": "voices",
+        "portId": "audio"
+      },
+      "target": {
+        "nodeId": "gain",
+        "portId": "audio"
+      }
+    },
+    {
+      "id": "gain-audio-to-out-audio",
+      "source": {
+        "nodeId": "gain",
+        "portId": "audio"
+      },
+      "target": {
+        "nodeId": "out",
+        "portId": "audio"
+      }
+    },
+    {
+      "id": "geometry-path-to-view-path",
+      "source": {
+        "nodeId": "geometry",
+        "portId": "path"
+      },
+      "target": {
+        "nodeId": "view",
+        "portId": "path"
+      }
+    },
+    {
+      "id": "frontier-features-to-view-features",
+      "source": {
+        "nodeId": "frontier",
+        "portId": "features"
+      },
+      "target": {
+        "nodeId": "view",
+        "portId": "features"
+      }
+    },
+    {
+      "id": "gain-audio-to-meter-audio",
+      "source": {
+        "nodeId": "gain",
+        "portId": "audio"
+      },
+      "target": {
+        "nodeId": "meter",
+        "portId": "audio"
+      }
+    }
+  ],
+  "performance": {
+    "version": 1,
+    "columns": 12,
+    "widgets": [
+      {
+        "id": "canopy",
+        "kind": "view",
+        "target": {
+          "nodePath": [
+            "view"
+          ],
+          "viewId": "path"
+        },
+        "layout": {
+          "x": 0,
+          "y": 0,
+          "w": 8,
+          "h": 6
+        }
+      },
+      {
+        "id": "iterations",
+        "kind": "param",
+        "target": {
+          "nodePath": [
+            "grammar"
+          ],
+          "paramId": "iterations"
+        },
+        "layout": {
+          "x": 8,
+          "y": 0,
+          "w": 4,
+          "h": 1
+        }
+      },
+      {
+        "id": "angle",
+        "kind": "param",
+        "target": {
+          "nodePath": [
+            "geometry"
+          ],
+          "paramId": "angleDeg"
+        },
+        "layout": {
+          "x": 8,
+          "y": 1,
+          "w": 4,
+          "h": 1
+        }
+      },
+      {
+        "id": "length",
+        "kind": "param",
+        "target": {
+          "nodePath": [
+            "geometry"
+          ],
+          "paramId": "lengthScale"
+        },
+        "layout": {
+          "x": 8,
+          "y": 2,
+          "w": 4,
+          "h": 1
+        }
+      },
+      {
+        "id": "speed",
+        "kind": "param",
+        "target": {
+          "nodePath": [
+            "frontier"
+          ],
+          "paramId": "speed"
+        },
+        "layout": {
+          "x": 8,
+          "y": 3,
+          "w": 4,
+          "h": 1
+        }
+      },
+      {
+        "id": "root",
+        "kind": "param",
+        "target": {
+          "nodePath": [
+            "mapping"
+          ],
+          "paramId": "rootHz"
+        },
+        "layout": {
+          "x": 8,
+          "y": 4,
+          "w": 4,
+          "h": 1
+        }
+      },
+      {
+        "id": "pitch",
+        "kind": "param",
+        "target": {
+          "nodePath": [
+            "mapping"
+          ],
+          "paramId": "semitonesPerTurn"
+        },
+        "layout": {
+          "x": 8,
+          "y": 5,
+          "w": 4,
+          "h": 1
+        }
+      },
+      {
+        "id": "axiom",
+        "kind": "param",
+        "target": {
+          "nodePath": [
+            "grammar"
+          ],
+          "paramId": "axiom"
+        },
+        "layout": {
+          "x": 0,
+          "y": 6,
+          "w": 4,
+          "h": 1
+        }
+      },
+      {
+        "id": "rules",
+        "kind": "param",
+        "target": {
+          "nodePath": [
+            "grammar"
+          ],
+          "paramId": "rules"
+        },
+        "layout": {
+          "x": 4,
+          "y": 6,
+          "w": 8,
+          "h": 2
+        }
+      },
+      {
+        "id": "gain",
+        "kind": "param",
+        "target": {
+          "nodePath": [
+            "gain"
+          ],
+          "paramId": "db"
+        },
+        "layout": {
+          "x": 0,
+          "y": 7,
+          "w": 4,
+          "h": 1
+        }
+      },
+      {
+        "id": "level",
+        "kind": "meter",
+        "target": {
+          "nodePath": [
+            "meter"
+          ],
+          "portId": "level"
+        },
+        "layout": {
+          "x": 0,
+          "y": 8,
+          "w": 12,
+          "h": 1
+        }
+      }
+    ]
+  }
+}

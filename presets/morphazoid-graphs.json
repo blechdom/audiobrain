@@ -1,0 +1,387 @@
+{
+  "documentType": "audiobrain.project",
+  "schemaVersion": 1,
+  "id": "morphazoid-graphs",
+  "title": "Morphazoid Graphs",
+  "description": "Walk a seeded layered topology; translate vertex encounters into decaying notes while its graph remains visible.",
+  "learningGoal": "Distinguish graph-theory topology data from AudioBrain wiring and replace topology, traversal, mapping, and sound independently.",
+  "capabilityNotes": [
+    "Built-in instruments work without microphone, MIDI, or network permission.",
+    "Start Audio explicitly to hear this instrument; audio begins at -18 dB gain.",
+    "The graphic observes the shared instrument state and does not drive the audio clock."
+  ],
+  "nodes": [
+    {
+      "id": "topology",
+      "kind": "graph.topology",
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "params": {
+        "topology": "layered",
+        "layers": 4,
+        "nodesPerLayer": 3,
+        "seed": 17
+      }
+    },
+    {
+      "id": "transport",
+      "kind": "transport",
+      "position": {
+        "x": 0,
+        "y": 660
+      },
+      "params": {
+        "bpm": 120
+      }
+    },
+    {
+      "id": "walk",
+      "kind": "graph.walk",
+      "position": {
+        "x": 280,
+        "y": 0
+      },
+      "params": {
+        "edgeSeconds": 0.15
+      }
+    },
+    {
+      "id": "mapping",
+      "kind": "mapping.graphNotes",
+      "position": {
+        "x": 560,
+        "y": 0
+      },
+      "params": {
+        "rootHz": 220,
+        "semitonesPerTurn": 12
+      }
+    },
+    {
+      "id": "voices",
+      "kind": "voice.graph",
+      "position": {
+        "x": 0,
+        "y": 380
+      },
+      "params": {
+        "decay": 0.6
+      }
+    },
+    {
+      "id": "gain",
+      "kind": "audio.gain",
+      "position": {
+        "x": 280,
+        "y": 380
+      },
+      "params": {
+        "db": -18
+      }
+    },
+    {
+      "id": "out",
+      "kind": "audio.output",
+      "position": {
+        "x": 560,
+        "y": 380
+      },
+      "params": {}
+    },
+    {
+      "id": "view",
+      "kind": "view.graph",
+      "position": {
+        "x": 280,
+        "y": 660
+      },
+      "params": {},
+      "viewBindings": {
+        "edgeTime": {
+          "nodePath": [
+            "walk"
+          ],
+          "paramId": "edgeSeconds"
+        }
+      }
+    },
+    {
+      "id": "meter",
+      "kind": "analysis.level",
+      "position": {
+        "x": 560,
+        "y": 660
+      },
+      "params": {}
+    }
+  ],
+  "edges": [
+    {
+      "id": "topology-graph-to-walk-graph",
+      "source": {
+        "nodeId": "topology",
+        "portId": "graph"
+      },
+      "target": {
+        "nodeId": "walk",
+        "portId": "graph"
+      }
+    },
+    {
+      "id": "transport-state-to-walk-transport",
+      "source": {
+        "nodeId": "transport",
+        "portId": "state"
+      },
+      "target": {
+        "nodeId": "walk",
+        "portId": "transport"
+      }
+    },
+    {
+      "id": "walk-features-to-mapping-features",
+      "source": {
+        "nodeId": "walk",
+        "portId": "features"
+      },
+      "target": {
+        "nodeId": "mapping",
+        "portId": "features"
+      }
+    },
+    {
+      "id": "mapping-notes-to-voices-notes",
+      "source": {
+        "nodeId": "mapping",
+        "portId": "notes"
+      },
+      "target": {
+        "nodeId": "voices",
+        "portId": "notes"
+      }
+    },
+    {
+      "id": "voices-audio-to-gain-audio",
+      "source": {
+        "nodeId": "voices",
+        "portId": "audio"
+      },
+      "target": {
+        "nodeId": "gain",
+        "portId": "audio"
+      }
+    },
+    {
+      "id": "gain-audio-to-out-audio",
+      "source": {
+        "nodeId": "gain",
+        "portId": "audio"
+      },
+      "target": {
+        "nodeId": "out",
+        "portId": "audio"
+      }
+    },
+    {
+      "id": "topology-graph-to-view-graph",
+      "source": {
+        "nodeId": "topology",
+        "portId": "graph"
+      },
+      "target": {
+        "nodeId": "view",
+        "portId": "graph"
+      }
+    },
+    {
+      "id": "walk-features-to-view-features",
+      "source": {
+        "nodeId": "walk",
+        "portId": "features"
+      },
+      "target": {
+        "nodeId": "view",
+        "portId": "features"
+      }
+    },
+    {
+      "id": "gain-audio-to-meter-audio",
+      "source": {
+        "nodeId": "gain",
+        "portId": "audio"
+      },
+      "target": {
+        "nodeId": "meter",
+        "portId": "audio"
+      }
+    }
+  ],
+  "performance": {
+    "version": 1,
+    "columns": 12,
+    "widgets": [
+      {
+        "id": "graph",
+        "kind": "view",
+        "target": {
+          "nodePath": [
+            "view"
+          ],
+          "viewId": "graph"
+        },
+        "layout": {
+          "x": 0,
+          "y": 0,
+          "w": 8,
+          "h": 6
+        }
+      },
+      {
+        "id": "layers",
+        "kind": "param",
+        "target": {
+          "nodePath": [
+            "topology"
+          ],
+          "paramId": "layers"
+        },
+        "layout": {
+          "x": 8,
+          "y": 0,
+          "w": 4,
+          "h": 1
+        }
+      },
+      {
+        "id": "nodes",
+        "kind": "param",
+        "target": {
+          "nodePath": [
+            "topology"
+          ],
+          "paramId": "nodesPerLayer"
+        },
+        "layout": {
+          "x": 8,
+          "y": 1,
+          "w": 4,
+          "h": 1
+        }
+      },
+      {
+        "id": "seed",
+        "kind": "param",
+        "target": {
+          "nodePath": [
+            "topology"
+          ],
+          "paramId": "seed"
+        },
+        "layout": {
+          "x": 8,
+          "y": 2,
+          "w": 4,
+          "h": 1
+        }
+      },
+      {
+        "id": "edge-time",
+        "kind": "param",
+        "target": {
+          "nodePath": [
+            "walk"
+          ],
+          "paramId": "edgeSeconds"
+        },
+        "layout": {
+          "x": 8,
+          "y": 3,
+          "w": 4,
+          "h": 1
+        }
+      },
+      {
+        "id": "root",
+        "kind": "param",
+        "target": {
+          "nodePath": [
+            "mapping"
+          ],
+          "paramId": "rootHz"
+        },
+        "layout": {
+          "x": 8,
+          "y": 4,
+          "w": 4,
+          "h": 1
+        }
+      },
+      {
+        "id": "pitch",
+        "kind": "param",
+        "target": {
+          "nodePath": [
+            "mapping"
+          ],
+          "paramId": "semitonesPerTurn"
+        },
+        "layout": {
+          "x": 8,
+          "y": 5,
+          "w": 4,
+          "h": 1
+        }
+      },
+      {
+        "id": "decay",
+        "kind": "param",
+        "target": {
+          "nodePath": [
+            "voices"
+          ],
+          "paramId": "decay"
+        },
+        "layout": {
+          "x": 0,
+          "y": 6,
+          "w": 4,
+          "h": 1
+        }
+      },
+      {
+        "id": "gain",
+        "kind": "param",
+        "target": {
+          "nodePath": [
+            "gain"
+          ],
+          "paramId": "db"
+        },
+        "layout": {
+          "x": 4,
+          "y": 6,
+          "w": 4,
+          "h": 1
+        }
+      },
+      {
+        "id": "level",
+        "kind": "meter",
+        "target": {
+          "nodePath": [
+            "meter"
+          ],
+          "portId": "level"
+        },
+        "layout": {
+          "x": 8,
+          "y": 6,
+          "w": 4,
+          "h": 1
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,1837 @@
+{
+  "documentType": "audiobrain.operator-catalog",
+  "schemaVersion": 1,
+  "status": "implemented",
+  "description": "Authoritative AudioBrain operator contracts. The editor, compiler, runtime and public catalog derive from this registry; browser devices require explicit session activation.",
+  "limits": {
+    "maxNodes": 128,
+    "maxEdges": 512,
+    "maxWidgets": 64,
+    "maxColumns": 24,
+    "maxRows": 64
+  },
+  "signalTypes": [
+    {
+      "type": "transport.state",
+      "schemaVersion": 1,
+      "description": "Transport snapshot with beats, BPM, epoch and corresponding host-monotonic time; available when audio is unarmed, not an animation tick."
+    },
+    {
+      "type": "geometry.path",
+      "schemaVersion": 1,
+      "description": "Bounded geometric paths with stable point/segment identities and coordinate metadata."
+    },
+    {
+      "type": "geometry.features",
+      "schemaVersion": 1,
+      "description": "Bounded continuous geometric feature frame stamped in host-monotonic seconds with epoch; no musical pitch interpretation."
+    },
+    {
+      "type": "music.voices",
+      "schemaVersion": 1,
+      "description": "Bounded continuous musical voice controls with stable voice IDs."
+    },
+    {
+      "type": "event.feature",
+      "schemaVersion": 1,
+      "description": "Bounded timestamped geometric feature-event batch in host-monotonic seconds with epoch."
+    },
+    {
+      "type": "event.note",
+      "schemaVersion": 1,
+      "description": "Bounded timestamped musical note-event batch in host-monotonic seconds with epoch."
+    },
+    {
+      "type": "geometry.graph",
+      "schemaVersion": 1,
+      "description": "Bounded graph topology with stable vertex/edge identities."
+    },
+    {
+      "type": "audio.block",
+      "schemaVersion": 1,
+      "description": "Host-owned runtime audio bus with explicit channel layout; not serialized sample buffers."
+    },
+    {
+      "type": "control.f32",
+      "schemaVersion": 1,
+      "description": "Finite scalar control/telemetry value with declared meaning and units."
+    },
+    {
+      "type": "text.utf8",
+      "schemaVersion": 1,
+      "description": "Bounded UTF-8 text; interpreted only by the consuming node contract."
+    }
+  ],
+  "operators": [
+    {
+      "kind": "transport",
+      "title": "Transport",
+      "description": "Host transport snapshot with beats, BPM, epoch and host-monotonic seconds. It runs without audio; the armed audio scheduler maps host time into context time.",
+      "runtime": {
+        "status": "implemented",
+        "domain": "control",
+        "clock": "transport"
+      },
+      "inputs": [
+        {
+          "id": "bpm",
+          "label": "Tempo",
+          "type": "control.f32",
+          "schemaVersion": 1,
+          "required": false
+        }
+      ],
+      "outputs": [
+        {
+          "id": "state",
+          "label": "Transport",
+          "type": "transport.state",
+          "schemaVersion": 1
+        }
+      ],
+      "params": [
+        {
+          "id": "bpm",
+          "label": "Tempo",
+          "type": "number",
+          "default": 120,
+          "min": 20,
+          "max": 300,
+          "step": 1,
+          "unit": "bpm"
+        }
+      ],
+      "views": [],
+      "demandRoot": null
+    },
+    {
+      "kind": "shapes.geometry",
+      "title": "Shape Geometry",
+      "description": "Bounded closed contour generated independently from view rendering.",
+      "runtime": {
+        "status": "implemented",
+        "domain": "geometry",
+        "clock": "revision"
+      },
+      "inputs": [
+        {
+          "id": "sides",
+          "label": "Sides",
+          "type": "control.f32",
+          "schemaVersion": 1,
+          "required": false
+        },
+        {
+          "id": "curvature",
+          "label": "Curvature",
+          "type": "control.f32",
+          "schemaVersion": 1,
+          "required": false
+        }
+      ],
+      "outputs": [
+        {
+          "id": "path",
+          "label": "Contour",
+          "type": "geometry.path",
+          "schemaVersion": 1
+        }
+      ],
+      "params": [
+        {
+          "id": "sides",
+          "label": "Sides",
+          "type": "integer",
+          "default": 5,
+          "min": 3,
+          "max": 16,
+          "step": 1,
+          "unit": ""
+        },
+        {
+          "id": "curvature",
+          "label": "Curvature",
+          "type": "number",
+          "default": 0.15,
+          "min": 0,
+          "max": 1,
+          "step": 0.01,
+          "unit": ""
+        }
+      ],
+      "views": [],
+      "demandRoot": null
+    },
+    {
+      "kind": "shapes.reader",
+      "title": "Shape Reader",
+      "description": "Read a bounded set of phase heads on the contour using the host transport; report geometry features before musical mapping.",
+      "runtime": {
+        "status": "implemented",
+        "domain": "control",
+        "clock": "transport"
+      },
+      "inputs": [
+        {
+          "id": "path",
+          "label": "Contour",
+          "type": "geometry.path",
+          "schemaVersion": 1,
+          "required": true
+        },
+        {
+          "id": "transport",
+          "label": "Transport",
+          "type": "transport.state",
+          "schemaVersion": 1,
+          "required": true
+        },
+        {
+          "id": "heads",
+          "label": "Heads",
+          "type": "control.f32",
+          "schemaVersion": 1,
+          "required": false
+        },
+        {
+          "id": "rateHz",
+          "label": "Traversal Rate",
+          "type": "control.f32",
+          "schemaVersion": 1,
+          "required": false
+        }
+      ],
+      "outputs": [
+        {
+          "id": "features",
+          "label": "Geometry Features",
+          "type": "geometry.features",
+          "schemaVersion": 1
+        }
+      ],
+      "params": [
+        {
+          "id": "heads",
+          "label": "Heads",
+          "type": "integer",
+          "default": 4,
+          "min": 1,
+          "max": 8,
+          "step": 1,
+          "unit": ""
+        },
+        {
+          "id": "rateHz",
+          "label": "Traversal Rate",
+          "type": "number",
+          "default": 0.12,
+          "min": 0.01,
+          "max": 2,
+          "step": 0.01,
+          "unit": "Hz"
+        }
+      ],
+      "views": [],
+      "demandRoot": null
+    },
+    {
+      "kind": "shapes.mapping",
+      "title": "Shape to Voices",
+      "description": "Convert geometric measurements into stable continuous voice identities, frequency, amplitude, and pan.",
+      "runtime": {
+        "status": "implemented",
+        "domain": "control",
+        "clock": "transport"
+      },
+      "inputs": [
+        {
+          "id": "features",
+          "label": "Geometry Features",
+          "type": "geometry.features",
+          "schemaVersion": 1,
+          "required": true
+        },
+        {
+          "id": "rootHz",
+          "label": "Root Frequency",
+          "type": "control.f32",
+          "schemaVersion": 1,
+          "required": false
+        },
+        {
+          "id": "rangeOctaves",
+          "label": "Pitch Range",
+          "type": "control.f32",
+          "schemaVersion": 1,
+          "required": false
+        }
+      ],
+      "outputs": [
+        {
+          "id": "voices",
+          "label": "Voice Controls",
+          "type": "music.voices",
+          "schemaVersion": 1
+        }
+      ],
+      "params": [
+        {
+          "id": "rootHz",
+          "label": "Root Frequency",
+          "type": "number",
+          "default": 110,
+          "min": 20,
+          "max": 440,
+          "step": 1,
+          "unit": "Hz"
+        },
+        {
+          "id": "rangeOctaves",
+          "label": "Pitch Range",
+          "type": "number",
+          "default": 2,
+          "min": 0,
+          "max": 7,
+          "step": 0.1,
+          "unit": "octaves"
+        }
+      ],
+      "views": [],
+      "demandRoot": null
+    },
+    {
+      "kind": "voice.continuous",
+      "title": "Continuous Voice Bank",
+      "description": "Bounded continuous voices driven by musical voice controls; one host-owned audio bus.",
+      "runtime": {
+        "status": "implemented",
+        "domain": "audio",
+        "clock": "audio"
+      },
+      "inputs": [
+        {
+          "id": "voices",
+          "label": "Voice Controls",
+          "type": "music.voices",
+          "schemaVersion": 1,
+          "required": true
+        },
+        {
+          "id": "character",
+          "label": "Character",
+          "type": "control.f32",
+          "schemaVersion": 1,
+          "required": false
+        }
+      ],
+      "outputs": [
+        {
+          "id": "audio",
+          "label": "Audio",
+          "type": "audio.block",
+          "schemaVersion": 1
+        }
+      ],
+      "params": [
+        {
+          "id": "character",
+          "label": "Character",
+          "type": "number",
+          "default": 0.35,
+          "min": 0,
+          "max": 1,
+          "step": 0.01,
+          "unit": ""
+        }
+      ],
+      "views": [],
+      "demandRoot": null
+    },
+    {
+      "kind": "lsystem.grammar",
+      "title": "L-System Grammar",
+      "description": "Bounded deterministic symbol expansion; grammar evaluation has no drawing or synthesis side effects.",
+      "runtime": {
+        "status": "implemented",
+        "domain": "geometry",
+        "clock": "revision"
+      },
+      "inputs": [
+        {
+          "id": "iterations",
+          "label": "Iterations",
+          "type": "control.f32",
+          "schemaVersion": 1,
+          "required": false
+        }
+      ],
+      "outputs": [
+        {
+          "id": "text",
+          "label": "Expanded Symbols",
+          "type": "text.utf8",
+          "schemaVersion": 1
+        }
+      ],
+      "params": [
+        {
+          "id": "axiom",
+          "label": "Axiom",
+          "type": "text",
+          "default": "FX",
+          "maxLength": 128
+        },
+        {
+          "id": "rules",
+          "label": "Production Rules",
+          "type": "text",
+          "default": "X -> >[-FX]+FX<",
+          "maxLength": 2048
+        },
+        {
+          "id": "iterations",
+          "label": "Iterations",
+          "type": "integer",
+          "default": 5,
+          "min": 0,
+          "max": 8,
+          "step": 1,
+          "unit": ""
+        }
+      ],
+      "views": [],
+      "demandRoot": null
+    },
+    {
+      "kind": "lsystem.geometry",
+      "title": "L-System Geometry",
+      "description": "Interpret symbols into bounded branch paths without assigning musical notes.",
+      "runtime": {
+        "status": "implemented",
+        "domain": "geometry",
+        "clock": "revision"
+      },
+      "inputs": [
+        {
+          "id": "text",
+          "label": "Expanded Symbols",
+          "type": "text.utf8",
+          "schemaVersion": 1,
+          "required": true
+        },
+        {
+          "id": "angleDeg",
+          "label": "Branch Angle",
+          "type": "control.f32",
+          "schemaVersion": 1,
+          "required": false
+        },
+        {
+          "id": "lengthScale",
+          "label": "Length Scale",
+          "type": "control.f32",
+          "schemaVersion": 1,
+          "required": false
+        }
+      ],
+      "outputs": [
+        {
+          "id": "path",
+          "label": "Branch Paths",
+          "type": "geometry.path",
+          "schemaVersion": 1
+        }
+      ],
+      "params": [
+        {
+          "id": "angleDeg",
+          "label": "Branch Angle",
+          "type": "number",
+          "default": 45,
+          "min": 0,
+          "max": 180,
+          "step": 1,
+          "unit": "degrees"
+        },
+        {
+          "id": "lengthScale",
+          "label": "Length Scale",
+          "type": "number",
+          "default": 0.72,
+          "min": 0.1,
+          "max": 1,
+          "step": 0.01,
+          "unit": ""
+        }
+      ],
+      "views": [],
+      "demandRoot": null
+    },
+    {
+      "kind": "lsystem.frontier",
+      "title": "L-System Frontier",
+      "description": "Advance a bounded branch frontier from transport state and emit geometric encounters stamped in host-monotonic seconds with epoch.",
+      "runtime": {
+        "status": "implemented",
+        "domain": "control",
+        "clock": "transport"
+      },
+      "inputs": [
+        {
+          "id": "path",
+          "label": "Branch Paths",
+          "type": "geometry.path",
+          "schemaVersion": 1,
+          "required": true
+        },
+        {
+          "id": "transport",
+          "label": "Transport",
+          "type": "transport.state",
+          "schemaVersion": 1,
+          "required": true
+        },
+        {
+          "id": "speed",
+          "label": "Traversal Speed",
+          "type": "control.f32",
+          "schemaVersion": 1,
+          "required": false
+        }
+      ],
+      "outputs": [
+        {
+          "id": "features",
+          "label": "Branch Encounters",
+          "type": "event.feature",
+          "schemaVersion": 1
+        }
+      ],
+      "params": [
+        {
+          "id": "speed",
+          "label": "Traversal Speed",
+          "type": "number",
+          "default": 0.5,
+          "min": 0.05,
+          "max": 4,
+          "step": 0.05,
+          "unit": "traversals/s"
+        }
+      ],
+      "views": [],
+      "demandRoot": null
+    },
+    {
+      "kind": "mapping.branchNotes",
+      "title": "Branches to Notes",
+      "description": "Map branch encounters to timestamped musical note events; preserve event identity and host-monotonic stamp with epoch.",
+      "runtime": {
+        "status": "implemented",
+        "domain": "control",
+        "clock": "transport"
+      },
+      "inputs": [
+        {
+          "id": "features",
+          "label": "Branch Encounters",
+          "type": "event.feature",
+          "schemaVersion": 1,
+          "required": true
+        },
+        {
+          "id": "rootHz",
+          "label": "Root Frequency",
+          "type": "control.f32",
+          "schemaVersion": 1,
+          "required": false
+        },
+        {
+          "id": "semitonesPerTurn",
+          "label": "Pitch per Turn",
+          "type": "control.f32",
+          "schemaVersion": 1,
+          "required": false
+        }
+      ],
+      "outputs": [
+        {
+          "id": "notes",
+          "label": "Notes",
+          "type": "event.note",
+          "schemaVersion": 1
+        }
+      ],
+      "params": [
+        {
+          "id": "rootHz",
+          "label": "Root Frequency",
+          "type": "number",
+          "default": 110,
+          "min": 20,
+          "max": 440,
+          "step": 1,
+          "unit": "Hz"
+        },
+        {
+          "id": "semitonesPerTurn",
+          "label": "Pitch per Turn",
+          "type": "number",
+          "default": 12,
+          "min": -24,
+          "max": 24,
+          "step": 1,
+          "unit": "semitones/turn"
+        }
+      ],
+      "views": [],
+      "demandRoot": null
+    },
+    {
+      "kind": "voice.poly",
+      "title": "Polyphonic Voice Bank",
+      "description": "Bounded note-event voice bank with host-owned scheduling and release lifecycle.",
+      "runtime": {
+        "status": "implemented",
+        "domain": "audio",
+        "clock": "audio"
+      },
+      "inputs": [
+        {
+          "id": "notes",
+          "label": "Notes",
+          "type": "event.note",
+          "schemaVersion": 1,
+          "required": true
+        }
+      ],
+      "outputs": [
+        {
+          "id": "audio",
+          "label": "Audio",
+          "type": "audio.block",
+          "schemaVersion": 1
+        }
+      ],
+      "params": [],
+      "views": [],
+      "demandRoot": null
+    },
+    {
+      "kind": "graph.topology",
+      "title": "Graph Topology",
+      "description": "Seeded layered topology is instrument data; its internal links are not AudioBrain cable cycles.",
+      "runtime": {
+        "status": "implemented",
+        "domain": "geometry",
+        "clock": "revision"
+      },
+      "inputs": [
+        {
+          "id": "layers",
+          "label": "Layers",
+          "type": "control.f32",
+          "schemaVersion": 1,
+          "required": false
+        },
+        {
+          "id": "nodesPerLayer",
+          "label": "Nodes per Layer",
+          "type": "control.f32",
+          "schemaVersion": 1,
+          "required": false
+        },
+        {
+          "id": "seed",
+          "label": "Seed",
+          "type": "control.f32",
+          "schemaVersion": 1,
+          "required": false
+        }
+      ],
+      "outputs": [
+        {
+          "id": "graph",
+          "label": "Topology",
+          "type": "geometry.graph",
+          "schemaVersion": 1
+        }
+      ],
+      "params": [
+        {
+          "id": "topology",
+          "label": "Topology",
+          "type": "enum",
+          "default": "layered",
+          "choices": [
+            "layered"
+          ]
+        },
+        {
+          "id": "layers",
+          "label": "Layers",
+          "type": "integer",
+          "default": 4,
+          "min": 2,
+          "max": 8,
+          "step": 1,
+          "unit": ""
+        },
+        {
+          "id": "nodesPerLayer",
+          "label": "Nodes per Layer",
+          "type": "integer",
+          "default": 3,
+          "min": 1,
+          "max": 8,
+          "step": 1,
+          "unit": ""
+        },
+        {
+          "id": "seed",
+          "label": "Seed",
+          "type": "integer",
+          "default": 17,
+          "min": 0,
+          "max": 4294967295,
+          "step": 1,
+          "unit": ""
+        }
+      ],
+      "views": [],
+      "demandRoot": null
+    },
+    {
+      "kind": "graph.walk",
+      "title": "Graph Walk",
+      "description": "Traverse topology with seeded state and report timed vertex/edge encounters independently from sound.",
+      "runtime": {
+        "status": "implemented",
+        "domain": "control",
+        "clock": "transport"
+      },
+      "inputs": [
+        {
+          "id": "graph",
+          "label": "Topology",
+          "type": "geometry.graph",
+          "schemaVersion": 1,
+          "required": true
+        },
+        {
+          "id": "transport",
+          "label": "Transport",
+          "type": "transport.state",
+          "schemaVersion": 1,
+          "required": true
+        },
+        {
+          "id": "edgeSeconds",
+          "label": "Edge Duration",
+          "type": "control.f32",
+          "schemaVersion": 1,
+          "required": false
+        }
+      ],
+      "outputs": [
+        {
+          "id": "features",
+          "label": "Graph Encounters",
+          "type": "event.feature",
+          "schemaVersion": 1
+        }
+      ],
+      "params": [
+        {
+          "id": "edgeSeconds",
+          "label": "Edge Duration",
+          "type": "number",
+          "default": 0.15,
+          "min": 0.01,
+          "max": 1,
+          "step": 0.01,
+          "unit": "s/normalized-distance"
+        }
+      ],
+      "views": [],
+      "demandRoot": null
+    },
+    {
+      "kind": "mapping.graphNotes",
+      "title": "Graph to Notes",
+      "description": "Map graph encounters to timestamped note events using root frequency and angular pitch conversion; preserve the host-monotonic stamp with epoch.",
+      "runtime": {
+        "status": "implemented",
+        "domain": "control",
+        "clock": "transport"
+      },
+      "inputs": [
+        {
+          "id": "features",
+          "label": "Graph Encounters",
+          "type": "event.feature",
+          "schemaVersion": 1,
+          "required": true
+        },
+        {
+          "id": "rootHz",
+          "label": "Root Frequency",
+          "type": "control.f32",
+          "schemaVersion": 1,
+          "required": false
+        },
+        {
+          "id": "semitonesPerTurn",
+          "label": "Pitch per Turn",
+          "type": "control.f32",
+          "schemaVersion": 1,
+          "required": false
+        }
+      ],
+      "outputs": [
+        {
+          "id": "notes",
+          "label": "Notes",
+          "type": "event.note",
+          "schemaVersion": 1
+        }
+      ],
+      "params": [
+        {
+          "id": "rootHz",
+          "label": "Root Frequency",
+          "type": "number",
+          "default": 220,
+          "min": 20,
+          "max": 440,
+          "step": 1,
+          "unit": "Hz"
+        },
+        {
+          "id": "semitonesPerTurn",
+          "label": "Pitch per Turn",
+          "type": "number",
+          "default": 12,
+          "min": -24,
+          "max": 24,
+          "step": 1,
+          "unit": "semitones/turn"
+        }
+      ],
+      "views": [],
+      "demandRoot": null
+    },
+    {
+      "kind": "voice.graph",
+      "title": "Graph Voice Bank",
+      "description": "Bounded event-driven graph instrument voice bank with a declared decay parameter.",
+      "runtime": {
+        "status": "implemented",
+        "domain": "audio",
+        "clock": "audio"
+      },
+      "inputs": [
+        {
+          "id": "notes",
+          "label": "Notes",
+          "type": "event.note",
+          "schemaVersion": 1,
+          "required": true
+        },
+        {
+          "id": "decay",
+          "label": "Decay",
+          "type": "control.f32",
+          "schemaVersion": 1,
+          "required": false
+        }
+      ],
+      "outputs": [
+        {
+          "id": "audio",
+          "label": "Audio",
+          "type": "audio.block",
+          "schemaVersion": 1
+        }
+      ],
+      "params": [
+        {
+          "id": "decay",
+          "label": "Decay",
+          "type": "number",
+          "default": 0.6,
+          "min": 0.02,
+          "max": 4,
+          "step": 0.01,
+          "unit": "seconds"
+        }
+      ],
+      "views": [],
+      "demandRoot": null
+    },
+    {
+      "kind": "audio.gain",
+      "title": "Gain",
+      "description": "Explicit decibel gain stage; smooth changes at the audio boundary.",
+      "runtime": {
+        "status": "implemented",
+        "domain": "audio",
+        "clock": "audio"
+      },
+      "inputs": [
+        {
+          "id": "audio",
+          "label": "Audio",
+          "type": "audio.block",
+          "schemaVersion": 1,
+          "required": true
+        },
+        {
+          "id": "db",
+          "label": "Gain",
+          "type": "control.f32",
+          "schemaVersion": 1,
+          "required": false
+        }
+      ],
+      "outputs": [
+        {
+          "id": "audio",
+          "label": "Audio",
+          "type": "audio.block",
+          "schemaVersion": 1
+        }
+      ],
+      "params": [
+        {
+          "id": "db",
+          "label": "Gain",
+          "type": "number",
+          "default": -18,
+          "min": -60,
+          "max": 0,
+          "step": 0.5,
+          "unit": "dB"
+        }
+      ],
+      "views": [],
+      "demandRoot": null
+    },
+    {
+      "kind": "audio.output",
+      "title": "Audio Output",
+      "description": "Host output demand root. Saved presence does not arm audio or grant access to a device.",
+      "runtime": {
+        "status": "implemented",
+        "domain": "audio",
+        "clock": "audio"
+      },
+      "inputs": [
+        {
+          "id": "audio",
+          "label": "Audio",
+          "type": "audio.block",
+          "schemaVersion": 1,
+          "required": true
+        }
+      ],
+      "outputs": [],
+      "params": [],
+      "views": [],
+      "demandRoot": "audio-output"
+    },
+    {
+      "kind": "analysis.level",
+      "title": "Level Meter",
+      "description": "Read a post-gain audio bus and publish finite normalized RMS telemetry; never write samples to project state.",
+      "runtime": {
+        "status": "implemented",
+        "domain": "analysis",
+        "clock": "audio"
+      },
+      "inputs": [
+        {
+          "id": "audio",
+          "label": "Audio",
+          "type": "audio.block",
+          "schemaVersion": 1,
+          "required": true
+        }
+      ],
+      "outputs": [
+        {
+          "id": "level",
+          "label": "RMS Level",
+          "type": "control.f32",
+          "schemaVersion": 1
+        }
+      ],
+      "params": [],
+      "views": [],
+      "demandRoot": "monitor"
+    },
+    {
+      "kind": "view.shapes",
+      "title": "Shapes View",
+      "description": "View-only demand root observing the contour and optional reader features; rendering never owns geometry or voices.",
+      "runtime": {
+        "status": "implemented",
+        "domain": "view",
+        "clock": "visual"
+      },
+      "inputs": [
+        {
+          "id": "path",
+          "label": "Contour",
+          "type": "geometry.path",
+          "schemaVersion": 1,
+          "required": true
+        },
+        {
+          "id": "features",
+          "label": "Reader Features",
+          "type": "geometry.features",
+          "schemaVersion": 1,
+          "required": false
+        }
+      ],
+      "outputs": [],
+      "params": [],
+      "views": [
+        {
+          "id": "contour",
+          "label": "Shape Contour",
+          "intents": [
+            {
+              "id": "curvature",
+              "label": "Curvature Drag",
+              "paramType": "number"
+            }
+          ]
+        }
+      ],
+      "demandRoot": "view"
+    },
+    {
+      "kind": "view.path",
+      "title": "Branch View",
+      "description": "View-only demand root observing branch geometry and optional traversal encounters.",
+      "runtime": {
+        "status": "implemented",
+        "domain": "view",
+        "clock": "visual"
+      },
+      "inputs": [
+        {
+          "id": "path",
+          "label": "Branch Paths",
+          "type": "geometry.path",
+          "schemaVersion": 1,
+          "required": true
+        },
+        {
+          "id": "features",
+          "label": "Branch Encounters",
+          "type": "event.feature",
+          "schemaVersion": 1,
+          "required": false
+        }
+      ],
+      "outputs": [],
+      "params": [],
+      "views": [
+        {
+          "id": "path",
+          "label": "L-System Branches",
+          "intents": [
+            {
+              "id": "angle",
+              "label": "Branch Angle Drag",
+              "paramType": "number"
+            }
+          ]
+        }
+      ],
+      "demandRoot": "view"
+    },
+    {
+      "kind": "view.graph",
+      "title": "Graph View",
+      "description": "View-only demand root observing topology and optional walk encounters.",
+      "runtime": {
+        "status": "implemented",
+        "domain": "view",
+        "clock": "visual"
+      },
+      "inputs": [
+        {
+          "id": "graph",
+          "label": "Topology",
+          "type": "geometry.graph",
+          "schemaVersion": 1,
+          "required": true
+        },
+        {
+          "id": "features",
+          "label": "Graph Encounters",
+          "type": "event.feature",
+          "schemaVersion": 1,
+          "required": false
+        }
+      ],
+      "outputs": [],
+      "params": [],
+      "views": [
+        {
+          "id": "graph",
+          "label": "Graph Walk",
+          "intents": [
+            {
+              "id": "edgeTime",
+              "label": "Edge Duration Drag",
+              "paramType": "number"
+            }
+          ]
+        }
+      ],
+      "demandRoot": "view"
+    },
+    {
+      "kind": "audio.filter",
+      "title": "Filter",
+      "description": "Native Web Audio biquad filter; connected numeric controls override saved literals.",
+      "runtime": {
+        "status": "implemented",
+        "domain": "audio",
+        "clock": "audio"
+      },
+      "inputs": [
+        {
+          "id": "audio",
+          "label": "Audio",
+          "type": "audio.block",
+          "schemaVersion": 1,
+          "required": true
+        },
+        {
+          "id": "frequency",
+          "label": "Frequency",
+          "type": "control.f32",
+          "schemaVersion": 1,
+          "required": false
+        },
+        {
+          "id": "q",
+          "label": "Q",
+          "type": "control.f32",
+          "schemaVersion": 1,
+          "required": false
+        }
+      ],
+      "outputs": [
+        {
+          "id": "audio",
+          "label": "Audio",
+          "type": "audio.block",
+          "schemaVersion": 1
+        }
+      ],
+      "params": [
+        {
+          "id": "frequency",
+          "label": "Frequency",
+          "type": "number",
+          "default": 1200,
+          "min": 20,
+          "max": 20000,
+          "step": 1,
+          "unit": "Hz"
+        },
+        {
+          "id": "q",
+          "label": "Q",
+          "type": "number",
+          "default": 0.7,
+          "min": 0.1,
+          "max": 30,
+          "step": 0.1,
+          "unit": ""
+        },
+        {
+          "id": "type",
+          "label": "Type",
+          "type": "enum",
+          "default": "lowpass",
+          "choices": [
+            "lowpass",
+            "highpass",
+            "bandpass"
+          ]
+        }
+      ],
+      "views": [],
+      "demandRoot": null
+    },
+    {
+      "kind": "audio.delay",
+      "title": "Delay",
+      "description": "Bounded internal delay feedback; ordinary graph cable cycles remain invalid.",
+      "runtime": {
+        "status": "implemented",
+        "domain": "audio",
+        "clock": "audio"
+      },
+      "inputs": [
+        {
+          "id": "audio",
+          "label": "Audio",
+          "type": "audio.block",
+          "schemaVersion": 1,
+          "required": true
+        },
+        {
+          "id": "seconds",
+          "label": "Seconds",
+          "type": "control.f32",
+          "schemaVersion": 1,
+          "required": false
+        },
+        {
+          "id": "feedback",
+          "label": "Feedback",
+          "type": "control.f32",
+          "schemaVersion": 1,
+          "required": false
+        },
+        {
+          "id": "mix",
+          "label": "Mix",
+          "type": "control.f32",
+          "schemaVersion": 1,
+          "required": false
+        }
+      ],
+      "outputs": [
+        {
+          "id": "audio",
+          "label": "Audio",
+          "type": "audio.block",
+          "schemaVersion": 1
+        }
+      ],
+      "params": [
+        {
+          "id": "seconds",
+          "label": "Seconds",
+          "type": "number",
+          "default": 0.25,
+          "min": 0,
+          "max": 2,
+          "step": 0.01,
+          "unit": "s"
+        },
+        {
+          "id": "feedback",
+          "label": "Feedback",
+          "type": "number",
+          "default": 0.25,
+          "min": 0,
+          "max": 0.9,
+          "step": 0.01,
+          "unit": ""
+        },
+        {
+          "id": "mix",
+          "label": "Mix",
+          "type": "number",
+          "default": 0.25,
+          "min": 0,
+          "max": 1,
+          "step": 0.01,
+          "unit": ""
+        }
+      ],
+      "views": [],
+      "demandRoot": null
+    },
+    {
+      "kind": "audio.pan",
+      "title": "Stereo Pan",
+      "description": "Equal-power stereo placement from left (-1) to right (+1).",
+      "runtime": {
+        "status": "implemented",
+        "domain": "audio",
+        "clock": "audio"
+      },
+      "inputs": [
+        {
+          "id": "audio",
+          "label": "Audio",
+          "type": "audio.block",
+          "schemaVersion": 1,
+          "required": true
+        },
+        {
+          "id": "pan",
+          "label": "Pan",
+          "type": "control.f32",
+          "schemaVersion": 1,
+          "required": false
+        }
+      ],
+      "outputs": [
+        {
+          "id": "audio",
+          "label": "Audio",
+          "type": "audio.block",
+          "schemaVersion": 1
+        }
+      ],
+      "params": [
+        {
+          "id": "pan",
+          "label": "Pan",
+          "type": "number",
+          "default": 0,
+          "min": -1,
+          "max": 1,
+          "step": 0.01,
+          "unit": ""
+        }
+      ],
+      "views": [],
+      "demandRoot": null
+    },
+    {
+      "kind": "audio.oscillator",
+      "title": "Oscillator",
+      "description": "Continuous native oscillator; starts only after explicit audio activation.",
+      "runtime": {
+        "status": "implemented",
+        "domain": "audio",
+        "clock": "audio"
+      },
+      "inputs": [
+        {
+          "id": "frequency",
+          "label": "Frequency",
+          "type": "control.f32",
+          "schemaVersion": 1,
+          "required": false
+        }
+      ],
+      "outputs": [
+        {
+          "id": "audio",
+          "label": "Audio",
+          "type": "audio.block",
+          "schemaVersion": 1
+        }
+      ],
+      "params": [
+        {
+          "id": "frequency",
+          "label": "Frequency",
+          "type": "number",
+          "default": 220,
+          "min": 20,
+          "max": 20000,
+          "step": 1,
+          "unit": "Hz"
+        },
+        {
+          "id": "waveform",
+          "label": "Waveform",
+          "type": "enum",
+          "default": "sine",
+          "choices": [
+            "sine",
+            "triangle",
+            "sawtooth",
+            "square"
+          ]
+        }
+      ],
+      "views": [],
+      "demandRoot": null
+    },
+    {
+      "kind": "control.constant",
+      "title": "Value",
+      "description": "A finite scalar source, with a saved value retained beneath any connected modulation.",
+      "runtime": {
+        "status": "implemented",
+        "domain": "control",
+        "clock": "transport"
+      },
+      "inputs": [
+        {
+          "id": "value",
+          "label": "Value",
+          "type": "control.f32",
+          "schemaVersion": 1,
+          "required": false
+        }
+      ],
+      "outputs": [
+        {
+          "id": "value",
+          "label": "Value",
+          "type": "control.f32",
+          "schemaVersion": 1
+        }
+      ],
+      "params": [
+        {
+          "id": "value",
+          "label": "Value",
+          "type": "number",
+          "default": 0.5,
+          "min": -20000,
+          "max": 20000,
+          "step": 0.01,
+          "unit": ""
+        }
+      ],
+      "views": [],
+      "demandRoot": null
+    },
+    {
+      "kind": "control.map",
+      "title": "Range Map",
+      "description": "Clamped linear range conversion. Equal input bounds resolve to the output minimum.",
+      "runtime": {
+        "status": "implemented",
+        "domain": "control",
+        "clock": "transport"
+      },
+      "inputs": [
+        {
+          "id": "value",
+          "label": "Value",
+          "type": "control.f32",
+          "schemaVersion": 1,
+          "required": true
+        },
+        {
+          "id": "inMin",
+          "label": "Inmin",
+          "type": "control.f32",
+          "schemaVersion": 1,
+          "required": false
+        },
+        {
+          "id": "inMax",
+          "label": "Inmax",
+          "type": "control.f32",
+          "schemaVersion": 1,
+          "required": false
+        },
+        {
+          "id": "outMin",
+          "label": "Outmin",
+          "type": "control.f32",
+          "schemaVersion": 1,
+          "required": false
+        },
+        {
+          "id": "outMax",
+          "label": "Outmax",
+          "type": "control.f32",
+          "schemaVersion": 1,
+          "required": false
+        }
+      ],
+      "outputs": [
+        {
+          "id": "value",
+          "label": "Value",
+          "type": "control.f32",
+          "schemaVersion": 1
+        }
+      ],
+      "params": [
+        {
+          "id": "inMin",
+          "label": "Inmin",
+          "type": "number",
+          "default": 0,
+          "min": -20000,
+          "max": 20000,
+          "step": 0.01,
+          "unit": ""
+        },
+        {
+          "id": "inMax",
+          "label": "Inmax",
+          "type": "number",
+          "default": 1,
+          "min": -20000,
+          "max": 20000,
+          "step": 0.01,
+          "unit": ""
+        },
+        {
+          "id": "outMin",
+          "label": "Outmin",
+          "type": "number",
+          "default": 0,
+          "min": -20000,
+          "max": 20000,
+          "step": 0.01,
+          "unit": ""
+        },
+        {
+          "id": "outMax",
+          "label": "Outmax",
+          "type": "number",
+          "default": 1,
+          "min": -20000,
+          "max": 20000,
+          "step": 0.01,
+          "unit": ""
+        }
+      ],
+      "views": [],
+      "demandRoot": null
+    },
+    {
+      "kind": "control.lfo",
+      "title": "LFO",
+      "description": "Host-clock sine control modulation independent of graphics and audio activation.",
+      "runtime": {
+        "status": "implemented",
+        "domain": "control",
+        "clock": "transport"
+      },
+      "inputs": [
+        {
+          "id": "rateHz",
+          "label": "Ratehz",
+          "type": "control.f32",
+          "schemaVersion": 1,
+          "required": false
+        },
+        {
+          "id": "min",
+          "label": "Min",
+          "type": "control.f32",
+          "schemaVersion": 1,
+          "required": false
+        },
+        {
+          "id": "max",
+          "label": "Max",
+          "type": "control.f32",
+          "schemaVersion": 1,
+          "required": false
+        }
+      ],
+      "outputs": [
+        {
+          "id": "value",
+          "label": "Value",
+          "type": "control.f32",
+          "schemaVersion": 1
+        }
+      ],
+      "params": [
+        {
+          "id": "rateHz",
+          "label": "Ratehz",
+          "type": "number",
+          "default": 0.25,
+          "min": 0.01,
+          "max": 20,
+          "step": 0.01,
+          "unit": "Hz"
+        },
+        {
+          "id": "min",
+          "label": "Min",
+          "type": "number",
+          "default": 0,
+          "min": -20000,
+          "max": 20000,
+          "step": 0.01,
+          "unit": ""
+        },
+        {
+          "id": "max",
+          "label": "Max",
+          "type": "number",
+          "default": 1,
+          "min": -20000,
+          "max": 20000,
+          "step": 0.01,
+          "unit": ""
+        }
+      ],
+      "views": [],
+      "demandRoot": null
+    },
+    {
+      "kind": "audio.input",
+      "title": "Microphone",
+      "description": "Session-owned microphone input enabled only by an explicit device action; disconnected or unavailable input is silent.",
+      "runtime": {
+        "status": "implemented",
+        "domain": "audio",
+        "clock": "audio"
+      },
+      "inputs": [],
+      "outputs": [
+        {
+          "id": "audio",
+          "label": "Audio",
+          "type": "audio.block",
+          "schemaVersion": 1
+        }
+      ],
+      "params": [],
+      "views": [],
+      "demandRoot": null
+    },
+    {
+      "kind": "io.midi.in",
+      "title": "MIDI In",
+      "description": "Explicitly selected Web MIDI input; channel zero accepts all channels, selected CC normalizes to 0\u20131. No SysEx.",
+      "runtime": {
+        "status": "implemented",
+        "domain": "control",
+        "clock": "transport"
+      },
+      "inputs": [
+        {
+          "id": "channel",
+          "label": "Channel",
+          "type": "control.f32",
+          "schemaVersion": 1,
+          "required": false
+        },
+        {
+          "id": "controller",
+          "label": "Controller",
+          "type": "control.f32",
+          "schemaVersion": 1,
+          "required": false
+        }
+      ],
+      "outputs": [
+        {
+          "id": "notes",
+          "label": "Notes",
+          "type": "event.note",
+          "schemaVersion": 1
+        },
+        {
+          "id": "value",
+          "label": "Value",
+          "type": "control.f32",
+          "schemaVersion": 1
+        }
+      ],
+      "params": [
+        {
+          "id": "channel",
+          "label": "Channel",
+          "type": "integer",
+          "default": 0,
+          "min": 0,
+          "max": 16,
+          "step": 1,
+          "unit": ""
+        },
+        {
+          "id": "controller",
+          "label": "Controller",
+          "type": "integer",
+          "default": 1,
+          "min": 0,
+          "max": 127,
+          "step": 1,
+          "unit": ""
+        }
+      ],
+      "views": [],
+      "demandRoot": null
+    },
+    {
+      "kind": "io.midi.out",
+      "title": "MIDI Out",
+      "description": "Timestamped note output to an explicitly selected session MIDI route.",
+      "runtime": {
+        "status": "implemented",
+        "domain": "control",
+        "clock": "transport"
+      },
+      "inputs": [
+        {
+          "id": "notes",
+          "label": "Notes",
+          "type": "event.note",
+          "schemaVersion": 1,
+          "required": true
+        },
+        {
+          "id": "channel",
+          "label": "Channel",
+          "type": "control.f32",
+          "schemaVersion": 1,
+          "required": false
+        }
+      ],
+      "outputs": [],
+      "params": [
+        {
+          "id": "channel",
+          "label": "Channel",
+          "type": "integer",
+          "default": 1,
+          "min": 1,
+          "max": 16,
+          "step": 1,
+          "unit": ""
+        }
+      ],
+      "views": [],
+      "demandRoot": "external-output"
+    },
+    {
+      "kind": "io.osc.in",
+      "title": "OSC In",
+      "description": "Explicit session gateway required for browser OSC; one selected finite control address.",
+      "runtime": {
+        "status": "implemented",
+        "domain": "control",
+        "clock": "transport"
+      },
+      "inputs": [],
+      "outputs": [
+        {
+          "id": "value",
+          "label": "Value",
+          "type": "control.f32",
+          "schemaVersion": 1
+        }
+      ],
+      "params": [
+        {
+          "id": "address",
+          "label": "Address",
+          "type": "text",
+          "default": "/audiobrain/control",
+          "maxLength": 128
+        }
+      ],
+      "views": [],
+      "demandRoot": null
+    },
+    {
+      "kind": "io.osc.out",
+      "title": "OSC Out",
+      "description": "Explicit session gateway required for browser OSC; one selected finite control address.",
+      "runtime": {
+        "status": "implemented",
+        "domain": "control",
+        "clock": "transport"
+      },
+      "inputs": [
+        {
+          "id": "value",
+          "label": "Value",
+          "type": "control.f32",
+          "schemaVersion": 1,
+          "required": false
+        }
+      ],
+      "outputs": [],
+      "params": [
+        {
+          "id": "address",
+          "label": "Address",
+          "type": "text",
+          "default": "/audiobrain/control",
+          "maxLength": 128
+        }
+      ],
+      "views": [],
+      "demandRoot": "external-output"
+    },
+    {
+      "kind": "io.brain.in",
+      "title": "Brain Control In",
+      "description": "Versioned finite control transport; peer pairing and endpoint permissions belong to the session.",
+      "runtime": {
+        "status": "implemented",
+        "domain": "control",
+        "clock": "transport"
+      },
+      "inputs": [],
+      "outputs": [
+        {
+          "id": "value",
+          "label": "Value",
+          "type": "control.f32",
+          "schemaVersion": 1
+        }
+      ],
+      "params": [
+        {
+          "id": "name",
+          "label": "Name",
+          "type": "text",
+          "default": "value",
+          "maxLength": 128
+        },
+        {
+          "id": "channel",
+          "label": "Channel",
+          "type": "text",
+          "default": "audiobrain-v1",
+          "maxLength": 128
+        }
+      ],
+      "views": [],
+      "demandRoot": null
+    },
+    {
+      "kind": "io.brain.out",
+      "title": "Brain Control Out",
+      "description": "Versioned finite control transport; peer pairing and endpoint permissions belong to the session.",
+      "runtime": {
+        "status": "implemented",
+        "domain": "control",
+        "clock": "transport"
+      },
+      "inputs": [
+        {
+          "id": "value",
+          "label": "Value",
+          "type": "control.f32",
+          "schemaVersion": 1,
+          "required": false
+        }
+      ],
+      "outputs": [],
+      "params": [
+        {
+          "id": "name",
+          "label": "Name",
+          "type": "text",
+          "default": "value",
+          "maxLength": 128
+        },
+        {
+          "id": "channel",
+          "label": "Channel",
+          "type": "text",
+          "default": "audiobrain-v1",
+          "maxLength": 128
+        }
+      ],
+      "views": [],
+      "demandRoot": "external-output"
+    }
+  ]
+}
