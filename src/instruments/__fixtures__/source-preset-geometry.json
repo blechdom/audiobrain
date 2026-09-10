@@ -1,0 +1,4743 @@
+{
+  "source": {
+    "repository": "https://github.com/blechdom/morphazoid",
+    "revision": "769b348ab0ee3a8a57e1dd703d0c5cda211e5090",
+    "files": [
+      {
+        "path": "src/l-system.js",
+        "sha256": "d06fcd72cd0f5039b469808f99d482b00e431f7b11491dc0ca05141f795ba760"
+      },
+      {
+        "path": "src/graph-delay.js",
+        "sha256": "d92c562a2344d23ddcf421bf28180ba5448690c895e3ea218f9dafa6a35fe1e2"
+      }
+    ]
+  },
+  "traces": [
+    {
+      "input": {
+        "id": "pythagorean",
+        "name": "Pythagorean tree",
+        "axiom": "FX",
+        "rules": {
+          "X": ">[-FX]+FX<"
+        },
+        "iterations": 7,
+        "maxIterations": 11,
+        "angle": 45,
+        "lengthScale": 0.72
+      },
+      "symbols": 1145,
+      "segmentCount": 255,
+      "duration": 3.3134985227468796,
+      "bounds": {
+        "minX": 0,
+        "maxX": 2.9072421864329927,
+        "minY": -1.9072421864329923,
+        "maxY": 1.9072421864329923
+      },
+      "rootIndices": [
+        0
+      ],
+      "probes": [
+        {
+          "index": 0,
+          "start": {
+            "x": 0,
+            "y": 0
+          },
+          "end": {
+            "x": 1,
+            "y": 0
+          },
+          "heading": 0,
+          "cumulativeTurn": 0,
+          "startDistance": 0,
+          "endDistance": 1,
+          "depth": 0,
+          "parentIndex": null,
+          "voiceKey": "root:0",
+          "powerShare": 1
+        },
+        {
+          "index": 36,
+          "start": {
+            "x": 1.7730430743186307,
+            "y": -1.5601816343186306
+          },
+          "end": {
+            "x": 1.6362237364561691,
+            "y": -1.6970009721810921
+          },
+          "heading": -2.356194490192345,
+          "cumulativeTurn": -2.356194490192345,
+          "startDistance": 2.88038656,
+          "endDistance": 3.0738783231999998,
+          "depth": 4,
+          "parentIndex": 35,
+          "voiceKey": "root:0/branch:34",
+          "powerShare": 0.03125
+        },
+        {
+          "index": 73,
+          "start": {
+            "x": 2.1546237364561693,
+            "y": -1.3179150416850922
+          },
+          "end": {
+            "x": 2.0836965917082693,
+            "y": -1.3888421864329923
+          },
+          "heading": -2.356194490192345,
+          "cumulativeTurn": -2.356194490192345,
+          "startDistance": 3.213192392704,
+          "endDistance": 3.3134985227468796,
+          "depth": 5,
+          "parentIndex": 72,
+          "voiceKey": "root:0/branch:65/branch:72",
+          "powerShare": 0.0078125
+        },
+        {
+          "index": 109,
+          "start": {
+            "x": 2.8363150416850926,
+            "y": -0.10837135272753612
+          },
+          "end": {
+            "x": 2.9072421864329927,
+            "y": -0.03744420797963602
+          },
+          "heading": 0.7853981633974483,
+          "cumulativeTurn": 0.7853981633974483,
+          "startDistance": 3.213192392704,
+          "endDistance": 3.3134985227468796,
+          "depth": 3,
+          "parentIndex": 107,
+          "voiceKey": "root:0/branch:65/branch:97/branch:106/branch:109",
+          "powerShare": 0.0078125
+        },
+        {
+          "index": 145,
+          "start": {
+            "x": 2.5675764816850926,
+            "y": -0.16036720727246384
+          },
+          "end": {
+            "x": 2.6385036264329926,
+            "y": -0.08944006252456374
+          },
+          "heading": 0.7853981633974483,
+          "cumulativeTurn": 0.7853981633974483,
+          "startDistance": 3.213192392704,
+          "endDistance": 3.3134985227468796,
+          "depth": 3,
+          "parentIndex": 143,
+          "voiceKey": "root:0/branch:128/branch:139/branch:143/branch:145",
+          "powerShare": 0.0078125
+        },
+        {
+          "index": 181,
+          "start": {
+            "x": 2.5675764816850926,
+            "y": 1.1786009721810922
+          },
+          "end": {
+            "x": 2.6385036264329926,
+            "y": 1.2495281169289922
+          },
+          "heading": 0.7853981633974483,
+          "cumulativeTurn": 0.7853981633974483,
+          "startDistance": 3.213192392704,
+          "endDistance": 3.3134985227468796,
+          "depth": 3,
+          "parentIndex": 179,
+          "voiceKey": "root:0/branch:128/branch:161/branch:177/branch:181",
+          "powerShare": 0.0078125
+        },
+        {
+          "index": 218,
+          "start": {
+            "x": 1.6362237364561691,
+            "y": 1.6970009721810921
+          },
+          "end": {
+            "x": 1.6362237364561691,
+            "y": 1.8363150416850922
+          },
+          "heading": 1.5707963267948966,
+          "cumulativeTurn": 1.5707963267948966,
+          "startDistance": 3.0738783231999998,
+          "endDistance": 3.213192392704,
+          "depth": 2,
+          "parentIndex": 217,
+          "voiceKey": "root:0/branch:128/branch:192/branch:209/branch:217",
+          "powerShare": 0.015625
+        },
+        {
+          "index": 254,
+          "start": {
+            "x": 0.839632792727536,
+            "y": 1.015309666952169
+          },
+          "end": {
+            "x": 0.9105599374754361,
+            "y": 0.944382522204269
+          },
+          "heading": 5.497787143782138,
+          "cumulativeTurn": 5.497787143782138,
+          "startDistance": 3.213192392704,
+          "endDistance": 3.3134985227468796,
+          "depth": 0,
+          "parentIndex": 252,
+          "voiceKey": "root:0/branch:128/branch:192/branch:224/branch:240/branch:248/branch:252/branch:254",
+          "powerShare": 0.0078125
+        }
+      ],
+      "instructions": "F>[-F>[-F>[-F>[-F>[-F>[-F>[-FX]+FX<]+F>[-FX]+FX<<]+F>[-F>[-FX]+FX<]+F>[-FX]+FX<<<]+F>[-F>[-F>[-FX]+FX<]+F>[-FX]+FX<<]+F>[-F>[-FX]+FX<]+F>[-FX]+FX<<<<]+F>[-F>[-F>[-F>[-FX]+FX<]+F>[-FX]+FX<<]+F>[-F>[-FX]+FX<]+F>[-FX]+FX<<<]+F>[-F>[-F>[-FX]+FX<]+F>[-FX]+FX<<]+F>[-F>[-FX]+FX<]+F>[-FX]+FX<<<<<]+F>[-F>[-F>[-F>[-F>[-FX]+FX<]+F>[-FX]+FX<<]+F>[-F>[-FX]+FX<]+F>[-FX]+FX<<<]+F>[-F>[-F>[-FX]+FX<]+F>[-FX]+FX<<]+F>[-F>[-FX]+FX<]+F>[-FX]+FX<<<<]+F>[-F>[-F>[-F>[-FX]+FX<]+F>[-FX]+FX<<]+F>[-F>[-FX]+FX<]+F>[-FX]+FX<<<]+F>[-F>[-F>[-FX]+FX<]+F>[-FX]+FX<<]+F>[-F>[-FX]+FX<]+F>[-FX]+FX<<<<<<]+F>[-F>[-F>[-F>[-F>[-F>[-FX]+FX<]+F>[-FX]+FX<<]+F>[-F>[-FX]+FX<]+F>[-FX]+FX<<<]+F>[-F>[-F>[-FX]+FX<]+F>[-FX]+FX<<]+F>[-F>[-FX]+FX<]+F>[-FX]+FX<<<<]+F>[-F>[-F>[-F>[-FX]+FX<]+F>[-FX]+FX<<]+F>[-F>[-FX]+FX<]+F>[-FX]+FX<<<]+F>[-F>[-F>[-FX]+FX<]+F>[-FX]+FX<<]+F>[-F>[-FX]+FX<]+F>[-FX]+FX<<<<<]+F>[-F>[-F>[-F>[-F>[-FX]+FX<]+F>[-FX]+FX<<]+F>[-F>[-FX]+FX<]+F>[-FX]+FX<<<]+F>[-F>[-F>[-FX]+FX<]+F>[-FX]+FX<<]+F>[-F>[-FX]+FX<]+F>[-FX]+FX<<<<]+F>[-F>[-F>[-F>[-FX]+FX<]+F>[-FX]+FX<<]+F>[-F>[-FX]+FX<]+F>[-FX]+FX<<<]+F>[-F>[-F>[-FX]+FX<]+F>[-FX]+FX<<]+F>[-F>[-FX]+FX<]+F>[-FX]+FX<<<<<<<"
+    },
+    {
+      "input": {
+        "id": "plant",
+        "name": "Branching plant",
+        "axiom": "X",
+        "rules": {
+          "X": "F+[[X]-X]-F[-FX]+X",
+          "F": "FF"
+        },
+        "iterations": 5,
+        "maxIterations": 6,
+        "angle": 22.5,
+        "lengthScale": 1
+      },
+      "symbols": 6263,
+      "segmentCount": 1488,
+      "duration": 93,
+      "bounds": {
+        "minX": 0,
+        "maxX": 80.1662918575628,
+        "minY": -35.874494127269195,
+        "maxY": 18.686417854490237
+      },
+      "rootIndices": [
+        0
+      ],
+      "probes": [
+        {
+          "index": 0,
+          "start": {
+            "x": 0,
+            "y": 0
+          },
+          "end": {
+            "x": 1,
+            "y": 0
+          },
+          "heading": 0,
+          "cumulativeTurn": 0,
+          "startDistance": 0,
+          "endDistance": 1,
+          "depth": 0,
+          "parentIndex": null,
+          "voiceKey": "root:0",
+          "powerShare": 1
+        },
+        {
+          "index": 212,
+          "start": {
+            "x": 42.78207252018058,
+            "y": 6.122934917841435
+          },
+          "end": {
+            "x": 43.70595205269186,
+            "y": 6.505618350206524
+          },
+          "heading": 0.39269908169872414,
+          "cumulativeTurn": 0.39269908169872414,
+          "startDistance": 44,
+          "endDistance": 45,
+          "depth": 5,
+          "parentIndex": 211,
+          "voiceKey": "root:0/branch:192",
+          "powerShare": 0.018518518518518517
+        },
+        {
+          "index": 425,
+          "start": {
+            "x": 28.61939766255643,
+            "y": 1.913417161825449
+          },
+          "end": {
+            "x": 29.543277195067716,
+            "y": 2.2961005941905386
+          },
+          "heading": 0.39269908169872414,
+          "cumulativeTurn": 0.39269908169872414,
+          "startDistance": 29,
+          "endDistance": 30,
+          "depth": 3,
+          "parentIndex": 424,
+          "voiceKey": "root:0/branch:376/branch:424",
+          "powerShare": 0.037037037037037035
+        },
+        {
+          "index": 637,
+          "start": {
+            "x": 49.70595205269186,
+            "y": -5.740251485476345
+          },
+          "end": {
+            "x": 50.62983158520315,
+            "y": -5.3575680531112555
+          },
+          "heading": 0.39269908169872414,
+          "cumulativeTurn": 0.39269908169872414,
+          "startDistance": 51,
+          "endDistance": 52,
+          "depth": 4,
+          "parentIndex": 636,
+          "voiceKey": "root:0/branch:376/branch:552/branch:608/branch:634",
+          "powerShare": 0.0030864197530864196
+        },
+        {
+          "index": 850,
+          "start": {
+            "x": 64.02086784529344,
+            "y": -8.419035512031973
+          },
+          "end": {
+            "x": 64.94474737780473,
+            "y": -8.036352079666884
+          },
+          "heading": 0.39269908169872414,
+          "cumulativeTurn": 0.39269908169872414,
+          "startDistance": 66,
+          "endDistance": 67,
+          "depth": 3,
+          "parentIndex": 843,
+          "voiceKey": "root:0/branch:736/branch:816/branch:842/branch:850",
+          "powerShare": 0.0030864197530864196
+        },
+        {
+          "index": 1062,
+          "start": {
+            "x": 73.25966317040633,
+            "y": -10.715136106222511
+          },
+          "end": {
+            "x": 74.18354270291762,
+            "y": -11.0978195385876
+          },
+          "heading": -0.39269908169872414,
+          "cumulativeTurn": -0.39269908169872414,
+          "startDistance": 76,
+          "endDistance": 77,
+          "depth": 5,
+          "parentIndex": 1061,
+          "voiceKey": "root:0/branch:736/branch:944/branch:1044/branch:1056",
+          "powerShare": 0.0015432098765432098
+        },
+        {
+          "index": 1275,
+          "start": {
+            "x": 54.78207252018058,
+            "y": 6.122934917841435
+          },
+          "end": {
+            "x": 55.70595205269186,
+            "y": 5.740251485476345
+          },
+          "heading": -0.39269908169872414,
+          "cumulativeTurn": -0.39269908169872414,
+          "startDistance": 56,
+          "endDistance": 57,
+          "depth": 4,
+          "parentIndex": 1274,
+          "voiceKey": "root:0/branch:736/branch:1128/branch:1220/branch:1260/branch:1273",
+          "powerShare": 0.0030864197530864196
+        },
+        {
+          "index": 1487,
+          "start": {
+            "x": 53.96966049913331,
+            "y": 17.47530729737896
+          },
+          "end": {
+            "x": 54.3523439314984,
+            "y": 18.399186829890247
+          },
+          "heading": 1.1780972450961724,
+          "cumulativeTurn": 1.1780972450961724,
+          "startDistance": 62,
+          "endDistance": 63,
+          "depth": 1,
+          "parentIndex": 1486,
+          "voiceKey": "root:0/branch:736/branch:1128/branch:1304/branch:1404/branch:1444/branch:1470/branch:1478/branch:1485",
+          "powerShare": 0.0007716049382716049
+        }
+      ],
+      "instructions": "FFFFFFFFFFFFFFFF+[[FFFFFFFF+[[FFFF+[[FF+[[F+[[X]-X]-F[-FX]+X]-F+[[X]-X]-F[-FX]+X]-FF[-FFF+[[X]-X]-F[-FX]+X]+F+[[X]-X]-F[-FX]+X]-FF+[[F+[[X]-X]-F[-FX]+X]-F+[[X]-X]-F[-FX]+X]-FF[-FFF+[[X]-X]-F[-FX]+X]+F+[[X]-X]-F[-FX]+X]-FFFF[-FFFFFF+[[F+[[X]-X]-F[-FX]+X]-F+[[X]-X]-F[-FX]+X]-FF[-FFF+[[X]-X]-F[-FX]+X]+F+[[X]-X]-F[-FX]+X]+FF+[[F+[[X]-X]-F[-FX]+X]-F+[[X]-X]-F[-FX]+X]-FF[-FFF+[[X]-X]-F[-FX]+X]+F+[[X]-X]-F[-FX]+X]-FFFF+[[FF+[[F+[[X]-X]-F[-FX]+X]-F+[[X]-X]-F[-FX]+X]-FF[-FFF+[[X]-X]-F[-FX]+X]+F+[[X]-X]-F[-FX]+X]-FF+[[F+[[X]-X]-F[-FX]+X]-F+[[X]-X]-F[-FX]+X]-FF[-FFF+[[X]-X]-F[-FX]+X]+F+[[X]-X]-F[-FX]+X]-FFFF[-FFFFFF+[[F+[[X]-X]-F[-FX]+X]-F+[[X]-X]-F[-FX]+X]-FF[-FFF+[[X]-X]-F[-FX]+X]+F+[[X]-X]-F[-FX]+X]+FF+[[F+[[X]-X]-F[-FX]+X]-F+[[X]-X]-F[-FX]+X]-FF[-FFF+[[X]-X]-F[-FX]+X]+F+[[X]-X]-F[-FX]+X]-FFFFFFFF[-FFFFFFFFFFFF+[[FF+[[F+[[X]-X]-F[-FX]+X]-F+[[X]-X]-F[-FX]+X]-FF[-FFF+[[X]-X]-F[-FX]+X]+F+[[X]-X]-F[-FX]+X]-FF+[[F+[[X]-X]-F[-FX]+X]-F+[[X]-X]-F[-FX]+X]-FF[-FFF+[[X]-X]-F[-FX]+X]+F+[[X]-X]-F[-FX]+X]-FFFF[-FFFFFF+[[F+[[X]-X]-F[-FX]+X]-F+[[X]-X]-F[-FX]+X]-FF[-FFF+[[X]-X]-F[-FX]+X]+F+[[X]-X]-F[-FX]+X]+FF+[[F+[[X]-X]-F[-FX]+X]-F+[[X]-X]-F[-FX]+X]-FF[-FFF+[[X]-X]-F[-FX]+X]+F+[[X]-X]-F[-FX]+X]+FFFF+[[FF+[[F+[[X]-X]-F[-FX]+X]-F+[[X]-X]-F[-FX]+X]-FF[-FFF+[[X]-X]-F[-FX]+X]+F+[[X]-X]-F[-FX]+X]-FF+[[F+[[X]-X]-F[-FX]+X]-F+[[X]-X]-F[-FX]+X]-FF[-FFF+[[X]-X]-F[-FX]+X]+F+[[X]-X]-F[-FX]+X]-FFFF[-FFFFFF+[[F+[[X]-X]-F[-FX]+X]-F+[[X]-X]-F[-FX]+X]-FF[-FFF+[[X]-X]-F[-FX]+X]+F+[[X]-X]-F[-FX]+X]+FF+[[F+[[X]-X]-F[-FX]+X]-F+[[X]-X]-F[-FX]+X]-FF[-FFF+[[X]-X]-F[-FX]+X]+F+[[X]-X]-F[-FX]+X]-FFFFFFFF+[[FFFF+[[FF+[[F+[[X]-X]-F[-FX]+X]-F+[[X]-X]-F[-FX]+X]-FF[-FFF+[[X]-X]-F[-FX]+X]+F+[[X]-X]-F[-FX]+X]-FF+[[F+[[X]-X]-F[-FX]+X]-F+[[X]-X]-F[-FX]+X]-FF[-FFF+[[X]-X]-F[-FX]+X]+F+[[X]-X]-F[-FX]+X]-FFFF[-FFFFFF+[[F+[[X]-X]-F[-FX]+X]-F+[[X]-X]-F[-FX]+X]-FF[-FFF+[[X]-X]-F[-FX]+X]+F+[[X]-X]-F[-FX]+X]+FF+[[F+[[X]-X]-F[-FX]+X]-F+[[X]-X]-F[-FX]+X]-FF[-FFF+[[X]-X]-F[-FX]+X]+F+[[X]-X]-F[-FX]+X]-FFFF+[[FF+[[F+[[X]-X]-F[-FX]+X]-F+[[X]-X]-F[-FX]+X]-FF[-FFF+[[X]-X]-F[-FX]+X]+F+[[X]-X]-F[-FX]+X]-FF+[[F+[[X]-X]-F[-FX]+X]-F+[[X]-X]-F[-FX]+X]-FF[-FFF+[[X]-X]-F[-FX]+X]+F+[[X]-X]-F[-FX]+X]-FFFF[-FFFFFF+[[F+[[X]-X]-F[-FX]+X]-F+[[X]-X]-F[-FX]+X]-FF[-FFF+[[X]-X]-F[-FX]+X]+F+[[X]-X]-F[-FX]+X]+FF+[[F+[[X]-X]-F[-FX]+X]-F+[[X]-X]-F[-FX]+X]-FF[-FFF+[[X]-X]-F[-FX]+X]+F+[[X]-X]-F[-FX]+X]-FFFFFFFF[-FFFFFFFFFFFF+[[FF+[[F+[[X]-X]-F[-FX]+X]-F+[[X]-X]-F[-FX]+X]-FF[-FFF+[[X]-X]-F[-FX]+X]+F+[[X]-X]-F[-FX]+X]-FF+[[F+[[X]-X]-F[-FX]+X]-F+[[X]-X]-F[-FX]+X]-FF[-FFF+[[X]-X]-F[-FX]+X]+F+[[X]-X]-F[-FX]+X]-FFFF[-FFFFFF+[[F+[[X]-X]-F[-FX]+X]-F+[[X]-X]-F[-FX]+X]-FF[-FFF+[[X]-X]-F[-FX]+X]+F+[[X]-X]-F[-FX]+X]+FF+[[F+[[X]-X]-F[-FX]+X]-F+[[X]-X]-F[-FX]+X]-FF[-FFF+[[X]-X]-F[-FX]+X]+F+[[X]-X]-F[-FX]+X]+FFFF+[[FF+[[F+[[X]-X]-F[-FX]+X]-F+[[X]-X]-F[-FX]+X]-FF[-FFF+[[X]-X]-F[-FX]+X]+F+[[X]-X]-F[-FX]+X]-FF+[[F+[[X]-X]-F[-FX]+X]-F+[[X]-X]-F[-FX]+X]-FF[-FFF+[[X]-X]-F[-FX]+X]+F+[[X]-X]-F[-FX]+X]-FFFF[-FFFFFF+[[F+[[X]-X]-F[-FX]+X]-F+[[X]-X]-F[-FX]+X]-FF[-FFF+[[X]-X]-F[-FX]+X]+F+[[X]-X]-F[-FX]+X]+FF+[[F+[[X]-X]-F[-FX]+X]-F+[[X]-X]-F[-FX]+X]-FF[-FFF+[[X]-X]-F[-FX]+X]+F+[[X]-X]-F[-FX]+X]-FFFFFFFFFFFFFFFF[-FFFFFFFFFFFFFFFFFFFFFFFF+[[FFFF+[[FF+[[F+[[X]-X]-F[-FX]+X]-F+[[X]-X]-F[-FX]+X]-FF[-FFF+[[X]-X]-F[-FX]+X]+F+[[X]-X]-F[-FX]+X]-FF+[[F+[[X]-X]-F[-FX]+X]-F+[[X]-X]-F[-FX]+X]-FF[-FFF+[[X]-X]-F[-FX]+X]+F+[[X]-X]-F[-FX]+X]-FFFF[-FFFFFF+[[F+[[X]-X]-F[-FX]+X]-F+[[X]-X]-F[-FX]+X]-FF[-FFF+[[X]-X]-F[-FX]+X]+F+[[X]-X]-F[-FX]+X]+FF+[[F+[[X]-X]-F[-FX]+X]-F+[[X]-X]-F[-FX]+X]-FF[-FFF+[[X]-X]-F[-FX]+X]+F+[[X]-X]-F[-FX]+X]-FFFF+[[FF+[[F+[[X]-X]-F[-FX]+X]-F+[[X]-X]-F[-FX]+X]-FF[-FFF+[[X]-X]-F[-FX]+X]+F+[[X]-X]-F[-FX]+X]-FF+[[F+[[X]-X]-F[-FX]+X]-F+[[X]-X]-F[-FX]+X]-FF[-FFF+[[X]-X]-F[-FX]+X]+F+[[X]-X]-F[-FX]+X]-FFFF[-FFFFFF+[[F+[[X]-X]-F[-FX]+X]-F+[[X]-X]-F[-FX]+X]-FF[-FFF+[[X]-X]-F[-FX]+X]+F+[[X]-X]-F[-FX]+X]+FF+[[F+[[X]-X]-F[-FX]+X]-F+[[X]-X]-F[-FX]+X]-FF[-FFF+[[X]-X]-F[-FX]+X]+F+[[X]-X]-F[-FX]+X]-FFFFFFFF[-FFFFFFFFFFFF+[[FF+[[F+[[X]-X]-F[-FX]+X]-F+[[X]-X]-F[-FX]+X]-FF[-FFF+[[X]-X]-F[-FX]+X]+F+[[X]-X]-F[-FX]+X]-FF+[[F+[[X]-X]-F[-FX]+X]-F+[[X]-X]-F[-FX]+X]-FF[-FFF+[[X]-X]-F[-FX]+X]+F+[[X]-X]-F[-FX]+X]-FFFF[-FFFFFF+[[F+[[X]-X]-F[-FX]+X]-F+[[X]-X]-F[-FX]+X]-FF[-FFF+[[X]-X]-F[-FX]+X]+F+[[X]-X]-F[-FX]+X]+FF+[[F+[[X]-X]-F[-FX]+X]-F+[[X]-X]-F[-FX]+X]-FF[-FFF+[[X]-X]-F[-FX]+X]+F+[[X]-X]-F[-FX]+X]+FFFF+[[FF+[[F+[[X]-X]-F[-FX]+X]-F+[[X]-X]-F[-FX]+X]-FF[-FFF+[[X]-X]-F[-FX]+X]+F+[[X]-X]-F[-FX]+X]-FF+[[F+[[X]-X]-F[-FX]+X]-F+[[X]-X]-F[-FX]+X]-FF[-FFF+[[X]-X]-F[-FX]+X]+F+[[X]-X]-F[-FX]+X]-FFFF[-FFFFFF+[[F+[[X]-X]-F[-FX]+X]-F+[[X]-X]-F[-FX]+X]-FF[-FFF+[[X]-X]-F[-FX]+X]+F+[[X]-X]-F[-FX]+X]+FF+[[F+[[X]-X]-F[-FX]+X]-F+[[X]-X]-F[-FX]+X]-FF[-FFF+[[X]-X]-F[-FX]+X]+F+[[X]-X]-F[-FX]+X]+FFFFFFFF+[[FFFF+[[FF+[[F+[[X]-X]-F[-FX]+X]-F+[[X]-X]-F[-FX]+X]-FF[-FFF+[[X]-X]-F[-FX]+X]+F+[[X]-X]-F[-FX]+X]-FF+[[F+[[X]-X]-F[-FX]+X]-F+[[X]-X]-F[-FX]+X]-FF[-FFF+[[X]-X]-F[-FX]+X]+F+[[X]-X]-F[-FX]+X]-FFFF[-FFFFFF+[[F+[[X]-X]-F[-FX]+X]-F+[[X]-X]-F[-FX]+X]-FF[-FFF+[[X]-X]-F[-FX]+X]+F+[[X]-X]-F[-FX]+X]+FF+[[F+[[X]-X]-F[-FX]+X]-F+[[X]-X]-F[-FX]+X]-FF[-FFF+[[X]-X]-F[-FX]+X]+F+[[X]-X]-F[-FX]+X]-FFFF+[[FF+[[F+[[X]-X]-F[-FX]+X]-F+[[X]-X]-F[-FX]+X]-FF[-FFF+[[X]-X]-F[-FX]+X]+F+[[X]-X]-F[-FX]+X]-FF+[[F+[[X]-X]-F[-FX]+X]-F+[[X]-X]-F[-FX]+X]-FF[-FFF+[[X]-X]-F[-FX]+X]+F+[[X]-X]-F[-FX]+X]-FFFF[-FFFFFF+[[F+[[X]-X]-F[-FX]+X]-F+[[X]-X]-F[-FX]+X]-FF[-FFF+[[X]-X]-F[-FX]+X]+F+[[X]-X]-F[-FX]+X]+FF+[[F+[[X]-X]-F[-FX]+X]-F+[[X]-X]-F[-FX]+X]-FF[-FFF+[[X]-X]-F[-FX]+X]+F+[[X]-X]-F[-FX]+X]-FFFFFFFF[-FFFFFFFFFFFF+[[FF+[[F+[[X]-X]-F[-FX]+X]-F+[[X]-X]-F[-FX]+X]-FF[-FFF+[[X]-X]-F[-FX]+X]+F+[[X]-X]-F[-FX]+X]-FF+[[F+[[X]-X]-F[-FX]+X]-F+[[X]-X]-F[-FX]+X]-FF[-FFF+[[X]-X]-F[-FX]+X]+F+[[X]-X]-F[-FX]+X]-FFFF[-FFFFFF+[[F+[[X]-X]-F[-FX]+X]-F+[[X]-X]-F[-FX]+X]-FF[-FFF+[[X]-X]-F[-FX]+X]+F+[[X]-X]-F[-FX]+X]+FF+[[F+[[X]-X]-F[-FX]+X]-F+[[X]-X]-F[-FX]+X]-FF[-FFF+[[X]-X]-F[-FX]+X]+F+[[X]-X]-F[-FX]+X]+FFFF+[[FF+[[F+[[X]-X]-F[-FX]+X]-F+[[X]-X]-F[-FX]+X]-FF[-FFF+[[X]-X]-F[-FX]+X]+F+[[X]-X]-F[-FX]+X]-FF+[[F+[[X]-X]-F[-FX]+X]-F+[[X]-X]-F[-FX]+X]-FF[-FFF+[[X]-X]-F[-FX]+X]+F+[[X]-X]-F[-FX]+X]-FFFF[-FFFFFF+[[F+[[X]-X]-F[-FX]+X]-F+[[X]-X]-F[-FX]+X]-FF[-FFF+[[X]-X]-F[-FX]+X]+F+[[X]-X]-F[-FX]+X]+FF+[[F+[[X]-X]-F[-FX]+X]-F+[[X]-X]-F[-FX]+X]-FF[-FFF+[[X]-X]-F[-FX]+X]+F+[[X]-X]-F[-FX]+X"
+    },
+    {
+      "input": {
+        "id": "coral",
+        "name": "Coral",
+        "axiom": "F",
+        "rules": {
+          "F": ">FF+[+F-F-F]-[-F+F+F]<"
+        },
+        "iterations": 4,
+        "maxIterations": 5,
+        "angle": 22.5,
+        "lengthScale": 0.72
+      },
+      "symbols": 12286,
+      "segmentCount": 4096,
+      "duration": 16.393052159999975,
+      "bounds": {
+        "minX": 0,
+        "maxX": 15.02203945391945,
+        "minY": -3.0006103234846884,
+        "maxY": 6.469547178398513
+      },
+      "rootIndices": [
+        0
+      ],
+      "probes": [
+        {
+          "index": 0,
+          "start": {
+            "x": 0,
+            "y": 0
+          },
+          "end": {
+            "x": 0.26873855999999996,
+            "y": 0
+          },
+          "heading": 0,
+          "cumulativeTurn": 0,
+          "startDistance": 0,
+          "endDistance": 0.26873855999999996,
+          "depth": 0,
+          "parentIndex": null,
+          "voiceKey": "root:0",
+          "powerShare": 1
+        },
+        {
+          "index": 585,
+          "start": {
+            "x": 4.0310784,
+            "y": 0
+          },
+          "end": {
+            "x": 4.29981696,
+            "y": 0
+          },
+          "heading": 0,
+          "cumulativeTurn": 0,
+          "startDistance": 4.0310784,
+          "endDistance": 4.29981696,
+          "depth": 0,
+          "parentIndex": 584,
+          "voiceKey": "root:0/branch:8/branch:64/branch:72/branch:512/branch:520/branch:576/branch:584",
+          "powerShare": 0.00007054673721340389
+        },
+        {
+          "index": 1170,
+          "start": {
+            "x": 5.439978108853848,
+            "y": 2.975222821423079
+          },
+          "end": {
+            "x": 5.171239548853848,
+            "y": 2.975222821423079
+          },
+          "heading": 3.141592653589793,
+          "cumulativeTurn": 3.141592653589793,
+          "startDistance": 8.0621568,
+          "endDistance": 8.33089536,
+          "depth": 4,
+          "parentIndex": 1169,
+          "voiceKey": "root:0/branch:8/branch:64/branch:72/branch:512/branch:520/branch:576/branch:584/branch:1024/branch:1032/branch:1088/branch:1096/branch:1152/branch:1160/branch:1168",
+          "powerShare": 6.22105266432133e-10
+        },
+        {
+          "index": 1755,
+          "start": {
+            "x": 9.080604671900407,
+            "y": 5.378508160368802
+          },
+          "end": {
+            "x": 9.080604671900407,
+            "y": 5.647246720368802
+          },
+          "heading": 1.5707963267948966,
+          "cumulativeTurn": 1.5707963267948966,
+          "startDistance": 12.093235199999988,
+          "endDistance": 12.361973759999987,
+          "depth": 4,
+          "parentIndex": 1754,
+          "voiceKey": "root:0/branch:8/branch:64/branch:72/branch:512/branch:520/branch:576/branch:584/branch:1024/branch:1032/branch:1088/branch:1096/branch:1536/branch:1544/branch:1600/branch:1608/branch:1664/branch:1672/branch:1728/branch:1736/branch:1744/branch:1752",
+          "powerShare": 4.38874967500623e-14
+        },
+        {
+          "index": 2340,
+          "start": {
+            "x": 14.636790499842952,
+            "y": 4.3930297903793925
+          },
+          "end": {
+            "x": 14.905529059842952,
+            "y": 4.3930297903793925
+          },
+          "heading": 0,
+          "cumulativeTurn": 0,
+          "startDistance": 16.124313599999976,
+          "endDistance": 16.393052159999975,
+          "depth": 4,
+          "parentIndex": 2339,
+          "voiceKey": "root:0/branch:8/branch:64/branch:72/branch:512/branch:520/branch:576/branch:584/branch:1024/branch:1032/branch:1088/branch:1096/branch:1536/branch:1544/branch:1600/branch:1608/branch:2048/branch:2056/branch:2112/branch:2120/branch:2176/branch:2184/branch:2240/branch:2248/branch:2304/branch:2312/branch:2320/branch:2328/branch:2336",
+          "powerShare": 6.772761844145416e-18
+        },
+        {
+          "index": 2925,
+          "start": {
+            "x": 7.2518644231129885,
+            "y": -2.079405899327557
+          },
+          "end": {
+            "x": 7.2518644231129885,
+            "y": -2.348144459327557
+          },
+          "heading": -1.5707963267948966,
+          "cumulativeTurn": -1.5707963267948966,
+          "startDistance": 8.0621568,
+          "endDistance": 8.33089536,
+          "depth": 4,
+          "parentIndex": 2921,
+          "voiceKey": "root:0/branch:8/branch:64/branch:72/branch:512/branch:520/branch:576/branch:584/branch:2560/branch:2568/branch:2624/branch:2632/branch:2880/branch:2888/branch:2920/branch:2925",
+          "powerShare": 6.22105266432133e-10
+        },
+        {
+          "index": 3510,
+          "start": {
+            "x": 11.786387627708345,
+            "y": -1.542626918244774
+          },
+          "end": {
+            "x": 12.055126187708344,
+            "y": -1.542626918244774
+          },
+          "heading": 0,
+          "cumulativeTurn": 0,
+          "startDistance": 12.093235199999988,
+          "endDistance": 12.361973759999987,
+          "depth": 4,
+          "parentIndex": 3509,
+          "voiceKey": "root:0/branch:8/branch:64/branch:72/branch:512/branch:520/branch:576/branch:584/branch:2560/branch:2568/branch:2624/branch:2632/branch:3072/branch:3080/branch:3136/branch:3144/branch:3392/branch:3400/branch:3456/branch:3464/branch:3496/branch:3504/branch:3509",
+          "powerShare": 4.38874967500623e-14
+        },
+        {
+          "index": 4095,
+          "start": {
+            "x": 14.62559828461735,
+            "y": 2.692084939835733
+          },
+          "end": {
+            "x": 14.62559828461735,
+            "y": 2.9608234998357332
+          },
+          "heading": 1.5707963267948966,
+          "cumulativeTurn": 1.5707963267948966,
+          "startDistance": 16.124313599999976,
+          "endDistance": 16.393052159999975,
+          "depth": 4,
+          "parentIndex": 4094,
+          "voiceKey": "root:0/branch:8/branch:64/branch:72/branch:512/branch:520/branch:576/branch:584/branch:2560/branch:2568/branch:2624/branch:2632/branch:3072/branch:3080/branch:3136/branch:3144/branch:3584/branch:3592/branch:3648/branch:3656/branch:3904/branch:3912/branch:3968/branch:3976/branch:4032/branch:4040/branch:4072/branch:4080/branch:4088/branch:4093",
+          "powerShare": 6.772761844145416e-18
+        }
+      ],
+      "instructions": ">>>>FF+[+F-F-F]-[-F+F+F]<>FF+[+F-F-F]-[-F+F+F]<+[+>FF+[+F-F-F]-[-F+F+F]<->FF+[+F-F-F]-[-F+F+F]<->FF+[+F-F-F]-[-F+F+F]<]-[->FF+[+F-F-F]-[-F+F+F]<+>FF+[+F-F-F]-[-F+F+F]<+>FF+[+F-F-F]-[-F+F+F]<]<>>FF+[+F-F-F]-[-F+F+F]<>FF+[+F-F-F]-[-F+F+F]<+[+>FF+[+F-F-F]-[-F+F+F]<->FF+[+F-F-F]-[-F+F+F]<->FF+[+F-F-F]-[-F+F+F]<]-[->FF+[+F-F-F]-[-F+F+F]<+>FF+[+F-F-F]-[-F+F+F]<+>FF+[+F-F-F]-[-F+F+F]<]<+[+>>FF+[+F-F-F]-[-F+F+F]<>FF+[+F-F-F]-[-F+F+F]<+[+>FF+[+F-F-F]-[-F+F+F]<->FF+[+F-F-F]-[-F+F+F]<->FF+[+F-F-F]-[-F+F+F]<]-[->FF+[+F-F-F]-[-F+F+F]<+>FF+[+F-F-F]-[-F+F+F]<+>FF+[+F-F-F]-[-F+F+F]<]<->>FF+[+F-F-F]-[-F+F+F]<>FF+[+F-F-F]-[-F+F+F]<+[+>FF+[+F-F-F]-[-F+F+F]<->FF+[+F-F-F]-[-F+F+F]<->FF+[+F-F-F]-[-F+F+F]<]-[->FF+[+F-F-F]-[-F+F+F]<+>FF+[+F-F-F]-[-F+F+F]<+>FF+[+F-F-F]-[-F+F+F]<]<->>FF+[+F-F-F]-[-F+F+F]<>FF+[+F-F-F]-[-F+F+F]<+[+>FF+[+F-F-F]-[-F+F+F]<->FF+[+F-F-F]-[-F+F+F]<->FF+[+F-F-F]-[-F+F+F]<]-[->FF+[+F-F-F]-[-F+F+F]<+>FF+[+F-F-F]-[-F+F+F]<+>FF+[+F-F-F]-[-F+F+F]<]<]-[->>FF+[+F-F-F]-[-F+F+F]<>FF+[+F-F-F]-[-F+F+F]<+[+>FF+[+F-F-F]-[-F+F+F]<->FF+[+F-F-F]-[-F+F+F]<->FF+[+F-F-F]-[-F+F+F]<]-[->FF+[+F-F-F]-[-F+F+F]<+>FF+[+F-F-F]-[-F+F+F]<+>FF+[+F-F-F]-[-F+F+F]<]<+>>FF+[+F-F-F]-[-F+F+F]<>FF+[+F-F-F]-[-F+F+F]<+[+>FF+[+F-F-F]-[-F+F+F]<->FF+[+F-F-F]-[-F+F+F]<->FF+[+F-F-F]-[-F+F+F]<]-[->FF+[+F-F-F]-[-F+F+F]<+>FF+[+F-F-F]-[-F+F+F]<+>FF+[+F-F-F]-[-F+F+F]<]<+>>FF+[+F-F-F]-[-F+F+F]<>FF+[+F-F-F]-[-F+F+F]<+[+>FF+[+F-F-F]-[-F+F+F]<->FF+[+F-F-F]-[-F+F+F]<->FF+[+F-F-F]-[-F+F+F]<]-[->FF+[+F-F-F]-[-F+F+F]<+>FF+[+F-F-F]-[-F+F+F]<+>FF+[+F-F-F]-[-F+F+F]<]<]<>>>FF+[+F-F-F]-[-F+F+F]<>FF+[+F-F-F]-[-F+F+F]<+[+>FF+[+F-F-F]-[-F+F+F]<->FF+[+F-F-F]-[-F+F+F]<->FF+[+F-F-F]-[-F+F+F]<]-[->FF+[+F-F-F]-[-F+F+F]<+>FF+[+F-F-F]-[-F+F+F]<+>FF+[+F-F-F]-[-F+F+F]<]<>>FF+[+F-F-F]-[-F+F+F]<>FF+[+F-F-F]-[-F+F+F]<+[+>FF+[+F-F-F]-[-F+F+F]<->FF+[+F-F-F]-[-F+F+F]<->FF+[+F-F-F]-[-F+F+F]<]-[->FF+[+F-F-F]-[-F+F+F]<+>FF+[+F-F-F]-[-F+F+F]<+>FF+[+F-F-F]-[-F+F+F]<]<+[+>>FF+[+F-F-F]-[-F+F+F]<>FF+[+F-F-F]-[-F+F+F]<+[+>FF+[+F-F-F]-[-F+F+F]<->FF+[+F-F-F]-[-F+F+F]<->FF+[+F-F-F]-[-F+F+F]<]-[->FF+[+F-F-F]-[-F+F+F]<+>FF+[+F-F-F]-[-F+F+F]<+>FF+[+F-F-F]-[-F+F+F]<]<->>FF+[+F-F-F]-[-F+F+F]<>FF+[+F-F-F]-[-F+F+F]<+[+>FF+[+F-F-F]-[-F+F+F]<->FF+[+F-F-F]-[-F+F+F]<->FF+[+F-F-F]-[-F+F+F]<]-[->FF+[+F-F-F]-[-F+F+F]<+>FF+[+F-F-F]-[-F+F+F]<+>FF+[+F-F-F]-[-F+F+F]<]<->>FF+[+F-F-F]-[-F+F+F]<>FF+[+F-F-F]-[-F+F+F]<+[+>FF+[+F-F-F]-[-F+F+F]<->FF+[+F-F-F]-[-F+F+F]<->FF+[+F-F-F]-[-F+F+F]<]-[->FF+[+F-F-F]-[-F+F+F]<+>FF+[+F-F-F]-[-F+F+F]<+>FF+[+F-F-F]-[-F+F+F]<]<]-[->>FF+[+F-F-F]-[-F+F+F]<>FF+[+F-F-F]-[-F+F+F]<+[+>FF+[+F-F-F]-[-F+F+F]<->FF+[+F-F-F]-[-F+F+F]<->FF+[+F-F-F]-[-F+F+F]<]-[->FF+[+F-F-F]-[-F+F+F]<+>FF+[+F-F-F]-[-F+F+F]<+>FF+[+F-F-F]-[-F+F+F]<]<+>>FF+[+F-F-F]-[-F+F+F]<>FF+[+F-F-F]-[-F+F+F]<+[+>FF+[+F-F-F]-[-F+F+F]<->FF+[+F-F-F]-[-F+F+F]<->FF+[+F-F-F]-[-F+F+F]<]-[->FF+[+F-F-F]-[-F+F+F]<+>FF+[+F-F-F]-[-F+F+F]<+>FF+[+F-F-F]-[-F+F+F]<]<+>>FF+[+F-F-F]-[-F+F+F]<>FF+[+F-F-F]-[-F+F+F]<+[+>FF+[+F-F-F]-[-F+F+F]<->FF+[+F-F-F]-[-F+F+F]<->FF+[+F-F-F]-[-F+F+F]<]-[->FF+[+F-F-F]-[-F+F+F]<+>FF+[+F-F-F]-[-F+F+F]<+>FF+[+F-F-F]-[-F+F+F]<]<]<+[+>>>FF+[+F-F-F]-[-F+F+F]<>FF+[+F-F-F]-[-F+F+F]<+[+>FF+[+F-F-F]-[-F+F+F]<->FF+[+F-F-F]-[-F+F+F]<->FF+[+F-F-F]-[-F+F+F]<]-[->FF+[+F-F-F]-[-F+F+F]<+>FF+[+F-F-F]-[-F+F+F]<+>FF+[+F-F-F]-[-F+F+F]<]<>>FF+[+F-F-F]-[-F+F+F]<>FF+[+F-F-F]-[-F+F+F]<+[+>FF+[+F-F-F]-[-F+F+F]<->FF+[+F-F-F]-[-F+F+F]<->FF+[+F-F-F]-[-F+F+F]<]-[->FF+[+F-F-F]-[-F+F+F]<+>FF+[+F-F-F]-[-F+F+F]<+>FF+[+F-F-F]-[-F+F+F]<]<+[+>>FF+[+F-F-F]-[-F+F+F]<>FF+[+F-F-F]-[-F+F+F]<+[+>FF+[+F-F-F]-[-F+F+F]<->FF+[+F-F-F]-[-F+F+F]<->FF+[+F-F-F]-[-F+F+F]<]-[->FF+[+F-F-F]-[-F+F+F]<+>FF+[+F-F-F]-[-F+F+F]<+>FF+[+F-F-F]-[-F+F+F]<]<->>FF+[+F-F-F]-[-F+F+F]<>FF+[+F-F-F]-[-F+F+F]<+[+>FF+[+F-F-F]-[-F+F+F]<->FF+[+F-F-F]-[-F+F+F]<->FF+[+F-F-F]-[-F+F+F]<]-[->FF+[+F-F-F]-[-F+F+F]<+>FF+[+F-F-F]-[-F+F+F]<+>FF+[+F-F-F]-[-F+F+F]<]<->>FF+[+F-F-F]-[-F+F+F]<>FF+[+F-F-F]-[-F+F+F]<+[+>FF+[+F-F-F]-[-F+F+F]<->FF+[+F-F-F]-[-F+F+F]<->FF+[+F-F-F]-[-F+F+F]<]-[->FF+[+F-F-F]-[-F+F+F]<+>FF+[+F-F-F]-[-F+F+F]<+>FF+[+F-F-F]-[-F+F+F]<]<]-[->>FF+[+F-F-F]-[-F+F+F]<>FF+[+F-F-F]-[-F+F+F]<+[+>FF+[+F-F-F]-[-F+F+F]<->FF+[+F-F-F]-[-F+F+F]<->FF+[+F-F-F]-[-F+F+F]<]-[->FF+[+F-F-F]-[-F+F+F]<+>FF+[+F-F-F]-[-F+F+F]<+>FF+[+F-F-F]-[-F+F+F]<]<+>>FF+[+F-F-F]-[-F+F+F]<>FF+[+F-F-F]-[-F+F+F]<+[+>FF+[+F-F-F]-[-F+F+F]<->FF+[+F-F-F]-[-F+F+F]<->FF+[+F-F-F]-[-F+F+F]<]-[->FF+[+F-F-F]-[-F+F+F]<+>FF+[+F-F-F]-[-F+F+F]<+>FF+[+F-F-F]-[-F+F+F]<]<+>>FF+[+F-F-F]-[-F+F+F]<>FF+[+F-F-F]-[-F+F+F]<+[+>FF+[+F-F-F]-[-F+F+F]<->FF+[+F-F-F]-[-F+F+F]<->FF+[+F-F-F]-[-F+F+F]<]-[->FF+[+F-F-F]-[-F+F+F]<+>FF+[+F-F-F]-[-F+F+F]<+>FF+[+F-F-F]-[-F+F+F]<]<]<->>>FF+[+F-F-F]-[-F+F+F]<>FF+[+F-F-F]-[-F+F+F]<+[+>FF+[+F-F-F]-[-F+F+F]<->FF+[+F-F-F]-[-F+F+F]<->FF+[+F-F-F]-[-F+F+F]<]-[->FF+[+F-F-F]-[-F+F+F]<+>FF+[+F-F-F]-[-F+F+F]<+>FF+[+F-F-F]-[-F+F+F]<]<>>FF+[+F-F-F]-[-F+F+F]<>FF+[+F-F-F]-[-F+F+F]<+[+>FF+[+F-F-F]-[-F+F+F]<->FF+[+F-F-F]-[-F+F+F]<->FF+[+F-F-F]-[-F+F+F]<]-[->FF+[+F-F-F]-[-F+F+F]<+>FF+[+F-F-F]-[-F+F+F]<+>FF+[+F-F-F]-[-F+F+F]<]<+[+>>FF+[+F-F-F]-[-F+F+F]<>FF+[+F-F-F]-[-F+F+F]<+[+>FF+[+F-F-F]-[-F+F+F]<->FF+[+F-F-F]-[-F+F+F]<->FF+[+F-F-F]-[-F+F+F]<]-[->FF+[+F-F-F]-[-F+F+F]<+>FF+[+F-F-F]-[-F+F+F]<+>FF+[+F-F-F]-[-F+F+F]<]<->>FF+[+F-F-F]-[-F+F+F]<>FF+[+F-F-F]-[-F+F+F]<+[+>FF+[+F-F-F]-[-F+F+F]<->FF+[+F-F-F]-[-F+F+F]<->FF+[+F-F-F]-[-F+F+F]<]-[->FF+[+F-F-F]-[-F+F+F]<+>FF+[+F-F-F]-[-F+F+F]<+>FF+[+F-F-F]-[-F+F+F]<]<->>FF+[+F-F-F]-[-F+F+F]<>FF+[+F-F-F]-[-F+F+F]<+[+>FF+[+F-F-F]-[-F+F+F]<->FF+[+F-F-F]-[-F+F+F]<->FF+[+F-F-F]-[-F+F+F]<]-[->FF+[+F-F-F]-[-F+F+F]<+>FF+[+F-F-F]-[-F+F+F]<+>FF+[+F-F-F]-[-F+F+F]<]<]-[->>FF+[+F-F-F]-[-F+F+F]<>FF+[+F-F-F]-[-F+F+F]<+[+>FF+[+F-F-F]-[-F+F+F]<->FF+[+F-F-F]-[-F+F+F]<->FF+[+F-F-F]-[-F+F+F]<]-[->FF+[+F-F-F]-[-F+F+F]<+>FF+[+F-F-F]-[-F+F+F]<+>FF+[+F-F-F]-[-F+F+F]<]<+>>FF+[+F-F-F]-[-F+F+F]<>FF+[+F-F-F]-[-F+F+F]<+[+>FF+[+F-F-F]-[-F+F+F]<->FF+[+F-F-F]-[-F+F+F]<->FF+[+F-F-F]-[-F+F+F]<]-[->FF+[+F-F-F]-[-F+F+F]<+>FF+[+F-F-F]-[-F+F+F]<+>FF+[+F-F-F]-[-F+F+F]<]<+>>FF+[+F-F-F]-[-F+F+F]<>FF+[+F-F-F]-[-F+F+F]<+[+>FF+[+F-F-F]-[-F+F+F]<->FF+[+F-F-F]-[-F+F+F]<->FF+[+F-F-F]-[-F+F+F]<]-[->FF+[+F-F-F]-[-F+F+F]<+>FF+[+F-F-F]-[-F+F+F]<+>FF+[+F-F-F]-[-F+F+F]<]<]<->>>FF+[+F-F-F]-[-F+F+F]<>FF+[+F-F-F]-[-F+F+F]<+[+>FF+[+F-F-F]-[-F+F+F]<->FF+[+F-F-F]-[-F+F+F]<->FF+[+F-F-F]-[-F+F+F]<]-[->FF+[+F-F-F]-[-F+F+F]<+>FF+[+F-F-F]-[-F+F+F]<+>FF+[+F-F-F]-[-F+F+F]<]<>>FF+[+F-F-F]-[-F+F+F]<>FF+[+F-F-F]-[-F+F+F]<+[+>FF+[+F-F-F]-[-F+F+F]<->FF+[+F-F-F]-[-F+F+F]<->FF+[+F-F-F]-[-F+F+F]<]-[->FF+[+F-F-F]-[-F+F+F]<+>FF+[+F-F-F]-[-F+F+F]<+>FF+[+F-F-F]-[-F+F+F]<]<+[+>>FF+[+F-F-F]-[-F+F+F]<>FF+[+F-F-F]-[-F+F+F]<+[+>FF+[+F-F-F]-[-F+F+F]<->FF+[+F-F-F]-[-F+F+F]<->FF+[+F-F-F]-[-F+F+F]<]-[->FF+[+F-F-F]-[-F+F+F]<+>FF+[+F-F-F]-[-F+F+F]<+>FF+[+F-F-F]-[-F+F+F]<]<->>FF+[+F-F-F]-[-F+F+F]<>FF+[+F-F-F]-[-F+F+F]<+[+>FF+[+F-F-F]-[-F+F+F]<->FF+[+F-F-F]-[-F+F+F]<->FF+[+F-F-F]-[-F+F+F]<]-[->FF+[+F-F-F]-[-F+F+F]<+>FF+[+F-F-F]-[-F+F+F]<+>FF+[+F-F-F]-[-F+F+F]<]<->>FF+[+F-F-F]-[-F+F+F]<>FF+[+F-F-F]-[-F+F+F]<+[+>FF+[+F-F-F]-[-F+F+F]<->FF+[+F-F-F]-[-F+F+F]<->FF+[+F-F-F]-[-F+F+F]<]-[->FF+[+F-F-F]-[-F+F+F]<+>FF+[+F-F-F]-[-F+F+F]<+>FF+[+F-F-F]-[-F+F+F]<]<]-[->>FF+[+F-F-F]-[-F+F+F]<>FF+[+F-F-F]-[-F+F+F]<+[+>FF+[+F-F-F]-[-F+F+F]<->FF+[+F-F-F]-[-F+F+F]<->FF+[+F-F-F]-[-F+F+F]<]-[->FF+[+F-F-F]-[-F+F+F]<+>FF+[+F-F-F]-[-F+F+F]<+>FF+[+F-F-F]-[-F+F+F]<]<+>>FF+[+F-F-F]-[-F+F+F]<>FF+[+F-F-F]-[-F+F+F]<+[+>FF+[+F-F-F]-[-F+F+F]<->FF+[+F-F-F]-[-F+F+F]<->FF+[+F-F-F]-[-F+F+F]<]-[->FF+[+F-F-F]-[-F+F+F]<+>FF+[+F-F-F]-[-F+F+F]<+>FF+[+F-F-F]-[-F+F+F]<]<+>>FF+[+F-F-F]-[-F+F+F]<>FF+[+F-F-F]-[-F+F+F]<+[+>FF+[+F-F-F]-[-F+F+F]<->FF+[+F-F-F]-[-F+F+F]<->FF+[+F-F-F]-[-F+F+F]<]-[->FF+[+F-F-F]-[-F+F+F]<+>FF+[+F-F-F]-[-F+F+F]<+>FF+[+F-F-F]-[-F+F+F]<]<]<]-[->>>FF+[+F-F-F]-[-F+F+F]<>FF+[+F-F-F]-[-F+F+F]<+[+>FF+[+F-F-F]-[-F+F+F]<->FF+[+F-F-F]-[-F+F+F]<->FF+[+F-F-F]-[-F+F+F]<]-[->FF+[+F-F-F]-[-F+F+F]<+>FF+[+F-F-F]-[-F+F+F]<+>FF+[+F-F-F]-[-F+F+F]<]<>>FF+[+F-F-F]-[-F+F+F]<>FF+[+F-F-F]-[-F+F+F]<+[+>FF+[+F-F-F]-[-F+F+F]<->FF+[+F-F-F]-[-F+F+F]<->FF+[+F-F-F]-[-F+F+F]<]-[->FF+[+F-F-F]-[-F+F+F]<+>FF+[+F-F-F]-[-F+F+F]<+>FF+[+F-F-F]-[-F+F+F]<]<+[+>>FF+[+F-F-F]-[-F+F+F]<>FF+[+F-F-F]-[-F+F+F]<+[+>FF+[+F-F-F]-[-F+F+F]<->FF+[+F-F-F]-[-F+F+F]<->FF+[+F-F-F]-[-F+F+F]<]-[->FF+[+F-F-F]-[-F+F+F]<+>FF+[+F-F-F]-[-F+F+F]<+>FF+[+F-F-F]-[-F+F+F]<]<->>FF+[+F-F-F]-[-F+F+F]<>FF+[+F-F-F]-[-F+F+F]<+[+>FF+[+F-F-F]-[-F+F+F]<->FF+[+F-F-F]-[-F+F+F]<->FF+[+F-F-F]-[-F+F+F]<]-[->FF+[+F-F-F]-[-F+F+F]<+>FF+[+F-F-F]-[-F+F+F]<+>FF+[+F-F-F]-[-F+F+F]<]<->>FF+[+F-F-F]-[-F+F+F]<>FF+[+F-F-F]-[-F+F+F]<+[+>FF+[+F-F-F]-[-F+F+F]<->FF+[+F-F-F]-[-F+F+F]<->FF+[+F-F-F]-[-F+F+F]<]-[->FF+[+F-F-F]-[-F+F+F]<+>FF+[+F-F-F]-[-F+F+F]<+>FF+[+F-F-F]-[-F+F+F]<]<]-[->>FF+[+F-F-F]-[-F+F+F]<>FF+[+F-F-F]-[-F+F+F]<+[+>FF+[+F-F-F]-[-F+F+F]<->FF+[+F-F-F]-[-F+F+F]<->FF+[+F-F-F]-[-F+F+F]<]-[->FF+[+F-F-F]-[-F+F+F]<+>FF+[+F-F-F]-[-F+F+F]<+>FF+[+F-F-F]-[-F+F+F]<]<+>>FF+[+F-F-F]-[-F+F+F]<>FF+[+F-F-F]-[-F+F+F]<+[+>FF+[+F-F-F]-[-F+F+F]<->FF+[+F-F-F]-[-F+F+F]<->FF+[+F-F-F]-[-F+F+F]<]-[->FF+[+F-F-F]-[-F+F+F]<+>FF+[+F-F-F]-[-F+F+F]<+>FF+[+F-F-F]-[-F+F+F]<]<+>>FF+[+F-F-F]-[-F+F+F]<>FF+[+F-F-F]-[-F+F+F]<+[+>FF+[+F-F-F]-[-F+F+F]<->FF+[+F-F-F]-[-F+F+F]<->FF+[+F-F-F]-[-F+F+F]<]-[->FF+[+F-F-F]-[-F+F+F]<+>FF+[+F-F-F]-[-F+F+F]<+>FF+[+F-F-F]-[-F+F+F]<]<]<+>>>FF+[+F-F-F]-[-F+F+F]<>FF+[+F-F-F]-[-F+F+F]<+[+>FF+[+F-F-F]-[-F+F+F]<->FF+[+F-F-F]-[-F+F+F]<->FF+[+F-F-F]-[-F+F+F]<]-[->FF+[+F-F-F]-[-F+F+F]<+>FF+[+F-F-F]-[-F+F+F]<+>FF+[+F-F-F]-[-F+F+F]<]<>>FF+[+F-F-F]-[-F+F+F]<>FF+[+F-F-F]-[-F+F+F]<+[+>FF+[+F-F-F]-[-F+F+F]<->FF+[+F-F-F]-[-F+F+F]<->FF+[+F-F-F]-[-F+F+F]<]-[->FF+[+F-F-F]-[-F+F+F]<+>FF+[+F-F-F]-[-F+F+F]<+>FF+[+F-F-F]-[-F+F+F]<]<+[+>>FF+[+F-F-F]-[-F+F+F]<>FF+[+F-F-F]-[-F+F+F]<+[+>FF+[+F-F-F]-[-F+F+F]<->FF+[+F-F-F]-[-F+F+F]<->FF+[+F-F-F]-[-F+F+F]<]-[->FF+[+F-F-F]-[-F+F+F]<+>FF+[+F-F-F]-[-F+F+F]<+>FF+[+F-F-F]-[-F+F+F]<]<->>FF+[+F-F-F]-[-F+F+F]<>FF+[+F-F-F]-[-F+F+F]<+[+>FF+[+F-F-F]-[-F+F+F]<->FF+[+F-F-F]-[-F+F+F]<->FF+[+F-F-F]-[-F+F+F]<]-[->FF+[+F-F-F]-[-F+F+F]<+>FF+[+F-F-F]-[-F+F+F]<+>FF+[+F-F-F]-[-F+F+F]<]<->>FF+[+F-F-F]-[-F+F+F]<>FF+[+F-F-F]-[-F+F+F]<+[+>FF+[+F-F-F]-[-F+F+F]<->FF+[+F-F-F]-[-F+F+F]<->FF+[+F-F-F]-[-F+F+F]<]-[->FF+[+F-F-F]-[-F+F+F]<+>FF+[+F-F-F]-[-F+F+F]<+>FF+[+F-F-F]-[-F+F+F]<]<]-[->>FF+[+F-F-F]-[-F+F+F]<>FF+[+F-F-F]-[-F+F+F]<+[+>FF+[+F-F-F]-[-F+F+F]<->FF+[+F-F-F]-[-F+F+F]<->FF+[+F-F-F]-[-F+F+F]<]-[->FF+[+F-F-F]-[-F+F+F]<+>FF+[+F-F-F]-[-F+F+F]<+>FF+[+F-F-F]-[-F+F+F]<]<+>>FF+[+F-F-F]-[-F+F+F]<>FF+[+F-F-F]-[-F+F+F]<+[+>FF+[+F-F-F]-[-F+F+F]<->FF+[+F-F-F]-[-F+F+F]<->FF+[+F-F-F]-[-F+F+F]<]-[->FF+[+F-F-F]-[-F+F+F]<+>FF+[+F-F-F]-[-F+F+F]<+>FF+[+F-F-F]-[-F+F+F]<]<+>>FF+[+F-F-F]-[-F+F+F]<>FF+[+F-F-F]-[-F+F+F]<+[+>FF+[+F-F-F]-[-F+F+F]<->FF+[+F-F-F]-[-F+F+F]<->FF+[+F-F-F]-[-F+F+F]<]-[->FF+[+F-F-F]-[-F+F+F]<+>FF+[+F-F-F]-[-F+F+F]<+>FF+[+F-F-F]-[-F+F+F]<]<]<+>>>FF+[+F-F-F]-[-F+F+F]<>FF+[+F-F-F]-[-F+F+F]<+[+>FF+[+F-F-F]-[-F+F+F]<->FF+[+F-F-F]-[-F+F+F]<->FF+[+F-F-F]-[-F+F+F]<]-[->FF+[+F-F-F]-[-F+F+F]<+>FF+[+F-F-F]-[-F+F+F]<+>FF+[+F-F-F]-[-F+F+F]<]<>>FF+[+F-F-F]-[-F+F+F]<>FF+[+F-F-F]-[-F+F+F]<+[+>FF+[+F-F-F]-[-F+F+F]<->FF+[+F-F-F]-[-F+F+F]<->FF+[+F-F-F]-[-F+F+F]<]-[->FF+[+F-F-F]-[-F+F+F]<+>FF+[+F-F-F]-[-F+F+F]<+>FF+[+F-F-F]-[-F+F+F]<]<+[+>>FF+[+F-F-F]-[-F+F+F]<>FF+[+F-F-F]-[-F+F+F]<+[+>FF+[+F-F-F]-[-F+F+F]<->FF+[+F-F-F]-[-F+F+F]<->FF+[+F-F-F]-[-F+F+F]<]-[->FF+[+F-F-F]-[-F+F+F]<+>FF+[+F-F-F]-[-F+F+F]<+>FF+[+F-F-F]-[-F+F+F]<]<->>FF+[+F-F-F]-[-F+F+F]<>FF+[+F-F-F]-[-F+F+F]<+[+>FF+[+F-F-F]-[-F+F+F]<->FF+[+F-F-F]-[-F+F+F]<->FF+[+F-F-F]-[-F+F+F]<]-[->FF+[+F-F-F]-[-F+F+F]<+>FF+[+F-F-F]-[-F+F+F]<+>FF+[+F-F-F]-[-F+F+F]<]<->>FF+[+F-F-F]-[-F+F+F]<>FF+[+F-F-F]-[-F+F+F]<+[+>FF+[+F-F-F]-[-F+F+F]<->FF+[+F-F-F]-[-F+F+F]<->FF+[+F-F-F]-[-F+F+F]<]-[->FF+[+F-F-F]-[-F+F+F]<+>FF+[+F-F-F]-[-F+F+F]<+>FF+[+F-F-F]-[-F+F+F]<]<]-[->>FF+[+F-F-F]-[-F+F+F]<>FF+[+F-F-F]-[-F+F+F]<+[+>FF+[+F-F-F]-[-F+F+F]<->FF+[+F-F-F]-[-F+F+F]<->FF+[+F-F-F]-[-F+F+F]<]-[->FF+[+F-F-F]-[-F+F+F]<+>FF+[+F-F-F]-[-F+F+F]<+>FF+[+F-F-F]-[-F+F+F]<]<+>>FF+[+F-F-F]-[-F+F+F]<>FF+[+F-F-F]-[-F+F+F]<+[+>FF+[+F-F-F]-[-F+F+F]<->FF+[+F-F-F]-[-F+F+F]<->FF+[+F-F-F]-[-F+F+F]<]-[->FF+[+F-F-F]-[-F+F+F]<+>FF+[+F-F-F]-[-F+F+F]<+>FF+[+F-F-F]-[-F+F+F]<]<+>>FF+[+F-F-F]-[-F+F+F]<>FF+[+F-F-F]-[-F+F+F]<+[+>FF+[+F-F-F]-[-F+F+F]<->FF+[+F-F-F]-[-F+F+F]<->FF+[+F-F-F]-[-F+F+F]<]-[->FF+[+F-F-F]-[-F+F+F]<+>FF+[+F-F-F]-[-F+F+F]<+>FF+[+F-F-F]-[-F+F+F]<]<]<]<"
+    },
+    {
+      "input": {
+        "id": "dragon",
+        "name": "Dragon curve",
+        "axiom": "FX",
+        "rules": {
+          "X": "X+YF+",
+          "Y": "-FX-Y"
+        },
+        "iterations": 12,
+        "maxIterations": 15,
+        "angle": 90,
+        "lengthScale": 1
+      },
+      "symbols": 16382,
+      "segmentCount": 4096,
+      "duration": 4096,
+      "bounds": {
+        "minX": -74.00000000000001,
+        "maxX": 21.000000000000004,
+        "minY": -20.999999999999964,
+        "maxY": 42.000000000000085
+      },
+      "rootIndices": [
+        0
+      ],
+      "probes": [
+        {
+          "index": 0,
+          "start": {
+            "x": 0,
+            "y": 0
+          },
+          "end": {
+            "x": 1,
+            "y": 0
+          },
+          "heading": 0,
+          "cumulativeTurn": 0,
+          "startDistance": 0,
+          "endDistance": 1,
+          "depth": 0,
+          "parentIndex": null,
+          "voiceKey": "root:0",
+          "powerShare": 1
+        },
+        {
+          "index": 585,
+          "start": {
+            "x": 13.000000000000004,
+            "y": 25.999999999999993
+          },
+          "end": {
+            "x": 13.000000000000004,
+            "y": 24.999999999999993
+          },
+          "heading": 10.995574287564276,
+          "cumulativeTurn": 10.995574287564276,
+          "startDistance": 585,
+          "endDistance": 586,
+          "depth": 0,
+          "parentIndex": 584,
+          "voiceKey": "root:0",
+          "powerShare": 1
+        },
+        {
+          "index": 1170,
+          "start": {
+            "x": -12.99999999999995,
+            "y": 39.00000000000003
+          },
+          "end": {
+            "x": -11.99999999999995,
+            "y": 39.00000000000003
+          },
+          "heading": 12.56637061435917,
+          "cumulativeTurn": 12.56637061435917,
+          "startDistance": 1170,
+          "endDistance": 1171,
+          "depth": 0,
+          "parentIndex": 1169,
+          "voiceKey": "root:0",
+          "powerShare": 1
+        },
+        {
+          "index": 1755,
+          "start": {
+            "x": -26.00000000000001,
+            "y": 13.000000000000062
+          },
+          "end": {
+            "x": -26.000000000000014,
+            "y": 12.000000000000062
+          },
+          "heading": 10.995574287564274,
+          "cumulativeTurn": 10.995574287564274,
+          "startDistance": 1755,
+          "endDistance": 1756,
+          "depth": 0,
+          "parentIndex": 1754,
+          "voiceKey": "root:0",
+          "powerShare": 1
+        },
+        {
+          "index": 2340,
+          "start": {
+            "x": -51.99999999999997,
+            "y": 26.000000000000096
+          },
+          "end": {
+            "x": -50.99999999999997,
+            "y": 26.000000000000092
+          },
+          "heading": 12.56637061435917,
+          "cumulativeTurn": 12.56637061435917,
+          "startDistance": 2340,
+          "endDistance": 2341,
+          "depth": 0,
+          "parentIndex": 2339,
+          "voiceKey": "root:0",
+          "powerShare": 1
+        },
+        {
+          "index": 2925,
+          "start": {
+            "x": -24.999999999999968,
+            "y": 12.00000000000003
+          },
+          "end": {
+            "x": -24.999999999999964,
+            "y": 13.00000000000003
+          },
+          "heading": 14.137166941154067,
+          "cumulativeTurn": 14.137166941154067,
+          "startDistance": 2925,
+          "endDistance": 2926,
+          "depth": 0,
+          "parentIndex": 2924,
+          "voiceKey": "root:0",
+          "powerShare": 1
+        },
+        {
+          "index": 3510,
+          "start": {
+            "x": -39.000000000000014,
+            "y": -12.999999999999972
+          },
+          "end": {
+            "x": -38.000000000000014,
+            "y": -12.999999999999973
+          },
+          "heading": 12.56637061435917,
+          "cumulativeTurn": 12.56637061435917,
+          "startDistance": 3510,
+          "endDistance": 3511,
+          "depth": 0,
+          "parentIndex": 3509,
+          "voiceKey": "root:0",
+          "powerShare": 1
+        },
+        {
+          "index": 4095,
+          "start": {
+            "x": -64.00000000000001,
+            "y": -0.9999999999999178
+          },
+          "end": {
+            "x": -64.00000000000001,
+            "y": 8.215650382226158e-14
+          },
+          "heading": 1.5707963267948948,
+          "cumulativeTurn": 1.5707963267948948,
+          "startDistance": 4095,
+          "endDistance": 4096,
+          "depth": 0,
+          "parentIndex": 4094,
+          "voiceKey": "root:0",
+          "powerShare": 1
+        }
+      ],
+      "instructions": "FX+YF++-FX-YF++-FX+YF+--FX-YF++-FX+YF++-FX-YF+--FX+YF+--FX-YF++-FX+YF++-FX-YF++-FX+YF+--FX-YF+--FX+YF++-FX-YF+--FX+YF+--FX-YF++-FX+YF++-FX-YF++-FX+YF+--FX-YF++-FX+YF++-FX-YF+--FX+YF+--FX-YF+--FX+YF++-FX-YF++-FX+YF+--FX-YF+--FX+YF++-FX-YF+--FX+YF+--FX-YF++-FX+YF++-FX-YF++-FX+YF+--FX-YF++-FX+YF++-FX-YF+--FX+YF+--FX-YF++-FX+YF++-FX-YF++-FX+YF+--FX-YF+--FX+YF++-FX-YF+--FX+YF+--FX-YF+--FX+YF++-FX-YF++-FX+YF+--FX-YF++-FX+YF++-FX-YF+--FX+YF+--FX-YF+--FX+YF++-FX-YF++-FX+YF+--FX-YF+--FX+YF++-FX-YF+--FX+YF+--FX-YF++-FX+YF++-FX-YF++-FX+YF+--FX-YF++-FX+YF++-FX-YF+--FX+YF+--FX-YF++-FX+YF++-FX-YF++-FX+YF+--FX-YF+--FX+YF++-FX-YF+--FX+YF+--FX-YF++-FX+YF++-FX-YF++-FX+YF+--FX-YF++-FX+YF++-FX-YF+--FX+YF+--FX-YF+--FX+YF++-FX-YF++-FX+YF+--FX-YF+--FX+YF++-FX-YF+--FX+YF+--FX-YF+--FX+YF++-FX-YF++-FX+YF+--FX-YF++-FX+YF++-FX-YF+--FX+YF+--FX-YF++-FX+YF++-FX-YF++-FX+YF+--FX-YF+--FX+YF++-FX-YF+--FX+YF+--FX-YF+--FX+YF++-FX-YF++-FX+YF+--FX-YF++-FX+YF++-FX-YF+--FX+YF+--FX-YF+--FX+YF++-FX-YF++-FX+YF+--FX-YF+--FX+YF++-FX-YF+--FX+YF+--FX-YF++-FX+YF++-FX-YF++-FX+YF+--FX-YF++-FX+YF++-FX-YF+--FX+YF+--FX-YF++-FX+YF++-FX-YF++-FX+YF+--FX-YF+--FX+YF++-FX-YF+--FX+YF+--FX-YF++-FX+YF++-FX-YF++-FX+YF+--FX-YF++-FX+YF++-FX-YF+--FX+YF+--FX-YF+--FX+YF++-FX-YF++-FX+YF+--FX-YF+--FX+YF++-FX-YF+--FX+YF+--FX-YF++-FX+YF++-FX-YF++-FX+YF+--FX-YF++-FX+YF++-FX-YF+--FX+YF+--FX-YF++-FX+YF++-FX-YF++-FX+YF+--FX-YF+--FX+YF++-FX-YF+--FX+YF+--FX-YF+--FX+YF++-FX-YF++-FX+YF+--FX-YF++-FX+YF++-FX-YF+--FX+YF+--FX-YF+--FX+YF++-FX-YF++-FX+YF+--FX-YF+--FX+YF++-FX-YF+--FX+YF+--FX-YF+--FX+YF++-FX-YF++-FX+YF+--FX-YF++-FX+YF++-FX-YF+--FX+YF+--FX-YF++-FX+YF++-FX-YF++-FX+YF+--FX-YF+--FX+YF++-FX-YF+--FX+YF+--FX-YF++-FX+YF++-FX-YF++-FX+YF+--FX-YF++-FX+YF++-FX-YF+--FX+YF+--FX-YF+--FX+YF++-FX-YF++-FX+YF+--FX-YF+--FX+YF++-FX-YF+--FX+YF+--FX-YF+--FX+YF++-FX-YF++-FX+YF+--FX-YF++-FX+YF++-FX-YF+--FX+YF+--FX-YF++-FX+YF++-FX-YF++-FX+YF+--FX-YF+--FX+YF++-FX-YF+--FX+YF+--FX-YF+--FX+YF++-FX-YF++-FX+YF+--FX-YF++-FX+YF++-FX-YF+--FX+YF+--FX-YF+--FX+YF++-FX-YF++-FX+YF+--FX-YF+--FX+YF++-FX-YF+--FX+YF+--FX-YF++-FX+YF++-FX-YF++-FX+YF+--FX-YF++-FX+YF++-FX-YF+--FX+YF+--FX-YF++-FX+YF++-FX-YF++-FX+YF+--FX-YF+--FX+YF++-FX-YF+--FX+YF+--FX-YF++-FX+YF++-FX-YF++-FX+YF+--FX-YF++-FX+YF++-FX-YF+--FX+YF+--FX-YF+--FX+YF++-FX-YF++-FX+YF+--FX-YF+--FX+YF++-FX-YF+--FX+YF+--FX-YF++-FX+YF++-FX-YF++-FX+YF+--FX-YF++-FX+YF++-FX-YF+--FX+YF+--FX-YF++-FX+YF++-FX-YF++-FX+YF+--FX-YF+--FX+YF++-FX-YF+--FX+YF+--FX-YF+--FX+YF++-FX-YF++-FX+YF+--FX-YF++-FX+YF++-FX-YF+--FX+YF+--FX-YF+--FX+YF++-FX-YF++-FX+YF+--FX-YF+--FX+YF++-FX-YF+--FX+YF+--FX-YF++-FX+YF++-FX-YF++-FX+YF+--FX-YF++-FX+YF++-FX-YF+--FX+YF+--FX-YF++-FX+YF++-FX-YF++-FX+YF+--FX-YF+--FX+YF++-FX-YF+--FX+YF+--FX-YF++-FX+YF++-FX-YF++-FX+YF+--FX-YF++-FX+YF++-FX-YF+--FX+YF+--FX-YF+--FX+YF++-FX-YF++-FX+YF+--FX-YF+--FX+YF++-FX-YF+--FX+YF+--FX-YF+--FX+YF++-FX-YF++-FX+YF+--FX-YF++-FX+YF++-FX-YF+--FX+YF+--FX-YF++-FX+YF++-FX-YF++-FX+YF+--FX-YF+--FX+YF++-FX-YF+--FX+YF+--FX-YF+--FX+YF++-FX-YF++-FX+YF+--FX-YF++-FX+YF++-FX-YF+--FX+YF+--FX-YF+--FX+YF++-FX-YF++-FX+YF+--FX-YF+--FX+YF++-FX-YF+--FX+YF+--FX-YF+--FX+YF++-FX-YF++-FX+YF+--FX-YF++-FX+YF++-FX-YF+--FX+YF+--FX-YF++-FX+YF++-FX-YF++-FX+YF+--FX-YF+--FX+YF++-FX-YF+--FX+YF+--FX-YF++-FX+YF++-FX-YF++-FX+YF+--FX-YF++-FX+YF++-FX-YF+--FX+YF+--FX-YF+--FX+YF++-FX-YF++-FX+YF+--FX-YF+--FX+YF++-FX-YF+--FX+YF+--FX-YF++-FX+YF++-FX-YF++-FX+YF+--FX-YF++-FX+YF++-FX-YF+--FX+YF+--FX-YF++-FX+YF++-FX-YF++-FX+YF+--FX-YF+--FX+YF++-FX-YF+--FX+YF+--FX-YF+--FX+YF++-FX-YF++-FX+YF+--FX-YF++-FX+YF++-FX-YF+--FX+YF+--FX-YF+--FX+YF++-FX-YF++-FX+YF+--FX-YF+--FX+YF++-FX-YF+--FX+YF+--FX-YF+--FX+YF++-FX-YF++-FX+YF+--FX-YF++-FX+YF++-FX-YF+--FX+YF+--FX-YF++-FX+YF++-FX-YF++-FX+YF+--FX-YF+--FX+YF++-FX-YF+--FX+YF+--FX-YF++-FX+YF++-FX-YF++-FX+YF+--FX-YF++-FX+YF++-FX-YF+--FX+YF+--FX-YF+--FX+YF++-FX-YF++-FX+YF+--FX-YF+--FX+YF++-FX-YF+--FX+YF+--FX-YF+--FX+YF++-FX-YF++-FX+YF+--FX-YF++-FX+YF++-FX-YF+--FX+YF+--FX-YF++-FX+YF++-FX-YF++-FX+YF+--FX-YF+--FX+YF++-FX-YF+--FX+YF+--FX-YF+--FX+YF++-FX-YF++-FX+YF+--FX-YF++-FX+YF++-FX-YF+--FX+YF+--FX-YF+--FX+YF++-FX-YF++-FX+YF+--FX-YF+--FX+YF++-FX-YF+--FX+YF+--FX-YF++-FX+YF++-FX-YF++-FX+YF+--FX-YF++-FX+YF++-FX-YF+--FX+YF+--FX-YF++-FX+YF++-FX-YF++-FX+YF+--FX-YF+--FX+YF++-FX-YF+--FX+YF+--FX-YF++-FX+YF++-FX-YF++-FX+YF+--FX-YF++-FX+YF++-FX-YF+--FX+YF+--FX-YF+--FX+YF++-FX-YF++-FX+YF+--FX-YF+--FX+YF++-FX-YF+--FX+YF+--FX-YF++-FX+YF++-FX-YF++-FX+YF+--FX-YF++-FX+YF++-FX-YF+--FX+YF+--FX-YF++-FX+YF++-FX-YF++-FX+YF+--FX-YF+--FX+YF++-FX-YF+--FX+YF+--FX-YF+--FX+YF++-FX-YF++-FX+YF+--FX-YF++-FX+YF++-FX-YF+--FX+YF+--FX-YF+--FX+YF++-FX-YF++-FX+YF+--FX-YF+--FX+YF++-FX-YF+--FX+YF+--FX-YF++-FX+YF++-FX-YF++-FX+YF+--FX-YF++-FX+YF++-FX-YF+--FX+YF+--FX-YF++-FX+YF++-FX-YF++-FX+YF+--FX-YF+--FX+YF++-FX-YF+--FX+YF+--FX-YF++-FX+YF++-FX-YF++-FX+YF+--FX-YF++-FX+YF++-FX-YF+--FX+YF+--FX-YF+--FX+YF++-FX-YF++-FX+YF+--FX-YF+--FX+YF++-FX-YF+--FX+YF+--FX-YF+--FX+YF++-FX-YF++-FX+YF+--FX-YF++-FX+YF++-FX-YF+--FX+YF+--FX-YF++-FX+YF++-FX-YF++-FX+YF+--FX-YF+--FX+YF++-FX-YF+--FX+YF+--FX-YF+--FX+YF++-FX-YF++-FX+YF+--FX-YF++-FX+YF++-FX-YF+--FX+YF+--FX-YF+--FX+YF++-FX-YF++-FX+YF+--FX-YF+--FX+YF++-FX-YF+--FX+YF+--FX-YF++-FX+YF++-FX-YF++-FX+YF+--FX-YF++-FX+YF++-FX-YF+--FX+YF+--FX-YF++-FX+YF++-FX-YF++-FX+YF+--FX-YF+--FX+YF++-FX-YF+--FX+YF+--FX-YF++-FX+YF++-FX-YF++-FX+YF+--FX-YF++-FX+YF++-FX-YF+--FX+YF+--FX-YF+--FX+YF++-FX-YF++-FX+YF+--FX-YF+--FX+YF++-FX-YF+--FX+YF+--FX-YF++-FX+YF++-FX-YF++-FX+YF+--FX-YF++-FX+YF++-FX-YF+--FX+YF+--FX-YF++-FX+YF++-FX-YF++-FX+YF+--FX-YF+--FX+YF++-FX-YF+--FX+YF+--FX-YF+--FX+YF++-FX-YF++-FX+YF+--FX-YF++-FX+YF++-FX-YF+--FX+YF+--FX-YF+--FX+YF++-FX-YF++-FX+YF+--FX-YF+--FX+YF++-FX-YF+--FX+YF+--FX-YF+--FX+YF++-FX-YF++-FX+YF+--FX-YF++-FX+YF++-FX-YF+--FX+YF+--FX-YF++-FX+YF++-FX-YF++-FX+YF+--FX-YF+--FX+YF++-FX-YF+--FX+YF+--FX-YF++-FX+YF++-FX-YF++-FX+YF+--FX-YF++-FX+YF++-FX-YF+--FX+YF+--FX-YF+--FX+YF++-FX-YF++-FX+YF+--FX-YF+--FX+YF++-FX-YF+--FX+YF+--FX-YF+--FX+YF++-FX-YF++-FX+YF+--FX-YF++-FX+YF++-FX-YF+--FX+YF+--FX-YF++-FX+YF++-FX-YF++-FX+YF+--FX-YF+--FX+YF++-FX-YF+--FX+YF+--FX-YF+--FX+YF++-FX-YF++-FX+YF+--FX-YF++-FX+YF++-FX-YF+--FX+YF+--FX-YF+--FX+YF++-FX-YF++-FX+YF+--FX-YF+--FX+YF++-FX-YF+--FX+YF+--FX-YF+--FX+YF++-FX-YF++-FX+YF+--FX-YF++-FX+YF++-FX-YF+--FX+YF+--FX-YF++-FX+YF++-FX-YF++-FX+YF+--FX-YF+--FX+YF++-FX-YF+--FX+YF+--FX-YF++-FX+YF++-FX-YF++-FX+YF+--FX-YF++-FX+YF++-FX-YF+--FX+YF+--FX-YF+--FX+YF++-FX-YF++-FX+YF+--FX-YF+--FX+YF++-FX-YF+--FX+YF+--FX-YF++-FX+YF++-FX-YF++-FX+YF+--FX-YF++-FX+YF++-FX-YF+--FX+YF+--FX-YF++-FX+YF++-FX-YF++-FX+YF+--FX-YF+--FX+YF++-FX-YF+--FX+YF+--FX-YF+--FX+YF++-FX-YF++-FX+YF+--FX-YF++-FX+YF++-FX-YF+--FX+YF+--FX-YF+--FX+YF++-FX-YF++-FX+YF+--FX-YF+--FX+YF++-FX-YF+--FX+YF+--FX-YF++-FX+YF++-FX-YF++-FX+YF+--FX-YF++-FX+YF++-FX-YF+--FX+YF+--FX-YF++-FX+YF++-FX-YF++-FX+YF+--FX-YF+--FX+YF++-FX-YF+--FX+YF+--FX-YF++-FX+YF++-FX-YF++-FX+YF+--FX-YF++-FX+YF++-FX-YF+--FX+YF+--FX-YF+--FX+YF++-FX-YF++-FX+YF+--FX-YF+--FX+YF++-FX-YF+--FX+YF+--FX-YF+--FX+YF++-FX-YF++-FX+YF+--FX-YF++-FX+YF++-FX-YF+--FX+YF+--FX-YF++-FX+YF++-FX-YF++-FX+YF+--FX-YF+--FX+YF++-FX-YF+--FX+YF+--FX-YF+--FX+YF++-FX-YF++-FX+YF+--FX-YF++-FX+YF++-FX-YF+--FX+YF+--FX-YF+--FX+YF++-FX-YF++-FX+YF+--FX-YF+--FX+YF++-FX-YF+--FX+YF+--FX-YF+--FX+YF++-FX-YF++-FX+YF+--FX-YF++-FX+YF++-FX-YF+--FX+YF+--FX-YF++-FX+YF++-FX-YF++-FX+YF+--FX-YF+--FX+YF++-FX-YF+--FX+YF+--FX-YF++-FX+YF++-FX-YF++-FX+YF+--FX-YF++-FX+YF++-FX-YF+--FX+YF+--FX-YF+--FX+YF++-FX-YF++-FX+YF+--FX-YF+--FX+YF++-FX-YF+--FX+YF+--FX-YF++-FX+YF++-FX-YF++-FX+YF+--FX-YF++-FX+YF++-FX-YF+--FX+YF+--FX-YF++-FX+YF++-FX-YF++-FX+YF+--FX-YF+--FX+YF++-FX-YF+--FX+YF+--FX-YF+--FX+YF++-FX-YF++-FX+YF+--FX-YF++-FX+YF++-FX-YF+--FX+YF+--FX-YF+--FX+YF++-FX-YF++-FX+YF+--FX-YF+--FX+YF++-FX-YF+--FX+YF+--FX-YF+--FX+YF++-FX-YF++-FX+YF+--FX-YF++-FX+YF++-FX-YF+--FX+YF+--FX-YF++-FX+YF++-FX-YF++-FX+YF+--FX-YF+--FX+YF++-FX-YF+--FX+YF+--FX-YF++-FX+YF++-FX-YF++-FX+YF+--FX-YF++-FX+YF++-FX-YF+--FX+YF+--FX-YF+--FX+YF++-FX-YF++-FX+YF+--FX-YF+--FX+YF++-FX-YF+--FX+YF+--FX-YF+--FX+YF++-FX-YF++-FX+YF+--FX-YF++-FX+YF++-FX-YF+--FX+YF+--FX-YF++-FX+YF++-FX-YF++-FX+YF+--FX-YF+--FX+YF++-FX-YF+--FX+YF+--FX-YF+--FX+YF++-FX-YF++-FX+YF+--FX-YF++-FX+YF++-FX-YF+--FX+YF+--FX-YF+--FX+YF++-FX-YF++-FX+YF+--FX-YF+--FX+YF++-FX-YF+--FX+YF+--FX-YF++-FX+YF++-FX-YF++-FX+YF+--FX-YF++-FX+YF++-FX-YF+--FX+YF+--FX-YF++-FX+YF++-FX-YF++-FX+YF+--FX-YF+--FX+YF++-FX-YF+--FX+YF+--FX-YF++-FX+YF++-FX-YF++-FX+YF+--FX-YF++-FX+YF++-FX-YF+--FX+YF+--FX-YF+--FX+YF++-FX-YF++-FX+YF+--FX-YF+--FX+YF++-FX-YF+--FX+YF+--FX-YF++-FX+YF++-FX-YF++-FX+YF+--FX-YF++-FX+YF++-FX-YF+--FX+YF+--FX-YF++-FX+YF++-FX-YF++-FX+YF+--FX-YF+--FX+YF++-FX-YF+--FX+YF+--FX-YF+--FX+YF++-FX-YF++-FX+YF+--FX-YF++-FX+YF++-FX-YF+--FX+YF+--FX-YF+--FX+YF++-FX-YF++-FX+YF+--FX-YF+--FX+YF++-FX-YF+--FX+YF+--FX-YF++-FX+YF++-FX-YF++-FX+YF+--FX-YF++-FX+YF++-FX-YF+--FX+YF+--FX-YF++-FX+YF++-FX-YF++-FX+YF+--FX-YF+--FX+YF++-FX-YF+--FX+YF+--FX-YF++-FX+YF++-FX-YF++-FX+YF+--FX-YF++-FX+YF++-FX-YF+--FX+YF+--FX-YF+--FX+YF++-FX-YF++-FX+YF+--FX-YF+--FX+YF++-FX-YF+--FX+YF+--FX-YF+--FX+YF++-FX-YF++-FX+YF+--FX-YF++-FX+YF++-FX-YF+--FX+YF+--FX-YF++-FX+YF++-FX-YF++-FX+YF+--FX-YF+--FX+YF++-FX-YF+--FX+YF+--FX-YF+--FX+YF++-FX-YF++-FX+YF+--FX-YF++-FX+YF++-FX-YF+--FX+YF+--FX-YF+--FX+YF++-FX-YF++-FX+YF+--FX-YF+--FX+YF++-FX-YF+--FX+YF+--FX-YF++-FX+YF++-FX-YF++-FX+YF+--FX-YF++-FX+YF++-FX-YF+--FX+YF+--FX-YF++-FX+YF++-FX-YF++-FX+YF+--FX-YF+--FX+YF++-FX-YF+--FX+YF+--FX-YF++-FX+YF++-FX-YF++-FX+YF+--FX-YF++-FX+YF++-FX-YF+--FX+YF+--FX-YF+--FX+YF++-FX-YF++-FX+YF+--FX-YF+--FX+YF++-FX-YF+--FX+YF+--FX-YF++-FX+YF++-FX-YF++-FX+YF+--FX-YF++-FX+YF++-FX-YF+--FX+YF+--FX-YF++-FX+YF++-FX-YF++-FX+YF+--FX-YF+--FX+YF++-FX-YF+--FX+YF+--FX-YF+--FX+YF++-FX-YF++-FX+YF+--FX-YF++-FX+YF++-FX-YF+--FX+YF+--FX-YF+--FX+YF++-FX-YF++-FX+YF+--FX-YF+--FX+YF++-FX-YF+--FX+YF+--FX-YF+--FX+YF++-FX-YF++-FX+YF+--FX-YF++-FX+YF++-FX-YF+--FX+YF+--FX-YF++-FX+YF++-FX-YF++-FX+YF+--FX-YF+--FX+YF++-FX-YF+--FX+YF+--FX-YF++-FX+YF++-FX-YF++-FX+YF+--FX-YF++-FX+YF++-FX-YF+--FX+YF+--FX-YF+--FX+YF++-FX-YF++-FX+YF+--FX-YF+--FX+YF++-FX-YF+--FX+YF+--FX-YF+--FX+YF++-FX-YF++-FX+YF+--FX-YF++-FX+YF++-FX-YF+--FX+YF+--FX-YF++-FX+YF++-FX-YF++-FX+YF+--FX-YF+--FX+YF++-FX-YF+--FX+YF+--FX-YF+--FX+YF++-FX-YF++-FX+YF+--FX-YF++-FX+YF++-FX-YF+--FX+YF+--FX-YF+--FX+YF++-FX-YF++-FX+YF+--FX-YF+--FX+YF++-FX-YF+--FX+YF+--FX-YF++-FX+YF++-FX-YF++-FX+YF+--FX-YF++-FX+YF++-FX-YF+--FX+YF+--FX-YF++-FX+YF++-FX-YF++-FX+YF+--FX-YF+--FX+YF++-FX-YF+--FX+YF+--FX-YF++-FX+YF++-FX-YF++-FX+YF+--FX-YF++-FX+YF++-FX-YF+--FX+YF+--FX-YF+--FX+YF++-FX-YF++-FX+YF+--FX-YF+--FX+YF++-FX-YF+--FX+YF+--FX-YF++-FX+YF++-FX-YF++-FX+YF+--FX-YF++-FX+YF++-FX-YF+--FX+YF+--FX-YF++-FX+YF++-FX-YF++-FX+YF+--FX-YF+--FX+YF++-FX-YF+--FX+YF+--FX-YF+--FX+YF++-FX-YF++-FX+YF+--FX-YF++-FX+YF++-FX-YF+--FX+YF+--FX-YF+--FX+YF++-FX-YF++-FX+YF+--FX-YF+--FX+YF++-FX-YF+--FX+YF+--FX-YF++-FX+YF++-FX-YF++-FX+YF+--FX-YF++-FX+YF++-FX-YF+--FX+YF+--FX-YF++-FX+YF++-FX-YF++-FX+YF+--FX-YF+--FX+YF++-FX-YF+--FX+YF+--FX-YF++-FX+YF++-FX-YF++-FX+YF+--FX-YF++-FX+YF++-FX-YF+--FX+YF+--FX-YF+--FX+YF++-FX-YF++-FX+YF+--FX-YF+--FX+YF++-FX-YF+--FX+YF+--FX-YF+--FX+YF++-FX-YF++-FX+YF+--FX-YF++-FX+YF++-FX-YF+--FX+YF+--FX-YF++-FX+YF++-FX-YF++-FX+YF+--FX-YF+--FX+YF++-FX-YF+--FX+YF+--FX-YF+--FX+YF++-FX-YF++-FX+YF+--FX-YF++-FX+YF++-FX-YF+--FX+YF+--FX-YF+--FX+YF++-FX-YF++-FX+YF+--FX-YF+--FX+YF++-FX-YF+--FX+YF+--FX-YF+--FX+YF++-FX-YF++-FX+YF+--FX-YF++-FX+YF++-FX-YF+--FX+YF+--FX-YF++-FX+YF++-FX-YF++-FX+YF+--FX-YF+--FX+YF++-FX-YF+--FX+YF+--FX-YF++-FX+YF++-FX-YF++-FX+YF+--FX-YF++-FX+YF++-FX-YF+--FX+YF+--FX-YF+--FX+YF++-FX-YF++-FX+YF+--FX-YF+--FX+YF++-FX-YF+--FX+YF+--FX-YF++-FX+YF++-FX-YF++-FX+YF+--FX-YF++-FX+YF++-FX-YF+--FX+YF+--FX-YF++-FX+YF++-FX-YF++-FX+YF+--FX-YF+--FX+YF++-FX-YF+--FX+YF+--FX-YF+--FX+YF++-FX-YF++-FX+YF+--FX-YF++-FX+YF++-FX-YF+--FX+YF+--FX-YF+--FX+YF++-FX-YF++-FX+YF+--FX-YF+--FX+YF++-FX-YF+--FX+YF+--FX-YF+--FX+YF++-FX-YF++-FX+YF+--FX-YF++-FX+YF++-FX-YF+--FX+YF+--FX-YF++-FX+YF++-FX-YF++-FX+YF+--FX-YF+--FX+YF++-FX-YF+--FX+YF+--FX-YF++-FX+YF++-FX-YF++-FX+YF+--FX-YF++-FX+YF++-FX-YF+--FX+YF+--FX-YF+--FX+YF++-FX-YF++-FX+YF+--FX-YF+--FX+YF++-FX-YF+--FX+YF+--FX-YF+--FX+YF++-FX-YF++-FX+YF+--FX-YF++-FX+YF++-FX-YF+--FX+YF+--FX-YF++-FX+YF++-FX-YF++-FX+YF+--FX-YF+--FX+YF++-FX-YF+--FX+YF+--FX-YF+--FX+YF++-FX-YF++-FX+YF+--FX-YF++-FX+YF++-FX-YF+--FX+YF+--FX-YF+--FX+YF++-FX-YF++-FX+YF+--FX-YF+--FX+YF++-FX-YF+--FX+YF+--FX-YF+--FX+YF++-FX-YF++-FX+YF+--FX-YF++-FX+YF++-FX-YF+--FX+YF+--FX-YF++-FX+YF++-FX-YF++-FX+YF+--FX-YF+--FX+YF++-FX-YF+--FX+YF+--FX-YF++-FX+YF++-FX-YF++-FX+YF+--FX-YF++-FX+YF++-FX-YF+--FX+YF+--FX-YF+--FX+YF++-FX-YF++-FX+YF+--FX-YF+--FX+YF++-FX-YF+--FX+YF+--FX-YF++-FX+YF++-FX-YF++-FX+YF+--FX-YF++-FX+YF++-FX-YF+--FX+YF+--FX-YF++-FX+YF++-FX-YF++-FX+YF+--FX-YF+--FX+YF++-FX-YF+--FX+YF+--FX-YF+--FX+YF++-FX-YF++-FX+YF+--FX-YF++-FX+YF++-FX-YF+--FX+YF+--FX-YF+--FX+YF++-FX-YF++-FX+YF+--FX-YF+--FX+YF++-FX-YF+--FX+YF+--FX-YF++-FX+YF++-FX-YF++-FX+YF+--FX-YF++-FX+YF++-FX-YF+--FX+YF+--FX-YF++-FX+YF++-FX-YF++-FX+YF+--FX-YF+--FX+YF++-FX-YF+--FX+YF+--FX-YF++-FX+YF++-FX-YF++-FX+YF+--FX-YF++-FX+YF++-FX-YF+--FX+YF+--FX-YF+--FX+YF++-FX-YF++-FX+YF+--FX-YF+--FX+YF++-FX-YF+--FX+YF+--FX-YF+--FX+YF++-FX-YF++-FX+YF+--FX-YF++-FX+YF++-FX-YF+--FX+YF+--FX-YF++-FX+YF++-FX-YF++-FX+YF+--FX-YF+--FX+YF++-FX-YF+--FX+YF+--FX-YF+--FX+YF++-FX-YF++-FX+YF+--FX-YF++-FX+YF++-FX-YF+--FX+YF+--FX-YF+--FX+YF++-FX-YF++-FX+YF+--FX-YF+--FX+YF++-FX-YF+--FX+YF+--FX-YF++-FX+YF++-FX-YF++-FX+YF+--FX-YF++-FX+YF++-FX-YF+--FX+YF+--FX-YF++-FX+YF++-FX-YF++-FX+YF+--FX-YF+--FX+YF++-FX-YF+--FX+YF+--FX-YF++-FX+YF++-FX-YF++-FX+YF+--FX-YF++-FX+YF++-FX-YF+--FX+YF+--FX-YF+--FX+YF++-FX-YF++-FX+YF+--FX-YF+--FX+YF++-FX-YF+--FX+YF+--FX-YF++-FX+YF++-FX-YF++-FX+YF+--FX-YF++-FX+YF++-FX-YF+--FX+YF+--FX-YF++-FX+YF++-FX-YF++-FX+YF+--FX-YF+--FX+YF++-FX-YF+--FX+YF+--FX-YF+--FX+YF++-FX-YF++-FX+YF+--FX-YF++-FX+YF++-FX-YF+--FX+YF+--FX-YF+--FX+YF++-FX-YF++-FX+YF+--FX-YF+--FX+YF++-FX-YF+--FX+YF+--FX-YF+--FX+YF++-FX-YF++-FX+YF+--FX-YF++-FX+YF++-FX-YF+--FX+YF+--FX-YF++-FX+YF++-FX-YF++-FX+YF+--FX-YF+--FX+YF++-FX-YF+--FX+YF+--FX-YF++-FX+YF++-FX-YF++-FX+YF+--FX-YF++-FX+YF++-FX-YF+--FX+YF+--FX-YF+--FX+YF++-FX-YF++-FX+YF+--FX-YF+--FX+YF++-FX-YF+--FX+YF+--FX-YF+--FX+YF++-FX-YF++-FX+YF+--FX-YF++-FX+YF++-FX-YF+--FX+YF+--FX-YF++-FX+YF++-FX-YF++-FX+YF+--FX-YF+--FX+YF++-FX-YF+--FX+YF+--FX-YF+--FX+YF++-FX-YF++-FX+YF+--FX-YF++-FX+YF++-FX-YF+--FX+YF+--FX-YF+--FX+YF++-FX-YF++-FX+YF+--FX-YF+--FX+YF++-FX-YF+--FX+YF+--FX-YF+--FX+YF++-FX-YF++-FX+YF+--FX-YF++-FX+YF++-FX-YF+--FX+YF+--FX-YF++-FX+YF++-FX-YF++-FX+YF+--FX-YF+--FX+YF++-FX-YF+--FX+YF+--FX-YF++-FX+YF++-FX-YF++-FX+YF+--FX-YF++-FX+YF++-FX-YF+--FX+YF+--FX-YF+--FX+YF++-FX-YF++-FX+YF+--FX-YF+--FX+YF++-FX-YF+--FX+YF+--FX-YF++-FX+YF++-FX-YF++-FX+YF+--FX-YF++-FX+YF++-FX-YF+--FX+YF+--FX-YF++-FX+YF++-FX-YF++-FX+YF+--FX-YF+--FX+YF++-FX-YF+--FX+YF+--FX-YF+--FX+YF++-FX-YF++-FX+YF+--FX-YF++-FX+YF++-FX-YF+--FX+YF+--FX-YF+--FX+YF++-FX-YF++-FX+YF+--FX-YF+--FX+YF++-FX-YF+--FX+YF+--FX-YF++-FX+YF++-FX-YF++-FX+YF+--FX-YF++-FX+YF++-FX-YF+--FX+YF+--FX-YF++-FX+YF++-FX-YF++-FX+YF+--FX-YF+--FX+YF++-FX-YF+--FX+YF+--FX-YF++-FX+YF++-FX-YF++-FX+YF+--FX-YF++-FX+YF++-FX-YF+--FX+YF+--FX-YF+--FX+YF++-FX-YF++-FX+YF+--FX-YF+--FX+YF++-FX-YF+--FX+YF+--FX-YF+--FX+YF++-FX-YF++-FX+YF+--FX-YF++-FX+YF++-FX-YF+--FX+YF+--FX-YF++-FX+YF++-FX-YF++-FX+YF+--FX-YF+--FX+YF++-FX-YF+--FX+YF+--FX-YF+--FX+YF++-FX-YF++-FX+YF+--FX-YF++-FX+YF++-FX-YF+--FX+YF+--FX-YF+--FX+YF++-FX-YF++-FX+YF+--FX-YF+--FX+YF++-FX-YF+--FX+YF+--FX-YF+--FX+YF++-FX-YF++-FX+YF+--FX-YF++-FX+YF++-FX-YF+--FX+YF+--FX-YF++-FX+YF++-FX-YF++-FX+YF+--FX-YF+--FX+YF++-FX-YF+--FX+YF+--FX-YF++-FX+YF++-FX-YF++-FX+YF+--FX-YF++-FX+YF++-FX-YF+--FX+YF+--FX-YF+--FX+YF++-FX-YF++-FX+YF+--FX-YF+--FX+YF++-FX-YF+--FX+YF+--FX-YF++-FX+YF++-FX-YF++-FX+YF+--FX-YF++-FX+YF++-FX-YF+--FX+YF+--FX-YF++-FX+YF++-FX-YF++-FX+YF+--FX-YF+--FX+YF++-FX-YF+--FX+YF+--FX-YF+--FX+YF++-FX-YF++-FX+YF+--FX-YF++-FX+YF++-FX-YF+--FX+YF+--FX-YF+--FX+YF++-FX-YF++-FX+YF+--FX-YF+--FX+YF++-FX-YF+--FX+YF+--FX-YF+--FX+YF++-FX-YF++-FX+YF+--FX-YF++-FX+YF++-FX-YF+--FX+YF+--FX-YF++-FX+YF++-FX-YF++-FX+YF+--FX-YF+--FX+YF++-FX-YF+--FX+YF+--FX-YF++-FX+YF++-FX-YF++-FX+YF+--FX-YF++-FX+YF++-FX-YF+--FX+YF+--FX-YF+--FX+YF++-FX-YF++-FX+YF+--FX-YF+--FX+YF++-FX-YF+--FX+YF+--FX-YF+--FX+YF++-FX-YF++-FX+YF+--FX-YF++-FX+YF++-FX-YF+--FX+YF+--FX-YF++-FX+YF++-FX-YF++-FX+YF+--FX-YF+--FX+YF++-FX-YF+--FX+YF+--FX-YF+--FX+YF++-FX-YF++-FX+YF+--FX-YF++-FX+YF++-FX-YF+--FX+YF+--FX-YF+--FX+YF++-FX-YF++-FX+YF+--FX-YF+--FX+YF++-FX-YF+--FX+YF+--FX-YF+"
+    },
+    {
+      "input": {
+        "id": "koch",
+        "name": "Koch snowflake",
+        "axiom": "F--F--F",
+        "rules": {
+          "F": "F+F--F+F"
+        },
+        "iterations": 4,
+        "maxIterations": 5,
+        "angle": 60,
+        "lengthScale": 1
+      },
+      "symbols": 1792,
+      "segmentCount": 768,
+      "duration": 768,
+      "bounds": {
+        "minX": -9.980904991380157e-14,
+        "maxX": 81,
+        "minY": -70.14805770653956,
+        "maxY": 23.382685902179855
+      },
+      "rootIndices": [
+        0
+      ],
+      "probes": [
+        {
+          "index": 0,
+          "start": {
+            "x": 0,
+            "y": 0
+          },
+          "end": {
+            "x": 1,
+            "y": 0
+          },
+          "heading": 0,
+          "cumulativeTurn": 0,
+          "startDistance": 0,
+          "endDistance": 1,
+          "depth": 0,
+          "parentIndex": null,
+          "voiceKey": "root:0",
+          "powerShare": 1
+        },
+        {
+          "index": 110,
+          "start": {
+            "x": 34.5,
+            "y": 16.454482671904355
+          },
+          "end": {
+            "x": 35,
+            "y": 15.588457268119917
+          },
+          "heading": -1.0471975511965972,
+          "cumulativeTurn": -1.0471975511965972,
+          "startDistance": 110,
+          "endDistance": 111,
+          "depth": 0,
+          "parentIndex": 109,
+          "voiceKey": "root:0",
+          "powerShare": 1
+        },
+        {
+          "index": 219,
+          "start": {
+            "x": 65,
+            "y": 5.196152422706651
+          },
+          "end": {
+            "x": 66,
+            "y": 5.196152422706652
+          },
+          "heading": 4.440892098500626e-16,
+          "cumulativeTurn": 4.440892098500626e-16,
+          "startDistance": 219,
+          "endDistance": 220,
+          "depth": 0,
+          "parentIndex": 218,
+          "voiceKey": "root:0",
+          "powerShare": 1
+        },
+        {
+          "index": 329,
+          "start": {
+            "x": 71.5,
+            "y": -26.846787517317576
+          },
+          "end": {
+            "x": 72,
+            "y": -27.712812921102014
+          },
+          "heading": -1.0471975511965972,
+          "cumulativeTurn": -1.0471975511965972,
+          "startDistance": 329,
+          "endDistance": 330,
+          "depth": 0,
+          "parentIndex": 328,
+          "voiceKey": "root:0",
+          "powerShare": 1
+        },
+        {
+          "index": 438,
+          "start": {
+            "x": 60,
+            "y": -48.497422611928585
+          },
+          "end": {
+            "x": 59,
+            "y": -48.497422611928585
+          },
+          "heading": -3.1415926535897922,
+          "cumulativeTurn": -3.1415926535897922,
+          "startDistance": 438,
+          "endDistance": 439,
+          "depth": 0,
+          "parentIndex": 437,
+          "voiceKey": "root:0",
+          "powerShare": 1
+        },
+        {
+          "index": 548,
+          "start": {
+            "x": 28.5,
+            "y": -59.75575286112632
+          },
+          "end": {
+            "x": 28,
+            "y": -58.88972745734188
+          },
+          "heading": -4.18879020478639,
+          "cumulativeTurn": -4.18879020478639,
+          "startDistance": 548,
+          "endDistance": 549,
+          "depth": 0,
+          "parentIndex": 547,
+          "voiceKey": "root:0",
+          "powerShare": 1
+        },
+        {
+          "index": 657,
+          "start": {
+            "x": 3.9999999999999702,
+            "y": -38.10511776651529
+          },
+          "end": {
+            "x": 2.9999999999999702,
+            "y": -38.10511776651529
+          },
+          "heading": -3.1415926535897922,
+          "cumulativeTurn": -3.1415926535897922,
+          "startDistance": 657,
+          "endDistance": 658,
+          "depth": 0,
+          "parentIndex": 656,
+          "voiceKey": "root:0",
+          "powerShare": 1
+        },
+        {
+          "index": 767,
+          "start": {
+            "x": 0.4999999999999014,
+            "y": -0.8660254037843562
+          },
+          "end": {
+            "x": -9.980904991380157e-14,
+            "y": 8.171241461241152e-14
+          },
+          "heading": -4.18879020478639,
+          "cumulativeTurn": -4.18879020478639,
+          "startDistance": 767,
+          "endDistance": 768,
+          "depth": 0,
+          "parentIndex": 766,
+          "voiceKey": "root:0",
+          "powerShare": 1
+        }
+      ],
+      "instructions": "F+F--F+F+F+F--F+F--F+F--F+F+F+F--F+F+F+F--F+F+F+F--F+F--F+F--F+F+F+F--F+F--F+F--F+F+F+F--F+F--F+F--F+F+F+F--F+F+F+F--F+F+F+F--F+F--F+F--F+F+F+F--F+F+F+F--F+F+F+F--F+F--F+F--F+F+F+F--F+F+F+F--F+F+F+F--F+F--F+F--F+F+F+F--F+F--F+F--F+F+F+F--F+F--F+F--F+F+F+F--F+F+F+F--F+F+F+F--F+F--F+F--F+F+F+F--F+F--F+F--F+F+F+F--F+F--F+F--F+F+F+F--F+F+F+F--F+F+F+F--F+F--F+F--F+F+F+F--F+F--F+F--F+F+F+F--F+F--F+F--F+F+F+F--F+F+F+F--F+F+F+F--F+F--F+F--F+F+F+F--F+F+F+F--F+F+F+F--F+F--F+F--F+F+F+F--F+F+F+F--F+F+F+F--F+F--F+F--F+F+F+F--F+F--F+F--F+F+F+F--F+F--F+F--F+F+F+F--F+F+F+F--F+F+F+F--F+F--F+F--F+F+F+F--F+F--F+F--F+F+F+F--F+F--F+F--F+F+F+F--F+F+F+F--F+F+F+F--F+F--F+F--F+F+F+F--F+F--F+F--F+F+F+F--F+F--F+F--F+F+F+F--F+F+F+F--F+F+F+F--F+F--F+F--F+F+F+F--F+F+F+F--F+F+F+F--F+F--F+F--F+F+F+F--F+F+F+F--F+F+F+F--F+F--F+F--F+F+F+F--F+F--F+F--F+F+F+F--F+F--F+F--F+F+F+F--F+F+F+F--F+F+F+F--F+F--F+F--F+F+F+F--F+F--F+F--F+F+F+F--F+F--F+F--F+F+F+F--F+F+F+F--F+F+F+F--F+F--F+F--F+F+F+F--F+F--F+F--F+F+F+F--F+F--F+F--F+F+F+F--F+F+F+F--F+F+F+F--F+F--F+F--F+F+F+F--F+F+F+F--F+F+F+F--F+F--F+F--F+F+F+F--F+F+F+F--F+F+F+F--F+F--F+F--F+F+F+F--F+F--F+F--F+F+F+F--F+F--F+F--F+F+F+F--F+F+F+F--F+F+F+F--F+F--F+F--F+F+F+F--F+F--F+F--F+F+F+F--F+F--F+F--F+F+F+F--F+F+F+F--F+F+F+F--F+F--F+F--F+F+F+F--F+F--F+F--F+F+F+F--F+F--F+F--F+F+F+F--F+F+F+F--F+F+F+F--F+F--F+F--F+F+F+F--F+F+F+F--F+F+F+F--F+F--F+F--F+F+F+F--F+F+F+F--F+F+F+F--F+F--F+F--F+F+F+F--F+F--F+F--F+F+F+F--F+F--F+F--F+F+F+F--F+F+F+F--F+F+F+F--F+F--F+F--F+F+F+F--F+F--F+F--F+F+F+F--F+F--F+F--F+F+F+F--F+F+F+F--F+F+F+F--F+F--F+F--F+F+F+F--F+F--F+F--F+F+F+F--F+F--F+F--F+F+F+F--F+F+F+F--F+F+F+F--F+F--F+F--F+F+F+F--F+F+F+F--F+F+F+F--F+F--F+F--F+F+F+F--F+F+F+F--F+F+F+F--F+F--F+F--F+F+F+F--F+F--F+F--F+F+F+F--F+F--F+F--F+F+F+F--F+F+F+F--F+F+F+F--F+F--F+F--F+F+F+F--F+F"
+    },
+    {
+      "input": {
+        "id": "sierpinski",
+        "name": "Sierpiński triangle",
+        "axiom": "F-G-G",
+        "rules": {
+          "F": "F-G+F+G-F",
+          "G": "GG"
+        },
+        "iterations": 5,
+        "maxIterations": 6,
+        "angle": 120,
+        "lengthScale": 1,
+        "drawSymbols": "FG"
+      },
+      "symbols": 1215,
+      "segmentCount": 729,
+      "duration": 729,
+      "bounds": {
+        "minX": -3.9968028886505635e-15,
+        "maxX": 32,
+        "minY": -27.712812921102024,
+        "maxY": 1.9984014443252818e-15
+      },
+      "rootIndices": [
+        0
+      ],
+      "probes": [
+        {
+          "index": 0,
+          "start": {
+            "x": 0,
+            "y": 0
+          },
+          "end": {
+            "x": 1,
+            "y": 0
+          },
+          "heading": 0,
+          "cumulativeTurn": 0,
+          "startDistance": 0,
+          "endDistance": 1,
+          "depth": 0,
+          "parentIndex": null,
+          "voiceKey": "root:0",
+          "powerShare": 1
+        },
+        {
+          "index": 104,
+          "start": {
+            "x": 8,
+            "y": -12.124355652982143
+          },
+          "end": {
+            "x": 7.5,
+            "y": -12.990381056766582
+          },
+          "heading": -2.0943951023931953,
+          "cumulativeTurn": -2.0943951023931953,
+          "startDistance": 104,
+          "endDistance": 105,
+          "depth": 0,
+          "parentIndex": 103,
+          "voiceKey": "root:0",
+          "powerShare": 1
+        },
+        {
+          "index": 208,
+          "start": {
+            "x": 14.5,
+            "y": -0.8660254037844385
+          },
+          "end": {
+            "x": 15.5,
+            "y": -0.8660254037844385
+          },
+          "heading": 0,
+          "cumulativeTurn": 0,
+          "startDistance": 208,
+          "endDistance": 209,
+          "depth": 0,
+          "parentIndex": 207,
+          "voiceKey": "root:0",
+          "powerShare": 1
+        },
+        {
+          "index": 312,
+          "start": {
+            "x": 15,
+            "y": -22.5166604983954
+          },
+          "end": {
+            "x": 14.5,
+            "y": -21.650635094610962
+          },
+          "heading": 2.0943951023931953,
+          "cumulativeTurn": 2.0943951023931953,
+          "startDistance": 312,
+          "endDistance": 313,
+          "depth": 0,
+          "parentIndex": 311,
+          "voiceKey": "root:0",
+          "powerShare": 1
+        },
+        {
+          "index": 416,
+          "start": {
+            "x": 21.5,
+            "y": -16.454482671904337
+          },
+          "end": {
+            "x": 21,
+            "y": -15.588457268119898
+          },
+          "heading": 2.0943951023931953,
+          "cumulativeTurn": 2.0943951023931953,
+          "startDistance": 416,
+          "endDistance": 417,
+          "depth": 0,
+          "parentIndex": 415,
+          "voiceKey": "root:0",
+          "powerShare": 1
+        },
+        {
+          "index": 520,
+          "start": {
+            "x": 23.5,
+            "y": -0.8660254037844367
+          },
+          "end": {
+            "x": 23,
+            "y": -1.7320508075688754
+          },
+          "heading": -2.0943951023931953,
+          "cumulativeTurn": -2.0943951023931953,
+          "startDistance": 520,
+          "endDistance": 521,
+          "depth": 0,
+          "parentIndex": 519,
+          "voiceKey": "root:0",
+          "powerShare": 1
+        },
+        {
+          "index": 624,
+          "start": {
+            "x": 27,
+            "y": -3.464101615137753
+          },
+          "end": {
+            "x": 26.5,
+            "y": -4.330127018922192
+          },
+          "heading": -2.0943951023931953,
+          "cumulativeTurn": -2.0943951023931953,
+          "startDistance": 624,
+          "endDistance": 625,
+          "depth": 0,
+          "parentIndex": 623,
+          "voiceKey": "root:0",
+          "powerShare": 1
+        },
+        {
+          "index": 728,
+          "start": {
+            "x": 0.49999999999999645,
+            "y": -0.8660254037844383
+          },
+          "end": {
+            "x": -3.9968028886505635e-15,
+            "y": 2.220446049250313e-16
+          },
+          "heading": -4.1887902047863905,
+          "cumulativeTurn": -4.1887902047863905,
+          "startDistance": 728,
+          "endDistance": 729,
+          "depth": 0,
+          "parentIndex": 727,
+          "voiceKey": "root:0",
+          "powerShare": 1
+        }
+      ],
+      "instructions": "F-G+F+G-F-GG+F-G+F+G-F+GG-F-G+F+G-F-GGGG+F-G+F+G-F-GG+F-G+F+G-F+GG-F-G+F+G-F+GGGG-F-G+F+G-F-GG+F-G+F+G-F+GG-F-G+F+G-F-GGGGGGGG+F-G+F+G-F-GG+F-G+F+G-F+GG-F-G+F+G-F-GGGG+F-G+F+G-F-GG+F-G+F+G-F+GG-F-G+F+G-F+GGGG-F-G+F+G-F-GG+F-G+F+G-F+GG-F-G+F+G-F+GGGGGGGG-F-G+F+G-F-GG+F-G+F+G-F+GG-F-G+F+G-F-GGGG+F-G+F+G-F-GG+F-G+F+G-F+GG-F-G+F+G-F+GGGG-F-G+F+G-F-GG+F-G+F+G-F+GG-F-G+F+G-F-GGGGGGGGGGGGGGGG+F-G+F+G-F-GG+F-G+F+G-F+GG-F-G+F+G-F-GGGG+F-G+F+G-F-GG+F-G+F+G-F+GG-F-G+F+G-F+GGGG-F-G+F+G-F-GG+F-G+F+G-F+GG-F-G+F+G-F-GGGGGGGG+F-G+F+G-F-GG+F-G+F+G-F+GG-F-G+F+G-F-GGGG+F-G+F+G-F-GG+F-G+F+G-F+GG-F-G+F+G-F+GGGG-F-G+F+G-F-GG+F-G+F+G-F+GG-F-G+F+G-F+GGGGGGGG-F-G+F+G-F-GG+F-G+F+G-F+GG-F-G+F+G-F-GGGG+F-G+F+G-F-GG+F-G+F+G-F+GG-F-G+F+G-F+GGGG-F-G+F+G-F-GG+F-G+F+G-F+GG-F-G+F+G-F+GGGGGGGGGGGGGGGG-F-G+F+G-F-GG+F-G+F+G-F+GG-F-G+F+G-F-GGGG+F-G+F+G-F-GG+F-G+F+G-F+GG-F-G+F+G-F+GGGG-F-G+F+G-F-GG+F-G+F+G-F+GG-F-G+F+G-F-GGGGGGGG+F-G+F+G-F-GG+F-G+F+G-F+GG-F-G+F+G-F-GGGG+F-G+F+G-F-GG+F-G+F+G-F+GG-F-G+F+G-F+GGGG-F-G+F+G-F-GG+F-G+F+G-F+GG-F-G+F+G-F+GGGGGGGG-F-G+F+G-F-GG+F-G+F+G-F+GG-F-G+F+G-F-GGGG+F-G+F+G-F-GG+F-G+F+G-F+GG-F-G+F+G-F+GGGG-F-G+F+G-F-GG+F-G+F+G-F+GG-F-G+F+G-F-GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG-GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGG"
+    },
+    {
+      "input": {
+        "id": "hilbert",
+        "name": "Hilbert curve",
+        "axiom": "X",
+        "rules": {
+          "X": "-YF+XFX+FY-",
+          "Y": "+XF-YFY-FX+"
+        },
+        "iterations": 5,
+        "maxIterations": 7,
+        "angle": 90,
+        "lengthScale": 1
+      },
+      "symbols": 3411,
+      "segmentCount": 1023,
+      "duration": 1023,
+      "bounds": {
+        "minX": -2.220446049250313e-16,
+        "maxX": 31,
+        "minY": -31,
+        "maxY": 1.1102230246251565e-16
+      },
+      "rootIndices": [
+        0
+      ],
+      "probes": [
+        {
+          "index": 0,
+          "start": {
+            "x": 0,
+            "y": 0
+          },
+          "end": {
+            "x": 6.123233995736766e-17,
+            "y": -1
+          },
+          "heading": -1.5707963267948966,
+          "cumulativeTurn": 0,
+          "startDistance": 0,
+          "endDistance": 1,
+          "depth": 0,
+          "parentIndex": null,
+          "voiceKey": "root:0",
+          "powerShare": 1
+        },
+        {
+          "index": 146,
+          "start": {
+            "x": 13,
+            "y": -9
+          },
+          "end": {
+            "x": 13,
+            "y": -8
+          },
+          "heading": 1.5707963267948966,
+          "cumulativeTurn": 3.141592653589793,
+          "startDistance": 146,
+          "endDistance": 147,
+          "depth": 0,
+          "parentIndex": 145,
+          "voiceKey": "root:0",
+          "powerShare": 1
+        },
+        {
+          "index": 292,
+          "start": {
+            "x": 6,
+            "y": -20
+          },
+          "end": {
+            "x": 7,
+            "y": -20
+          },
+          "heading": 0,
+          "cumulativeTurn": 1.5707963267948966,
+          "startDistance": 292,
+          "endDistance": 293,
+          "depth": 0,
+          "parentIndex": 291,
+          "voiceKey": "root:0",
+          "powerShare": 1
+        },
+        {
+          "index": 438,
+          "start": {
+            "x": 12,
+            "y": -26
+          },
+          "end": {
+            "x": 13,
+            "y": -26
+          },
+          "heading": 0,
+          "cumulativeTurn": 1.5707963267948966,
+          "startDistance": 438,
+          "endDistance": 439,
+          "depth": 0,
+          "parentIndex": 437,
+          "voiceKey": "root:0",
+          "powerShare": 1
+        },
+        {
+          "index": 584,
+          "start": {
+            "x": 18,
+            "y": -26
+          },
+          "end": {
+            "x": 19,
+            "y": -26
+          },
+          "heading": 0,
+          "cumulativeTurn": 1.5707963267948966,
+          "startDistance": 584,
+          "endDistance": 585,
+          "depth": 0,
+          "parentIndex": 583,
+          "voiceKey": "root:0",
+          "powerShare": 1
+        },
+        {
+          "index": 730,
+          "start": {
+            "x": 24,
+            "y": -20
+          },
+          "end": {
+            "x": 25,
+            "y": -20
+          },
+          "heading": 0,
+          "cumulativeTurn": 1.5707963267948966,
+          "startDistance": 730,
+          "endDistance": 731,
+          "depth": 0,
+          "parentIndex": 729,
+          "voiceKey": "root:0",
+          "powerShare": 1
+        },
+        {
+          "index": 876,
+          "start": {
+            "x": 18,
+            "y": -8
+          },
+          "end": {
+            "x": 18,
+            "y": -9
+          },
+          "heading": -1.5707963267948966,
+          "cumulativeTurn": 0,
+          "startDistance": 876,
+          "endDistance": 877,
+          "depth": 0,
+          "parentIndex": 875,
+          "voiceKey": "root:0",
+          "powerShare": 1
+        },
+        {
+          "index": 1022,
+          "start": {
+            "x": 31,
+            "y": -0.9999999999999999
+          },
+          "end": {
+            "x": 31,
+            "y": 1.1102230246251565e-16
+          },
+          "heading": 1.5707963267948966,
+          "cumulativeTurn": 3.141592653589793,
+          "startDistance": 1022,
+          "endDistance": 1023,
+          "depth": 0,
+          "parentIndex": 1021,
+          "voiceKey": "root:0",
+          "powerShare": 1
+        }
+      ],
+      "instructions": "-+-+-YF+XFX+FY-F-+XF-YFY-FX+F+XF-YFY-FX+-F-YF+XFX+FY-+F+-+XF-YFY-FX+F+-YF+XFX+FY-F-YF+XFX+FY-+F+XF-YFY-FX+-F-+XF-YFY-FX+F+-YF+XFX+FY-F-YF+XFX+FY-+F+XF-YFY-FX+-+F+-YF+XFX+FY-F-+XF-YFY-FX+F+XF-YFY-FX+-F-YF+XFX+FY-+-F-+-+XF-YFY-FX+F+-YF+XFX+FY-F-YF+XFX+FY-+F+XF-YFY-FX+-F-+-YF+XFX+FY-F-+XF-YFY-FX+F+XF-YFY-FX+-F-YF+XFX+FY-+F+-YF+XFX+FY-F-+XF-YFY-FX+F+XF-YFY-FX+-F-YF+XFX+FY-+-F-+XF-YFY-FX+F+-YF+XFX+FY-F-YF+XFX+FY-+F+XF-YFY-FX+-+F+-+XF-YFY-FX+F+-YF+XFX+FY-F-YF+XFX+FY-+F+XF-YFY-FX+-F-+-YF+XFX+FY-F-+XF-YFY-FX+F+XF-YFY-FX+-F-YF+XFX+FY-+F+-YF+XFX+FY-F-+XF-YFY-FX+F+XF-YFY-FX+-F-YF+XFX+FY-+-F-+XF-YFY-FX+F+-YF+XFX+FY-F-YF+XFX+FY-+F+XF-YFY-FX+-+-F-+-YF+XFX+FY-F-+XF-YFY-FX+F+XF-YFY-FX+-F-YF+XFX+FY-+F+-+XF-YFY-FX+F+-YF+XFX+FY-F-YF+XFX+FY-+F+XF-YFY-FX+-F-+XF-YFY-FX+F+-YF+XFX+FY-F-YF+XFX+FY-+F+XF-YFY-FX+-+F+-YF+XFX+FY-F-+XF-YFY-FX+F+XF-YFY-FX+-F-YF+XFX+FY-+-+F+-+-+XF-YFY-FX+F+-YF+XFX+FY-F-YF+XFX+FY-+F+XF-YFY-FX+-F-+-YF+XFX+FY-F-+XF-YFY-FX+F+XF-YFY-FX+-F-YF+XFX+FY-+F+-YF+XFX+FY-F-+XF-YFY-FX+F+XF-YFY-FX+-F-YF+XFX+FY-+-F-+XF-YFY-FX+F+-YF+XFX+FY-F-YF+XFX+FY-+F+XF-YFY-FX+-+F+-+-YF+XFX+FY-F-+XF-YFY-FX+F+XF-YFY-FX+-F-YF+XFX+FY-+F+-+XF-YFY-FX+F+-YF+XFX+FY-F-YF+XFX+FY-+F+XF-YFY-FX+-F-+XF-YFY-FX+F+-YF+XFX+FY-F-YF+XFX+FY-+F+XF-YFY-FX+-+F+-YF+XFX+FY-F-+XF-YFY-FX+F+XF-YFY-FX+-F-YF+XFX+FY-+-F-+-YF+XFX+FY-F-+XF-YFY-FX+F+XF-YFY-FX+-F-YF+XFX+FY-+F+-+XF-YFY-FX+F+-YF+XFX+FY-F-YF+XFX+FY-+F+XF-YFY-FX+-F-+XF-YFY-FX+F+-YF+XFX+FY-F-YF+XFX+FY-+F+XF-YFY-FX+-+F+-YF+XFX+FY-F-+XF-YFY-FX+F+XF-YFY-FX+-F-YF+XFX+FY-+-+F+-+XF-YFY-FX+F+-YF+XFX+FY-F-YF+XFX+FY-+F+XF-YFY-FX+-F-+-YF+XFX+FY-F-+XF-YFY-FX+F+XF-YFY-FX+-F-YF+XFX+FY-+F+-YF+XFX+FY-F-+XF-YFY-FX+F+XF-YFY-FX+-F-YF+XFX+FY-+-F-+XF-YFY-FX+F+-YF+XFX+FY-F-YF+XFX+FY-+F+XF-YFY-FX+-+-F-+-+XF-YFY-FX+F+-YF+XFX+FY-F-YF+XFX+FY-+F+XF-YFY-FX+-F-+-YF+XFX+FY-F-+XF-YFY-FX+F+XF-YFY-FX+-F-YF+XFX+FY-+F+-YF+XFX+FY-F-+XF-YFY-FX+F+XF-YFY-FX+-F-YF+XFX+FY-+-F-+XF-YFY-FX+F+-YF+XFX+FY-F-YF+XFX+FY-+F+XF-YFY-FX+-+F+-+-YF+XFX+FY-F-+XF-YFY-FX+F+XF-YFY-FX+-F-YF+XFX+FY-+F+-+XF-YFY-FX+F+-YF+XFX+FY-F-YF+XFX+FY-+F+XF-YFY-FX+-F-+XF-YFY-FX+F+-YF+XFX+FY-F-YF+XFX+FY-+F+XF-YFY-FX+-+F+-YF+XFX+FY-F-+XF-YFY-FX+F+XF-YFY-FX+-F-YF+XFX+FY-+-F-+-YF+XFX+FY-F-+XF-YFY-FX+F+XF-YFY-FX+-F-YF+XFX+FY-+F+-+XF-YFY-FX+F+-YF+XFX+FY-F-YF+XFX+FY-+F+XF-YFY-FX+-F-+XF-YFY-FX+F+-YF+XFX+FY-F-YF+XFX+FY-+F+XF-YFY-FX+-+F+-YF+XFX+FY-F-+XF-YFY-FX+F+XF-YFY-FX+-F-YF+XFX+FY-+-+F+-+XF-YFY-FX+F+-YF+XFX+FY-F-YF+XFX+FY-+F+XF-YFY-FX+-F-+-YF+XFX+FY-F-+XF-YFY-FX+F+XF-YFY-FX+-F-YF+XFX+FY-+F+-YF+XFX+FY-F-+XF-YFY-FX+F+XF-YFY-FX+-F-YF+XFX+FY-+-F-+XF-YFY-FX+F+-YF+XFX+FY-F-YF+XFX+FY-+F+XF-YFY-FX+-+-+F+-+-YF+XFX+FY-F-+XF-YFY-FX+F+XF-YFY-FX+-F-YF+XFX+FY-+F+-+XF-YFY-FX+F+-YF+XFX+FY-F-YF+XFX+FY-+F+XF-YFY-FX+-F-+XF-YFY-FX+F+-YF+XFX+FY-F-YF+XFX+FY-+F+XF-YFY-FX+-+F+-YF+XFX+FY-F-+XF-YFY-FX+F+XF-YFY-FX+-F-YF+XFX+FY-+-F-+-+XF-YFY-FX+F+-YF+XFX+FY-F-YF+XFX+FY-+F+XF-YFY-FX+-F-+-YF+XFX+FY-F-+XF-YFY-FX+F+XF-YFY-FX+-F-YF+XFX+FY-+F+-YF+XFX+FY-F-+XF-YFY-FX+F+XF-YFY-FX+-F-YF+XFX+FY-+-F-+XF-YFY-FX+F+-YF+XFX+FY-F-YF+XFX+FY-+F+XF-YFY-FX+-+F+-+XF-YFY-FX+F+-YF+XFX+FY-F-YF+XFX+FY-+F+XF-YFY-FX+-F-+-YF+XFX+FY-F-+XF-YFY-FX+F+XF-YFY-FX+-F-YF+XFX+FY-+F+-YF+XFX+FY-F-+XF-YFY-FX+F+XF-YFY-FX+-F-YF+XFX+FY-+-F-+XF-YFY-FX+F+-YF+XFX+FY-F-YF+XFX+FY-+F+XF-YFY-FX+-+-F-+-YF+XFX+FY-F-+XF-YFY-FX+F+XF-YFY-FX+-F-YF+XFX+FY-+F+-+XF-YFY-FX+F+-YF+XFX+FY-F-YF+XFX+FY-+F+XF-YFY-FX+-F-+XF-YFY-FX+F+-YF+XFX+FY-F-YF+XFX+FY-+F+XF-YFY-FX+-+F+-YF+XFX+FY-F-+XF-YFY-FX+F+XF-YFY-FX+-F-YF+XFX+FY-+-+-"
+    },
+    {
+      "input": {
+        "id": "gosper",
+        "name": "Gosper curve",
+        "axiom": "X",
+        "rules": {
+          "X": "X+Y++Y-X--XX-Y+",
+          "Y": "-X+YY++Y+X--X-Y"
+        },
+        "iterations": 4,
+        "maxIterations": 5,
+        "angle": 60,
+        "lengthScale": 1,
+        "drawSymbols": "XY"
+      },
+      "symbols": 5601,
+      "segmentCount": 2401,
+      "duration": 2401,
+      "bounds": {
+        "minX": -36.500000000000185,
+        "maxX": 20.499999999999943,
+        "minY": 0,
+        "maxY": 53.693575034635494
+      },
+      "rootIndices": [
+        0
+      ],
+      "probes": [
+        {
+          "index": 0,
+          "start": {
+            "x": 0,
+            "y": 0
+          },
+          "end": {
+            "x": 1,
+            "y": 0
+          },
+          "heading": 0,
+          "cumulativeTurn": 0,
+          "startDistance": 0,
+          "endDistance": 1,
+          "depth": 0,
+          "parentIndex": null,
+          "voiceKey": "root:0",
+          "powerShare": 1
+        },
+        {
+          "index": 343,
+          "start": {
+            "x": 9.999999999999961,
+            "y": 15.588457268119917
+          },
+          "end": {
+            "x": 10.999999999999961,
+            "y": 15.58845726811992
+          },
+          "heading": 1.3322676295501878e-15,
+          "cumulativeTurn": 1.3322676295501878e-15,
+          "startDistance": 343,
+          "endDistance": 344,
+          "depth": 0,
+          "parentIndex": 342,
+          "voiceKey": "root:0",
+          "powerShare": 1
+        },
+        {
+          "index": 686,
+          "start": {
+            "x": 1.4999999999998719,
+            "y": 32.042939940024375
+          },
+          "end": {
+            "x": 0.9999999999998709,
+            "y": 32.908965343808816
+          },
+          "heading": 2.0943951023931966,
+          "cumulativeTurn": 2.0943951023931966,
+          "startDistance": 686,
+          "endDistance": 687,
+          "depth": 0,
+          "parentIndex": 685,
+          "voiceKey": "root:0",
+          "powerShare": 1
+        },
+        {
+          "index": 1029,
+          "start": {
+            "x": -8.500000000000146,
+            "y": 16.454482671904504
+          },
+          "end": {
+            "x": -9.000000000000147,
+            "y": 17.32050807568894
+          },
+          "heading": 2.0943951023931966,
+          "cumulativeTurn": 2.0943951023931966,
+          "startDistance": 1029,
+          "endDistance": 1030,
+          "depth": 0,
+          "parentIndex": 1028,
+          "voiceKey": "root:0",
+          "powerShare": 1
+        },
+        {
+          "index": 1371,
+          "start": {
+            "x": -27.50000000000019,
+            "y": 16.454482671904472
+          },
+          "end": {
+            "x": -27.00000000000019,
+            "y": 17.320508075688913
+          },
+          "heading": 1.047197551196599,
+          "cumulativeTurn": 1.047197551196599,
+          "startDistance": 1371,
+          "endDistance": 1372,
+          "depth": 0,
+          "parentIndex": 1370,
+          "voiceKey": "root:0",
+          "powerShare": 1
+        },
+        {
+          "index": 1714,
+          "start": {
+            "x": -17.500000000000185,
+            "y": 33.77499074759335
+          },
+          "end": {
+            "x": -17.000000000000185,
+            "y": 32.90896534380891
+          },
+          "heading": -1.0471975511965963,
+          "cumulativeTurn": -1.0471975511965963,
+          "startDistance": 1714,
+          "endDistance": 1715,
+          "depth": 0,
+          "parentIndex": 1713,
+          "voiceKey": "root:0",
+          "powerShare": 1
+        },
+        {
+          "index": 2057,
+          "start": {
+            "x": -7.500000000000227,
+            "y": 49.36344801571329
+          },
+          "end": {
+            "x": -7.0000000000002265,
+            "y": 48.49742261192885
+          },
+          "heading": -1.0471975511965963,
+          "cumulativeTurn": -1.0471975511965963,
+          "startDistance": 2057,
+          "endDistance": 2058,
+          "depth": 0,
+          "parentIndex": 2056,
+          "voiceKey": "root:0",
+          "powerShare": 1
+        },
+        {
+          "index": 2400,
+          "start": {
+            "x": 10.999999999999755,
+            "y": 48.49742261192884
+          },
+          "end": {
+            "x": 11.499999999999757,
+            "y": 47.6313972081444
+          },
+          "heading": -1.0471975511965963,
+          "cumulativeTurn": -1.0471975511965963,
+          "startDistance": 2400,
+          "endDistance": 2401,
+          "depth": 0,
+          "parentIndex": 2399,
+          "voiceKey": "root:0",
+          "powerShare": 1
+        }
+      ],
+      "instructions": "X+Y++Y-X--XX-Y++-X+YY++Y+X--X-Y++-X+YY++Y+X--X-Y-X+Y++Y-X--XX-Y+--X+Y++Y-X--XX-Y+X+Y++Y-X--XX-Y+--X+YY++Y+X--X-Y++-X+Y++Y-X--XX-Y++-X+YY++Y+X--X-Y-X+YY++Y+X--X-Y++-X+YY++Y+X--X-Y+X+Y++Y-X--XX-Y+--X+Y++Y-X--XX-Y+--X+YY++Y+X--X-Y++-X+Y++Y-X--XX-Y++-X+YY++Y+X--X-Y-X+YY++Y+X--X-Y++-X+YY++Y+X--X-Y+X+Y++Y-X--XX-Y+--X+Y++Y-X--XX-Y+--X+YY++Y+X--X-Y-X+Y++Y-X--XX-Y++-X+YY++Y+X--X-Y++-X+YY++Y+X--X-Y-X+Y++Y-X--XX-Y+--X+Y++Y-X--XX-Y+X+Y++Y-X--XX-Y+--X+YY++Y+X--X-Y+--X+Y++Y-X--XX-Y++-X+YY++Y+X--X-Y++-X+YY++Y+X--X-Y-X+Y++Y-X--XX-Y+--X+Y++Y-X--XX-Y+X+Y++Y-X--XX-Y+--X+YY++Y+X--X-Y+X+Y++Y-X--XX-Y++-X+YY++Y+X--X-Y++-X+YY++Y+X--X-Y-X+Y++Y-X--XX-Y+--X+Y++Y-X--XX-Y+X+Y++Y-X--XX-Y+--X+YY++Y+X--X-Y+--X+Y++Y-X--XX-Y++-X+YY++Y+X--X-Y-X+YY++Y+X--X-Y++-X+YY++Y+X--X-Y+X+Y++Y-X--XX-Y+--X+Y++Y-X--XX-Y+--X+YY++Y+X--X-Y++-X+Y++Y-X--XX-Y++-X+YY++Y+X--X-Y++-X+YY++Y+X--X-Y-X+Y++Y-X--XX-Y+--X+Y++Y-X--XX-Y+X+Y++Y-X--XX-Y+--X+YY++Y+X--X-Y++-X+Y++Y-X--XX-Y++-X+YY++Y+X--X-Y-X+YY++Y+X--X-Y++-X+YY++Y+X--X-Y+X+Y++Y-X--XX-Y+--X+Y++Y-X--XX-Y+--X+YY++Y+X--X-Y-X+Y++Y-X--XX-Y++-X+YY++Y+X--X-Y-X+YY++Y+X--X-Y++-X+YY++Y+X--X-Y+X+Y++Y-X--XX-Y+--X+Y++Y-X--XX-Y+--X+YY++Y+X--X-Y++-X+Y++Y-X--XX-Y++-X+YY++Y+X--X-Y-X+YY++Y+X--X-Y++-X+YY++Y+X--X-Y+X+Y++Y-X--XX-Y+--X+Y++Y-X--XX-Y+--X+YY++Y+X--X-Y+X+Y++Y-X--XX-Y++-X+YY++Y+X--X-Y++-X+YY++Y+X--X-Y-X+Y++Y-X--XX-Y+--X+Y++Y-X--XX-Y+X+Y++Y-X--XX-Y+--X+YY++Y+X--X-Y+--X+Y++Y-X--XX-Y++-X+YY++Y+X--X-Y++-X+YY++Y+X--X-Y-X+Y++Y-X--XX-Y+--X+Y++Y-X--XX-Y+X+Y++Y-X--XX-Y+--X+YY++Y+X--X-Y+--X+Y++Y-X--XX-Y++-X+YY++Y+X--X-Y-X+YY++Y+X--X-Y++-X+YY++Y+X--X-Y+X+Y++Y-X--XX-Y+--X+Y++Y-X--XX-Y+--X+YY++Y+X--X-Y++-X+Y++Y-X--XX-Y++-X+YY++Y+X--X-Y++-X+YY++Y+X--X-Y-X+Y++Y-X--XX-Y+--X+Y++Y-X--XX-Y+X+Y++Y-X--XX-Y+--X+YY++Y+X--X-Y++-X+Y++Y-X--XX-Y++-X+YY++Y+X--X-Y-X+YY++Y+X--X-Y++-X+YY++Y+X--X-Y+X+Y++Y-X--XX-Y+--X+Y++Y-X--XX-Y+--X+YY++Y+X--X-Y-X+Y++Y-X--XX-Y++-X+YY++Y+X--X-Y-X+YY++Y+X--X-Y++-X+YY++Y+X--X-Y+X+Y++Y-X--XX-Y+--X+Y++Y-X--XX-Y+--X+YY++Y+X--X-Y++-X+Y++Y-X--XX-Y++-X+YY++Y+X--X-Y-X+YY++Y+X--X-Y++-X+YY++Y+X--X-Y+X+Y++Y-X--XX-Y+--X+Y++Y-X--XX-Y+--X+YY++Y+X--X-Y+X+Y++Y-X--XX-Y++-X+YY++Y+X--X-Y++-X+YY++Y+X--X-Y-X+Y++Y-X--XX-Y+--X+Y++Y-X--XX-Y+X+Y++Y-X--XX-Y+--X+YY++Y+X--X-Y+--X+Y++Y-X--XX-Y++-X+YY++Y+X--X-Y++-X+YY++Y+X--X-Y-X+Y++Y-X--XX-Y+--X+Y++Y-X--XX-Y+X+Y++Y-X--XX-Y+--X+YY++Y+X--X-Y+--X+Y++Y-X--XX-Y++-X+YY++Y+X--X-Y-X+YY++Y+X--X-Y++-X+YY++Y+X--X-Y+X+Y++Y-X--XX-Y+--X+Y++Y-X--XX-Y+--X+YY++Y+X--X-Y-X+Y++Y-X--XX-Y++-X+YY++Y+X--X-Y++-X+YY++Y+X--X-Y-X+Y++Y-X--XX-Y+--X+Y++Y-X--XX-Y+X+Y++Y-X--XX-Y+--X+YY++Y+X--X-Y++-X+Y++Y-X--XX-Y++-X+YY++Y+X--X-Y-X+YY++Y+X--X-Y++-X+YY++Y+X--X-Y+X+Y++Y-X--XX-Y+--X+Y++Y-X--XX-Y+--X+YY++Y+X--X-Y++-X+Y++Y-X--XX-Y++-X+YY++Y+X--X-Y-X+YY++Y+X--X-Y++-X+YY++Y+X--X-Y+X+Y++Y-X--XX-Y+--X+Y++Y-X--XX-Y+--X+YY++Y+X--X-Y-X+Y++Y-X--XX-Y++-X+YY++Y+X--X-Y++-X+YY++Y+X--X-Y-X+Y++Y-X--XX-Y+--X+Y++Y-X--XX-Y+X+Y++Y-X--XX-Y+--X+YY++Y+X--X-Y+--X+Y++Y-X--XX-Y++-X+YY++Y+X--X-Y++-X+YY++Y+X--X-Y-X+Y++Y-X--XX-Y+--X+Y++Y-X--XX-Y+X+Y++Y-X--XX-Y+--X+YY++Y+X--X-Y+X+Y++Y-X--XX-Y++-X+YY++Y+X--X-Y++-X+YY++Y+X--X-Y-X+Y++Y-X--XX-Y+--X+Y++Y-X--XX-Y+X+Y++Y-X--XX-Y+--X+YY++Y+X--X-Y+--X+Y++Y-X--XX-Y++-X+YY++Y+X--X-Y-X+YY++Y+X--X-Y++-X+YY++Y+X--X-Y+X+Y++Y-X--XX-Y+--X+Y++Y-X--XX-Y+--X+YY++Y+X--X-Y+--X+Y++Y-X--XX-Y++-X+YY++Y+X--X-Y++-X+YY++Y+X--X-Y-X+Y++Y-X--XX-Y+--X+Y++Y-X--XX-Y+X+Y++Y-X--XX-Y+--X+YY++Y+X--X-Y++-X+Y++Y-X--XX-Y++-X+YY++Y+X--X-Y-X+YY++Y+X--X-Y++-X+YY++Y+X--X-Y+X+Y++Y-X--XX-Y+--X+Y++Y-X--XX-Y+--X+YY++Y+X--X-Y++-X+Y++Y-X--XX-Y++-X+YY++Y+X--X-Y-X+YY++Y+X--X-Y++-X+YY++Y+X--X-Y+X+Y++Y-X--XX-Y+--X+Y++Y-X--XX-Y+--X+YY++Y+X--X-Y-X+Y++Y-X--XX-Y++-X+YY++Y+X--X-Y++-X+YY++Y+X--X-Y-X+Y++Y-X--XX-Y+--X+Y++Y-X--XX-Y+X+Y++Y-X--XX-Y+--X+YY++Y+X--X-Y+--X+Y++Y-X--XX-Y++-X+YY++Y+X--X-Y++-X+YY++Y+X--X-Y-X+Y++Y-X--XX-Y+--X+Y++Y-X--XX-Y+X+Y++Y-X--XX-Y+--X+YY++Y+X--X-Y+X+Y++Y-X--XX-Y++-X+YY++Y+X--X-Y++-X+YY++Y+X--X-Y-X+Y++Y-X--XX-Y+--X+Y++Y-X--XX-Y+X+Y++Y-X--XX-Y+--X+YY++Y+X--X-Y+--X+Y++Y-X--XX-Y++-X+YY++Y+X--X-Y-X+YY++Y+X--X-Y++-X+YY++Y+X--X-Y+X+Y++Y-X--XX-Y+--X+Y++Y-X--XX-Y+--X+YY++Y+X--X-Y+X+Y++Y-X--XX-Y++-X+YY++Y+X--X-Y++-X+YY++Y+X--X-Y-X+Y++Y-X--XX-Y+--X+Y++Y-X--XX-Y+X+Y++Y-X--XX-Y+--X+YY++Y+X--X-Y++-X+Y++Y-X--XX-Y++-X+YY++Y+X--X-Y-X+YY++Y+X--X-Y++-X+YY++Y+X--X-Y+X+Y++Y-X--XX-Y+--X+Y++Y-X--XX-Y+--X+YY++Y+X--X-Y++-X+Y++Y-X--XX-Y++-X+YY++Y+X--X-Y-X+YY++Y+X--X-Y++-X+YY++Y+X--X-Y+X+Y++Y-X--XX-Y+--X+Y++Y-X--XX-Y+--X+YY++Y+X--X-Y-X+Y++Y-X--XX-Y++-X+YY++Y+X--X-Y++-X+YY++Y+X--X-Y-X+Y++Y-X--XX-Y+--X+Y++Y-X--XX-Y+X+Y++Y-X--XX-Y+--X+YY++Y+X--X-Y+--X+Y++Y-X--XX-Y++-X+YY++Y+X--X-Y++-X+YY++Y+X--X-Y-X+Y++Y-X--XX-Y+--X+Y++Y-X--XX-Y+X+Y++Y-X--XX-Y+--X+YY++Y+X--X-Y+X+Y++Y-X--XX-Y++-X+YY++Y+X--X-Y++-X+YY++Y+X--X-Y-X+Y++Y-X--XX-Y+--X+Y++Y-X--XX-Y+X+Y++Y-X--XX-Y+--X+YY++Y+X--X-Y+--X+Y++Y-X--XX-Y++-X+YY++Y+X--X-Y-X+YY++Y+X--X-Y++-X+YY++Y+X--X-Y+X+Y++Y-X--XX-Y+--X+Y++Y-X--XX-Y+--X+YY++Y+X--X-Y+--X+Y++Y-X--XX-Y++-X+YY++Y+X--X-Y++-X+YY++Y+X--X-Y-X+Y++Y-X--XX-Y+--X+Y++Y-X--XX-Y+X+Y++Y-X--XX-Y+--X+YY++Y+X--X-Y++-X+Y++Y-X--XX-Y++-X+YY++Y+X--X-Y-X+YY++Y+X--X-Y++-X+YY++Y+X--X-Y+X+Y++Y-X--XX-Y+--X+Y++Y-X--XX-Y+--X+YY++Y+X--X-Y-X+Y++Y-X--XX-Y++-X+YY++Y+X--X-Y-X+YY++Y+X--X-Y++-X+YY++Y+X--X-Y+X+Y++Y-X--XX-Y+--X+Y++Y-X--XX-Y+--X+YY++Y+X--X-Y++-X+Y++Y-X--XX-Y++-X+YY++Y+X--X-Y-X+YY++Y+X--X-Y++-X+YY++Y+X--X-Y+X+Y++Y-X--XX-Y+--X+Y++Y-X--XX-Y+--X+YY++Y+X--X-Y+X+Y++Y-X--XX-Y++-X+YY++Y+X--X-Y++-X+YY++Y+X--X-Y-X+Y++Y-X--XX-Y+--X+Y++Y-X--XX-Y+X+Y++Y-X--XX-Y+--X+YY++Y+X--X-Y+--X+Y++Y-X--XX-Y++-X+YY++Y+X--X-Y++-X+YY++Y+X--X-Y-X+Y++Y-X--XX-Y+--X+Y++Y-X--XX-Y+X+Y++Y-X--XX-Y+--X+YY++Y+X--X-Y+--X+Y++Y-X--XX-Y++-X+YY++Y+X--X-Y-X+YY++Y+X--X-Y++-X+YY++Y+X--X-Y+X+Y++Y-X--XX-Y+--X+Y++Y-X--XX-Y+--X+YY++Y+X--X-Y+"
+    },
+    {
+      "input": {
+        "id": "cantor",
+        "name": "Cantor set",
+        "axiom": "F",
+        "rules": {
+          "F": "FfF",
+          "f": "fff"
+        },
+        "iterations": 6,
+        "maxIterations": 11,
+        "angle": 0,
+        "lengthScale": 1,
+        "moveSymbols": "f"
+      },
+      "symbols": 729,
+      "segmentCount": 64,
+      "duration": 729,
+      "bounds": {
+        "minX": 0,
+        "maxX": 729,
+        "minY": 0,
+        "maxY": 0
+      },
+      "rootIndices": [
+        0
+      ],
+      "probes": [
+        {
+          "index": 0,
+          "start": {
+            "x": 0,
+            "y": 0
+          },
+          "end": {
+            "x": 1,
+            "y": 0
+          },
+          "heading": 0,
+          "cumulativeTurn": 0,
+          "startDistance": 0,
+          "endDistance": 1,
+          "depth": 0,
+          "parentIndex": null,
+          "voiceKey": "root:0",
+          "powerShare": 1
+        },
+        {
+          "index": 9,
+          "start": {
+            "x": 56,
+            "y": 0
+          },
+          "end": {
+            "x": 57,
+            "y": 0
+          },
+          "heading": 0,
+          "cumulativeTurn": 0,
+          "startDistance": 56,
+          "endDistance": 57,
+          "depth": 0,
+          "parentIndex": 8,
+          "voiceKey": "root:0",
+          "powerShare": 1
+        },
+        {
+          "index": 18,
+          "start": {
+            "x": 168,
+            "y": 0
+          },
+          "end": {
+            "x": 169,
+            "y": 0
+          },
+          "heading": 0,
+          "cumulativeTurn": 0,
+          "startDistance": 168,
+          "endDistance": 169,
+          "depth": 0,
+          "parentIndex": 17,
+          "voiceKey": "root:0",
+          "powerShare": 1
+        },
+        {
+          "index": 27,
+          "start": {
+            "x": 224,
+            "y": 0
+          },
+          "end": {
+            "x": 225,
+            "y": 0
+          },
+          "heading": 0,
+          "cumulativeTurn": 0,
+          "startDistance": 224,
+          "endDistance": 225,
+          "depth": 0,
+          "parentIndex": 26,
+          "voiceKey": "root:0",
+          "powerShare": 1
+        },
+        {
+          "index": 36,
+          "start": {
+            "x": 504,
+            "y": 0
+          },
+          "end": {
+            "x": 505,
+            "y": 0
+          },
+          "heading": 0,
+          "cumulativeTurn": 0,
+          "startDistance": 504,
+          "endDistance": 505,
+          "depth": 0,
+          "parentIndex": 35,
+          "voiceKey": "root:0",
+          "powerShare": 1
+        },
+        {
+          "index": 45,
+          "start": {
+            "x": 560,
+            "y": 0
+          },
+          "end": {
+            "x": 561,
+            "y": 0
+          },
+          "heading": 0,
+          "cumulativeTurn": 0,
+          "startDistance": 560,
+          "endDistance": 561,
+          "depth": 0,
+          "parentIndex": 44,
+          "voiceKey": "root:0",
+          "powerShare": 1
+        },
+        {
+          "index": 54,
+          "start": {
+            "x": 672,
+            "y": 0
+          },
+          "end": {
+            "x": 673,
+            "y": 0
+          },
+          "heading": 0,
+          "cumulativeTurn": 0,
+          "startDistance": 672,
+          "endDistance": 673,
+          "depth": 0,
+          "parentIndex": 53,
+          "voiceKey": "root:0",
+          "powerShare": 1
+        },
+        {
+          "index": 63,
+          "start": {
+            "x": 728,
+            "y": 0
+          },
+          "end": {
+            "x": 729,
+            "y": 0
+          },
+          "heading": 0,
+          "cumulativeTurn": 0,
+          "startDistance": 728,
+          "endDistance": 729,
+          "depth": 0,
+          "parentIndex": 62,
+          "voiceKey": "root:0",
+          "powerShare": 1
+        }
+      ],
+      "instructions": "FfFfffFfFfffffffffFfFfffFfFfffffffffffffffffffffffffffFfFfffFfFfffffffffFfFfffFfFfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffFfFfffFfFfffffffffFfFfffFfFfffffffffffffffffffffffffffFfFfffFfFfffffffffFfFfffFfFfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffFfFfffFfFfffffffffFfFfffFfFfffffffffffffffffffffffffffFfFfffFfFfffffffffFfFfffFfFfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffFfFfffFfFfffffffffFfFfffFfFfffffffffffffffffffffffffffFfFfffFfFfffffffffFfFfffFfF"
+    },
+    {
+      "input": {
+        "id": "levy",
+        "name": "Lévy C curve",
+        "axiom": "F",
+        "rules": {
+          "F": "+F--F+"
+        },
+        "iterations": 12,
+        "maxIterations": 15,
+        "angle": 45,
+        "lengthScale": 1
+      },
+      "symbols": 20476,
+      "segmentCount": 4096,
+      "duration": 4096,
+      "bounds": {
+        "minX": -31.00000000000004,
+        "maxX": 95.0000000000001,
+        "minY": -14.999999999999995,
+        "maxY": 63.00000000000012
+      },
+      "rootIndices": [
+        0
+      ],
+      "probes": [
+        {
+          "index": 0,
+          "start": {
+            "x": 0,
+            "y": 0
+          },
+          "end": {
+            "x": -1,
+            "y": 3.6739403974420594e-16
+          },
+          "heading": 9.42477796076938,
+          "cumulativeTurn": 0,
+          "startDistance": 0,
+          "endDistance": 1,
+          "depth": 0,
+          "parentIndex": null,
+          "voiceKey": "root:0",
+          "powerShare": 1
+        },
+        {
+          "index": 585,
+          "start": {
+            "x": -26.00000000000004,
+            "y": 13.000000000000112
+          },
+          "end": {
+            "x": -27.00000000000004,
+            "y": 13.000000000000114
+          },
+          "heading": 3.1415926535897922,
+          "cumulativeTurn": -6.283185307179586,
+          "startDistance": 585,
+          "endDistance": 586,
+          "depth": 0,
+          "parentIndex": 584,
+          "voiceKey": "root:0",
+          "powerShare": 1
+        },
+        {
+          "index": 1170,
+          "start": {
+            "x": -13.000000000000007,
+            "y": 39.00000000000012
+          },
+          "end": {
+            "x": -14.000000000000007,
+            "y": 39.00000000000012
+          },
+          "heading": 3.1415926535897922,
+          "cumulativeTurn": -6.283185307179586,
+          "startDistance": 1170,
+          "endDistance": 1171,
+          "depth": 0,
+          "parentIndex": 1169,
+          "voiceKey": "root:0",
+          "powerShare": 1
+        },
+        {
+          "index": 1755,
+          "start": {
+            "x": 39.0000000000001,
+            "y": 52.00000000000012
+          },
+          "end": {
+            "x": 38.0000000000001,
+            "y": 52.00000000000012
+          },
+          "heading": -3.141592653589794,
+          "cumulativeTurn": -12.566370614359172,
+          "startDistance": 1755,
+          "endDistance": 1756,
+          "depth": 0,
+          "parentIndex": 1754,
+          "voiceKey": "root:0",
+          "powerShare": 1
+        },
+        {
+          "index": 2340,
+          "start": {
+            "x": 26.0000000000001,
+            "y": 52.00000000000012
+          },
+          "end": {
+            "x": 25.0000000000001,
+            "y": 52.00000000000012
+          },
+          "heading": 3.1415926535897922,
+          "cumulativeTurn": -6.2831853071795845,
+          "startDistance": 2340,
+          "endDistance": 2341,
+          "depth": 0,
+          "parentIndex": 2339,
+          "voiceKey": "root:0",
+          "powerShare": 1
+        },
+        {
+          "index": 2925,
+          "start": {
+            "x": 78.0000000000001,
+            "y": 39.00000000000012
+          },
+          "end": {
+            "x": 77.0000000000001,
+            "y": 39.00000000000012
+          },
+          "heading": -3.141592653589794,
+          "cumulativeTurn": -12.56637061435917,
+          "startDistance": 2925,
+          "endDistance": 2926,
+          "depth": 0,
+          "parentIndex": 2924,
+          "voiceKey": "root:0",
+          "powerShare": 1
+        },
+        {
+          "index": 3510,
+          "start": {
+            "x": 91.0000000000001,
+            "y": 13.00000000000012
+          },
+          "end": {
+            "x": 90.0000000000001,
+            "y": 13.00000000000012
+          },
+          "heading": -3.141592653589794,
+          "cumulativeTurn": -12.56637061435917,
+          "startDistance": 3510,
+          "endDistance": 3511,
+          "depth": 0,
+          "parentIndex": 3509,
+          "voiceKey": "root:0",
+          "powerShare": 1
+        },
+        {
+          "index": 4095,
+          "start": {
+            "x": 65.0000000000001,
+            "y": 1.2301271112846734e-13
+          },
+          "end": {
+            "x": 64.0000000000001,
+            "y": 1.2264531708872314e-13
+          },
+          "heading": -9.42477796076938,
+          "cumulativeTurn": -18.849555921538755,
+          "startDistance": 4095,
+          "endDistance": 4096,
+          "depth": 0,
+          "parentIndex": 4094,
+          "voiceKey": "root:0",
+          "powerShare": 1
+        }
+      ],
+      "instructions": "++++++++++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++--++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F+++++--+++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++--++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++++--++++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++--++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F+++++--+++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++--++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F+++++++--+++++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++--++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F+++++--+++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++--++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++++--++++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++--++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F+++++--+++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++--++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++++++--++++++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++--++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F+++++--+++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++--++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++++--++++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++--++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F+++++--+++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++--++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F+++++++--+++++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++--++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F+++++--+++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++--++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++++--++++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++--++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F+++++--+++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++--++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F+++++++++--+++++++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++--++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F+++++--+++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++--++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++++--++++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++--++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F+++++--+++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++--++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F+++++++--+++++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++--++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F+++++--+++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++--++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++++--++++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++--++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F+++++--+++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++--++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++++++--++++++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++--++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F+++++--+++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++--++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++++--++++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++--++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F+++++--+++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++--++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F+++++++--+++++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++--++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F+++++--+++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++--++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++++--++++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++--++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F+++++--+++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++--++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++++++++--++++++++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++--++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F+++++--+++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++--++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++++--++++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++--++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F+++++--+++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++--++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F+++++++--+++++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++--++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F+++++--+++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++--++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++++--++++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++--++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F+++++--+++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++--++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++++++--++++++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++--++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F+++++--+++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++--++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++++--++++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++--++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F+++++--+++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++--++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F+++++++--+++++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++--++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F+++++--+++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++--++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++++--++++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++--++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F+++++--+++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++--++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F+++++++++--+++++++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++--++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F+++++--+++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++--++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++++--++++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++--++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F+++++--+++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++--++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F+++++++--+++++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++--++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F+++++--+++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++--++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++++--++++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++--++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F+++++--+++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++--++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++++++--++++++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++--++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F+++++--+++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++--++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++++--++++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++--++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F+++++--+++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++--++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F+++++++--+++++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++--++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F+++++--+++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++--++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++++--++++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++--++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F+++++--+++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++--++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F+++++++++++--+++++++++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++--++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F+++++--+++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++--++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++++--++++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++--++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F+++++--+++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++--++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F+++++++--+++++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++--++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F+++++--+++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++--++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++++--++++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++--++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F+++++--+++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++--++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++++++--++++++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++--++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F+++++--+++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++--++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++++--++++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++--++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F+++++--+++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++--++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F+++++++--+++++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++--++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F+++++--+++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++--++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++++--++++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++--++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F+++++--+++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++--++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F+++++++++--+++++++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++--++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F+++++--+++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++--++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++++--++++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++--++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F+++++--+++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++--++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F+++++++--+++++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++--++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F+++++--+++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++--++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++++--++++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++--++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F+++++--+++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++--++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++++++--++++++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++--++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F+++++--+++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++--++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++++--++++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++--++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F+++++--+++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++--++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F+++++++--+++++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++--++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F+++++--+++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++--++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++++--++++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++--++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F+++++--+++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++--++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++++++++--++++++++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++--++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F+++++--+++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++--++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++++--++++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++--++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F+++++--+++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++--++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F+++++++--+++++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++--++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F+++++--+++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++--++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++++--++++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++--++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F+++++--+++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++--++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++++++--++++++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++--++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F+++++--+++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++--++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++++--++++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++--++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F+++++--+++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++--++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F+++++++--+++++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++--++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F+++++--+++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++--++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++++--++++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++--++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F+++++--+++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++--++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F+++++++++--+++++++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++--++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F+++++--+++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++--++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++++--++++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++--++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F+++++--+++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++--++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F+++++++--+++++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++--++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F+++++--+++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++--++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++++--++++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++--++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F+++++--+++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++--++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++++++--++++++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++--++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F+++++--+++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++--++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++++--++++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++--++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F+++++--+++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++--++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F+++++++--+++++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++--++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F+++++--+++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++--++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++++--++++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++--++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F+++++--+++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++--++++F--F+--+F--F++--++F--F+--+F--F+++--+++F--F+--+F--F++--++F--F+--+F--F++++++++++++"
+    },
+    {
+      "input": {
+        "id": "terdragon",
+        "name": "Terdragon",
+        "axiom": "F",
+        "rules": {
+          "F": "F-F+F"
+        },
+        "iterations": 7,
+        "maxIterations": 10,
+        "angle": 120,
+        "lengthScale": 1
+      },
+      "symbols": 4373,
+      "segmentCount": 2187,
+      "duration": 2187,
+      "bounds": {
+        "minX": -42.00000000000003,
+        "maxX": 1.5000000000000004,
+        "minY": -8.660254037844387,
+        "maxY": 32.042939940024226
+      },
+      "rootIndices": [
+        0
+      ],
+      "probes": [
+        {
+          "index": 0,
+          "start": {
+            "x": 0,
+            "y": 0
+          },
+          "end": {
+            "x": 1,
+            "y": 0
+          },
+          "heading": 0,
+          "cumulativeTurn": 0,
+          "startDistance": 0,
+          "endDistance": 1,
+          "depth": 0,
+          "parentIndex": null,
+          "voiceKey": "root:0",
+          "powerShare": 1
+        },
+        {
+          "index": 312,
+          "start": {
+            "x": -15.00000000000001,
+            "y": -1.7320508075688592
+          },
+          "end": {
+            "x": -15.50000000000001,
+            "y": -0.8660254037844204
+          },
+          "heading": -4.188790204786391,
+          "cumulativeTurn": -4.188790204786391,
+          "startDistance": 312,
+          "endDistance": 313,
+          "depth": 0,
+          "parentIndex": 311,
+          "voiceKey": "root:0",
+          "powerShare": 1
+        },
+        {
+          "index": 625,
+          "start": {
+            "x": -20.000000000000025,
+            "y": 5.196152422706657
+          },
+          "end": {
+            "x": -19.000000000000025,
+            "y": 5.196152422706657
+          },
+          "heading": -6.283185307179586,
+          "cumulativeTurn": -6.283185307179586,
+          "startDistance": 625,
+          "endDistance": 626,
+          "depth": 0,
+          "parentIndex": 624,
+          "voiceKey": "root:0",
+          "powerShare": 1
+        },
+        {
+          "index": 937,
+          "start": {
+            "x": -24.50000000000002,
+            "y": 11.258330249197732
+          },
+          "end": {
+            "x": -23.50000000000002,
+            "y": 11.258330249197732
+          },
+          "heading": -6.283185307179586,
+          "cumulativeTurn": -6.283185307179586,
+          "startDistance": 937,
+          "endDistance": 938,
+          "depth": 0,
+          "parentIndex": 936,
+          "voiceKey": "root:0",
+          "powerShare": 1
+        },
+        {
+          "index": 1249,
+          "start": {
+            "x": -17.000000000000018,
+            "y": 12.12435565298214
+          },
+          "end": {
+            "x": -16.000000000000018,
+            "y": 12.12435565298214
+          },
+          "heading": -6.283185307179586,
+          "cumulativeTurn": -6.283185307179586,
+          "startDistance": 1249,
+          "endDistance": 1250,
+          "depth": 0,
+          "parentIndex": 1248,
+          "voiceKey": "root:0",
+          "powerShare": 1
+        },
+        {
+          "index": 1561,
+          "start": {
+            "x": -21.500000000000032,
+            "y": 18.18653347947322
+          },
+          "end": {
+            "x": -20.500000000000032,
+            "y": 18.18653347947322
+          },
+          "heading": -6.283185307179586,
+          "cumulativeTurn": -6.283185307179586,
+          "startDistance": 1561,
+          "endDistance": 1562,
+          "depth": 0,
+          "parentIndex": 1560,
+          "voiceKey": "root:0",
+          "powerShare": 1
+        },
+        {
+          "index": 1874,
+          "start": {
+            "x": -25.00000000000003,
+            "y": 24.24871130596429
+          },
+          "end": {
+            "x": -25.50000000000003,
+            "y": 25.114736709748726
+          },
+          "heading": -4.188790204786391,
+          "cumulativeTurn": -4.188790204786391,
+          "startDistance": 1874,
+          "endDistance": 1875,
+          "depth": 0,
+          "parentIndex": 1873,
+          "voiceKey": "root:0",
+          "powerShare": 1
+        },
+        {
+          "index": 2186,
+          "start": {
+            "x": -41.50000000000003,
+            "y": 23.38268590217985
+          },
+          "end": {
+            "x": -40.50000000000003,
+            "y": 23.38268590217985
+          },
+          "heading": -8.881784197001252e-16,
+          "cumulativeTurn": -8.881784197001252e-16,
+          "startDistance": 2186,
+          "endDistance": 2187,
+          "depth": 0,
+          "parentIndex": 2185,
+          "voiceKey": "root:0",
+          "powerShare": 1
+        }
+      ],
+      "instructions": "F-F+F-F-F+F+F-F+F-F-F+F-F-F+F+F-F+F+F-F+F-F-F+F+F-F+F-F-F+F-F-F+F+F-F+F-F-F+F-F-F+F+F-F+F+F-F+F-F-F+F+F-F+F+F-F+F-F-F+F+F-F+F-F-F+F-F-F+F+F-F+F+F-F+F-F-F+F+F-F+F-F-F+F-F-F+F+F-F+F-F-F+F-F-F+F+F-F+F+F-F+F-F-F+F+F-F+F-F-F+F-F-F+F+F-F+F-F-F+F-F-F+F+F-F+F+F-F+F-F-F+F+F-F+F+F-F+F-F-F+F+F-F+F-F-F+F-F-F+F+F-F+F+F-F+F-F-F+F+F-F+F+F-F+F-F-F+F+F-F+F-F-F+F-F-F+F+F-F+F+F-F+F-F-F+F+F-F+F-F-F+F-F-F+F+F-F+F-F-F+F-F-F+F+F-F+F+F-F+F-F-F+F+F-F+F+F-F+F-F-F+F+F-F+F-F-F+F-F-F+F+F-F+F+F-F+F-F-F+F+F-F+F-F-F+F-F-F+F+F-F+F-F-F+F-F-F+F+F-F+F+F-F+F-F-F+F+F-F+F-F-F+F-F-F+F+F-F+F-F-F+F-F-F+F+F-F+F+F-F+F-F-F+F+F-F+F+F-F+F-F-F+F+F-F+F-F-F+F-F-F+F+F-F+F+F-F+F-F-F+F+F-F+F-F-F+F-F-F+F+F-F+F-F-F+F-F-F+F+F-F+F+F-F+F-F-F+F+F-F+F-F-F+F-F-F+F+F-F+F-F-F+F-F-F+F+F-F+F+F-F+F-F-F+F+F-F+F+F-F+F-F-F+F+F-F+F-F-F+F-F-F+F+F-F+F+F-F+F-F-F+F+F-F+F+F-F+F-F-F+F+F-F+F-F-F+F-F-F+F+F-F+F+F-F+F-F-F+F+F-F+F-F-F+F-F-F+F+F-F+F-F-F+F-F-F+F+F-F+F+F-F+F-F-F+F+F-F+F+F-F+F-F-F+F+F-F+F-F-F+F-F-F+F+F-F+F+F-F+F-F-F+F+F-F+F+F-F+F-F-F+F+F-F+F-F-F+F-F-F+F+F-F+F+F-F+F-F-F+F+F-F+F-F-F+F-F-F+F+F-F+F-F-F+F-F-F+F+F-F+F+F-F+F-F-F+F+F-F+F+F-F+F-F-F+F+F-F+F-F-F+F-F-F+F+F-F+F+F-F+F-F-F+F+F-F+F-F-F+F-F-F+F+F-F+F-F-F+F-F-F+F+F-F+F+F-F+F-F-F+F+F-F+F-F-F+F-F-F+F+F-F+F-F-F+F-F-F+F+F-F+F+F-F+F-F-F+F+F-F+F+F-F+F-F-F+F+F-F+F-F-F+F-F-F+F+F-F+F+F-F+F-F-F+F+F-F+F+F-F+F-F-F+F+F-F+F-F-F+F-F-F+F+F-F+F+F-F+F-F-F+F+F-F+F-F-F+F-F-F+F+F-F+F-F-F+F-F-F+F+F-F+F+F-F+F-F-F+F+F-F+F+F-F+F-F-F+F+F-F+F-F-F+F-F-F+F+F-F+F+F-F+F-F-F+F+F-F+F-F-F+F-F-F+F+F-F+F-F-F+F-F-F+F+F-F+F+F-F+F-F-F+F+F-F+F-F-F+F-F-F+F+F-F+F-F-F+F-F-F+F+F-F+F+F-F+F-F-F+F+F-F+F+F-F+F-F-F+F+F-F+F-F-F+F-F-F+F+F-F+F+F-F+F-F-F+F+F-F+F-F-F+F-F-F+F+F-F+F-F-F+F-F-F+F+F-F+F+F-F+F-F-F+F+F-F+F-F-F+F-F-F+F+F-F+F-F-F+F-F-F+F+F-F+F+F-F+F-F-F+F+F-F+F+F-F+F-F-F+F+F-F+F-F-F+F-F-F+F+F-F+F+F-F+F-F-F+F+F-F+F+F-F+F-F-F+F+F-F+F-F-F+F-F-F+F+F-F+F+F-F+F-F-F+F+F-F+F-F-F+F-F-F+F+F-F+F-F-F+F-F-F+F+F-F+F+F-F+F-F-F+F+F-F+F+F-F+F-F-F+F+F-F+F-F-F+F-F-F+F+F-F+F+F-F+F-F-F+F+F-F+F-F-F+F-F-F+F+F-F+F-F-F+F-F-F+F+F-F+F+F-F+F-F-F+F+F-F+F-F-F+F-F-F+F+F-F+F-F-F+F-F-F+F+F-F+F+F-F+F-F-F+F+F-F+F+F-F+F-F-F+F+F-F+F-F-F+F-F-F+F+F-F+F+F-F+F-F-F+F+F-F+F-F-F+F-F-F+F+F-F+F-F-F+F-F-F+F+F-F+F+F-F+F-F-F+F+F-F+F-F-F+F-F-F+F+F-F+F-F-F+F-F-F+F+F-F+F+F-F+F-F-F+F+F-F+F+F-F+F-F-F+F+F-F+F-F-F+F-F-F+F+F-F+F+F-F+F-F-F+F+F-F+F+F-F+F-F-F+F+F-F+F-F-F+F-F-F+F+F-F+F+F-F+F-F-F+F+F-F+F-F-F+F-F-F+F+F-F+F-F-F+F-F-F+F+F-F+F+F-F+F-F-F+F+F-F+F+F-F+F-F-F+F+F-F+F-F-F+F-F-F+F+F-F+F+F-F+F-F-F+F+F-F+F+F-F+F-F-F+F+F-F+F-F-F+F-F-F+F+F-F+F+F-F+F-F-F+F+F-F+F-F-F+F-F-F+F+F-F+F-F-F+F-F-F+F+F-F+F+F-F+F-F-F+F+F-F+F+F-F+F-F-F+F+F-F+F-F-F+F-F-F+F+F-F+F+F-F+F-F-F+F+F-F+F-F-F+F-F-F+F+F-F+F-F-F+F-F-F+F+F-F+F+F-F+F-F-F+F+F-F+F-F-F+F-F-F+F+F-F+F-F-F+F-F-F+F+F-F+F+F-F+F-F-F+F+F-F+F+F-F+F-F-F+F+F-F+F-F-F+F-F-F+F+F-F+F+F-F+F-F-F+F+F-F+F+F-F+F-F-F+F+F-F+F-F-F+F-F-F+F+F-F+F+F-F+F-F-F+F+F-F+F-F-F+F-F-F+F+F-F+F-F-F+F-F-F+F+F-F+F+F-F+F-F-F+F+F-F+F+F-F+F-F-F+F+F-F+F-F-F+F-F-F+F+F-F+F+F-F+F-F-F+F+F-F+F+F-F+F-F-F+F+F-F+F-F-F+F-F-F+F+F-F+F+F-F+F-F-F+F+F-F+F-F-F+F-F-F+F+F-F+F-F-F+F-F-F+F+F-F+F+F-F+F-F-F+F+F-F+F+F-F+F-F-F+F+F-F+F-F-F+F-F-F+F+F-F+F+F-F+F-F-F+F+F-F+F-F-F+F-F-F+F+F-F+F-F-F+F-F-F+F+F-F+F+F-F+F-F-F+F+F-F+F-F-F+F-F-F+F+F-F+F-F-F+F-F-F+F+F-F+F+F-F+F-F-F+F+F-F+F+F-F+F-F-F+F+F-F+F-F-F+F-F-F+F+F-F+F+F-F+F-F-F+F+F-F+F+F-F+F-F-F+F+F-F+F-F-F+F-F-F+F+F-F+F+F-F+F-F-F+F+F-F+F-F-F+F-F-F+F+F-F+F-F-F+F-F-F+F+F-F+F+F-F+F-F-F+F+F-F+F+F-F+F-F-F+F+F-F+F-F-F+F-F-F+F+F-F+F+F-F+F-F-F+F+F-F+F-F-F+F-F-F+F+F-F+F-F-F+F-F-F+F+F-F+F+F-F+F-F-F+F+F-F+F-F-F+F-F-F+F+F-F+F-F-F+F-F-F+F+F-F+F+F-F+F-F-F+F+F-F+F+F-F+F-F-F+F+F-F+F-F-F+F-F-F+F+F-F+F+F-F+F-F-F+F+F-F+F-F-F+F-F-F+F+F-F+F-F-F+F-F-F+F+F-F+F+F-F+F-F-F+F+F-F+F-F-F+F-F-F+F+F-F+F-F-F+F-F-F+F+F-F+F+F-F+F-F-F+F+F-F+F+F-F+F-F-F+F+F-F+F-F-F+F-F-F+F+F-F+F+F-F+F-F-F+F+F-F+F+F-F+F-F-F+F+F-F+F-F-F+F-F-F+F+F-F+F+F-F+F-F-F+F+F-F+F-F-F+F-F-F+F+F-F+F-F-F+F-F-F+F+F-F+F+F-F+F-F-F+F+F-F+F+F-F+F-F-F+F+F-F+F-F-F+F-F-F+F+F-F+F+F-F+F-F-F+F+F-F+F+F-F+F-F-F+F+F-F+F-F-F+F-F-F+F+F-F+F+F-F+F-F-F+F+F-F+F-F-F+F-F-F+F+F-F+F-F-F+F-F-F+F+F-F+F+F-F+F-F-F+F+F-F+F+F-F+F-F-F+F+F-F+F-F-F+F-F-F+F+F-F+F+F-F+F-F-F+F+F-F+F-F-F+F-F-F+F+F-F+F-F-F+F-F-F+F+F-F+F+F-F+F-F-F+F+F-F+F-F-F+F-F-F+F+F-F+F-F-F+F-F-F+F+F-F+F+F-F+F-F-F+F+F-F+F+F-F+F-F-F+F+F-F+F-F-F+F-F-F+F+F-F+F+F-F+F-F-F+F+F-F+F+F-F+F-F-F+F+F-F+F-F-F+F-F-F+F+F-F+F+F-F+F-F-F+F+F-F+F-F-F+F-F-F+F+F-F+F-F-F+F-F-F+F+F-F+F+F-F+F-F-F+F+F-F+F+F-F+F-F-F+F+F-F+F-F-F+F-F-F+F+F-F+F+F-F+F-F-F+F+F-F+F"
+    },
+    {
+      "input": {
+        "id": "asymmetric-turns",
+        "name": "Asymmetric branch fixture",
+        "axiom": "F+F-F[+F]F",
+        "rules": {},
+        "iterations": 0,
+        "angle": 90,
+        "lengthScale": 1,
+        "turnAsymmetry": 0.35
+      },
+      "symbols": 10,
+      "segmentCount": 5,
+      "duration": 4,
+      "bounds": {
+        "minX": -0.0654253987095299,
+        "maxX": 1.385482434763145,
+        "minY": 0,
+        "maxY": 2.6346532127308278
+      },
+      "rootIndices": [
+        0
+      ],
+      "probes": [
+        {
+          "index": 0,
+          "start": {
+            "x": 0,
+            "y": 0
+          },
+          "end": {
+            "x": 1,
+            "y": 0
+          },
+          "heading": 0,
+          "cumulativeTurn": 0,
+          "startDistance": 0,
+          "endDistance": 1,
+          "depth": 0,
+          "parentIndex": null,
+          "voiceKey": "root:0",
+          "powerShare": 1
+        },
+        {
+          "index": 1,
+          "start": {
+            "x": 1,
+            "y": 0
+          },
+          "end": {
+            "x": 0.4775014352840512,
+            "y": 0.8526401643540923
+          },
+          "heading": 2.1205750411731104,
+          "cumulativeTurn": 2.1205750411731104,
+          "startDistance": 1,
+          "endDistance": 2,
+          "depth": 0,
+          "parentIndex": 0,
+          "voiceKey": "root:0",
+          "powerShare": 1
+        },
+        {
+          "index": 2,
+          "start": {
+            "x": 0.4775014352840512,
+            "y": 0.8526401643540923
+          },
+          "end": {
+            "x": 0.9314919350235981,
+            "y": 1.74364668854246
+          },
+          "heading": 1.0995574287564276,
+          "cumulativeTurn": 1.0995574287564276,
+          "startDistance": 2,
+          "endDistance": 3,
+          "depth": 0,
+          "parentIndex": 1,
+          "voiceKey": "root:0",
+          "powerShare": 1
+        },
+        {
+          "index": 3,
+          "start": {
+            "x": 0.9314919350235981,
+            "y": 1.74364668854246
+          },
+          "end": {
+            "x": -0.0654253987095299,
+            "y": 1.6651875928146151
+          },
+          "heading": 3.220132469929538,
+          "cumulativeTurn": 3.220132469929538,
+          "startDistance": 3,
+          "endDistance": 4,
+          "depth": 1,
+          "parentIndex": 2,
+          "voiceKey": "root:0",
+          "powerShare": 0.5
+        },
+        {
+          "index": 4,
+          "start": {
+            "x": 0.9314919350235981,
+            "y": 1.74364668854246
+          },
+          "end": {
+            "x": 1.385482434763145,
+            "y": 2.6346532127308278
+          },
+          "heading": 1.0995574287564276,
+          "cumulativeTurn": 1.0995574287564276,
+          "startDistance": 3,
+          "endDistance": 4,
+          "depth": 0,
+          "parentIndex": 2,
+          "voiceKey": "root:0/branch:4",
+          "powerShare": 0.5
+        }
+      ],
+      "instructions": "F+F-F[+F]F"
+    }
+  ],
+  "graphs": [
+    {
+      "input": {
+        "type": "chain",
+        "nodeCount": 12,
+        "maxNodes": 32,
+        "density": 0.36,
+        "seed": 17
+      },
+      "graph": {
+        "type": "chain",
+        "nodes": [
+          {
+            "id": 0,
+            "x": 0.12,
+            "y": 0.5
+          },
+          {
+            "id": 1,
+            "x": 0.1890909090909091,
+            "y": 0.5
+          },
+          {
+            "id": 2,
+            "x": 0.2581818181818182,
+            "y": 0.5
+          },
+          {
+            "id": 3,
+            "x": 0.32727272727272727,
+            "y": 0.5
+          },
+          {
+            "id": 4,
+            "x": 0.39636363636363636,
+            "y": 0.5
+          },
+          {
+            "id": 5,
+            "x": 0.46545454545454545,
+            "y": 0.5
+          },
+          {
+            "id": 6,
+            "x": 0.5345454545454544,
+            "y": 0.5
+          },
+          {
+            "id": 7,
+            "x": 0.6036363636363636,
+            "y": 0.5
+          },
+          {
+            "id": 8,
+            "x": 0.6727272727272727,
+            "y": 0.5
+          },
+          {
+            "id": 9,
+            "x": 0.7418181818181818,
+            "y": 0.5
+          },
+          {
+            "id": 10,
+            "x": 0.8109090909090909,
+            "y": 0.5
+          },
+          {
+            "id": 11,
+            "x": 0.88,
+            "y": 0.5
+          }
+        ],
+        "edges": [
+          {
+            "from": 0,
+            "to": 1,
+            "cyclic": false,
+            "feedbackEdge": false,
+            "id": 0
+          },
+          {
+            "from": 1,
+            "to": 2,
+            "cyclic": false,
+            "feedbackEdge": false,
+            "id": 1
+          },
+          {
+            "from": 2,
+            "to": 3,
+            "cyclic": false,
+            "feedbackEdge": false,
+            "id": 2
+          },
+          {
+            "from": 3,
+            "to": 4,
+            "cyclic": false,
+            "feedbackEdge": false,
+            "id": 3
+          },
+          {
+            "from": 4,
+            "to": 5,
+            "cyclic": false,
+            "feedbackEdge": false,
+            "id": 4
+          },
+          {
+            "from": 5,
+            "to": 6,
+            "cyclic": false,
+            "feedbackEdge": false,
+            "id": 5
+          },
+          {
+            "from": 6,
+            "to": 7,
+            "cyclic": false,
+            "feedbackEdge": false,
+            "id": 6
+          },
+          {
+            "from": 7,
+            "to": 8,
+            "cyclic": false,
+            "feedbackEdge": false,
+            "id": 7
+          },
+          {
+            "from": 8,
+            "to": 9,
+            "cyclic": false,
+            "feedbackEdge": false,
+            "id": 8
+          },
+          {
+            "from": 9,
+            "to": 10,
+            "cyclic": false,
+            "feedbackEdge": false,
+            "id": 9
+          },
+          {
+            "from": 10,
+            "to": 11,
+            "cyclic": false,
+            "feedbackEdge": false,
+            "id": 10
+          }
+        ],
+        "components": [
+          [
+            11
+          ],
+          [
+            10
+          ],
+          [
+            9
+          ],
+          [
+            8
+          ],
+          [
+            7
+          ],
+          [
+            6
+          ],
+          [
+            5
+          ],
+          [
+            4
+          ],
+          [
+            3
+          ],
+          [
+            2
+          ],
+          [
+            1
+          ],
+          [
+            0
+          ]
+        ],
+        "cyclic": false,
+        "indegree": [
+          0,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "outdegree": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          0
+        ],
+        "cyclicIndegree": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "entries": [
+          0
+        ]
+      }
+    },
+    {
+      "input": {
+        "type": "tree",
+        "nodeCount": 12,
+        "maxNodes": 32,
+        "density": 0.36,
+        "seed": 17
+      },
+      "graph": {
+        "type": "tree",
+        "nodes": [
+          {
+            "id": 0,
+            "x": 0.12,
+            "y": 0.5
+          },
+          {
+            "id": 1,
+            "x": 0.3733333333333333,
+            "y": 0.3733333333333333
+          },
+          {
+            "id": 2,
+            "x": 0.3733333333333333,
+            "y": 0.6266666666666666
+          },
+          {
+            "id": 3,
+            "x": 0.6266666666666666,
+            "y": 0.272
+          },
+          {
+            "id": 4,
+            "x": 0.6266666666666666,
+            "y": 0.42400000000000004
+          },
+          {
+            "id": 5,
+            "x": 0.6266666666666666,
+            "y": 0.576
+          },
+          {
+            "id": 6,
+            "x": 0.6266666666666666,
+            "y": 0.7280000000000001
+          },
+          {
+            "id": 7,
+            "x": 0.88,
+            "y": 0.24666666666666665
+          },
+          {
+            "id": 8,
+            "x": 0.88,
+            "y": 0.3733333333333333
+          },
+          {
+            "id": 9,
+            "x": 0.88,
+            "y": 0.5
+          },
+          {
+            "id": 10,
+            "x": 0.88,
+            "y": 0.6266666666666666
+          },
+          {
+            "id": 11,
+            "x": 0.88,
+            "y": 0.7533333333333334
+          }
+        ],
+        "edges": [
+          {
+            "from": 0,
+            "to": 1,
+            "cyclic": false,
+            "feedbackEdge": false,
+            "id": 0
+          },
+          {
+            "from": 0,
+            "to": 2,
+            "cyclic": false,
+            "feedbackEdge": false,
+            "id": 1
+          },
+          {
+            "from": 1,
+            "to": 3,
+            "cyclic": false,
+            "feedbackEdge": false,
+            "id": 2
+          },
+          {
+            "from": 1,
+            "to": 4,
+            "cyclic": false,
+            "feedbackEdge": false,
+            "id": 3
+          },
+          {
+            "from": 2,
+            "to": 5,
+            "cyclic": false,
+            "feedbackEdge": false,
+            "id": 4
+          },
+          {
+            "from": 2,
+            "to": 6,
+            "cyclic": false,
+            "feedbackEdge": false,
+            "id": 5
+          },
+          {
+            "from": 3,
+            "to": 7,
+            "cyclic": false,
+            "feedbackEdge": false,
+            "id": 6
+          },
+          {
+            "from": 3,
+            "to": 8,
+            "cyclic": false,
+            "feedbackEdge": false,
+            "id": 7
+          },
+          {
+            "from": 4,
+            "to": 9,
+            "cyclic": false,
+            "feedbackEdge": false,
+            "id": 8
+          },
+          {
+            "from": 4,
+            "to": 10,
+            "cyclic": false,
+            "feedbackEdge": false,
+            "id": 9
+          },
+          {
+            "from": 5,
+            "to": 11,
+            "cyclic": false,
+            "feedbackEdge": false,
+            "id": 10
+          }
+        ],
+        "components": [
+          [
+            7
+          ],
+          [
+            8
+          ],
+          [
+            3
+          ],
+          [
+            9
+          ],
+          [
+            10
+          ],
+          [
+            4
+          ],
+          [
+            1
+          ],
+          [
+            11
+          ],
+          [
+            5
+          ],
+          [
+            6
+          ],
+          [
+            2
+          ],
+          [
+            0
+          ]
+        ],
+        "cyclic": false,
+        "indegree": [
+          0,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "outdegree": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          1,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "cyclicIndegree": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "entries": [
+          0
+        ]
+      }
+    },
+    {
+      "input": {
+        "type": "dag",
+        "nodeCount": 12,
+        "maxNodes": 32,
+        "density": 0.36,
+        "seed": 17
+      },
+      "graph": {
+        "type": "dag",
+        "nodes": [
+          {
+            "id": 0,
+            "x": 0.12,
+            "y": 0.32499999999999996
+          },
+          {
+            "id": 1,
+            "x": 0.12,
+            "y": 0.5
+          },
+          {
+            "id": 2,
+            "x": 0.12,
+            "y": 0.6749999999999999
+          },
+          {
+            "id": 3,
+            "x": 0.3733333333333333,
+            "y": 0.32499999999999996
+          },
+          {
+            "id": 4,
+            "x": 0.3733333333333333,
+            "y": 0.5
+          },
+          {
+            "id": 5,
+            "x": 0.3733333333333333,
+            "y": 0.6749999999999999
+          },
+          {
+            "id": 6,
+            "x": 0.6266666666666666,
+            "y": 0.32499999999999996
+          },
+          {
+            "id": 7,
+            "x": 0.6266666666666666,
+            "y": 0.5
+          },
+          {
+            "id": 8,
+            "x": 0.6266666666666666,
+            "y": 0.6749999999999999
+          },
+          {
+            "id": 9,
+            "x": 0.88,
+            "y": 0.32499999999999996
+          },
+          {
+            "id": 10,
+            "x": 0.88,
+            "y": 0.5
+          },
+          {
+            "id": 11,
+            "x": 0.88,
+            "y": 0.6749999999999999
+          }
+        ],
+        "edges": [
+          {
+            "from": 0,
+            "to": 1,
+            "cyclic": false,
+            "feedbackEdge": false,
+            "id": 0
+          },
+          {
+            "from": 1,
+            "to": 2,
+            "cyclic": false,
+            "feedbackEdge": false,
+            "id": 1
+          },
+          {
+            "from": 2,
+            "to": 3,
+            "cyclic": false,
+            "feedbackEdge": false,
+            "id": 2
+          },
+          {
+            "from": 3,
+            "to": 4,
+            "cyclic": false,
+            "feedbackEdge": false,
+            "id": 3
+          },
+          {
+            "from": 4,
+            "to": 5,
+            "cyclic": false,
+            "feedbackEdge": false,
+            "id": 4
+          },
+          {
+            "from": 5,
+            "to": 6,
+            "cyclic": false,
+            "feedbackEdge": false,
+            "id": 5
+          },
+          {
+            "from": 6,
+            "to": 7,
+            "cyclic": false,
+            "feedbackEdge": false,
+            "id": 6
+          },
+          {
+            "from": 7,
+            "to": 8,
+            "cyclic": false,
+            "feedbackEdge": false,
+            "id": 7
+          },
+          {
+            "from": 8,
+            "to": 9,
+            "cyclic": false,
+            "feedbackEdge": false,
+            "id": 8
+          },
+          {
+            "from": 9,
+            "to": 10,
+            "cyclic": false,
+            "feedbackEdge": false,
+            "id": 9
+          },
+          {
+            "from": 10,
+            "to": 11,
+            "cyclic": false,
+            "feedbackEdge": false,
+            "id": 10
+          },
+          {
+            "from": 1,
+            "to": 6,
+            "cyclic": false,
+            "feedbackEdge": false,
+            "id": 11
+          },
+          {
+            "from": 2,
+            "to": 6,
+            "cyclic": false,
+            "feedbackEdge": false,
+            "id": 12
+          },
+          {
+            "from": 2,
+            "to": 9,
+            "cyclic": false,
+            "feedbackEdge": false,
+            "id": 13
+          },
+          {
+            "from": 4,
+            "to": 11,
+            "cyclic": false,
+            "feedbackEdge": false,
+            "id": 14
+          },
+          {
+            "from": 5,
+            "to": 9,
+            "cyclic": false,
+            "feedbackEdge": false,
+            "id": 15
+          },
+          {
+            "from": 6,
+            "to": 10,
+            "cyclic": false,
+            "feedbackEdge": false,
+            "id": 16
+          }
+        ],
+        "components": [
+          [
+            11
+          ],
+          [
+            10
+          ],
+          [
+            9
+          ],
+          [
+            8
+          ],
+          [
+            7
+          ],
+          [
+            6
+          ],
+          [
+            5
+          ],
+          [
+            4
+          ],
+          [
+            3
+          ],
+          [
+            2
+          ],
+          [
+            1
+          ],
+          [
+            0
+          ]
+        ],
+        "cyclic": false,
+        "indegree": [
+          0,
+          1,
+          1,
+          1,
+          1,
+          1,
+          3,
+          1,
+          1,
+          3,
+          2,
+          2
+        ],
+        "outdegree": [
+          1,
+          2,
+          3,
+          1,
+          2,
+          2,
+          2,
+          1,
+          1,
+          1,
+          1,
+          0
+        ],
+        "cyclicIndegree": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "entries": [
+          0
+        ]
+      }
+    },
+    {
+      "input": {
+        "type": "bipartite",
+        "nodeCount": 12,
+        "maxNodes": 32,
+        "density": 0.36,
+        "seed": 17
+      },
+      "graph": {
+        "type": "bipartite",
+        "nodes": [
+          {
+            "id": 0,
+            "x": 0.12,
+            "y": 0.25
+          },
+          {
+            "id": 1,
+            "x": 0.12,
+            "y": 0.35
+          },
+          {
+            "id": 2,
+            "x": 0.12,
+            "y": 0.44999999999999996
+          },
+          {
+            "id": 3,
+            "x": 0.12,
+            "y": 0.5499999999999999
+          },
+          {
+            "id": 4,
+            "x": 0.12,
+            "y": 0.65
+          },
+          {
+            "id": 5,
+            "x": 0.12,
+            "y": 0.75
+          },
+          {
+            "id": 6,
+            "x": 0.88,
+            "y": 0.25
+          },
+          {
+            "id": 7,
+            "x": 0.88,
+            "y": 0.35
+          },
+          {
+            "id": 8,
+            "x": 0.88,
+            "y": 0.44999999999999996
+          },
+          {
+            "id": 9,
+            "x": 0.88,
+            "y": 0.5499999999999999
+          },
+          {
+            "id": 10,
+            "x": 0.88,
+            "y": 0.65
+          },
+          {
+            "id": 11,
+            "x": 0.88,
+            "y": 0.75
+          }
+        ],
+        "edges": [
+          {
+            "from": 0,
+            "to": 6,
+            "cyclic": false,
+            "feedbackEdge": false,
+            "id": 0
+          },
+          {
+            "from": 0,
+            "to": 8,
+            "cyclic": false,
+            "feedbackEdge": false,
+            "id": 1
+          },
+          {
+            "from": 0,
+            "to": 9,
+            "cyclic": false,
+            "feedbackEdge": false,
+            "id": 2
+          },
+          {
+            "from": 0,
+            "to": 11,
+            "cyclic": false,
+            "feedbackEdge": false,
+            "id": 3
+          },
+          {
+            "from": 1,
+            "to": 7,
+            "cyclic": false,
+            "feedbackEdge": false,
+            "id": 4
+          },
+          {
+            "from": 1,
+            "to": 8,
+            "cyclic": false,
+            "feedbackEdge": false,
+            "id": 5
+          },
+          {
+            "from": 1,
+            "to": 11,
+            "cyclic": false,
+            "feedbackEdge": false,
+            "id": 6
+          },
+          {
+            "from": 2,
+            "to": 6,
+            "cyclic": false,
+            "feedbackEdge": false,
+            "id": 7
+          },
+          {
+            "from": 2,
+            "to": 7,
+            "cyclic": false,
+            "feedbackEdge": false,
+            "id": 8
+          },
+          {
+            "from": 2,
+            "to": 9,
+            "cyclic": false,
+            "feedbackEdge": false,
+            "id": 9
+          },
+          {
+            "from": 2,
+            "to": 10,
+            "cyclic": false,
+            "feedbackEdge": false,
+            "id": 10
+          },
+          {
+            "from": 3,
+            "to": 6,
+            "cyclic": false,
+            "feedbackEdge": false,
+            "id": 11
+          },
+          {
+            "from": 3,
+            "to": 8,
+            "cyclic": false,
+            "feedbackEdge": false,
+            "id": 12
+          },
+          {
+            "from": 3,
+            "to": 9,
+            "cyclic": false,
+            "feedbackEdge": false,
+            "id": 13
+          },
+          {
+            "from": 3,
+            "to": 11,
+            "cyclic": false,
+            "feedbackEdge": false,
+            "id": 14
+          },
+          {
+            "from": 4,
+            "to": 6,
+            "cyclic": false,
+            "feedbackEdge": false,
+            "id": 15
+          },
+          {
+            "from": 4,
+            "to": 8,
+            "cyclic": false,
+            "feedbackEdge": false,
+            "id": 16
+          },
+          {
+            "from": 4,
+            "to": 10,
+            "cyclic": false,
+            "feedbackEdge": false,
+            "id": 17
+          },
+          {
+            "from": 5,
+            "to": 6,
+            "cyclic": false,
+            "feedbackEdge": false,
+            "id": 18
+          },
+          {
+            "from": 5,
+            "to": 11,
+            "cyclic": false,
+            "feedbackEdge": false,
+            "id": 19
+          }
+        ],
+        "components": [
+          [
+            6
+          ],
+          [
+            8
+          ],
+          [
+            9
+          ],
+          [
+            11
+          ],
+          [
+            0
+          ],
+          [
+            7
+          ],
+          [
+            1
+          ],
+          [
+            10
+          ],
+          [
+            2
+          ],
+          [
+            3
+          ],
+          [
+            4
+          ],
+          [
+            5
+          ]
+        ],
+        "cyclic": false,
+        "indegree": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          5,
+          2,
+          4,
+          3,
+          2,
+          4
+        ],
+        "outdegree": [
+          4,
+          3,
+          4,
+          4,
+          3,
+          2,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "cyclicIndegree": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ],
+        "entries": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5
+        ]
+      }
+    },
+    {
+      "input": {
+        "type": "ring",
+        "nodeCount": 12,
+        "maxNodes": 32,
+        "density": 0.36,
+        "seed": 17
+      },
+      "graph": {
+        "type": "ring",
+        "nodes": [
+          {
+            "id": 0,
+            "x": 0.5,
+            "y": 0.12
+          },
+          {
+            "id": 1,
+            "x": 0.69,
+            "y": 0.17091034656191328
+          },
+          {
+            "id": 2,
+            "x": 0.8290896534380867,
+            "y": 0.31
+          },
+          {
+            "id": 3,
+            "x": 0.88,
+            "y": 0.5
+          },
+          {
+            "id": 4,
+            "x": 0.8290896534380867,
+            "y": 0.69
+          },
+          {
+            "id": 5,
+            "x": 0.69,
+            "y": 0.8290896534380867
+          },
+          {
+            "id": 6,
+            "x": 0.5,
+            "y": 0.88
+          },
+          {
+            "id": 7,
+            "x": 0.30999999999999994,
+            "y": 0.8290896534380867
+          },
+          {
+            "id": 8,
+            "x": 0.1709103465619134,
+            "y": 0.6900000000000002
+          },
+          {
+            "id": 9,
+            "x": 0.12,
+            "y": 0.5
+          },
+          {
+            "id": 10,
+            "x": 0.17091034656191334,
+            "y": 0.30999999999999994
+          },
+          {
+            "id": 11,
+            "x": 0.30999999999999983,
+            "y": 0.1709103465619134
+          }
+        ],
+        "edges": [
+          {
+            "from": 0,
+            "to": 1,
+            "cyclic": true,
+            "feedbackEdge": false,
+            "id": 0
+          },
+          {
+            "from": 1,
+            "to": 2,
+            "cyclic": true,
+            "feedbackEdge": false,
+            "id": 1
+          },
+          {
+            "from": 2,
+            "to": 3,
+            "cyclic": true,
+            "feedbackEdge": false,
+            "id": 2
+          },
+          {
+            "from": 3,
+            "to": 4,
+            "cyclic": true,
+            "feedbackEdge": false,
+            "id": 3
+          },
+          {
+            "from": 4,
+            "to": 5,
+            "cyclic": true,
+            "feedbackEdge": false,
+            "id": 4
+          },
+          {
+            "from": 5,
+            "to": 6,
+            "cyclic": true,
+            "feedbackEdge": false,
+            "id": 5
+          },
+          {
+            "from": 6,
+            "to": 7,
+            "cyclic": true,
+            "feedbackEdge": false,
+            "id": 6
+          },
+          {
+            "from": 7,
+            "to": 8,
+            "cyclic": true,
+            "feedbackEdge": false,
+            "id": 7
+          },
+          {
+            "from": 8,
+            "to": 9,
+            "cyclic": true,
+            "feedbackEdge": false,
+            "id": 8
+          },
+          {
+            "from": 9,
+            "to": 10,
+            "cyclic": true,
+            "feedbackEdge": false,
+            "id": 9
+          },
+          {
+            "from": 10,
+            "to": 11,
+            "cyclic": true,
+            "feedbackEdge": false,
+            "id": 10
+          },
+          {
+            "from": 11,
+            "to": 0,
+            "cyclic": true,
+            "feedbackEdge": true,
+            "id": 11
+          }
+        ],
+        "components": [
+          [
+            11,
+            10,
+            9,
+            8,
+            7,
+            6,
+            5,
+            4,
+            3,
+            2,
+            1,
+            0
+          ]
+        ],
+        "cyclic": true,
+        "indegree": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "outdegree": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "cyclicIndegree": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "entries": []
+      }
+    },
+    {
+      "input": {
+        "type": "smallworld",
+        "nodeCount": 12,
+        "maxNodes": 32,
+        "density": 0.36,
+        "seed": 17
+      },
+      "graph": {
+        "type": "smallworld",
+        "nodes": [
+          {
+            "id": 0,
+            "x": 0.5,
+            "y": 0.12
+          },
+          {
+            "id": 1,
+            "x": 0.69,
+            "y": 0.17091034656191328
+          },
+          {
+            "id": 2,
+            "x": 0.8290896534380867,
+            "y": 0.31
+          },
+          {
+            "id": 3,
+            "x": 0.88,
+            "y": 0.5
+          },
+          {
+            "id": 4,
+            "x": 0.8290896534380867,
+            "y": 0.69
+          },
+          {
+            "id": 5,
+            "x": 0.69,
+            "y": 0.8290896534380867
+          },
+          {
+            "id": 6,
+            "x": 0.5,
+            "y": 0.88
+          },
+          {
+            "id": 7,
+            "x": 0.30999999999999994,
+            "y": 0.8290896534380867
+          },
+          {
+            "id": 8,
+            "x": 0.1709103465619134,
+            "y": 0.6900000000000002
+          },
+          {
+            "id": 9,
+            "x": 0.12,
+            "y": 0.5
+          },
+          {
+            "id": 10,
+            "x": 0.17091034656191334,
+            "y": 0.30999999999999994
+          },
+          {
+            "id": 11,
+            "x": 0.30999999999999983,
+            "y": 0.1709103465619134
+          }
+        ],
+        "edges": [
+          {
+            "from": 0,
+            "to": 1,
+            "cyclic": true,
+            "feedbackEdge": false,
+            "id": 0
+          },
+          {
+            "from": 1,
+            "to": 2,
+            "cyclic": true,
+            "feedbackEdge": false,
+            "id": 1
+          },
+          {
+            "from": 2,
+            "to": 3,
+            "cyclic": true,
+            "feedbackEdge": false,
+            "id": 2
+          },
+          {
+            "from": 3,
+            "to": 4,
+            "cyclic": true,
+            "feedbackEdge": false,
+            "id": 3
+          },
+          {
+            "from": 4,
+            "to": 5,
+            "cyclic": true,
+            "feedbackEdge": false,
+            "id": 4
+          },
+          {
+            "from": 5,
+            "to": 6,
+            "cyclic": true,
+            "feedbackEdge": false,
+            "id": 5
+          },
+          {
+            "from": 6,
+            "to": 7,
+            "cyclic": true,
+            "feedbackEdge": false,
+            "id": 6
+          },
+          {
+            "from": 7,
+            "to": 8,
+            "cyclic": true,
+            "feedbackEdge": false,
+            "id": 7
+          },
+          {
+            "from": 8,
+            "to": 9,
+            "cyclic": true,
+            "feedbackEdge": false,
+            "id": 8
+          },
+          {
+            "from": 9,
+            "to": 10,
+            "cyclic": true,
+            "feedbackEdge": false,
+            "id": 9
+          },
+          {
+            "from": 10,
+            "to": 11,
+            "cyclic": true,
+            "feedbackEdge": false,
+            "id": 10
+          },
+          {
+            "from": 11,
+            "to": 0,
+            "cyclic": true,
+            "feedbackEdge": true,
+            "id": 11
+          },
+          {
+            "from": 0,
+            "to": 9,
+            "cyclic": true,
+            "feedbackEdge": false,
+            "id": 12
+          },
+          {
+            "from": 2,
+            "to": 10,
+            "cyclic": true,
+            "feedbackEdge": false,
+            "id": 13
+          },
+          {
+            "from": 3,
+            "to": 11,
+            "cyclic": true,
+            "feedbackEdge": false,
+            "id": 14
+          },
+          {
+            "from": 4,
+            "to": 7,
+            "cyclic": true,
+            "feedbackEdge": false,
+            "id": 15
+          },
+          {
+            "from": 7,
+            "to": 10,
+            "cyclic": true,
+            "feedbackEdge": false,
+            "id": 16
+          },
+          {
+            "from": 8,
+            "to": 5,
+            "cyclic": true,
+            "feedbackEdge": true,
+            "id": 17
+          },
+          {
+            "from": 10,
+            "to": 5,
+            "cyclic": true,
+            "feedbackEdge": true,
+            "id": 18
+          }
+        ],
+        "components": [
+          [
+            11,
+            10,
+            9,
+            8,
+            7,
+            6,
+            5,
+            4,
+            3,
+            2,
+            1,
+            0
+          ]
+        ],
+        "cyclic": true,
+        "indegree": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          3,
+          1,
+          2,
+          1,
+          2,
+          3,
+          2
+        ],
+        "outdegree": [
+          2,
+          1,
+          2,
+          2,
+          2,
+          1,
+          1,
+          2,
+          2,
+          1,
+          2,
+          1
+        ],
+        "cyclicIndegree": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          3,
+          1,
+          2,
+          1,
+          2,
+          3,
+          2
+        ],
+        "entries": []
+      }
+    },
+    {
+      "input": {
+        "type": "hub",
+        "nodeCount": 12,
+        "maxNodes": 32,
+        "density": 0.36,
+        "seed": 17
+      },
+      "graph": {
+        "type": "hub",
+        "nodes": [
+          {
+            "id": 0,
+            "x": 0.5,
+            "y": 0.5
+          },
+          {
+            "id": 1,
+            "x": 0.5,
+            "y": 0.12
+          },
+          {
+            "id": 2,
+            "x": 0.7054435106331272,
+            "y": 0.1803236575241512
+          },
+          {
+            "id": 3,
+            "x": 0.845660158234717,
+            "y": 0.3421422950592832
+          },
+          {
+            "id": 4,
+            "x": 0.8761321479147545,
+            "y": 0.5540796385438483
+          },
+          {
+            "id": 5,
+            "x": 0.7871848382546182,
+            "y": 0.7488470788992083
+          },
+          {
+            "id": 6,
+            "x": 0.6070583715997434,
+            "y": 0.864607329973509
+          },
+          {
+            "id": 7,
+            "x": 0.3929416284002568,
+            "y": 0.8646073299735091
+          },
+          {
+            "id": 8,
+            "x": 0.2128151617453819,
+            "y": 0.7488470788992083
+          },
+          {
+            "id": 9,
+            "x": 0.12386785208524559,
+            "y": 0.5540796385438483
+          },
+          {
+            "id": 10,
+            "x": 0.1543398417652831,
+            "y": 0.34214229505928295
+          },
+          {
+            "id": 11,
+            "x": 0.2945564893668727,
+            "y": 0.1803236575241513
+          }
+        ],
+        "edges": [
+          {
+            "from": 0,
+            "to": 1,
+            "cyclic": true,
+            "feedbackEdge": false,
+            "id": 0
+          },
+          {
+            "from": 1,
+            "to": 0,
+            "cyclic": true,
+            "feedbackEdge": true,
+            "id": 1
+          },
+          {
+            "from": 0,
+            "to": 2,
+            "cyclic": false,
+            "feedbackEdge": false,
+            "id": 2
+          },
+          {
+            "from": 0,
+            "to": 3,
+            "cyclic": false,
+            "feedbackEdge": false,
+            "id": 3
+          },
+          {
+            "from": 0,
+            "to": 4,
+            "cyclic": true,
+            "feedbackEdge": false,
+            "id": 4
+          },
+          {
+            "from": 4,
+            "to": 0,
+            "cyclic": true,
+            "feedbackEdge": true,
+            "id": 5
+          },
+          {
+            "from": 0,
+            "to": 5,
+            "cyclic": false,
+            "feedbackEdge": false,
+            "id": 6
+          },
+          {
+            "from": 0,
+            "to": 6,
+            "cyclic": false,
+            "feedbackEdge": false,
+            "id": 7
+          },
+          {
+            "from": 0,
+            "to": 7,
+            "cyclic": false,
+            "feedbackEdge": false,
+            "id": 8
+          },
+          {
+            "from": 0,
+            "to": 8,
+            "cyclic": true,
+            "feedbackEdge": false,
+            "id": 9
+          },
+          {
+            "from": 8,
+            "to": 0,
+            "cyclic": true,
+            "feedbackEdge": true,
+            "id": 10
+          },
+          {
+            "from": 0,
+            "to": 9,
+            "cyclic": true,
+            "feedbackEdge": false,
+            "id": 11
+          },
+          {
+            "from": 9,
+            "to": 0,
+            "cyclic": true,
+            "feedbackEdge": true,
+            "id": 12
+          },
+          {
+            "from": 0,
+            "to": 10,
+            "cyclic": false,
+            "feedbackEdge": false,
+            "id": 13
+          },
+          {
+            "from": 0,
+            "to": 11,
+            "cyclic": false,
+            "feedbackEdge": false,
+            "id": 14
+          }
+        ],
+        "components": [
+          [
+            2
+          ],
+          [
+            3
+          ],
+          [
+            5
+          ],
+          [
+            6
+          ],
+          [
+            7
+          ],
+          [
+            10
+          ],
+          [
+            11
+          ],
+          [
+            9,
+            8,
+            4,
+            1,
+            0
+          ]
+        ],
+        "cyclic": true,
+        "indegree": [
+          4,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "outdegree": [
+          11,
+          1,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          1,
+          1,
+          0,
+          0
+        ],
+        "cyclicIndegree": [
+          4,
+          1,
+          0,
+          0,
+          1,
+          0,
+          0,
+          0,
+          1,
+          1,
+          0,
+          0
+        ],
+        "entries": []
+      }
+    },
+    {
+      "input": {
+        "type": "mesh",
+        "nodeCount": 12,
+        "maxNodes": 32,
+        "density": 0.36,
+        "seed": 17
+      },
+      "graph": {
+        "type": "mesh",
+        "nodes": [
+          {
+            "id": 0,
+            "x": 0.14,
+            "y": 0.14
+          },
+          {
+            "id": 1,
+            "x": 0.38,
+            "y": 0.14
+          },
+          {
+            "id": 2,
+            "x": 0.62,
+            "y": 0.14
+          },
+          {
+            "id": 3,
+            "x": 0.86,
+            "y": 0.14
+          },
+          {
+            "id": 4,
+            "x": 0.14,
+            "y": 0.5
+          },
+          {
+            "id": 5,
+            "x": 0.38,
+            "y": 0.5
+          },
+          {
+            "id": 6,
+            "x": 0.62,
+            "y": 0.5
+          },
+          {
+            "id": 7,
+            "x": 0.86,
+            "y": 0.5
+          },
+          {
+            "id": 8,
+            "x": 0.14,
+            "y": 0.86
+          },
+          {
+            "id": 9,
+            "x": 0.38,
+            "y": 0.86
+          },
+          {
+            "id": 10,
+            "x": 0.62,
+            "y": 0.86
+          },
+          {
+            "id": 11,
+            "x": 0.86,
+            "y": 0.86
+          }
+        ],
+        "edges": [
+          {
+            "from": 0,
+            "to": 1,
+            "cyclic": true,
+            "feedbackEdge": false,
+            "id": 0
+          },
+          {
+            "from": 1,
+            "to": 0,
+            "cyclic": true,
+            "feedbackEdge": true,
+            "id": 1
+          },
+          {
+            "from": 0,
+            "to": 4,
+            "cyclic": true,
+            "feedbackEdge": false,
+            "id": 2
+          },
+          {
+            "from": 1,
+            "to": 2,
+            "cyclic": false,
+            "feedbackEdge": false,
+            "id": 3
+          },
+          {
+            "from": 1,
+            "to": 5,
+            "cyclic": true,
+            "feedbackEdge": false,
+            "id": 4
+          },
+          {
+            "from": 5,
+            "to": 1,
+            "cyclic": true,
+            "feedbackEdge": true,
+            "id": 5
+          },
+          {
+            "from": 2,
+            "to": 3,
+            "cyclic": true,
+            "feedbackEdge": false,
+            "id": 6
+          },
+          {
+            "from": 2,
+            "to": 6,
+            "cyclic": true,
+            "feedbackEdge": false,
+            "id": 7
+          },
+          {
+            "from": 6,
+            "to": 2,
+            "cyclic": true,
+            "feedbackEdge": true,
+            "id": 8
+          },
+          {
+            "from": 3,
+            "to": 7,
+            "cyclic": true,
+            "feedbackEdge": false,
+            "id": 9
+          },
+          {
+            "from": 4,
+            "to": 5,
+            "cyclic": true,
+            "feedbackEdge": false,
+            "id": 10
+          },
+          {
+            "from": 5,
+            "to": 4,
+            "cyclic": true,
+            "feedbackEdge": true,
+            "id": 11
+          },
+          {
+            "from": 4,
+            "to": 8,
+            "cyclic": true,
+            "feedbackEdge": false,
+            "id": 12
+          },
+          {
+            "from": 8,
+            "to": 4,
+            "cyclic": true,
+            "feedbackEdge": true,
+            "id": 13
+          },
+          {
+            "from": 5,
+            "to": 6,
+            "cyclic": false,
+            "feedbackEdge": false,
+            "id": 14
+          },
+          {
+            "from": 5,
+            "to": 9,
+            "cyclic": false,
+            "feedbackEdge": false,
+            "id": 15
+          },
+          {
+            "from": 6,
+            "to": 7,
+            "cyclic": true,
+            "feedbackEdge": false,
+            "id": 16
+          },
+          {
+            "from": 6,
+            "to": 10,
+            "cyclic": true,
+            "feedbackEdge": false,
+            "id": 17
+          },
+          {
+            "from": 10,
+            "to": 6,
+            "cyclic": true,
+            "feedbackEdge": true,
+            "id": 18
+          },
+          {
+            "from": 7,
+            "to": 11,
+            "cyclic": true,
+            "feedbackEdge": false,
+            "id": 19
+          },
+          {
+            "from": 11,
+            "to": 7,
+            "cyclic": true,
+            "feedbackEdge": true,
+            "id": 20
+          },
+          {
+            "from": 8,
+            "to": 9,
+            "cyclic": false,
+            "feedbackEdge": false,
+            "id": 21
+          },
+          {
+            "from": 9,
+            "to": 10,
+            "cyclic": false,
+            "feedbackEdge": false,
+            "id": 22
+          },
+          {
+            "from": 10,
+            "to": 11,
+            "cyclic": true,
+            "feedbackEdge": false,
+            "id": 23
+          },
+          {
+            "from": 11,
+            "to": 10,
+            "cyclic": true,
+            "feedbackEdge": true,
+            "id": 24
+          }
+        ],
+        "components": [
+          [
+            6,
+            10,
+            11,
+            7,
+            3,
+            2
+          ],
+          [
+            9
+          ],
+          [
+            8,
+            4,
+            5,
+            1,
+            0
+          ]
+        ],
+        "cyclic": true,
+        "indegree": [
+          1,
+          2,
+          2,
+          1,
+          3,
+          2,
+          3,
+          3,
+          1,
+          2,
+          3,
+          2
+        ],
+        "outdegree": [
+          2,
+          3,
+          2,
+          1,
+          2,
+          4,
+          3,
+          1,
+          2,
+          1,
+          2,
+          2
+        ],
+        "cyclicIndegree": [
+          1,
+          2,
+          1,
+          1,
+          3,
+          2,
+          2,
+          3,
+          1,
+          0,
+          2,
+          2
+        ],
+        "entries": []
+      }
+    },
+    {
+      "input": {
+        "type": "modular",
+        "nodeCount": 12,
+        "maxNodes": 32,
+        "density": 0.36,
+        "seed": 17
+      },
+      "graph": {
+        "type": "modular",
+        "nodes": [
+          {
+            "id": 0,
+            "x": 0.5,
+            "y": 0.12
+          },
+          {
+            "id": 1,
+            "x": 0.69,
+            "y": 0.17091034656191328
+          },
+          {
+            "id": 2,
+            "x": 0.8290896534380867,
+            "y": 0.31
+          },
+          {
+            "id": 3,
+            "x": 0.88,
+            "y": 0.5
+          },
+          {
+            "id": 4,
+            "x": 0.8290896534380867,
+            "y": 0.69
+          },
+          {
+            "id": 5,
+            "x": 0.69,
+            "y": 0.8290896534380867
+          },
+          {
+            "id": 6,
+            "x": 0.5,
+            "y": 0.88
+          },
+          {
+            "id": 7,
+            "x": 0.30999999999999994,
+            "y": 0.8290896534380867
+          },
+          {
+            "id": 8,
+            "x": 0.1709103465619134,
+            "y": 0.6900000000000002
+          },
+          {
+            "id": 9,
+            "x": 0.12,
+            "y": 0.5
+          },
+          {
+            "id": 10,
+            "x": 0.17091034656191334,
+            "y": 0.30999999999999994
+          },
+          {
+            "id": 11,
+            "x": 0.30999999999999983,
+            "y": 0.1709103465619134
+          }
+        ],
+        "edges": [
+          {
+            "from": 0,
+            "to": 1,
+            "cyclic": true,
+            "feedbackEdge": false,
+            "id": 0
+          },
+          {
+            "from": 1,
+            "to": 2,
+            "cyclic": true,
+            "feedbackEdge": false,
+            "id": 1
+          },
+          {
+            "from": 2,
+            "to": 3,
+            "cyclic": true,
+            "feedbackEdge": false,
+            "id": 2
+          },
+          {
+            "from": 3,
+            "to": 0,
+            "cyclic": true,
+            "feedbackEdge": true,
+            "id": 3
+          },
+          {
+            "from": 3,
+            "to": 4,
+            "cyclic": false,
+            "feedbackEdge": false,
+            "id": 4
+          },
+          {
+            "from": 4,
+            "to": 5,
+            "cyclic": true,
+            "feedbackEdge": false,
+            "id": 5
+          },
+          {
+            "from": 5,
+            "to": 6,
+            "cyclic": true,
+            "feedbackEdge": false,
+            "id": 6
+          },
+          {
+            "from": 6,
+            "to": 7,
+            "cyclic": true,
+            "feedbackEdge": false,
+            "id": 7
+          },
+          {
+            "from": 7,
+            "to": 4,
+            "cyclic": true,
+            "feedbackEdge": true,
+            "id": 8
+          },
+          {
+            "from": 7,
+            "to": 8,
+            "cyclic": false,
+            "feedbackEdge": false,
+            "id": 9
+          },
+          {
+            "from": 8,
+            "to": 9,
+            "cyclic": true,
+            "feedbackEdge": false,
+            "id": 10
+          },
+          {
+            "from": 9,
+            "to": 10,
+            "cyclic": true,
+            "feedbackEdge": false,
+            "id": 11
+          },
+          {
+            "from": 10,
+            "to": 11,
+            "cyclic": true,
+            "feedbackEdge": false,
+            "id": 12
+          },
+          {
+            "from": 11,
+            "to": 8,
+            "cyclic": true,
+            "feedbackEdge": true,
+            "id": 13
+          }
+        ],
+        "components": [
+          [
+            11,
+            10,
+            9,
+            8
+          ],
+          [
+            7,
+            6,
+            5,
+            4
+          ],
+          [
+            3,
+            2,
+            1,
+            0
+          ]
+        ],
+        "cyclic": true,
+        "indegree": [
+          1,
+          1,
+          1,
+          1,
+          2,
+          1,
+          1,
+          1,
+          2,
+          1,
+          1,
+          1
+        ],
+        "outdegree": [
+          1,
+          1,
+          1,
+          2,
+          1,
+          1,
+          1,
+          2,
+          1,
+          1,
+          1,
+          1
+        ],
+        "cyclicIndegree": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "entries": []
+      }
+    },
+    {
+      "input": {
+        "type": "random",
+        "nodeCount": 12,
+        "maxNodes": 32,
+        "density": 0.36,
+        "seed": 17
+      },
+      "graph": {
+        "type": "random",
+        "nodes": [
+          {
+            "id": 0,
+            "x": 0.5,
+            "y": 0.12
+          },
+          {
+            "id": 1,
+            "x": 0.69,
+            "y": 0.17091034656191328
+          },
+          {
+            "id": 2,
+            "x": 0.8290896534380867,
+            "y": 0.31
+          },
+          {
+            "id": 3,
+            "x": 0.88,
+            "y": 0.5
+          },
+          {
+            "id": 4,
+            "x": 0.8290896534380867,
+            "y": 0.69
+          },
+          {
+            "id": 5,
+            "x": 0.69,
+            "y": 0.8290896534380867
+          },
+          {
+            "id": 6,
+            "x": 0.5,
+            "y": 0.88
+          },
+          {
+            "id": 7,
+            "x": 0.30999999999999994,
+            "y": 0.8290896534380867
+          },
+          {
+            "id": 8,
+            "x": 0.1709103465619134,
+            "y": 0.6900000000000002
+          },
+          {
+            "id": 9,
+            "x": 0.12,
+            "y": 0.5
+          },
+          {
+            "id": 10,
+            "x": 0.17091034656191334,
+            "y": 0.30999999999999994
+          },
+          {
+            "id": 11,
+            "x": 0.30999999999999983,
+            "y": 0.1709103465619134
+          }
+        ],
+        "edges": [
+          {
+            "from": 0,
+            "to": 1,
+            "cyclic": false,
+            "feedbackEdge": false,
+            "id": 0
+          },
+          {
+            "from": 1,
+            "to": 2,
+            "cyclic": true,
+            "feedbackEdge": false,
+            "id": 1
+          },
+          {
+            "from": 2,
+            "to": 3,
+            "cyclic": true,
+            "feedbackEdge": false,
+            "id": 2
+          },
+          {
+            "from": 3,
+            "to": 4,
+            "cyclic": true,
+            "feedbackEdge": false,
+            "id": 3
+          },
+          {
+            "from": 4,
+            "to": 5,
+            "cyclic": true,
+            "feedbackEdge": false,
+            "id": 4
+          },
+          {
+            "from": 5,
+            "to": 6,
+            "cyclic": true,
+            "feedbackEdge": false,
+            "id": 5
+          },
+          {
+            "from": 6,
+            "to": 7,
+            "cyclic": true,
+            "feedbackEdge": false,
+            "id": 6
+          },
+          {
+            "from": 7,
+            "to": 8,
+            "cyclic": false,
+            "feedbackEdge": false,
+            "id": 7
+          },
+          {
+            "from": 8,
+            "to": 9,
+            "cyclic": false,
+            "feedbackEdge": false,
+            "id": 8
+          },
+          {
+            "from": 9,
+            "to": 10,
+            "cyclic": false,
+            "feedbackEdge": false,
+            "id": 9
+          },
+          {
+            "from": 10,
+            "to": 11,
+            "cyclic": false,
+            "feedbackEdge": false,
+            "id": 10
+          },
+          {
+            "from": 3,
+            "to": 7,
+            "cyclic": true,
+            "feedbackEdge": false,
+            "id": 11
+          },
+          {
+            "from": 4,
+            "to": 3,
+            "cyclic": true,
+            "feedbackEdge": true,
+            "id": 12
+          },
+          {
+            "from": 7,
+            "to": 1,
+            "cyclic": true,
+            "feedbackEdge": true,
+            "id": 13
+          }
+        ],
+        "components": [
+          [
+            11
+          ],
+          [
+            10
+          ],
+          [
+            9
+          ],
+          [
+            8
+          ],
+          [
+            7,
+            6,
+            5,
+            4,
+            3,
+            2,
+            1
+          ],
+          [
+            0
+          ]
+        ],
+        "cyclic": true,
+        "indegree": [
+          0,
+          2,
+          1,
+          2,
+          1,
+          1,
+          1,
+          2,
+          1,
+          1,
+          1,
+          1
+        ],
+        "outdegree": [
+          1,
+          1,
+          1,
+          2,
+          2,
+          1,
+          1,
+          2,
+          1,
+          1,
+          1,
+          0
+        ],
+        "cyclicIndegree": [
+          0,
+          1,
+          1,
+          2,
+          1,
+          1,
+          1,
+          2,
+          0,
+          0,
+          0,
+          0
+        ],
+        "entries": [
+          0
+        ]
+      }
+    }
+  ]
+}

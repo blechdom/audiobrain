@@ -1,3 +1,5 @@
+import type { PresetOrigin } from '../presets/types';
+
 export type ParameterValue = number | string | boolean;
 export type GraphParams = Record<string, ParameterValue>;
 export type GraphPosition = { x: number; y: number };
@@ -27,6 +29,7 @@ export interface GraphDocument {
   description?: string;
   learningGoal?: string;
   capabilityNotes?: string[];
+  presetOrigins?: PresetOrigin[];
   nodes: GraphNode[];
   edges: GraphEdge[];
   performance: { version: 1; columns: number; widgets: PerformanceWidget[] };

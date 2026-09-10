@@ -16,6 +16,7 @@ describe('production catalog and presets', () => {
   it('has unique stable kinds, ports and exact numeric modulation inputs', () => {
     expect(new Set(OPERATOR_DEFINITIONS.map(operator => operator.kind)).size).toBe(OPERATOR_DEFINITIONS.length);
     for (const definition of OPERATOR_DEFINITIONS) {
+      expect(new Set(definition.params.map(parameter => parameter.id)).size).toBe(definition.params.length);
       for (const direction of ['inputs', 'outputs'] as const) expect(new Set(definition[direction].map(port => port.id)).size).toBe(definition[direction].length);
       const document = shapes();
       const node = createNode(definition.kind);

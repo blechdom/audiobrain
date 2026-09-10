@@ -1,5 +1,6 @@
 import { GRAPH_LIMITS, getDefaultParams, getOperatorDefinition } from './operators';
 import type { GraphDocument, GraphNode, GraphPosition, GraphParams, ParameterDefinition, ParameterValue, PerformanceWidget, WidgetLayout } from './types';
+import { parsePresetOrigins } from '../presets/validation';
 
 export class GraphDocumentError extends Error { constructor(message: string) { super(message); this.name = 'GraphDocumentError'; } }
 function check(condition: unknown, message: string): asserts condition { if (!condition) throw new GraphDocumentError(message); }
@@ -53,7 +54,7 @@ export function parseGraphDocument(input: unknown): GraphDocument {
     check(value.length <= GRAPH_LIMITS.maxJsonBytes && new TextEncoder().encode(value).byteLength <= GRAPH_LIMITS.maxJsonBytes, 'Project exceeds the 1 MiB import limit');
     try { value = JSON.parse(value); } catch { throw new GraphDocumentError('Project is not valid JSON'); }
   }
-  const d = record(value, 'project', ['documentType', 'schemaVersion', 'id', 'title', 'nodes', 'edges', 'performance'], ['description', 'learningGoal', 'capabilityNotes']);
+  const d = record(value, 'project', ['documentType', 'schemaVersion', 'id', 'title', 'nodes', 'edges', 'performance'], ['description', 'learningGoal', 'capabilityNotes', 'presetOrigins']);
   check(d.documentType === 'audiobrain.project' && d.schemaVersion === 1, 'Expected an AudioBrain project with schemaVersion 1');
   const nodes: GraphNode[] = array(d.nodes, 'nodes', GRAPH_LIMITS.maxNodes).map((entry, index) => {
     const n = record(entry, `nodes[${index}]`, ['id', 'kind', 'position', 'params'], ['viewBindings', 'label']);
@@ -124,6 +125,8 @@ export function parseGraphDocument(input: unknown): GraphDocument {
   if (d.description !== undefined) document.description = text(d.description, 'description', 4096);
   if (d.learningGoal !== undefined) document.learningGoal = text(d.learningGoal, 'learningGoal', 4096);
   if (d.capabilityNotes !== undefined) document.capabilityNotes = array(d.capabilityNotes, 'capabilityNotes', 16).map(note => text(note, 'capabilityNote', 2048));
+  if (d.presetOrigins !== undefined) document.presetOrigins = parsePresetOrigins(d.presetOrigins, new Set(nodes.map(node => node.id)));
+  if (document.presetOrigins?.length) check(new TextEncoder().encode(JSON.stringify(document, null, 2)).byteLength <= GRAPH_LIMITS.maxJsonBytes, 'Project with preserved preset records exceeds the 1 MiB import limit');
   return document;
 }
 let generated = 0;

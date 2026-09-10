@@ -9,6 +9,7 @@ test('published component catalog renders production controls and all three inst
     ['workspace-performance--l-systems', '.instrument-view svg'],
     ['workspace-performance--graphs', '.instrument-view svg'],
     ['workspace-graph--shapes', '.react-flow__node'],
+    ['workspace-presets--library', '.preset-library'],
   ]) {
     await page.goto(`/storybook/iframe.html?id=${id}&viewMode=story`);
     await expect(page.locator(`#storybook-root ${selector}`).first()).toBeVisible();

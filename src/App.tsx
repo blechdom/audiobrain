@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState, useSyncExternalStore } from 'react';
 import { Activity, ArrowUpRight, AudioLines, ChevronDown, CircleHelp, Copy, Download, Expand, FolderOpen, FilePlus2, Grip, LayoutGrid, Network, Pause, Pencil, Pin, Play, Plus, Radio, Redo2, RotateCcw, Search, Square, Trash2, Undo2, Volume2, VolumeX, X } from 'lucide-react';
-import { OPERATOR_DEFINITIONS, PRESETS, getOperatorDefinition, createId, parseGraphDocument, serializeGraphDocument } from './graph';
-import { useProjectStore } from './store';
+import { GRAPH_LIMITS, OPERATOR_DEFINITIONS, PRESETS, getOperatorDefinition, createId, parseGraphDocument, serializeGraphDocument } from './graph';
+import { projectStore, useProjectStore } from './store';
 import { AudioBrainRuntime } from './runtime/AudioBrainRuntime';
 import { GraphEditor } from './components/GraphEditor';
 import { ParameterControl } from './components/ParameterControl';
@@ -12,6 +12,8 @@ import { ViewBindings } from './components/ViewBindings';
 import { nodePresentation } from './components/presentation';
 import { PerformanceSurface } from './performance/PerformanceSurface';
 import { ShapesPlayheadControls } from './performance/ShapesPlayheadControls';
+import { PresetLibrary } from './components/PresetLibrary';
+import { PRESET_LIBRARY_ENTRIES, buildPresetGraph, exportPresetDefinition, graphPresetDefinition, serializePresetDefinition, parsePresetDefinition, reconstructPreset } from './presets';
 
 type Mode = 'graph' | 'arrange' | 'perform';
 
@@ -26,12 +28,16 @@ export function App() {
   const [notice, setNotice] = useState<string | null>(null);
   const [dialog, setDialog] = useState<'help' | 'connections' | 'rename' | 'presets' | null>(null);
   const [draftTitle, setDraftTitle] = useState('');
+  const [presetBusyId, setPresetBusyId] = useState<string | null>(null);
+  const [presetError, setPresetError] = useState<string | null>(null);
+  const presetRequest = useRef(0);
   const importInput = useRef<HTMLInputElement>(null);
   const fullscreen = useRef<HTMLDivElement>(null);
   const dialogRef = useRef<HTMLDialogElement>(null);
   const selected = store.document.nodes.find((node) => node.id === store.selection);
   const definition = selected && getOperatorDefinition(selected.kind);
   const run = (operation: Promise<unknown>) => { void operation.catch((error: unknown) => setNotice(error instanceof Error ? error.message : String(error))); };
+  const closeDialog = () => { presetRequest.current += 1; setPresetBusyId(null); setPresetError(null); setDialog(null); };
 
   useEffect(() => { runtime.setProject(store.document); }, [runtime, store.document]);
   useEffect(() => () => { void runtime.dispose(); }, [runtime]);
@@ -44,6 +50,44 @@ export function App() {
     link.download = `${store.document.title.toLowerCase().replace(/[^a-z0-9]+/g, '-')}.audiobrain.json`;
     link.click(); setTimeout(() => URL.revokeObjectURL(url), 1000);
     setNotice('Project exported with its performance layout.');
+  };
+
+  const saveCurrentPreset = () => {
+    try {
+      const json = serializePresetDefinition(graphPresetDefinition(store.document));
+      const url = URL.createObjectURL(new Blob([json], { type: 'application/json' }));
+      const link = document.createElement('a'); link.href = url;
+      link.download = `${store.document.title.toLowerCase().replace(/[^a-z0-9]+/g, '-')}.audiobrain-preset.json`;
+      link.click(); setTimeout(() => URL.revokeObjectURL(url), 1000);
+    } catch (error) { setPresetError(error instanceof Error ? error.message : String(error)); }
+  };
+
+  const applyPreset = (id: string, action: 'load' | 'add') => {
+    const request = ++presetRequest.current;
+    setPresetBusyId(id); setPresetError(null);
+    void buildPresetGraph(id).then(project => {
+      if (request !== presetRequest.current) return;
+      const applied = action === 'load' ? store.loadProject(project) : store.addInstrument(project);
+      if (applied) { closeDialog(); setNotice(action === 'add' ? 'Instrument added with independent object identities and controls.' : null); }
+      else setPresetError(projectStore.getState().error ?? 'This preset could not be applied to the current project.');
+    }).catch((error: unknown) => { if (request === presetRequest.current) setPresetError(error instanceof Error ? error.message : String(error)); })
+      .finally(() => { if (request === presetRequest.current) setPresetBusyId(null); });
+  };
+
+  const exportPreset = (id: string) => {
+    const request = ++presetRequest.current;
+    setPresetBusyId(id); setPresetError(null);
+    void exportPresetDefinition(id).then(definition => {
+      if (request !== presetRequest.current) return;
+      const blob = new Blob([definition], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = `${id.replace(/[^a-z0-9_.-]+/gi, '-')}.audiobrain-preset.json`;
+      link.click();
+      setTimeout(() => URL.revokeObjectURL(url), 1000);
+    }).catch((error: unknown) => { if (request === presetRequest.current) setPresetError(error instanceof Error ? error.message : String(error)); })
+      .finally(() => { if (request === presetRequest.current) setPresetBusyId(null); });
   };
 
   useEffect(() => {
@@ -123,14 +167,14 @@ export function App() {
     <footer className="statusbar"><span><i className={`status-dot ${audioOn ? 'live' : ''}`} />{audioOn ? 'Audio engine running' : 'Audio off'}<span className="status-detail"> · {snapshot.voiceCount} voices</span></span><span className="local-status">LOCAL FIRST · NO ACCOUNT NEEDED</span><button onClick={() => setDialog('connections')}><Radio size={12} /> Connections</button></footer>
     <input ref={importInput} type="file" accept=".json,application/json" className="sr-only" aria-label="Import AudioBrain JSON" onChange={(event) => {
       const file = event.target.files?.[0]; if (!file) return;
-      if (file.size > 1_000_000) { setNotice('Project exceeds the 1 MB limit.'); return; }
-      run(file.text().then((text) => { const project = parseGraphDocument(JSON.parse(text)); if (store.loadProject(project)) setNotice('Project imported.'); })); event.target.value = '';
+      if (file.size > GRAPH_LIMITS.maxJsonBytes) { setNotice('Project exceeds the 1 MiB limit.'); event.target.value = ''; return; }
+      run(file.text().then((text) => { const value = JSON.parse(text) as unknown; const isPreset = value !== null && typeof value === 'object' && 'documentType' in value && value.documentType === 'audiobrain.instrument-preset'; const project = isPreset ? reconstructPreset(parsePresetDefinition(value)) : parseGraphDocument(value); if (store.loadProject(project)) setNotice(isPreset ? 'Preset rebuilt with its saved settings and layout.' : 'Project imported.'); })); event.target.value = '';
     }} />
-    <dialog className="app-dialog" ref={dialogRef} onCancel={() => setDialog(null)} onClick={(event) => { if (event.target === event.currentTarget) setDialog(null); }}>
-      <header><h2>{dialog === 'help' ? 'A little strange. Very playable.' : dialog === 'rename' ? 'Name your instrument' : dialog === 'presets' ? 'Morphazoid presets' : 'Connections'}</h2><button className="icon-button" aria-label="Close dialog" onClick={() => setDialog(null)}><X size={18} /></button></header>
+    <dialog className={`app-dialog${dialog === 'presets' ? ' preset-library-dialog' : ''}`} ref={dialogRef} onCancel={closeDialog} onClick={(event) => { if (event.target === event.currentTarget) closeDialog(); }}>
+      <header><h2>{dialog === 'help' ? 'A little strange. Very playable.' : dialog === 'rename' ? 'Name your instrument' : dialog === 'presets' ? 'Morphazoid presets' : 'Connections'}</h2><button className="icon-button" aria-label="Close dialog" onClick={closeDialog}><X size={18} /></button></header>
       {dialog === 'help' ? <div className="help-content"><p>AudioBrain turns Morphazoid instruments into connected, reusable parts.</p><ol><li>Open Presets to load Shapes, L-Systems, or Graphs, or add another independent instrument.</li><li>Enable audio, then press Play. Audio and transport are separate.</li><li>Drag the instrument graphic or move a slider. Each gesture changes the same controls shown in the graph.</li><li>Pin a node control, choose Arrange, and move or resize it. Perform locks the layout.</li><li>Connect compatible ports to change the instrument. Select an edge and press Delete to disconnect it.</li></ol><p>Shapes Playheads controls choose point, line, or radar readers, count, direction, and relative positions. In Graph, select a Shapes Reader and pin Playheads if your saved layout does not yet include it. Curvature defaults to zero in new presets; your saved values are preserved.</p><p>Select any node to name or duplicate it in the Inspector. Stable IDs keep cables, controls, and saved state attached to the right object.</p><p>Space plays or pauses outside a control. Escape stops sounding voices. Your project saves in this browser; Export makes a portable copy with its performance layout.</p><p>Microphone and MIDI require their own explicit enable action. OSC needs a compatible WebSocket gateway. These device connections are never stored in a project.</p><a href="/storybook/" target="_blank" rel="noreferrer">Explore the component catalog <ArrowUpRight size={13} /></a></div>
         : null}
-      {dialog === 'presets' && <div className="preset-library"><p>Load replaces the current project. Add keeps it and creates another independent instrument. Both can be undone.</p>{PRESETS.map(preset => <article key={preset.id} className="preset-card"><h3>{preset.title}</h3><p>{preset.description}</p><div className="preset-card-actions"><button className="secondary-button" onClick={() => { if (store.loadProject(preset)) { setDialog(null); setNotice(null); } }}>Load {preset.title}</button><button className="secondary-button" onClick={() => { if (store.addInstrument(preset)) { setDialog(null); setNotice('Instrument added with independent object identities and controls.'); } }}>Add {preset.title}</button></div></article>)}</div>}
+      {dialog === 'presets' && <><div className="preset-library-tools"><button className="secondary-button" onClick={saveCurrentPreset}><Download size={13} />Export current as preset</button><button className="secondary-button" onClick={() => { closeDialog(); importInput.current?.click(); }}><FolderOpen size={13} />Import preset or project</button></div><PresetLibrary entries={PRESET_LIBRARY_ENTRIES} onLoad={id => applyPreset(id, 'load')} onAdd={id => applyPreset(id, 'add')} onExport={exportPreset} busyId={presetBusyId} error={presetError} /></>}
       {dialog === 'rename' && <form className="help-content" onSubmit={event => { event.preventDefault(); if (draftTitle.trim()) { store.setTitle(draftTitle.trim()); setDialog(null); } }}><label className="connection-field">Instrument name<input value={draftTitle} onChange={event => setDraftTitle(event.target.value)} maxLength={96} required /></label><button className="secondary-button" type="submit" disabled={!draftTitle.trim()}>Save name</button></form>}
       <div hidden={dialog !== 'connections'}><ConnectionsPanel runtime={runtime} snapshot={snapshot} project={store.document} /></div>
     </dialog>

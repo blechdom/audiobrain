@@ -1,0 +1,258 @@
+.app-dialog.preset-library-dialog {
+  width: min(980px, calc(100vw - 32px));
+}
+
+.preset-library {
+  display: grid;
+  gap: 16px;
+  padding: 12px 0 0;
+  min-width: 0;
+}
+
+.preset-library-intro,
+.preset-library-explanation,
+.preset-library-pending,
+.preset-library-error {
+  margin: 0;
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.6;
+}
+
+.preset-library-error {
+  color: var(--coral);
+}
+
+.preset-library-filters {
+  display: grid;
+  grid-template-columns: minmax(180px, 2fr) repeat(3, minmax(100px, 1fr));
+  align-items: end;
+  gap: 10px;
+}
+
+.preset-library-filters > label {
+  display: grid;
+  gap: 6px;
+  min-width: 0;
+  color: var(--muted);
+  font-size: 10px;
+}
+
+.preset-library-filters input,
+.preset-library-filters select {
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  min-height: 38px;
+  padding: 8px;
+  border: 1px solid var(--line-bright);
+  border-radius: 6px;
+  background: var(--bg);
+  color: var(--ink);
+  font: inherit;
+  font-size: 12px;
+}
+
+.preset-library-filters > .preset-library-search {
+  position: relative;
+}
+
+.preset-library-search > svg {
+  position: absolute;
+  top: 12px;
+  left: 11px;
+  pointer-events: none;
+}
+
+.preset-library-search input {
+  padding-left: 33px;
+}
+
+.preset-library-results,
+.preset-library-section > header,
+.preset-card-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.preset-library-results {
+  color: var(--muted);
+  font-size: 11px;
+  min-height: 24px;
+}
+
+.preset-library-section {
+  display: grid;
+  gap: 12px;
+  min-width: 0;
+}
+
+.preset-library-section > header {
+  justify-content: start;
+  border-top: 1px solid var(--line);
+  padding-top: 16px;
+}
+
+.preset-library-section > header h3 {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 550;
+}
+
+.preset-library-cards {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-items: start;
+  gap: 12px;
+}
+
+.preset-library .preset-card {
+  min-width: 0;
+  padding: 14px;
+}
+
+.preset-card-heading {
+  align-items: start;
+}
+
+.preset-card-heading h4 {
+  margin: 0;
+  font-size: 14px;
+  font-weight: 550;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+}
+
+.preset-availability {
+  flex-shrink: 0;
+  padding: 3px 6px;
+  border: 1px solid var(--line-bright);
+  border-radius: 4px;
+  color: var(--muted);
+  font-size: 9px;
+  white-space: nowrap;
+}
+
+.preset-availability.ready {
+  color: var(--acid);
+  border-color: #4b5a35;
+}
+
+.preset-card-kind {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px 12px;
+  margin-top: 7px;
+  color: var(--dim);
+  font-size: 10px;
+}
+
+.preset-requirements {
+  margin: 12px 0;
+  padding: 10px;
+  border-radius: 5px;
+  background: var(--bg);
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 1.6;
+}
+
+.preset-requirements strong {
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.preset-requirements ul {
+  margin: 5px 0 0;
+  padding-left: 15px;
+}
+
+.preset-source {
+  margin-top: 12px;
+  color: var(--muted);
+  font-size: 10px;
+  overflow-wrap: anywhere;
+}
+
+.preset-source summary {
+  cursor: pointer;
+  padding: 6px 0;
+}
+
+.preset-source > code,
+.preset-source > span,
+.preset-source > a {
+  display: block;
+  margin: 5px 0;
+}
+
+.preset-source > a {
+  color: var(--ink);
+}
+
+.preset-source a > svg {
+  vertical-align: middle;
+  margin-left: 3px;
+}
+
+.preset-library .preset-card-actions {
+  flex-wrap: wrap;
+  margin-top: 14px;
+  gap: 8px;
+}
+
+.preset-library .secondary-button {
+  margin-right: 0;
+  min-height: 36px;
+}
+
+.preset-export {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  min-height: 36px;
+  font-size: 10px;
+  color: var(--muted);
+}
+
+.preset-export:hover {
+  color: var(--acid);
+}
+
+.preset-library-empty {
+  padding: 24px 12px;
+  border: 1px dashed var(--line-bright);
+  border-radius: 8px;
+  text-align: center;
+  color: var(--muted);
+  font-size: 12px;
+}
+
+.preset-library .preset-library-more {
+  justify-self: center;
+  margin: 10px 0;
+  min-width: 200px;
+}
+
+@media (max-width: 650px) {
+  .preset-library-filters {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .preset-library-cards {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .preset-library .secondary-button,
+  .preset-library-filters input,
+  .preset-library-filters select,
+  .preset-export {
+    min-height: 42px;
+  }
+
+  .preset-library-search > svg {
+    top: 14px;
+  }
+}

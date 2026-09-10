@@ -1247,7 +1247,7 @@
           "type": "integer",
           "default": 5,
           "min": 0,
-          "max": 8,
+          "max": 15,
           "step": 1,
           "unit": ""
         }
@@ -1285,6 +1285,13 @@
           "type": "control.f32",
           "schemaVersion": 1,
           "required": false
+        },
+        {
+          "id": "turnAsymmetry",
+          "label": "Turn asymmetry",
+          "type": "control.f32",
+          "schemaVersion": 1,
+          "required": false
         }
       ],
       "outputs": [
@@ -1315,6 +1322,29 @@
           "max": 1,
           "step": 0.01,
           "unit": ""
+        },
+        {
+          "id": "drawSymbols",
+          "label": "Draw symbols",
+          "type": "text",
+          "default": "F",
+          "maxLength": 32
+        },
+        {
+          "id": "moveSymbols",
+          "label": "Move symbols",
+          "type": "text",
+          "default": "",
+          "maxLength": 32
+        },
+        {
+          "id": "turnAsymmetry",
+          "label": "Turn asymmetry",
+          "type": "number",
+          "default": 0,
+          "min": -0.8,
+          "max": 0.8,
+          "step": 0.01
         }
       ],
       "views": [],
@@ -1500,6 +1530,20 @@
           "type": "control.f32",
           "schemaVersion": 1,
           "required": false
+        },
+        {
+          "id": "nodeCount",
+          "label": "Node count",
+          "type": "control.f32",
+          "schemaVersion": 1,
+          "required": false
+        },
+        {
+          "id": "density",
+          "label": "Density",
+          "type": "control.f32",
+          "schemaVersion": 1,
+          "required": false
         }
       ],
       "outputs": [
@@ -1517,7 +1561,17 @@
           "type": "enum",
           "default": "layered",
           "choices": [
-            "layered"
+            "layered",
+            "chain",
+            "tree",
+            "dag",
+            "bipartite",
+            "ring",
+            "smallworld",
+            "hub",
+            "mesh",
+            "modular",
+            "random"
           ]
         },
         {
@@ -1549,6 +1603,24 @@
           "max": 4294967295,
           "step": 1,
           "unit": ""
+        },
+        {
+          "id": "nodeCount",
+          "label": "Node count",
+          "type": "integer",
+          "default": 12,
+          "min": 3,
+          "max": 32,
+          "step": 1
+        },
+        {
+          "id": "density",
+          "label": "Density",
+          "type": "number",
+          "default": 0.36,
+          "min": 0,
+          "max": 1,
+          "step": 0.01
         }
       ],
       "views": [],

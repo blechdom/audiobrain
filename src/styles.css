@@ -30,3 +30,5 @@
 .react-flow__edge.selected .react-flow__edge-path { stroke-width: 3.5 !important; filter: drop-shadow(0 0 4px #b8d4ff70); }
 
 .node-footer{gap:8px;overflow-wrap:anywhere}.node-header strong{overflow-wrap:anywhere}.node-parameters>.shapes-playhead-controls{max-height:310px;overflow:auto}.object-identity{display:flex;flex-direction:column;gap:6px;font-size:11px;margin:12px 0}.object-identity input{background:var(--bg);border:1px solid var(--line);border-radius:5px;padding:8px;color:var(--text)}.object-identity code{font-size:9px;color:var(--muted);overflow-wrap:anywhere}.preset-library{display:grid;gap:12px;padding:18px}.preset-card{border:1px solid var(--line);border-radius:8px;padding:12px}.preset-card h3{margin:0 0 5px;font-size:14px}.preset-card p{font-size:12px;color:var(--muted);line-height:1.5}.preset-card-actions{display:flex;gap:10px}
+
+.preset-library-tools{display:flex;flex-wrap:wrap;gap:8px;padding:16px 18px 0}.preset-library-tools button{display:flex;align-items:center;gap:7px}

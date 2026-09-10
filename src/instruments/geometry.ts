@@ -4,8 +4,10 @@ import { generateGraph, type GraphModel } from './morphazoid/graph-delay.js';
 import { scheduleGraphPulse, graphSynthVoice, type GraphEvent } from './morphazoid/graph-instruments.js';
 import type { FeatureSnapshot, GeometrySnapshot, NoteTarget, ShapeReaderSnapshot, VoiceTarget } from '../runtime/types';
 
-export const MAX_SYMBOLS = 12_000;
-export const MAX_BRANCHES = 1024;
+// All eleven source grammar presets fit at their authored default iteration.
+// Larger edits still fail explicitly rather than silently reducing generations.
+export const MAX_SYMBOLS = 32_768;
+export const MAX_BRANCHES = 4096;
 export const MAX_EVENT_BATCH = 256;
 export const clamp = (value: number, low: number, high: number) => Math.min(high, Math.max(low, Number.isFinite(value) ? value : low));
 export const wrap = (value: number) => ((value % 1) + 1) % 1;
@@ -189,7 +191,7 @@ export function expandGrammar(axiom: string, ruleText: string, iterations: numbe
     if (!match) throw new Error(`Invalid production rule: ${line.slice(0, 50)}. Use X -> replacement.`);
     rules[match[1]!] = match[2]!;
   }
-  const expanded = expandLSystem(axiom, rules, Math.round(clamp(iterations, 0, 8)), MAX_SYMBOLS);
+  const expanded = expandLSystem(axiom, rules, Math.round(clamp(iterations, 0, 15)), MAX_SYMBOLS);
   let stack = 0;
   for (const symbol of expanded) { if (symbol === '[') stack++; if (symbol === ']' && --stack < 0) throw new Error('L-System has an unmatched closing bracket.'); }
   if (stack !== 0) throw new Error('L-System has unmatched branch brackets.');
@@ -202,11 +204,13 @@ function branchPoint(point: { x: number; y: number }, trace: BranchTrace) {
   return { x: (point.x - (minX + maxX) / 2) / scale, y: (point.y - (minY + maxY) / 2) / scale };
 }
 
-export function branchGeometry(text: string, angleDeg: number, lengthScale: number): BranchGeometry {
+export interface BranchGeometryOptions { drawSymbols?: string; moveSymbols?: string; turnAsymmetry?: number }
+
+export function branchGeometry(text: string, angleDeg: number, lengthScale: number, options: BranchGeometryOptions = {}): BranchGeometry {
   if (text.length > MAX_SYMBOLS) throw new Error(`L-System exceeds ${MAX_SYMBOLS} symbols.`);
-  const trace = traceLSystem({ axiom: text, angle: angleDeg, lengthScale, maxSymbols: MAX_SYMBOLS });
+  const trace = traceLSystem({ axiom: text, angle: angleDeg, lengthScale, ...options, maxSymbols: MAX_SYMBOLS });
   if (trace.segments.length > MAX_BRANCHES) throw new Error(`L-System exceeds ${MAX_BRANCHES} branches; reduce iterations.`);
-  if (!trace.segments.length) throw new Error('L-System needs at least one F drawing symbol.');
+  if (!trace.segments.length) throw new Error(`L-System needs at least one ${options.drawSymbols ?? 'F'} drawing symbol.`);
   const { minX, maxX, minY, maxY } = trace.bounds;
   if (!Number.isFinite(trace.duration) || !Number.isFinite(maxX - minX) || !Number.isFinite(maxY - minY)
     || trace.segments.some((segment) => ![segment.start.x, segment.start.y, segment.end.x, segment.end.y, segment.startDistance, segment.endDistance].every(Number.isFinite))) {
@@ -241,13 +245,19 @@ export function branchNotes(events: GeometryFeature[], rootHz: number, semitones
   return events.map((event) => ({ id: event.id, time: event.time ?? 0, duration: event.duration ?? 0.2, frequency: branchAngleFrequency(event.turn ?? 0, rootHz, semitonesPerTurn / 12), amplitude: branchVoiceGain(event.powerShare ?? 1, 1, 0.34), pan: clamp(event.x * 0.8, -1, 1), brightness: clamp(0.35 + Math.abs(event.turn ?? 0) / (Math.PI * 4), 0, 1), articulation: 'branch' }));
 }
 
-export function graphGeometry(layers: number, nodesPerLayer: number, seed: number): GraphGeometry {
+export interface GraphGeometryOptions { topology?: string; nodeCount?: number; density?: number }
+
+export function graphGeometry(layers: number, nodesPerLayer: number, seed: number, options: GraphGeometryOptions = {}): GraphGeometry {
   const width = Math.round(clamp(nodesPerLayer, 1, 8));
   const columns = Math.round(clamp(layers, 2, 8));
-  const graph = generateGraph({ type: 'dag', nodeCount: Math.max(3, width * columns), maxNodes: 64, density: 0.36, seed });
-  // Retain Morphazoid's seeded directed edges and normalize its layout to the
-  // explicit layer controls. IDs, degrees and route-turn evaluation stay intact.
-  graph.nodes = graph.nodes.map((node, index) => ({ ...node, x: 0.08 + Math.floor(index / width) / Math.max(1, Math.ceil(graph.nodes.length / width) - 1) * 0.84, y: width === 1 ? 0.5 : 0.12 + (index % width) / (width - 1) * 0.76 }));
+  const layered = !options.topology || options.topology === 'layered';
+  const graph = generateGraph(layered
+    ? { type: 'dag', nodeCount: Math.max(3, width * columns), maxNodes: 64, density: 0.36, seed }
+    : { type: options.topology!, nodeCount: Math.round(clamp(options.nodeCount ?? 12, 3, 32)), maxNodes: 32, density: clamp(options.density ?? .36, 0, 1), seed });
+  // Existing documents retain their authored AudioBrain layer layout. Named
+  // source topologies preserve Morphazoid coordinates as well as directed edges:
+  // node positions also determine route lengths, turns and musical mappings.
+  if (layered) graph.nodes = graph.nodes.map((node, index) => ({ ...node, x: 0.08 + Math.floor(index / width) / Math.max(1, Math.ceil(graph.nodes.length / width) - 1) * 0.84, y: width === 1 ? 0.5 : 0.12 + (index % width) / (width - 1) * 0.76 }));
   return { family: 'graph', graph, snapshot: { kind: 'graph', points: graph.nodes.map((node) => ({ id: `node:${node.id}`, x: node.x * 2 - 1, y: 1 - node.y * 2 })), segments: graph.edges.map((edge) => ({ id: `edge:${edge.id}`, from: `node:${edge.from}`, to: `node:${edge.to}` })) } };
 }
 

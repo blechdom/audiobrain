@@ -19,6 +19,7 @@ const requiredStories = [
   'workspace-performance--l-systems',
   'workspace-performance--graphs',
   'workspace-graph--shapes',
+  'workspace-presets--library',
 ];
 
 for (const file of requiredFiles) {

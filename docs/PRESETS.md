@@ -15,11 +15,37 @@ Drag a head to reposition it. In the default Playheads tool, dragging inside a s
 
 Existing saved projects gain compatible reader/gesture defaults, but their authored performance layout is retained. Select Shapes Reader in Graph and pin **Playheads**; pin **Sound mode** from Shapes Mapping. When you change Sound mode in an older Synth patch, AudioBrain adds the optional Notes / triggers cable to its connected voice bank if that input is unused, in the same undo step. Existing input connections are preserved.
 
+## Original Morphazoid presets
+
+The library preserves 1,479 records across 126 source collections, including complete instrument patches, grammars, topology families, timbres, envelopes, scales, scenes and page defaults. Search by the original name or source page; filter by collection, type and availability. The first 48 matching cards appear immediately; **Show more** reveals the next page of results. Search always covers the entire collection.
+
+| Availability | Current behavior |
+| --- | --- |
+| Graph ready: 11 L-System grammars | Rebuilds axiom, ordered rules, default iterations, angle, length scale, drawing/movement symbols and turn asymmetry into grammar and geometry nodes, with an AudioBrain note path and performance layout |
+| Graph ready: 10 topology families | Uses the source graph generator and its coordinates, edges and entry identities, with editable topology, node count, density and seed; the preview uses AudioBrain traversal and sound |
+| Needs features: other source records | Keeps all original data exportable and shows the missing adapter or engine; Load/Add become available only when faithful reconstruction is implemented |
+
+The ten topology records are selectors for graph generators. Their source records do not define node count, density or seed; the AudioBrain preview starts at 12 nodes, 0.36 density and seed 17. Complete Graph instrument and delay patches include timing, tuning, drum/synthesis and feedback settings that need additional operators. Their data is preserved separately; a topology preview does not reproduce those instruments' original sound.
+
+The archive is extracted from committed Morphazoid source at a pinned revision. Each record retains its original name, source ID, collection, exact settings, file hash and license notices. Tagged values preserve authored functions, undefined values and expressions that depend on the page viewport without executing source page code in the browser. The full archive downloads when an original record is first loaded, added or exported; the search index is available immediately.
+
+This archive covers committed factory content and page defaults. Presets saved only in another site's browser storage or in private files need an explicit export from that app; the new site cannot read another origin's browser storage.
+
+## Recipes and instances
+
+Presets now have a page-independent `audiobrain.instrument-preset` document (schema version 1). A Morphazoid recipe holds its original settings and provenance. A versioned adapter reconstructs the graph, cables, parameter bindings and performance layout. Unknown settings and capacity overflows cause an explicit error; they are never silently dropped or reduced.
+
+Reconstructing a source recipe creates fresh object IDs and a fresh preset instance ID. The project retains the source preset ID and full original recipe in `presetOrigins`, associated with that instance's nodes. **Add** remaps those associations with the rest of the instrument, so two copies can be edited independently while retaining their shared source identity. Deleting or duplicating a node updates the association; undo restores it. Original settings remain provenance while the live graph owns your edits. An authored graph recipe restores its saved IDs and can retain unfinished connections with their normal editor diagnostics.
+
+Use **Export source preset** on any original card to keep its portable source recipe. Use **Presets → Export current as preset** to capture the complete current graph, including edits, layout and source associations. **Import preset or project** reconstructs supported source recipes or restores authored graph recipes. Imported unsupported source recipes report the missing features and preserve the current project. The existing project JSON export also retains all source associations. Exports remain subject to the project's 1 MiB bound.
+
+`npm run check:presets` verifies the frozen source inventory, record hashes, original bank reconstruction and menu coverage. Runtime tests round-trip every source recipe and compare all supported grammar/topology geometry against canonical source fixtures. New adapters can extend reconstruction without revising or discarding the archived original data. [Archive maintenance](PRESET_ARCHIVE.md) documents extraction and the frozen source edition.
+
 The following architecture notes distinguish implemented families from planned source extensions. The [parity ledger](FEATURE_PARITY.md) is the required preservation inventory.
 
 # Three teaching presets
 
-Status: these are **playable production presets in AudioBrain 0.2.0**, validated by the production compiler and tested through real offline audio rendering. They adapt the audited instruments; they are not byte-for-byte exports or claims of full timbral parity. Future variations and richer authoring targets are identified below.
+Status: these are **playable production presets in AudioBrain 0.3.0**, validated by the production compiler and tested through real offline audio rendering. They adapt the audited instruments; they are not byte-for-byte exports or claims of full timbral parity. Future variations and richer authoring targets are identified below.
 
 The expanded graphs in [presets/](../presets/) show the boundaries an author can edit. The current app presents each as a complete expanded instrument graph; nested module wrappers remain planned. A fresh session begins with audio off and built-in sources, without microphone/MIDI permission or network connections. The performer explicitly arms Audio and starts transport. Switching presets retains an already armed/playing session, resets the instrument epoch and releases old notes; it never arms an unarmed host. A persistent host transport and panic control sits outside the arrangeable widget list.
 
@@ -49,9 +75,9 @@ flowchart LR
 | Output | Stereo gain -6 dB, level meter | Output level and metering are shared building blocks |
 | Performance | Large contour graphic; sides, curvature, speed, root, character and level | Pinned controls edit the same literals as node/Inspector controls |
 
-Arrange the shape view in the left two-thirds of a 12-column surface, expressive controls to the right, master/meter below. Dragging the shape graphic issues a curvature command through its explicit `viewBindings` target; keyboard/numeric equivalents remain available. Rotation and editable-vertex shapes need further declared parameters/actions, not capabilities implied by this fixture.
+Arrange the shape view in the left two-thirds of a 12-column surface, expressive controls to the right, master/meter below. Playhead, scrub, Move, Rotate and Curvature gestures issue validated commands through explicit `viewBindings`; keyboard/numeric equivalents remain available. Arbitrary editable-vertex shapes remain a separate authoring requirement.
 
-Acceptance: shape and sound respond to the same curve edit; corner articulation remains meaningful; another view adds no voices; hiding the view preserves sound; reset returns head phases reproducibly. Add a **Corner Drums** variation later: the same contact stream → crossing detector → event-to-drum mapping → drum bank. Continuous geometry features and discrete attacks must remain distinct contracts.
+Acceptance: shape and sound respond to the same curve edit; corner articulation remains meaningful; another view adds no voices; hiding the view preserves sound; reset returns head phases reproducibly. **Shapes Notes**, **Shapes Triggers** and **Shapes Drums** provide discrete attacks from the same contact stream through the mapping node and the voice bank's event input. Continuous geometry features and discrete attacks retain distinct contracts.
 
 ## 2. Morphazoid L-Systems — branches become a score
 

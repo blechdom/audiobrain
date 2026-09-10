@@ -147,7 +147,7 @@ export class GraphEvaluator {
         case 'lsystem.grammar': output('text', this.memo(node.id, params, () => expandGrammar(String(params.axiom), String(params.rules), num('iterations')))); break;
         case 'lsystem.geometry': {
           const text = input<string>('text') ?? '';
-          const geometry = this.memo(node.id, [text, params], () => branchGeometry(text, num('angleDeg'), num('lengthScale')));
+          const geometry = this.memo(node.id, [text, params], () => branchGeometry(text, num('angleDeg'), num('lengthScale'), { drawSymbols: String(params.drawSymbols ?? 'F'), moveSymbols: String(params.moveSymbols ?? ''), turnAsymmetry: num('turnAsymmetry') }));
           output('path', geometry); snapshot.geometry = geometry.snapshot; break;
         }
         case 'lsystem.frontier': {
@@ -164,7 +164,7 @@ export class GraphEvaluator {
           output('notes', branchNotes(features.events, num('rootHz'), num('semitonesPerTurn'))); break;
         }
         case 'graph.topology': {
-          const geometry = this.memo(node.id, params, () => graphGeometry(num('layers'), num('nodesPerLayer'), num('seed')));
+          const geometry = this.memo(node.id, params, () => graphGeometry(num('layers'), num('nodesPerLayer'), num('seed'), { topology: String(params.topology ?? 'layered'), nodeCount: num('nodeCount'), density: num('density') }));
           output('graph', geometry); snapshot.geometry = geometry.snapshot; break;
         }
         case 'graph.walk': {

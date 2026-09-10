@@ -482,32 +482,44 @@
     {
       "id": "lsystems.grammar-bank",
       "status": "partial",
-      "access": "L-System Grammar node; initial tree preset.",
+      "access": "Presets → Family: L-System grammars offers all 11 original names; Load/Add reconstructs editable Grammar/Geometry nodes and a performance layout. Grammar parameters remain available in Graph/Inspector.",
       "implementation": [
+        "contracts/morphazoid-presets.json",
+        "src/presets/adapters.ts",
         "src/instruments/geometry.ts"
       ],
       "tests": [
         {
-          "path": "src/runtime/GraphEvaluator.test.ts",
-          "testName": "rejects malformed or over-budget L-System expansion instead of silently truncating it"
+          "path": "src/presets/presets.test.ts",
+          "testName": "reconstitutes every ready original component into a valid graph and performance layout with source settings intact"
+        },
+        {
+          "path": "src/instruments/source-preset-geometry.test.ts",
+          "testName": "keeps larger authored generations observable as errors without reducing iterations or dropping branches"
         }
       ],
-      "remaining": "Editable axiom/rules support source grammar math. Preset selector for all11 source systems and their specific limits/defaults is missing."
+      "remaining": "All 11 authored grammar defaults and original records are preserved, including alternate drawing symbols and Cantor pen-up movement. Original maxIterations is archived; higher generations can exceed the explicit 32,768-symbol/4,096-branch host budgets. Source system-reset behavior, per-preset editor limits and complete source sound/structure modes remain required; the reconstruction uses AudioBrain preview notes."
     },
     {
       "id": "lsystems.geometry",
       "status": "partial",
-      "access": "Grammar/Geometry nodes; Iterations/Angle in Perform.",
+      "access": "Grammar/Geometry nodes expose iterations, angle, length scale, drawing/pen-up symbols and turn asymmetry. Iterations/Angle are pinned in Perform; other supported parameters can be pinned from the Inspector.",
       "implementation": [
-        "src/instruments/geometry.ts"
+        "src/instruments/geometry.ts",
+        "src/runtime/GraphEvaluator.ts",
+        "contracts/operator-catalog.json"
       ],
       "tests": [
         {
-          "path": "src/runtime/GraphEvaluator.test.ts",
-          "testName": "evaluates all production preset graphs into matching visuals and routed sound"
+          "path": "src/instruments/source-preset-geometry.test.ts",
+          "testName": "preserves pen-up gaps and asymmetric turn pitch metadata through the actual graph runtime"
+        },
+        {
+          "path": "src/presets/presets.test.ts",
+          "testName": "reconstitutes every ready original component into a valid graph and performance layout with source settings intact"
         }
       ],
-      "remaining": "Iterations/angle/lengthScale exist with explicit host limits. Turn asymmetry and all source ranges are missing."
+      "remaining": "Source grammar defaults and asymmetric turns now retain canonical geometry, cumulative turn, distance and branch identity. Host iteration/expansion budgets and parameter ranges remain distinct: source length scale reaches 1.2, while the current operator stops at 1. Complete source ranges and per-system limits remain required."
     },
     {
       "id": "lsystems.traversal",
@@ -626,25 +638,40 @@
     {
       "id": "graphs.topology",
       "status": "partial",
-      "access": "Graph Topology node.",
+      "access": "Presets → Family: Graph topologies; Graph Topology node/Inspector. Reconstructed component layouts pin Topology, Node count, Density and Seed in Perform.",
       "implementation": [
-        "src/instruments/geometry.ts"
+        "src/instruments/geometry.ts",
+        "src/runtime/GraphEvaluator.ts",
+        "src/presets/adapters.ts",
+        "contracts/operator-catalog.json"
       ],
       "tests": [
         {
-          "path": "src/runtime/GraphEvaluator.test.ts",
-          "testName": "evaluates all production preset graphs into matching visuals and routed sound"
+          "path": "src/instruments/source-preset-geometry.test.ts",
+          "testName": "preserves the legacy layered graph and exposes source topology controls through the graph runtime"
+        },
+        {
+          "path": "src/presets/presets.test.ts",
+          "testName": "reconstitutes every ready original component into a valid graph and performance layout with source settings intact"
         }
       ],
-      "remaining": "Seeded layered DAG only; all other topology families and original density controls are missing."
+      "remaining": "All ten canonical generators now preserve source coordinates, directed edges, entries and IDs, with editable node count, density and seed; existing layered graphs remain unchanged. Topology records omit those numeric settings, so preview wrappers explicitly use 12 nodes, density 0.36 and seed 17. The source Graph Delay route-budget generation policy and full per-page instrument behavior remain unported."
     },
     {
       "id": "graphs.patch-bank",
       "status": "missing",
-      "access": "Not available in AudioBrain.",
-      "implementation": [],
-      "tests": [],
-      "remaining": "Current Morphazoid Graphs is one new AudioBrain preset; source patch bank/defaults and reset-all behavior have not been ported."
+      "access": "Presets → Family: Graph Synth / Drums patches shows all eight source Graph instrument patches as archived; their original settings can be inspected/exported, but full-patch Load/Add remains unavailable.",
+      "implementation": [
+        "contracts/morphazoid-presets.json",
+        "src/presets/adapters.ts"
+      ],
+      "tests": [
+        {
+          "path": "src/presets/presets.test.ts",
+          "testName": "keeps every archived entry exportable without treating unavailable engines as ready"
+        }
+      ],
+      "remaining": "All eight complete source patch records are preserved independently of their pages. Their authored edge timing, pulse cadence, propagation/feedback, drum mappings/styles, synth controls and source reset behavior still require faithful runtime adapters. Loading a topology component or an AudioBrain example does not restore an original sound patch."
     },
     {
       "id": "graphs.vertex-switch-gestures",

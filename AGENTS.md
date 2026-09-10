@@ -33,6 +33,12 @@ The user's explicit requirement is to preserve existing Morphazoid functionality
 
 New Shapes defaults use zero curvature as explicitly requested. Preserve curvature values in existing saved user projects; do not silently rewrite authored patches to the new default.
 
+## Preserve source presets
+
+Read `docs/PRESET_ARCHIVE.md` and `docs/PRESETS.md` before changing presets or their adapters. `contracts/morphazoid-presets.json` retains original committed factory records; its compact index powers the library and its frozen baseline prevents loss or mutation. Preserve original names, IDs, raw settings, expressions, source hashes and licenses independently of current operator availability. Extending a source audit must retain previous records and document changes; do not regenerate the baseline to hide a regression.
+
+Reconstruction adapters must map supported records explicitly and reject unknown settings or capacity overflow. Keep unsupported presets visible and exportable with accurate missing-feature requirements. A restored grammar or topology does not establish parity for a whole instrument's timing, mappings or sound. Preserve `presetOrigins` through edits, duplication, Add, undo and project/preset round trips; instance node IDs must remain independent. Run `npm run check:presets` and the behavioral adapter tests when changing presets, graph metadata or source preservation.
+
 Use Node.js 22 or newer. For a release-sized change run:
 
 ```sh

@@ -1,8 +1,8 @@
 # AudioBrain
 
-AudioBrain 0.2.0 turns Morphazoid instruments into an editable audio graph and a graphical performance surface. It uses VideoBrain's React, TypeScript, Vite, React Flow and Zustand foundation, with an independent audio runtime and project format.
+AudioBrain 0.3.0 turns Morphazoid instruments into an editable audio graph and a graphical performance surface. It uses VideoBrain's React, TypeScript, Vite, React Flow and Zustand foundation, with an independent audio runtime and project format.
 
-The application is implemented locally with **seven playable presets and 34 registered operators**. AWS infrastructure and the verification/publishing workflow are included; a public deployment is complete only after that workflow and public acceptance checks succeed. See [AWS setup](infra/README.md).
+The application includes **seven playable examples, 34 registered operators and a preserved Morphazoid source preset library**. AWS infrastructure and the verification/publishing workflow are included; a public deployment is complete only after that workflow and public acceptance checks succeed. See [AWS setup](infra/README.md).
 
 ## Play an instrument
 
@@ -25,6 +25,10 @@ All instrument families reuse gain, output, analysis and performance bindings. T
 
 The **Presets** button opens all examples, including **Morphazoid Shapes Synth**, **Shapes Notes**, **Shapes Triggers**, and **Shapes Drums**. Load replaces the current project; Add inserts an independent instrument with its own graph, identities, cables and performance controls. Both actions can be undone. New presets start at −6 dB output gain (Notes −3 dB; Drums −9 dB); existing saved gain values are retained.
 
+The same library searches **1,479 original records across 126 collections**: complete patches, grammar/topology components, sound banks, scenes and page defaults. All retain their original names, IDs, source settings and provenance. **Graph ready** currently includes all 11 original L-System grammars and 10 graph topology components, rebuilt into editable nodes and a performance layout. Their preview voices are AudioBrain's; full original instrument patches remain marked **Needs features** until their engines and mappings exist. Every original record can be exported, including those awaiting an adapter.
+
+Use **Presets → Export current as preset** to save your edited graph and performance layout as a portable recipe; **Import preset or project** opens it again. Added instances get fresh object IDs while retaining the original preset identity and source record. See [preset preservation and reconstruction](docs/PRESETS.md).
+
 In Shapes, **Sound mode** switches Synth, Notes and Drums / triggers without rewiring. **Playheads** exposes up to twelve readers, independent directions and positions, line axes, mixed reader types, loop and ping-pong motion. The graphic defaults to direct playhead manipulation: drag inside to scrub or outside to rotate. Move, Rotate and Curvature tools make each action explicit. New curvature defaults to zero.
 
 ## Build and perform
@@ -35,7 +39,7 @@ Select a node to name or duplicate it in the Inspector. Its stable ID survives r
 
 Pin a parameter or instrument view into Performance. Arrange mode moves and resizes those widgets independently of the graph; Perform locks the layout and can fullscreen the entire control surface. Graphics observe the runtime and send explicit parameter gestures. Hiding or resizing a view does not own the audio clock.
 
-Undo/redo, project naming, JSON import/export and debounced local autosave operate on the same project document. The save indicator reports pending or failed storage writes. Exports include graph and performance layout, without audio resources, sockets or device permissions. Import requires the `audiobrain.project` discriminator and schema version 1; VideoBrain documents are not interchangeable.
+Undo/redo, project naming, JSON import/export and debounced local autosave operate on the same project document. The save indicator reports pending or failed storage writes. Exports include graph, performance layout and any source preset associations, without audio resources, sockets or device permissions. Import accepts schema version 1 of `audiobrain.project` and `audiobrain.instrument-preset`; VideoBrain documents are not interchangeable. A source preset that needs unavailable features is rejected without replacing the current project.
 
 The [authoritative operator catalog](contracts/operator-catalog.json) supplies all parameter and port definitions:
 
@@ -50,7 +54,7 @@ Microphone and MIDI each require explicit session activation; MIDI output additi
 
 The three instrument families are editable top-level graphs; full source feature parity remains incomplete. The [feature parity ledger](docs/FEATURE_PARITY.md) inventories original controls and records implemented, partial and missing capabilities with evidence. `npm run check:parity` prevents silently dropping inventory or claiming full parity; `node scripts/check-feature-parity.mjs --require-complete all` intentionally fails until every required capability is restored. Nested reusable modules, arbitrary vertex/edge authoring, Graph Drums, the original L-System microphone processor, audio files/recording, broader analyzers, MIDI learn/clock, discrete surround and cross-app audio streams remain planned. Stereo panning is implemented; it is not a discrete 5.1/7.1 output system. Third-party executable plugin loading is also outside this version.
 
-The native audio rack admits up to 96 simultaneous voices globally and 32 per voice bank. Shapes has at most eight heads. L-System expansion is limited to 12,000 symbols and 1,024 segments; event batches are limited to 256. A 25 ms host timer schedules a 100 ms lookahead onto Web Audio. Views do not schedule sound, but browser background throttling remains a timer-scheduler limitation. Graph documents are bounded to 128 nodes, 512 cables, 64 performance widgets and a 1 MiB JSON import.
+The native audio rack admits up to 96 simultaneous voices globally and 32 per voice bank. Shapes has at most twelve heads. L-System expansion is limited to 32,768 symbols and 4,096 segments; event batches are limited to 256. All original grammar defaults fit; larger expansions fail explicitly. A 25 ms host timer schedules a 100 ms lookahead onto Web Audio. Views do not schedule sound, but browser background throttling remains a timer-scheduler limitation. Graph documents are bounded to 128 nodes, 512 cables, 64 performance widgets and a 1 MiB JSON import.
 
 ## Develop and release
 
@@ -62,7 +66,7 @@ npx playwright install chromium
 npm run test:e2e
 ```
 
-`verify` runs lint, type checking, unit/gateway tests, production preset validation and the app build. Browser coverage includes real `OfflineAudioContext` rendering of all three instruments, finite audio, gain response and silence after output disconnection. These checks complement listening and physical-device testing.
+`verify` runs lint, type checking, unit/gateway tests, feature and source-preset preservation checks, production preset validation and the app build. Browser coverage includes source preset reconstruction, independent instance identities, export/import, real `OfflineAudioContext` rendering of all three instruments, finite audio, gain response and silence after output disconnection. These checks complement listening and physical-device testing.
 
 Run `npm run storybook` for the production component catalog on port 6006. `build:deploy` includes that catalog under `dist/storybook`; `dist/build.json` identifies the app version and source commit.
 

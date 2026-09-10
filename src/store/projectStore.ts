@@ -138,6 +138,7 @@ export function createProjectStore(options: CreateProjectStoreOptions = {}): Pro
         copy.position = { x: source.position.x + 48, y: source.position.y + 48 };
         for (const binding of Object.values(copy.viewBindings ?? {})) if (binding.nodePath[0] === id) binding.nodePath = [copy.id];
         document.nodes.push(copy);
+        for (const origin of document.presetOrigins ?? []) if (origin.nodeIds.includes(id)) origin.nodeIds.push(copy.id);
         return commit(document, copy.id) ? copy.id : null;
       },
       renameNode(id, label) {
@@ -152,6 +153,7 @@ export function createProjectStore(options: CreateProjectStoreOptions = {}): Pro
         document.nodes = document.nodes.filter(node => node.id !== id);
         document.edges = document.edges.filter(edge => edge.source.nodeId !== id && edge.target.nodeId !== id);
         document.performance.widgets = document.performance.widgets.filter(widget => widget.target.nodePath[0] !== id);
+        if (document.presetOrigins) document.presetOrigins = document.presetOrigins.map(origin => ({ ...origin, nodeIds: origin.nodeIds.filter(nodeId => nodeId !== id) })).filter(origin => origin.nodeIds.length > 0);
         for (const node of document.nodes) if (node.viewBindings) for (const [intent, binding] of Object.entries(node.viewBindings)) if (binding.nodePath[0] === id) delete node.viewBindings[intent];
         commit(document, get().selection === id ? null : get().selection);
       },
@@ -193,6 +195,7 @@ export function createProjectStore(options: CreateProjectStoreOptions = {}): Pro
           }
           for (const edge of addition.edges) { edge.id = createId('edge'); edge.source.nodeId = ids.get(edge.source.nodeId)!; edge.target.nodeId = ids.get(edge.target.nodeId)!; }
           for (const widget of addition.performance.widgets) { widget.id = createId('widget'); widget.target.nodePath = [ids.get(widget.target.nodePath[0])!]; widget.layout.y += row; }
+          if (addition.presetOrigins?.length) document.presetOrigins = [...document.presetOrigins ?? [], ...addition.presetOrigins.map(origin => ({ ...origin, instanceId: createId('preset-instance'), nodeIds: origin.nodeIds.map(id => ids.get(id)!) }))];
           document.nodes.push(...addition.nodes); document.edges.push(...addition.edges); document.performance.widgets.push(...addition.performance.widgets);
           return commit(document, addition.nodes[0]?.id ?? null);
         } catch (error) { set({ error: errorMessage(error) }); return false; }
