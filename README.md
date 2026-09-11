@@ -74,6 +74,8 @@ The [GitHub workflow](.github/workflows/deploy-aws.yml) verifies pull requests a
 
 ## Architecture and source inventory
 
+The [design docs](design_docs/README.md) collect the full Morphazoid abstraction atlas, page-by-page survey, source registries, current node inventory and adapter design options.
+
 | Document | Contents |
 | --- | --- |
 | [Morphazoid boundary inventory](docs/MORPHAZOID_BOUNDARIES.md) | Source evidence and proposed UI/math/mapping/audio/device boundaries for all three flows |
