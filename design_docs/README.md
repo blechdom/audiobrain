@@ -2,7 +2,7 @@
 
 Start with [all modules in one table](MODULE_LIST.md) to compare availability, module types, descriptions, inputs/outputs, key controls and sources. The [abstraction atlas](MORPHAZOID_ABSTRACTION_ATLAS.md) explains the proposed architecture in more detail.
 
-**[Printable module names (PDF)](MODULE_LIST.pdf)** — three names per row, alphabetized left to right, then down.
+**[Printable module list (PDF)](MODULE_LIST.pdf)** — two module-and-description pairs per row, alphabetized left to right, then down, in compact 6⅔-point type. [Print source](MODULE_PRINT_LIST.md).
 
 1. **[All modules — one review table](MODULE_LIST.md)** — a continuous list of shipped nodes, proposed parts, source instruments/variants and exploratory interfaces, with short descriptions, I/O and controls.
 2. **[Morphazoid abstraction atlas](MORPHAZOID_ABSTRACTION_ATLAS.md)** — candidate node families, geometry and anatomical boundaries, adapters, performance UI, contracts and implementation sequence.
