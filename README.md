@@ -74,7 +74,7 @@ The [GitHub workflow](.github/workflows/deploy-aws.yml) verifies pull requests a
 
 ## Architecture and source inventory
 
-The [design docs](design_docs/README.md) collect the full Morphazoid abstraction atlas, page-by-page survey, source registries, current node inventory and adapter design options.
+The [module review table](design_docs/MODULE_LIST.md) lists shipped and candidate modules with descriptions, I/O, controls and sources. The [design docs](design_docs/README.md) collect the full Morphazoid abstraction atlas, page-by-page survey, source registries, current node inventory and adapter design options.
 
 | Document | Contents |
 | --- | --- |

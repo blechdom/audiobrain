@@ -2,6 +2,7 @@
 
 The earlier node table was a shortlist. This survey covers the whole committed browser-page collection and expands the candidate vocabulary well beyond Shapes, L-Systems and Graphs. **Preserve complete instruments first; expose reusable parts without erasing their original behavior.**
 
+- [All modules in one continuous table, with descriptions, I/O and controls](MODULE_LIST.md)
 - [Every source page and its proposed boundaries](MORPHAZOID_PAGE_MATRIX.md)
 - [Complete selected registries: modules, adapters, features, models and reference techniques](MORPHAZOID_SOURCE_REGISTRIES.md)
 - [Machine-readable coverage, controls, source hashes and registry metadata](MORPHAZOID_ABSTRACTION_SURVEY.json)
